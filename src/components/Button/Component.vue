@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
+import { defineComponent, PropType, Prop, toRefs } from 'vue';
 import {
   bgColorClass,
   hoverBgColorClass,
