@@ -2,7 +2,7 @@
   <div
     :class="$bem({})"
   >
-    <DmNotification
+    <VNotification
       v-for="item in items"
       :key="item.id"
       :message="item.message"
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmNotification } from '@/components/Notification';
+import { VNotification } from '@/components/Notification';
 import { NotificationTypeName } from '@/components/Notification/models';
 
 export interface Notification {
@@ -30,7 +30,7 @@ export interface Notification {
 export default defineComponent({
   name: 'VNotificator',
   components: {
-    DmNotification
+    VNotification
   },
   props: {
     items: {

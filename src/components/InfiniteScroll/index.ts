@@ -1,1 +1,1 @@
-export { default as DmInfiniteScroll } from './Component.vue';
+export { default as VInfiniteScroll } from './Component.vue';

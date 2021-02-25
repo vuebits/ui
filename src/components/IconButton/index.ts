@@ -1,1 +1,1 @@
-export { default as DmIconButton } from './Component.vue';
+export { default as VIconButton } from './Component.vue';

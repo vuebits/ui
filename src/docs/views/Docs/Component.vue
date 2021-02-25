@@ -25,7 +25,7 @@
       </ul>
     </div>
     <div :class="$bem({e: 'main'})">
-      <DmTile
+      <VTile
         color="white"
         bordered
         rounded
@@ -36,7 +36,7 @@
             :to="homeRoute"
             :class="$bem({e: 'breadcrumb'})"
           >
-            <DmIcon name="home" />
+            <VIcon name="home" />
           </router-link>
           <span
             v-for="breadcrumb in $route.matched"
@@ -52,22 +52,22 @@
           </span>
         </div>
         <router-view />
-      </DmTile>
+      </VTile>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DmTile, DmIcon } from '@/components';
+import { VTile, VIcon } from '@/components';
 import { components } from '@/docs/router/components';
 import { RouteName } from '@/docs/router/models';
 
 export default defineComponent({
   name: 'Docs',
   components: {
-    DmTile,
-    DmIcon
+    VTile,
+    VIcon
   },
   data () {
     return {

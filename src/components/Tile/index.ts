@@ -1,1 +1,1 @@
-export { default as DmTile } from './Component.vue';
+export { default as VTile } from './Component.vue';

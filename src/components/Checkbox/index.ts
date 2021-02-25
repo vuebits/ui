@@ -1,1 +1,1 @@
-export { default as DmCheckbox } from './Component.vue';
+export { default as VCheckbox } from './Component.vue';

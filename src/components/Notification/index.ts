@@ -1,1 +1,1 @@
-export { default as DmNotification } from './Component.vue';
+export { default as VNotification } from './Component.vue';

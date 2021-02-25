@@ -1,1 +1,1 @@
-export { default as DmToolbarLogo } from './Component.vue';
+export { default as VToolbarLogo } from './Component.vue';

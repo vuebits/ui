@@ -1,5 +1,5 @@
 <template>
-  <DmButton
+  <VButton
     :class="classes"
     :bordered="bordered"
     :light="light"
@@ -11,14 +11,14 @@
     :title="title"
     @click="click"
   >
-    <DmIcon :name="icon" />
-  </DmButton>
+    <VIcon :name="icon" />
+  </VButton>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmButton } from '@/components/Button';
-import { DmIcon } from '@/components/Icon';
+import { VButton } from '@/components/Button';
+import { VIcon } from '@/components/Icon';
 import {
   CssClass
 } from '@/helpers/css-classes';
@@ -31,8 +31,8 @@ import {
 export default defineComponent({
   name: 'VIconButton',
   components: {
-    DmButton,
-    DmIcon
+    VButton,
+    VIcon
   },
   props: {
     icon: {

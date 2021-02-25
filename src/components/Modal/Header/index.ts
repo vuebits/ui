@@ -1,3 +1,3 @@
-import DmModalHeader from './Component.vue';
+import VModalHeader from './Component.vue';
 
-export { DmModalHeader };
+export { VModalHeader };

@@ -11,7 +11,7 @@
         :class="$bem({e: 'icon', m: {clickable: leftIconClickable}})"
         @click="onLeftIconClick"
       >
-        <DmIcon
+        <VIcon
           :name="leftIcon"
           :color="leftIconColor"
         />
@@ -43,7 +43,7 @@
         :class="$bem({e: 'icon', m: {clickable: rightIconClickable}})"
         @click="onRightIconClick"
       >
-        <DmIcon
+        <VIcon
           :name="rightIcon"
           :color="rightIconColor"
         />
@@ -75,12 +75,12 @@ import {
   useRounded,
   useValidation
 } from '@/composition-functions';
-import { DmIcon } from '@/components/Icon';
+import { VIcon } from '@/components/Icon';
 
 export default defineComponent({
   name: 'VTextarea',
   components: {
-    DmIcon
+    VIcon
   },
   props: {
     modelValue: {

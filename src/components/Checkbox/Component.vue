@@ -15,7 +15,7 @@
       <span
         :class="checkmarkClasses"
       >
-        <DmIcon
+        <VIcon
           v-if="selectedValue"
           name="check"
         />
@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmIcon } from '@/components/Icon';
+import { VIcon } from '@/components/Icon';
 import { CssClass } from '@/helpers/css-classes';
 import {
   roundedProps
@@ -45,7 +45,7 @@ library.add(
 export default defineComponent({
   name: 'VCheckbox',
   components: {
-    DmIcon
+    VIcon
   },
   props: {
     modelValue: {

@@ -13,20 +13,20 @@
     @focus="onFocus"
     @blur="onBlur"
   >
-    <DmIcon
+    <VIcon
       v-if="leftIcon"
       :name="leftIcon"
       :class="$bem({e: 'icon'})"
     />
     <span :class="$bem({e: 'content'})">
-      <DmSpinner
+      <VSpinner
         v-if="loading"
         :color="dark ? 'white' : 'default'"
         size="1x"
       />
       <slot />
     </span>
-    <DmIcon
+    <VIcon
       v-if="rightIcon"
       :name="rightIcon"
       :class="$bem({e: 'icon'})"
@@ -55,8 +55,8 @@ import {
   useLink,
   useElevated
 } from '@/composition-functions';
-import { DmSpinner } from '@/components/Spinner';
-import { DmIcon } from '@/components/Icon';
+import { VSpinner } from '@/components/Spinner';
+import { VIcon } from '@/components/Icon';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faSpinner
@@ -68,8 +68,8 @@ library.add(
 export default defineComponent({
   name: 'VButton',
   components: {
-    DmSpinner,
-    DmIcon
+    VSpinner,
+    VIcon
   },
   props: {
     color: {

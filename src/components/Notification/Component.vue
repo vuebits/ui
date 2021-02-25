@@ -7,7 +7,7 @@
     <div :class="$bem({e: 'content'})">
       <span v-html="message" />
     </div>
-    <DmIconButton
+    <VIconButton
       icon="times"
       rounded
       :class="$bem({e: 'close'})"
@@ -18,14 +18,14 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmIconButton } from '@/components';
+import { VIconButton } from '@/components';
 import { CssClass } from '@/helpers/css-classes';
 import { NotificationTypeName, NotificationType } from './models';
 
 export default defineComponent({
   name: 'VNotification',
   components: {
-    DmIconButton
+    VIconButton
   },
   props: {
     type: {

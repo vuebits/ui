@@ -1,6 +1,6 @@
-import DmModal from './Component.vue';
+import VModal from './Component.vue';
 
-export { DmModal };
+export { VModal };
 export * from './Body';
 export * from './Header';
 export * from './Footer';

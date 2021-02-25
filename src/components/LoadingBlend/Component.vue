@@ -3,18 +3,18 @@
     v-if="loading"
     :class="$bem({})"
   >
-    <DmSpinner />
+    <VSpinner />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmSpinner } from '@/components/Spinner';
+import { VSpinner } from '@/components/Spinner';
 
 export default defineComponent({
   name: 'VLoadingBlend',
   components: {
-    DmSpinner
+    VSpinner
   },
   props: {
     loading: {

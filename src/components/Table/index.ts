@@ -1,1 +1,1 @@
-export { default as DmTable } from './Component.vue';
+export { default as VTable } from './Component.vue';

@@ -1,1 +1,1 @@
-export { default as DmToolbarHamburger } from './Component.vue';
+export { default as VToolbarHamburger } from './Component.vue';

@@ -36,7 +36,7 @@
         v-if="!hideArrow"
         class="ne-select__arrow-wrapper"
       >
-        <DmIcon
+        <VIcon
           name="caret-down"
           :class="arrowClasses"
           :color="arrowColor"
@@ -76,7 +76,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmIcon } from '@/components/Icon';
+import { VIcon } from '@/components/Icon';
 import {
   colorClass,
   hoverBgColorClass,
@@ -103,7 +103,7 @@ library.add(
 
 export default defineComponent({
   name: 'VSelect',
-  components: { DmIcon },
+  components: { VIcon },
   directives: { ClickOutside },
   props: {
     modelValue: {

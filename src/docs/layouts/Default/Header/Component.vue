@@ -1,12 +1,12 @@
 <template>
-  <DmToolbar
+  <VToolbar
     fixed
     light
     color="white"
     :class="$bem({m: {expanded: isMenuExpandedOnMobile}})"
   >
     <template #left>
-      <DmToolbarLogo
+      <VToolbarLogo
         :src="require('@/assets/images/logo.png')"
         :to="homeRoute"
         :class="$bem({e: 'logo'})"
@@ -19,19 +19,19 @@
         :expanded-on-mobile="isMenuExpandedOnMobile"
         @close="closeMenuOnMobile"
       />
-      <!-- <DmToolbarHamburger
+      <!-- <VToolbarHamburger
         v-model="isMenuExpandedOnMobile"
         :class="$bem({e: 'hamburger'})"
       /> -->
     </template>
-  </DmToolbar>
+  </VToolbar>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  DmToolbar,
-  DmToolbarLogo
+  VToolbar,
+  VToolbarLogo
 } from '@/components';
 import LayoutAppHeaderMenu from './Menu';
 import { RouteName } from '@/docs/router/models';
@@ -39,8 +39,8 @@ import { RouteName } from '@/docs/router/models';
 export default defineComponent({
   name: 'LayoutDefaultHeader',
   components: {
-    DmToolbar,
-    DmToolbarLogo,
+    VToolbar,
+    VToolbarLogo,
     LayoutAppHeaderMenu
   },
   data () {

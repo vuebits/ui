@@ -6,7 +6,7 @@
       v-if="loading"
       :class="$bem({e: 'loading-wrapper'})"
     >
-      <DmSpinner
+      <VSpinner
         :class="$bem({e: 'loader'})"
         :size="spinnerSize"
       />
@@ -20,7 +20,7 @@
       v-else-if="error"
       :class="$bem({e: 'error-wrapper'})"
     >
-      <DmIcon
+      <VIcon
         :class="$bem({e: 'error-icon'})"
         size="3x"
         name="exclamation-triangle"
@@ -30,7 +30,7 @@
       >
         {{ errorText }}
       </p>
-      <DmButton
+      <VButton
         v-if="reloadable"
         color="primary"
         rounded
@@ -39,7 +39,7 @@
         @click="reload"
       >
         {{ reloadText }}
-      </DmButton>
+      </VButton>
     </div>
     <template v-else>
       <slot />
@@ -49,16 +49,16 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmSpinner } from '@/components/Spinner';
-import { DmIcon } from '@/components/Icon';
-import { DmButton } from '@/components/Button';
+import { VSpinner } from '@/components/Spinner';
+import { VIcon } from '@/components/Icon';
+import { VButton } from '@/components/Button';
 
 export default defineComponent({
   name: 'VAsyncContent',
   components: {
-    DmSpinner,
-    DmIcon,
-    DmButton
+    VSpinner,
+    VIcon,
+    VButton
   },
   props: {
     loading: {

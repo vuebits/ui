@@ -1,5 +1,5 @@
 <template>
-  <DmCheckbox
+  <VCheckbox
     :id="label"
     :model-value="modelValue"
     :label="label"
@@ -12,12 +12,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmCheckbox } from '@/components';
+import { VCheckbox } from '@/components';
 
 export default defineComponent({
   name: 'KnobBoolean',
   components: {
-    DmCheckbox
+    VCheckbox
   },
   props: {
     modelValue: {

@@ -3,7 +3,7 @@
     :class="$bem({})"
     @click="toggleMenu"
   >
-    <DmIcon
+    <VIcon
       name="bars"
       :class="$bem({e: 'icon'})"
     />
@@ -12,12 +12,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmIcon } from '@/components/Icon';
+import { VIcon } from '@/components/Icon';
 
 export default defineComponent({
   name: 'VToolbarHamburger',
   components: {
-    DmIcon
+    VIcon
   },
   props: {
     modelValue: {

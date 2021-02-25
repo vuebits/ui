@@ -1,5 +1,5 @@
 <template>
-  <DmIcon
+  <VIcon
     name="spinner"
     pulse
     :size="size"
@@ -8,12 +8,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmIcon } from '@/components/Icon';
+import { VIcon } from '@/components/Icon';
 
 export default defineComponent({
   name: 'VSpinner',
   components: {
-    DmIcon
+    VIcon
   },
   props: {
     size: {

@@ -1,42 +1,42 @@
 <template>
-  <DmToolbarMenu
+  <VToolbarMenu
     :class="$bem({})"
     data-test="menu"
     @click-outside="close"
   >
-    <DmToolbarMenuItem
+    <VToolbarMenuItem
       :to="docsRoute"
       :class="$bem({e: 'item', m: {active: $route.path.split('/')[1] === 'docs'}})"
     >
       Docs
-    </DmToolbarMenuItem>
-    <DmToolbarMenuItem
+    </VToolbarMenuItem>
+    <VToolbarMenuItem
       href="https://github.com/vuebits/ui"
       :class="$bem({e: 'item'})"
       new-window
     >
-      <DmIcon
+      <VIcon
         :name="['fab', 'github']"
       />
-    </DmToolbarMenuItem>
-  </DmToolbarMenu>
+    </VToolbarMenuItem>
+  </VToolbarMenu>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  DmToolbarMenu,
-  DmToolbarMenuItem,
-  DmIcon
+  VToolbarMenu,
+  VToolbarMenuItem,
+  VIcon
 } from '@/components';
 import { RouteName } from '@/docs/router/models';
 
 export default defineComponent({
   name: 'LayoutDefaultHeaderMenu',
   components: {
-    DmToolbarMenu,
-    DmToolbarMenuItem,
-    DmIcon
+    VToolbarMenu,
+    VToolbarMenuItem,
+    VIcon
   },
   emits: {
     close: null

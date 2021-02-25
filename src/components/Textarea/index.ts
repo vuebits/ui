@@ -1,1 +1,1 @@
-export { default as DmTextarea } from './Component.vue';
+export { default as VTextarea } from './Component.vue';

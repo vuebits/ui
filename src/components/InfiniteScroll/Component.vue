@@ -12,7 +12,7 @@
         <div
           :class="$bem({e: 'status'})"
         >
-          <DmSpinner
+          <VSpinner
             :size="iconsSize"
             :class="$bem({e: 'status-icon'})"
           />
@@ -25,7 +25,7 @@
         <div
           :class="$bem({e: 'status'})"
         >
-          <DmIcon
+          <VIcon
             :name="completeIcon"
             color="success"
 
@@ -40,7 +40,7 @@
         :class="$bem({e: 'status'})"
       >
         <slot name="error">
-          <DmIcon
+          <VIcon
             :name="errorIcon"
             color="error"
 
@@ -56,8 +56,8 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ScrolledToEnd } from '@/directives';
-import { DmSpinner } from '@/components/Spinner';
-import { DmIcon } from '@/components/Icon';
+import { VSpinner } from '@/components/Spinner';
+import { VIcon } from '@/components/Icon';
 import { InifiniteScrollState } from './models';
 
 export default defineComponent({
@@ -66,8 +66,8 @@ export default defineComponent({
     ScrolledToEnd
   },
   components: {
-    DmSpinner,
-    DmIcon
+    VSpinner,
+    VIcon
   },
   props: {
     identifier: {

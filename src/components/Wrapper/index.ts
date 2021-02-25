@@ -1,1 +1,1 @@
-export { default as DmWrapper } from './Component.vue';
+export { default as VWrapper } from './Component.vue';

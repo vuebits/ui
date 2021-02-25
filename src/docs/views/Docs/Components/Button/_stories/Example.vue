@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <DmButton
+      <VButton
         :href="href"
         :new-window="newWindow"
         :bordered="bordered"
@@ -23,7 +23,7 @@
         :right-icon="rightIcon !== 'none' ? rightIcon : null"
       >
         Configure me
-      </DmButton>
+      </VButton>
     </Preview>
     <Knobs>
       <KnobBoolean
@@ -108,7 +108,7 @@ import {
   KnobString
 } from '@/docs/components';
 import {
-  DmButton
+  VButton
 } from '@/components';
 import { colors, sizes, icons } from '@/docs/helpers/story-params';
 
@@ -121,7 +121,7 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    DmButton
+    VButton
   },
   data () {
     return {

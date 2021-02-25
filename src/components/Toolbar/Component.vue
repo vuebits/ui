@@ -2,7 +2,7 @@
   <nav
     :class="classes"
   >
-    <DmWrapper :class="$bem({e: 'top-container'})">
+    <VWrapper :class="$bem({e: 'top-container'})">
       <div :class="$bem({e: 'left-side'})">
         <slot name="top-left" />
       </div>
@@ -12,8 +12,8 @@
       <div :class="$bem({e: 'right-side'})">
         <slot name="top-right" />
       </div>
-    </DmWrapper>
-    <DmWrapper :class="$bem({e: 'container'})">
+    </VWrapper>
+    <VWrapper :class="$bem({e: 'container'})">
       <slot>
         <div :class="$bem({e: 'left-side'})">
           <slot name="left" />
@@ -25,13 +25,13 @@
           <slot name="right" />
         </div>
       </slot>
-    </DmWrapper>
+    </VWrapper>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmWrapper } from '@/components/Wrapper';
+import { VWrapper } from '@/components/Wrapper';
 import {
   bgColorClass,
   CssClass
@@ -44,7 +44,7 @@ import {
 export default defineComponent({
   name: 'VToolbar',
   components: {
-    DmWrapper
+    VWrapper
   },
   props: {
     fixed: {

@@ -1,5 +1,5 @@
 <template>
-  <DmInput
+  <VInput
     :model-value="modelValue"
     placeholder="Type some number..."
     :label="label"
@@ -14,12 +14,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmInput } from '@/components';
+import { VInput } from '@/components';
 
 export default defineComponent({
   name: 'KnobNumber',
   components: {
-    DmInput
+    VInput
   },
   props: {
     modelValue: {

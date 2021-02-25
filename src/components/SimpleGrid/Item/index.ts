@@ -1,1 +1,1 @@
-export { default as DmSimpleGridItem } from './Component.vue';
+export { default as VSimpleGridItem } from './Component.vue';

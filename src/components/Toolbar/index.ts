@@ -1,4 +1,4 @@
-export { default as DmToolbar } from './Component.vue';
+export { default as VToolbar } from './Component.vue';
 export * from './Logo';
 export * from './Menu';
 export * from './Hamburger';

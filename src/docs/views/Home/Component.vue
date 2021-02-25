@@ -8,23 +8,23 @@
       <h2 :class="$bem({e: 'subtitle'})">
         Vue 3 components library
       </h2>
-      <DmSimpleGrid :elements-md="3">
-        <DmSimpleGridItem>
-          <DmButton
+      <VSimpleGrid :elements-md="3">
+        <VSimpleGridItem>
+          <VButton
             color="secondary"
             round
             elevated
             :class="$bem({e: 'button'})"
             :to="docsRoute"
           >
-            <DmIcon
+            <VIcon
               name="book-open"
             />
             Get started
-          </DmButton>
-        </DmSimpleGridItem>
-        <DmSimpleGridItem>
-          <DmButton
+          </VButton>
+        </VSimpleGridItem>
+        <VSimpleGridItem>
+          <VButton
             dark
             color="dark"
             round
@@ -33,27 +33,27 @@
             href="https://github.com/vuebits/ui"
             new-window
           >
-            <DmIcon
+            <VIcon
               :name="['fab', 'github']"
             />
             GitHub
-          </DmButton>
-        </DmSimpleGridItem>
-        <DmSimpleGridItem>
-          <DmButton
+          </VButton>
+        </VSimpleGridItem>
+        <VSimpleGridItem>
+          <VButton
             dark
             color="error"
             round
             elevated
             :class="$bem({e: 'button'})"
           >
-            <DmIcon
+            <VIcon
               :name="['fab', 'npm']"
             />
             npm
-          </DmButton>
-        </DmSimpleGridItem>
-      </DmSimpleGrid>
+          </VButton>
+        </VSimpleGridItem>
+      </VSimpleGrid>
     </div>
   </div>
 </template>
@@ -61,20 +61,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  DmSimpleGrid,
-  DmSimpleGridItem,
-  DmButton,
-  DmIcon
+  VSimpleGrid,
+  VSimpleGridItem,
+  VButton,
+  VIcon
 } from '@/components';
 import { RouteName } from '@/docs/router/models';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    DmSimpleGrid,
-    DmSimpleGridItem,
-    DmButton,
-    DmIcon
+    VSimpleGrid,
+    VSimpleGridItem,
+    VButton,
+    VIcon
   },
   data () {
     return {

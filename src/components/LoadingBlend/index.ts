@@ -1,1 +1,1 @@
-export { default as DmLoadingBlend } from './Component.vue';
+export { default as VLoadingBlend } from './Component.vue';

@@ -47,7 +47,7 @@
             :style="{maxHeight: `${maxHeight}px`}"
             @click="listClicked = true"
           >
-            <DmAsyncContent
+            <VAsyncContent
               :loading="itemsLoading"
               :error="itemsError"
               :reloadable="itemsReloadable"
@@ -91,7 +91,7 @@
                   :class="$bem({e: 'item-divider'})"
                 />
               </div>
-            </DmAsyncContent>
+            </VAsyncContent>
           </div>
         </transition>
       </template>
@@ -101,9 +101,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmInput } from '@/components/Input';
-import { DmTextarea } from '@/components/Textarea';
-import { DmAsyncContent } from '@/components/AsyncContent';
+import { VInput } from '@/components/Input';
+import { VTextarea } from '@/components/Textarea';
+import { VAsyncContent } from '@/components/AsyncContent';
 import {
   CssClass,
   hoverBgColorClass
@@ -125,9 +125,9 @@ import {
 export default defineComponent({
   name: 'VAutocomplete',
   components: {
-    DmInput,
-    DmTextarea,
-    DmAsyncContent
+    VInput,
+    VTextarea,
+    VAsyncContent
   },
   props: {
     modelValue: {
@@ -266,7 +266,7 @@ export default defineComponent({
   },
   computed: {
     component (): any {
-      return this.textarea ? DmTextarea : DmInput;
+      return this.textarea ? VTextarea : VInput;
     },
     filteredItems (): AutocompleteItem[] {
       const filteredItems = this.items.filter((i) => {

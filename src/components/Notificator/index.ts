@@ -1,1 +1,1 @@
-export { default as DmNotificator } from './Component.vue';
+export { default as VNotificator } from './Component.vue';

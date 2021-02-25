@@ -1,1 +1,1 @@
-export { default as DmAutocomplete } from './Component.vue';
+export { default as VAutocomplete } from './Component.vue';

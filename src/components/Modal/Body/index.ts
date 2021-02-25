@@ -1,3 +1,3 @@
-import DmModalBody from './Component.vue';
+import VModalBody from './Component.vue';
 
-export { DmModalBody };
+export { VModalBody };

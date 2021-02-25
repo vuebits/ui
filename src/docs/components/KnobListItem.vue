@@ -1,5 +1,5 @@
 <template>
-  <DmSelect
+  <VSelect
     :model-value="modelValue"
     :items="listItems"
     :label="label"
@@ -12,12 +12,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmSelect } from '@/components';
+import { VSelect } from '@/components';
 
 export default defineComponent({
   name: 'KnobListItem',
   components: {
-    DmSelect
+    VSelect
   },
   props: {
     modelValue: {

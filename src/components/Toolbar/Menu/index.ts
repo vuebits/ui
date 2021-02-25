@@ -1,1 +1,1 @@
-export { default as DmToolbarMenu } from './Component.vue';
+export { default as VToolbarMenu } from './Component.vue';
