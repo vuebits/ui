@@ -1,7 +1,7 @@
 <template>
   <div :class="$bem({})">
     <div :class="$bem({e: 'content'})">
-      <img>
+      <img src="@/assets/images/logo.png">
       <h1 :class="$bem({e: 'title'})">
         Vuebits UI
       </h1>
