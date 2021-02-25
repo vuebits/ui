@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmButton } from '@/components/DmButton';
-import { DmIcon } from '@/components/DmIcon';
+import { DmButton } from '@/components/Button';
+import { DmIcon } from '@/components/Icon';
 import {
   CssClass
 } from '@/helpers/css-classes';

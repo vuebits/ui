@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmWrapper } from '@/components/DmWrapper';
+import { DmWrapper } from '@/components/Wrapper';
 import {
   bgColorClass,
   CssClass

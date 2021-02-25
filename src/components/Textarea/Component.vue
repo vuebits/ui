@@ -75,7 +75,7 @@ import {
   useRounded,
   useValidation
 } from '@/composition-functions';
-import { DmIcon } from '@/components/DmIcon';
+import { DmIcon } from '@/components/Icon';
 
 export default defineComponent({
   name: 'VTextarea',

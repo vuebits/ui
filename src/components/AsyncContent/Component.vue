@@ -49,9 +49,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmSpinner } from '@/components/DmSpinner';
-import { DmIcon } from '@/components/DmIcon';
-import { DmButton } from '@/components/DmButton';
+import { DmSpinner } from '@/components/Spinner';
+import { DmIcon } from '@/components/Icon';
+import { DmButton } from '@/components/Button';
 
 export default defineComponent({
   name: 'VAsyncContent',

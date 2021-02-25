@@ -76,7 +76,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmIcon } from '@/components/DmIcon';
+import { DmIcon } from '@/components/Icon';
 import {
   colorClass,
   hoverBgColorClass,

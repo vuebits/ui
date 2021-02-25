@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmNotification } from '@/components/DmNotification';
-import { NotificationTypeName } from '@/components/DmNotification/models';
+import { DmNotification } from '@/components/Notification';
+import { NotificationTypeName } from '@/components/Notification/models';
 
 export interface Notification {
   id: number;

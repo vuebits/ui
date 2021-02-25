@@ -55,8 +55,8 @@ import {
   useLink,
   useElevated
 } from '@/composition-functions';
-import { DmSpinner } from '@/components/DmSpinner';
-import { DmIcon } from '@/components/DmIcon';
+import { DmSpinner } from '@/components/Spinner';
+import { DmIcon } from '@/components/Icon';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faSpinner

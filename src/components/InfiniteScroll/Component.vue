@@ -56,8 +56,8 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ScrolledToEnd } from '@/directives';
-import { DmSpinner } from '@/components/DmSpinner';
-import { DmIcon } from '@/components/DmIcon';
+import { DmSpinner } from '@/components/Spinner';
+import { DmIcon } from '@/components/Icon';
 import { InifiniteScrollState } from './models';
 
 export default defineComponent({

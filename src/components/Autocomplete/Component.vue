@@ -101,9 +101,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { DmInput } from '@/components/DmInput';
-import { DmTextarea } from '@/components/DmTextarea';
-import { DmAsyncContent } from '@/components/DmAsyncContent';
+import { DmInput } from '@/components/Input';
+import { DmTextarea } from '@/components/Textarea';
+import { DmAsyncContent } from '@/components/AsyncContent';
 import {
   CssClass,
   hoverBgColorClass

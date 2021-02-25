@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmIcon } from '@/components/DmIcon';
+import { DmIcon } from '@/components/Icon';
 import { CssClass } from '@/helpers/css-classes';
 import {
   roundedProps

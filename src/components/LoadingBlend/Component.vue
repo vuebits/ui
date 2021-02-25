@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DmSpinner } from '@/components/DmSpinner';
+import { DmSpinner } from '@/components/Spinner';
 
 export default defineComponent({
   name: 'VLoadingBlend',
