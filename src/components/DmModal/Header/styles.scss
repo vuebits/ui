@@ -1,0 +1,11 @@
+.v-modal-header {
+  padding: 4 * $sp;
+
+  &--bordered {
+    border-bottom: set-border();
+  }
+
+  &--elevated {
+    box-shadow: $shadow-main;
+  }
+}

@@ -1,0 +1,52 @@
+.v-button {
+  font-weight: normal;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: $hover-transition;
+  padding: $sp;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__icon {
+    margin: 0 $sp;
+  }
+
+  &__content {
+    text-align: center;
+    margin: 0 $sp;
+    flex-grow: 1;
+  }
+
+  &--sm {
+    min-height: 30px;
+  }
+
+  &--md {
+    min-height: 40px;
+  }
+
+  &--lg {
+    min-height: 55px;
+  }
+
+  &--disabled {
+    color: darken($color-disabled, 20%);
+    background-color: lighten($color-disabled, 40%);
+    pointer-events: none;
+    cursor: not-allowed;
+    border-color: $color-disabled;
+  }
+
+  &--outlined {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  &--flat {
+    background-color: transparent;
+  }
+}

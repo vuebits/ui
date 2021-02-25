@@ -1,0 +1,28 @@
+.v-badge {
+  font-weight: normal;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: $hover-transition;
+  padding: 0 $sp;
+
+  &--sm {
+    height: 20px;
+    font-size: 12px;
+  }
+
+  &--md {
+    height: 40px;
+  }
+
+  &--lg {
+    height: 55px;
+  }
+
+  &--disabled {
+    color: darken($color-disabled, 20%);
+    background-color: lighten($color-disabled, 40%);
+    pointer-events: none;
+    border-color: $color-disabled;
+  }
+}

@@ -1,0 +1,114 @@
+.v-select {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+
+  &--light {
+    background-color: $color-white;
+  }
+
+  &--dark {
+    background-color: $color-theme-dark;
+  }
+
+  &--disabled {
+    color: darken($color-disabled, 20%);
+    background-color: lighten($color-disabled, 40%);
+    pointer-events: none;
+    border-color: $color-disabled;
+  }
+
+  &--closed {
+    transition-delay: $animation-time;
+  }
+
+  &--expanded {
+    transition-delay: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    padding: 2 * $sp 3 * $sp;
+  }
+
+  &__text-container {
+    flex-grow: 1;
+    width: 0;
+  }
+
+  &__label {
+    color: $color-text-2;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__input-selected-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__arrow-wrapper {
+    display: flex;
+    margin-left: $sp;
+  }
+
+  &__arrow {
+    transition: all $animation-time linear;
+
+    &--expanded {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__items {
+    position: absolute;
+    margin-top: 1px;
+    z-index: $layer-dropdown;
+    background-color: $color-white;
+    width: 100%;
+    overflow-y: auto;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 0;
+
+    &--theme-light {
+      background-color: $color-white;
+      color: $color-theme-light-font;
+    }
+
+    &--theme-dark {
+      background-color: $color-theme-dark;
+      color: $color-theme-dark-font;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+    padding: 2 * $sp 3 * $sp;
+    display: flex;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+
+    &:hover {
+      color: $color-theme-dark-font;
+    }
+
+    &--disabled {
+      cursor: default;
+      opacity: .4;
+
+      &:hover {
+        background-color: transparent;
+        color: $color-theme-light-font;
+      }
+    }
+  }
+}

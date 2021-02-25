@@ -1,0 +1,16 @@
+.v-modal-footer {
+  padding: 4 * $sp;
+  width: 100%;
+
+  &--bordered {
+    border-top: set-border();
+  }
+
+  &--elevated {
+    box-shadow: $shadow-main;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+}

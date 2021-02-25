@@ -1,0 +1,49 @@
+// margins, paddings ect.
+$sp: 5px;
+
+// borders
+$border-radius-main: $sp;
+$border-radius-large: 2 * $sp;
+$border-radius-round: 10000px !default;
+$border-width: 2px;
+
+// z-index
+$layer-modal: 100;
+$layer-dropdown: 5;
+$layer-toolbar: 10;
+$layer-notifications: 1000;
+
+// button sizes
+$button-size-sm: 30px !default;
+$button-size-md: 40px !default;
+$button-size-lg: 55px !default;
+
+//Shadows
+$shadow-deep: 0 3px 6px 2px rgba($color-black, .3);
+$shadow-main: 0 2px 4px 0 rgba($color-black, .17);
+$shadow-tiny: 0 1px 2px 0 rgba($color-black, .1);
+$shadow-bottom: 0 0 5px 2px rgba($color-black, .17);
+$shadow-bottom-tiny: 0 1px 2px 1px rgba($color-black, .1);
+
+$colors: (
+  white: $color-white,
+  dark: $color-theme-dark,
+  primary: $color-primary,
+  secondary: $color-secondary,
+  text: $color-text,
+  text-2: $color-text-2,
+  success: $color-success,
+  info: $color-info,
+  error: $color-error,
+  warning: $color-warning,
+  disabled: $color-disabled
+);
+
+//animation times
+$animation-time-short: 100ms !default;
+$animation-time: 150ms !default;
+$animation-time-long: 300ms !default;
+
+//transitions
+$transition-fast-ease: all $animation-time-short ease;
+$hover-transition: all $animation-time-long ease-in-out;

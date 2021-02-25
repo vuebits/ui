@@ -1,0 +1,130 @@
+.v-table {
+  $compact-mode-max-width: 1000px;
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__table,
+  &__table-header-row,
+  &__table-header-cell,
+  &__table-body,
+  &__table-row,
+  &__table-cell {
+    @media (max-width: $compact-mode-max-width) {
+      display: block;
+    }
+  }
+
+  &__table-header {
+    text-align: left;
+
+    @media (max-width: $compact-mode-max-width) {
+      display: none;
+    }
+  }
+
+  &__table-header-cell {
+    padding: $sp;
+    border-bottom: set-border();
+  }
+
+  &__table-row {
+
+    @media (max-width: $compact-mode-max-width) {
+      margin-bottom: 4 * $sp;
+      border: set-border();
+      border-radius: $sp;
+    }
+
+    &:hover {
+      background-color: $color-grey-light;
+    }
+  }
+
+  &__table-cell {
+    padding: $sp;
+    border-bottom: set-border();
+
+    @media (max-width: $compact-mode-max-width) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+
+      &::before {
+        content: var(--header);
+        font-weight: bold;
+        width: 20%;
+        min-width: 150px;
+        margin-right: 3 * $sp;
+      }
+    }
+  }
+
+  &__table,
+  &__table-header-row,
+  &__table-header-cell,
+  &__table-body,
+  &__table-row,
+  &__table-cell {
+    @media (max-width: $compact-mode-max-width) {
+      display: block;
+    }
+  }
+
+  &__table-header {
+    text-align: left;
+
+    @media (max-width: $compact-mode-max-width) {
+      display: none;
+    }
+  }
+
+  &__table-header-cell {
+    padding: $sp;
+    border-bottom: set-border();
+  }
+
+  &__table-row {
+
+    @media (max-width: $compact-mode-max-width) {
+      margin-bottom: 2 * $sp;
+      border: set-border();
+      border-radius: $sp;
+    }
+
+    &:hover {
+      background-color: $color-grey-light;
+    }
+  }
+
+  &__table-cell {
+    padding: $sp;
+    border-bottom: set-border();
+
+    @media (max-width: $compact-mode-max-width) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+
+      &::before {
+        content: var(--header);
+        font-weight: bold;
+        width: 20%;
+        min-width: 150px;
+        margin-right: 3 * $sp;
+      }
+    }
+  }
+}

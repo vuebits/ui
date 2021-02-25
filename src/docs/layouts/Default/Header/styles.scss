@@ -1,0 +1,12 @@
+.layout-default-header {
+  width: 100%;
+  box-shadow: $shadow-bottom;
+
+  &__logo {
+    height: 50px;
+  }
+
+  &__hamburger {
+    margin-left: 3 * $sp;
+  }
+}

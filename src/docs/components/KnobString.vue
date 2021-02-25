@@ -1,0 +1,47 @@
+<template>
+  <DmInput
+    :model-value="modelValue"
+    placeholder="Type some string..."
+    :label="label"
+    rounded
+    bordered
+    light
+    type="string"
+    class="knob-string"
+    @update:modelValue="updateModelValue"
+  />
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { DmInput } from '@/components';
+
+export default defineComponent({
+  name: 'KnobString',
+  components: {
+    DmInput
+  },
+  props: {
+    modelValue: {
+      type: String as PropType<string>,
+      required: true
+    },
+    label: {
+      type: String as PropType<string>,
+      required: true
+    }
+  },
+  emits: ['update:modelValue'],
+  methods: {
+    updateModelValue (value: string): void {
+      this.$emit('update:modelValue', value);
+    }
+  }
+});
+</script>
+
+<style lang="scss">
+.knob-string {
+  margin-top: 10px;
+}
+</style>

@@ -1,0 +1,24 @@
+.v-tile {
+  height: var(--tile-height);
+  width: var(--tile-width);
+  display: flex;
+  flex-direction: column;
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  &--center-content {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--underlined {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+}

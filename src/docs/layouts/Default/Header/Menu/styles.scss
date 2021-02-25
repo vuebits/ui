@@ -1,0 +1,35 @@
+.layout-default-header-menu {
+  background-color: $color-white;
+
+  &__item {
+    font-size: 18px;
+    border-left: set-border(transparent, $sp);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+    }
+
+    &--active {
+      font-weight: bold;
+      border-left-color: $color-secondary;
+    }
+
+    @include breakpoint(lg) {
+      border-left: 0;
+      text-align: center;
+      padding: 0 4 * $sp;
+      border-bottom: set-border(transparent, $sp);
+
+      &--active {
+        border-bottom-color: $color-secondary;
+      }
+    }
+  }
+
+  &__item-badge {
+    margin-top: -3 * $sp;
+    margin-left: $sp;
+    background-color: $color-secondary;
+    padding: $sp;
+  }
+}

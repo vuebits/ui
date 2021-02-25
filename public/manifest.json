@@ -1,0 +1,13 @@
+{
+  "short_name": "Vuebits UI",
+  "name": "Vuebits UI",
+  "lang": "en",
+  "description": "Vue 3 base UI kit",
+  "start_url": "/",
+  "background_color": "#35495e",
+  "theme_color": "#42b983",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "any",
+  "prefer_related_applications": "false"
+ }

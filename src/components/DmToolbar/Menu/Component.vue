@@ -1,0 +1,60 @@
+<template>
+  <div
+    :class="$bem({})"
+  >
+    <ul
+      v-if="expandedOnMobile"
+      v-click-outside="clickOutside"
+      :class="listClasses"
+    >
+      <slot />
+    </ul>
+    <ul
+      v-else
+      :class="listClasses"
+    >
+      <slot />
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { ClickOutside } from '@/directives';
+import { CssClass } from '@/helpers/css-classes';
+
+export default defineComponent({
+  name: 'VToolbarMenu',
+  directives: { ClickOutside },
+  props: {
+    expandedOnMobile: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    }
+  },
+  emits: {
+    'click-outside': null
+  },
+  computed: {
+    listClasses (): CssClass[] {
+      return [
+        ...this.$bem({
+          e: 'list',
+          m: {
+            expanded: this.expandedOnMobile
+          }
+        })
+      ];
+    }
+  },
+  methods: {
+    clickOutside (): void {
+      this.$emit('click-outside');
+    }
+  }
+});
+</script>
+
+<style lang="scss">
+@import './styles';
+</style>

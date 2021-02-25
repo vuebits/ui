@@ -1,0 +1,54 @@
+.v-notification {
+  $notification-padding: 4 * $sp;
+
+  display: flex;
+  overflow: hidden;
+  max-width: calc(100vw - #{6 * $sp});
+  background-color: $color-white;
+  border: set-border();
+  border-left: set-border($color-border, 2 * $sp);
+  box-shadow: $shadow-deep;
+
+  &--rounded {
+    border-radius: $border-radius-main;
+  }
+
+  &--sm {
+    width: 360px;
+  }
+  &--md {
+    width: 570px;
+  }
+  &--lg {
+    width: 960px;
+  }
+
+  &--info {
+    border-color: $color-info;
+    background-color: $color-info-pale;
+  }
+
+  &--success {
+    border-color: $color-success;
+    background-color: $color-success-pale;
+  }
+
+  &--warning {
+    border-color: $color-warning;
+    background-color: $color-warning-pale;
+  }
+
+  &--error {
+    border-color: $color-error;
+    background-color: $color-error-pale;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    text-align: left;
+    border-radius: $border-radius-main;
+    padding: $notification-padding;
+  }
+}

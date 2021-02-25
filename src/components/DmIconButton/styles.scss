@@ -1,0 +1,26 @@
+.v-icon-button {
+  min-width: auto;
+  font-size: var(--icons-size);
+  line-height: var(--icons-size);
+  padding: 0;
+  &--sm {
+    width: $button-size-sm;
+    min-height: $button-size-sm;
+    max-height: $button-size-sm;
+    max-width: $button-size-sm;
+  }
+
+  &--md {
+    width: $button-size-md;
+    min-height: $button-size-md;
+    max-height: $button-size-md;
+    max-width: $button-size-md;
+  }
+
+  &--lg {
+    width: $button-size-lg;
+    min-height: $button-size-lg;
+    max-height: $button-size-lg;
+    max-width: $button-size-lg;
+  }
+}

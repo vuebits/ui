@@ -1,0 +1,295 @@
+.v--elevated {
+  box-shadow: $shadow-main;
+}
+
+.v--bordered {
+  border: set-border();
+}
+
+.v--rounded {
+  border-radius: $border-radius-main;
+}
+
+.v--rounded-lg {
+  border-radius: $border-radius-large;
+}
+
+.v--round {
+  border-radius: $border-radius-round;
+}
+
+.v--right {
+  text-align: right;
+}
+
+.v--uppercase {
+  text-transform: uppercase;
+}
+
+.v--theme-light {
+  background-color: $color-theme-light;
+  color: $color-theme-light-font;
+}
+
+.v--theme-dark {
+  background-color: $color-theme-dark;
+  color: $color-theme-dark-font;
+}
+
+.v--hoverable {
+  &:hover {
+    background-color: rgba(0, 0, 0, .07);
+  }
+}
+
+@each $name, $color in $colors {
+  .v--bg-color-#{$name} {
+    background-color: $color;
+    &-darken-1 {
+      background-color: darken($color, 10%);
+    }
+    &-darken-2 {
+      background-color: darken($color, 20%);
+    }
+    &-darken-3 {
+      background-color: darken($color, 30%);
+    }
+    &-darken-4 {
+      background-color: darken($color, 40%);
+    }
+    &-lighten-1 {
+      background-color: lighten($color, 10%);
+    }
+    &-lighten-2 {
+      background-color: lighten($color, 20%);
+    }
+    &-lighten-3 {
+      background-color: lighten($color, 30%);
+    }
+    &-lighten-4 {
+      background-color: lighten($color, 40%);
+    }
+  }
+  .v--color-#{$name} {
+    color: $color;
+    &-darken-1 {
+      color: darken($color, 10%);
+    }
+    &-darken-2 {
+      color: darken($color, 20%);
+    }
+    &-darken-3 {
+      color: darken($color, 30%);
+    }
+    &-darken-4 {
+      color: darken($color, 40%);
+    }
+    &-lighten-1 {
+      color: lighten($color, 10%);
+    }
+    &-lighten-2 {
+      color: lighten($color, 20%);
+    }
+    &-lighten-3 {
+      color: lighten($color, 30%);
+    }
+    &-lighten-4 {
+      color: lighten($color, 40%);
+    }
+  }
+  .v--border-color-#{$name} {
+    border-color: $color;
+    &-darken-1 {
+      border-color: darken($color, 10%);
+    }
+    &-darken-2 {
+      border-color: darken($color, 20%);
+    }
+    &-darken-3 {
+      border-color: darken($color, 30%);
+    }
+    &-darken-4 {
+      border-color: darken($color, 40%);
+    }
+    &-lighten-1 {
+      border-color: lighten($color, 10%);
+    }
+    &-lighten-2 {
+      border-color: lighten($color, 20%);
+    }
+    &-lighten-3 {
+      border-color: lighten($color, 30%);
+    }
+    &-lighten-4 {
+      border-color: lighten($color, 40%);
+    }
+  }
+  .v--hover-bg-color-#{$name} {
+    &:hover {
+      background-color: $color;
+    }
+    &-darken-1 {
+      &:hover {
+        background-color: darken($color, 10%);
+      }
+    }
+    &-darken-2 {
+      &:hover {
+        background-color: darken($color, 20%);
+      }
+    }
+    &-darken-3 {
+      &:hover {
+        background-color: darken($color, 30%);
+      }
+    }
+    &-darken-4 {
+      &:hover {
+        background-color: darken($color, 40%);
+      }
+    }
+    &-lighten-1 {
+      &:hover {
+        background-color: lighten($color, 10%);
+      }
+    }
+    &-lighten-2 {
+      &:hover {
+        background-color: lighten($color, 20%);
+      }
+    }
+    &-lighten-3 {
+      &:hover {
+        background-color: lighten($color, 30%);
+      }
+    }
+    &-lighten-4 {
+      &:hover {
+        background-color: lighten($color, 40%);
+      }
+    }
+  }
+  .v--hover-color-#{$name} {
+    &:hover {
+      color: $color;
+    }
+    &-darken-1 {
+      &:hover {
+        color: darken($color, 10%);
+      }
+    }
+    &-darken-2 {
+      &:hover {
+        color: darken($color, 20%);
+      }
+    }
+    &-darken-3 {
+      &:hover {
+        color: darken($color, 30%);
+      }
+    }
+    &-darken-4 {
+      &:hover {
+        color: darken($color, 40%);
+      }
+    }
+    &-lighten-1 {
+      &:hover {
+        color: lighten($color, 10%);
+      }
+    }
+    &-lighten-2 {
+      &:hover {
+        color: lighten($color, 20%);
+      }
+    }
+    &-lighten-3 {
+      &:hover {
+        color: lighten($color, 30%);
+      }
+    }
+    &-lighten-4 {
+      &:hover {
+        color: lighten($color, 40%);
+      }
+    }
+  }
+  .v--fill-color-#{$name} {
+    fill: $color;
+    &-darken-1 {
+      fill: darken($color, 10%);
+    }
+    &-darken-2 {
+      fill: darken($color, 20%);
+    }
+    &-darken-3 {
+      fill: darken($color, 30%);
+    }
+    &-darken-4 {
+      fill: darken($color, 40%);
+    }
+    &-lighten-1 {
+      fill: lighten($color, 10%);
+    }
+    &-lighten-2 {
+      fill: lighten($color, 20%);
+    }
+    &-lighten-3 {
+      fill: lighten($color, 30%);
+    }
+    &-lighten-4 {
+      fill: lighten($color, 40%);
+    }
+  }
+}
+
+.v--title {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-size: 30px;
+  line-height: 1.1;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: bold;
+}
+
+.v--text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.v--text-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.v--disable-scrolling {
+  overflow-y: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.v--fade-enter-active,
+.v--fade-leave-active {
+  transition: opacity $animation-time;
+}
+
+.v--fade-enter,
+.v--fade-leave-to {
+  opacity: 0;
+}
+
+.v--slide-down-enter-active,
+.v--slide-down-leave-active {
+  transition: transform $animation-time ease-in-out;
+  transform-origin: top;
+}
+.v--slide-down-enter,
+.v--slide-down-leave-to {
+  transform: scaleY(0);
+}

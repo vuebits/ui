@@ -1,0 +1,80 @@
+.v-input {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+
+  &__field {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+
+    &--light {
+      background-color: $color-white;
+    }
+  
+    &--dark {
+      background-color: $color-theme-dark;
+    }
+  }
+
+  &__content {
+    display: inline-block;
+    width: 100%;
+
+    &--disabled {
+      color: darken($color-disabled, 20%);
+      background-color: lighten($color-disabled, 40%);
+      pointer-events: none;
+      cursor: not-allowed;
+      border-color: $color-disabled;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding: 0 3 * $sp;
+    font-size: 16px;
+
+    &--clickable {
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    cursor: text;
+    padding: 3 * $sp;
+    font-size: 14px;
+    width: 100%;
+    border: 0;
+    outline: 0;
+
+    &--with-label {
+      padding: $sp 3 * $sp;
+    }
+  }
+
+  &__label {
+    display: block;
+    color: $color-text-2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    padding: $sp 3 * $sp;
+    height: 4 * $sp;
+  }
+
+  &__hint {
+    color: $color-text-2;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 20px;
+
+    &--error {
+      color: $color-error;
+    }
+  }
+}

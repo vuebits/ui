@@ -1,0 +1,64 @@
+$color-white: #FFF;
+$color-black: #000;
+$color-grey-light: #F0F2F5;
+$color-grey-athens:#E5E8EC;
+$color-grey-bright: #3F4254;
+$color-grey-trout:#4A4E5A;
+$color-grey-pale-sky: #6B707D;
+$color-red-lipstick: #B00044;
+$color-yellow-sea: #FFAC01;
+$color-yellow-sazerac: #FFF6E5;
+$color-blue-denim-darken: #0D57C3;
+$color-blue-dodger: #3287FE;
+$color-blue-solitude: #EAF3FE;
+$color-green-apple: #64BA3D;
+$color-green-peppermint: #EFF8EB;
+$color-blue-pickled-bluewood: #35495E;
+$color-green-ocean: #42b983;
+/* aliases */
+
+// theme
+$color-primary: $color-blue-pickled-bluewood;
+$color-secondary: $color-green-ocean;
+
+// elements
+$color-border: $color-grey-athens;
+$color-text: $color-black;
+$color-text-2: $color-grey-trout;
+$color-link: $color-blue-denim-darken;
+$color-bg: $color-grey-light;
+
+// statuses
+$color-info: $color-blue-dodger;
+$color-success: $color-green-apple;
+$color-warning: $color-yellow-sea;
+$color-error: $color-red-lipstick;
+$color-closed: $color-grey-bright;
+$color-disabled: $color-grey-pale-sky;
+
+// event statuses
+$color-status-1: $color-warning;
+$color-status-2: $color-info;
+$color-status-3: $color-success;
+$color-status-4: $color-closed;
+
+// pale colors
+$color-info-pale: $color-blue-solitude;
+$color-success-pale: $color-green-peppermint;
+$color-warning-pale: $color-yellow-sazerac;
+$color-error-pale: lighten($color-error, 63%);
+$color-closed-pale: lighten($color-status-4, 64%);
+
+$color-status-1-pale: $color-warning-pale;
+$color-status-2-pale: $color-info-pale;
+$color-status-3-pale: $color-success-pale;
+$color-status-4-pale: $color-closed-pale;
+
+//themes
+$color-theme-dark: $color-grey-bright;
+$color-theme-dark-font: $color-white;
+$color-theme-dark-hover: lighten($color-theme-dark, 10%);
+
+$color-theme-light: $color-bg;
+$color-theme-light-font: $color-black;
+$color-theme-light-hover: $color-grey-light;

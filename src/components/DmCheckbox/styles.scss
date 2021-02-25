@@ -1,0 +1,57 @@
+
+$checkbox-border-radius: 0;
+$checkbox-size: 20px;
+$checkbox-border-width: 1px;
+
+.v-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__input {
+    display: none;
+  }
+
+  &__checkbox {
+    flex-shrink: 0;
+  }
+
+  &__checkmark {
+    font-size: $checkbox-size - 6px;
+    height: $checkbox-size;
+    width: $checkbox-size;
+    border: set-border();
+    margin-right: 2 * $sp;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    color: $color-white;
+
+    &--rounded {
+      border-radius: $border-radius-main;
+    }
+
+    &--error {
+      border: set-border($color-error);
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+
+    @media (hover: none) {
+      min-height: 40px;
+    }
+  }
+
+  &__error {
+    width: 100%;
+  }
+}

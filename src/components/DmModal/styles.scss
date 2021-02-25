@@ -1,0 +1,39 @@
+.v-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: $layer-modal;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(10, 10, 10, .86);
+
+  &__middle {
+    display: flex;
+    align-items: center;
+  }
+
+  &__card {
+    margin-top: 10 * $sp;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    max-width: calc(100vw - #{4 * $sp});
+    max-height: calc(100vh - #{20 * $sp});
+    position: relative;
+    overflow: hidden;
+
+    &--sm {
+      width: 360px;
+    }
+    &--md {
+      width: 570px;
+    }
+    &--lg {
+      width: 960px;
+    }
+  }
+}
