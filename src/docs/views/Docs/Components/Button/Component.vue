@@ -5,26 +5,36 @@
     </ComponentHeader>
     <ButtonExample />
     <ComponentApi :component="component" />
+    <Story
+      id="colors"
+      title="Colors"
+    >
+      <ButtonColors />
+    </Story>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { VButton } from '@/components';
-import {
-  ButtonExample
-} from './_stories';
+import ButtonExample from './Example.vue';
 import {
   ComponentHeader,
-  ComponentApi
+  ComponentApi,
+  Story
 } from '@/docs/components';
+import {
+  ButtonColors
+} from './_stories';
 
 export default defineComponent({
   name: 'DocsComponentsButton',
   components: {
     ComponentHeader,
     ComponentApi,
-    ButtonExample
+    ButtonExample,
+    Story,
+    ButtonColors
   },
   data () {
     return {

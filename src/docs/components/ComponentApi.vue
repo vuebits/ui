@@ -83,12 +83,12 @@ export default defineComponent({
     },
     emitsItems (): {event: string; validation: any}[] {
       const emits: {[key in string]: any} = (this.component as any).__emits;
-      return Object.keys(emits).map(key => {
+      return emits ? Object.keys(emits).map(key => {
         return {
           event: key,
           validation: emits[key]
         };
-      });
+      }) : [];
     }
   }
 });

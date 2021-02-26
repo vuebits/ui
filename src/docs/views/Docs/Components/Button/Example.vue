@@ -1,5 +1,5 @@
 <template>
-  <Story
+  <Sandbox
     id="example"
     title="Example"
   >
@@ -95,13 +95,13 @@
         label="Right icon"
       />
     </Knobs>
-  </Story>
+  </Sandbox>
 </template>
 
 <script>
 import {
   Preview,
-  Story,
+  Sandbox,
   Knobs,
   KnobListItem,
   KnobBoolean,
@@ -113,10 +113,10 @@ import {
 import { colors, sizes, icons } from '@/docs/helpers/story-params';
 
 export default {
-  name: 'VButtonExampleStory',
+  name: 'ButtonExample',
   components: {
     Preview,
-    Story,
+    Sandbox,
     Knobs,
     KnobListItem,
     KnobBoolean,

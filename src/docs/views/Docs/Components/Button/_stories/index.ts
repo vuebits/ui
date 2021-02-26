@@ -1,1 +1,1 @@
-export { default as ButtonExample } from './Example.vue';
+export { default as ButtonColors } from './Colors.vue';
