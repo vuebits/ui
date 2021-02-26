@@ -25,18 +25,21 @@
         <div v-if="isCodeShown">
           <VButton
             size="sm"
+            :class="$bem({e: 'code-control', m: {active: activeCode === 'html'}})"
             @click="setActiveCode('html')"
           >
             HTML
           </VButton>
           <VButton
             size="sm"
+            :class="$bem({e: 'code-control', m: {active: activeCode === 'js'}})"
             @click="setActiveCode('js')"
           >
             JS
           </VButton>
           <VButton
             size="sm"
+            :class="$bem({e: 'code-control', m: {active: activeCode === 'css'}})"
             @click="setActiveCode('css')"
           >
             CSS
@@ -201,6 +204,17 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  &__code-control {
+    &--active {
+      background-color: $color-secondary;
+      color: $color-white;
+
+      &:hover {
+        background-color: darken($color-secondary, 10%);
+      }
+    }
   }
 
   &__code {
