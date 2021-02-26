@@ -144,18 +144,16 @@ export default {
         .split('@/components')
         .join('@vuebits/ui');
       nextTick(() => {
-        hljs.highlightBlock(this.$refs.code);
+        hljs.highlightBlock(this.$refs.html);
+        hljs.highlightBlock(this.$refs.js);
+        hljs.highlightBlock(this.$refs.css);
       });
     },
     toggleCodeVisibility () {
       this.isCodeShown = !this.isCodeShown;
     },
     setActiveCode (code) {
-      console.log(code);
       this.activeCode = code;
-      hljs.highlightBlock(this.$refs.html);
-      hljs.highlightBlock(this.$refs.js);
-      hljs.highlightBlock(this.$refs.css);
     }
   }
 };
