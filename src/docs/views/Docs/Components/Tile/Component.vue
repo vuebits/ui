@@ -13,6 +13,27 @@
       <TileColors />
     </Story>
     <Story
+      file-name="HoverBgColors"
+      component-name="Tile"
+      title="Background colors on hover"
+    >
+      <TileHoverBgColors />
+    </Story>
+    <Story
+      file-name="HoverBgColors"
+      component-name="Tile"
+      title="Background colors on hover"
+    >
+      <TileHoverBgColors />
+    </Story>
+    <Story
+      file-name="UnderlineColors"
+      component-name="Tile"
+      title="Underline colors"
+    >
+      <TileUnderlineColors />
+    </Story>
+    <Story
       file-name="Roundings"
       component-name="Tile"
       title="Roundings"
@@ -40,6 +61,8 @@ import {
 } from '@/docs/components';
 import {
   TileColors,
+  TileHoverBgColors,
+  TileUnderlineColors,
   TileRoundings,
   TileDimensions
 } from './_stories';
@@ -52,6 +75,8 @@ export default defineComponent({
     TileExample,
     Story,
     TileColors,
+    TileHoverBgColors,
+    TileUnderlineColors,
     TileRoundings,
     TileDimensions
   },
