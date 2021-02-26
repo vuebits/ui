@@ -2,6 +2,11 @@
   <div>
     <VButton
       bordered
+    >
+      I am not rounded
+    </VButton>
+    <VButton
+      bordered
       rounded
     >
       I am rounded
