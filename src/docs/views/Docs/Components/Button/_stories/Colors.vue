@@ -3,7 +3,10 @@
     v-for="color in colors"
     :key="color"
   >
-    <VButton :color="color">
+    <VButton
+      :color="color"
+      dark
+    >
       I am {{ color }}
     </VButton>
   </span>
