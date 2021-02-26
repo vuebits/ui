@@ -6,10 +6,18 @@
     <ButtonExample />
     <ComponentApi :component="component" />
     <Story
-      id="colors"
+      file-name="Colors"
+      component-name="Button"
       title="Colors"
     >
       <ButtonColors />
+    </Story>
+    <Story
+      file-name="Roundings"
+      component-name="Button"
+      title="Roundings"
+    >
+      <ButtonRoundings />
     </Story>
   </div>
 </template>
@@ -24,7 +32,8 @@ import {
   Story
 } from '@/docs/components';
 import {
-  ButtonColors
+  ButtonColors,
+  ButtonRoundings
 } from './_stories';
 
 export default defineComponent({
@@ -34,7 +43,8 @@ export default defineComponent({
     ComponentApi,
     ButtonExample,
     Story,
-    ButtonColors
+    ButtonColors,
+    ButtonRoundings
   },
   data () {
     return {

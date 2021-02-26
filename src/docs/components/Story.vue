@@ -1,11 +1,11 @@
 <template>
   <div class="story">
     <span
-      :id="id"
+      :id="fileName"
       class="story__anchor"
     />
     <h3 class="story__title">
-      <a :href="`#${id}`">
+      <a :href="`#${fileName}`">
         {{ title }}
       </a>
     </h3>
@@ -98,11 +98,15 @@ export default {
     VButton
   },
   props: {
-    id: {
+    fileName: {
       type: String,
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    componentName: {
       type: String,
       required: true
     }
@@ -136,7 +140,7 @@ export default {
         component = await import(
           /* webpackChunkName: "examples" */
           /* webpackMode: "lazy" */
-          '!raw-loader!../views/Docs/Components/Button/_stories/Colors.vue'
+          `!raw-loader!../views/Docs/Components/${this.componentName}/_stories/${this.fileName}.vue`
         );
       } catch (err) {}
 
