@@ -33,6 +33,13 @@
     >
       <ButtonLoading />
     </Story>
+    <Story
+      file-name="Disabled"
+      component-name="Button"
+      title="Disabled state"
+    >
+      <ButtonDisabled />
+    </Story>
   </div>
 </template>
 
@@ -49,7 +56,8 @@ import {
   ButtonColors,
   ButtonSizes,
   ButtonRoundings,
-  ButtonLoading
+  ButtonLoading,
+  ButtonDisabled
 } from './_stories';
 
 export default defineComponent({
@@ -62,7 +70,8 @@ export default defineComponent({
     ButtonColors,
     ButtonSizes,
     ButtonRoundings,
-    ButtonLoading
+    ButtonLoading,
+    ButtonDisabled
   },
   data () {
     return {
