@@ -13,6 +13,13 @@
       <ButtonColors />
     </Story>
     <Story
+      file-name="Sizes"
+      component-name="Button"
+      title="Sizes"
+    >
+      <ButtonSizes />
+    </Story>
+    <Story
       file-name="Roundings"
       component-name="Button"
       title="Roundings"
@@ -33,6 +40,7 @@ import {
 } from '@/docs/components';
 import {
   ButtonColors,
+  ButtonSizes,
   ButtonRoundings
 } from './_stories';
 
@@ -44,6 +52,7 @@ export default defineComponent({
     ButtonExample,
     Story,
     ButtonColors,
+    ButtonSizes,
     ButtonRoundings
   },
   data () {
