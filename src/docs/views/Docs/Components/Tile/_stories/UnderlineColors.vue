@@ -16,6 +16,7 @@
 import {
   VTile
 } from '@/components';
+import { colors } from '@/docs/helpers/story-params';
 
 export default {
   name: 'TileUnderlineColors',
@@ -24,15 +25,7 @@ export default {
   },
   data () {
     return {
-      colors: [
-        'primary',
-        'secondary',
-        'success',
-        'info',
-        'error',
-        'warning',
-        'disabled'
-      ]
+      colors
     };
   }
 };

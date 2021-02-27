@@ -20,13 +20,6 @@
       <TileHoverBgColors />
     </Story>
     <Story
-      file-name="HoverBgColors"
-      component-name="Tile"
-      title="Background colors on hover"
-    >
-      <TileHoverBgColors />
-    </Story>
-    <Story
       file-name="UnderlineColors"
       component-name="Tile"
       title="Underline colors"
