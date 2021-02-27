@@ -34,6 +34,13 @@
       <TileRoundings />
     </Story>
     <Story
+      file-name="Elevation"
+      component-name="Tile"
+      title="Elevation"
+    >
+      <TileElevation />
+    </Story>
+    <Story
       file-name="Dimensions"
       component-name="Tile"
       title="Dimensions"
@@ -57,6 +64,7 @@ import {
   TileHoverBgColors,
   TileUnderlineColors,
   TileRoundings,
+  TileElevation,
   TileDimensions
 } from './_stories';
 
@@ -71,6 +79,7 @@ export default defineComponent({
     TileHoverBgColors,
     TileUnderlineColors,
     TileRoundings,
+    TileElevation,
     TileDimensions
   },
   data () {
