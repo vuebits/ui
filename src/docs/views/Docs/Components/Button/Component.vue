@@ -40,6 +40,13 @@
     >
       <ButtonDisabled />
     </Story>
+    <Story
+      file-name="Icons"
+      component-name="Button"
+      title="Icons"
+    >
+      <ButtonIcons />
+    </Story>
   </div>
 </template>
 
@@ -57,7 +64,8 @@ import {
   ButtonSizes,
   ButtonRoundings,
   ButtonLoading,
-  ButtonDisabled
+  ButtonDisabled,
+  ButtonIcons
 } from './_stories';
 
 export default defineComponent({
@@ -71,7 +79,8 @@ export default defineComponent({
     ButtonSizes,
     ButtonRoundings,
     ButtonLoading,
-    ButtonDisabled
+    ButtonDisabled,
+    ButtonIcons
   },
   data () {
     return {
