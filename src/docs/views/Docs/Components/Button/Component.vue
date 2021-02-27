@@ -26,6 +26,13 @@
     >
       <ButtonRoundings />
     </Story>
+    <Story
+      file-name="Loading"
+      component-name="Button"
+      title="Loading state"
+    >
+      <ButtonLoading />
+    </Story>
   </div>
 </template>
 
@@ -41,7 +48,8 @@ import {
 import {
   ButtonColors,
   ButtonSizes,
-  ButtonRoundings
+  ButtonRoundings,
+  ButtonLoading
 } from './_stories';
 
 export default defineComponent({
@@ -53,7 +61,8 @@ export default defineComponent({
     Story,
     ButtonColors,
     ButtonSizes,
-    ButtonRoundings
+    ButtonRoundings,
+    ButtonLoading
   },
   data () {
     return {
