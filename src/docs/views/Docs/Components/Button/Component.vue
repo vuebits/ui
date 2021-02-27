@@ -47,6 +47,13 @@
     >
       <ButtonIcons />
     </Story>
+    <Story
+      file-name="Elevation"
+      component-name="Button"
+      title="Elevation"
+    >
+      <ButtonElevation />
+    </Story>
   </div>
 </template>
 
@@ -65,7 +72,8 @@ import {
   ButtonRoundings,
   ButtonLoading,
   ButtonDisabled,
-  ButtonIcons
+  ButtonIcons,
+  ButtonElevation
 } from './_stories';
 
 export default defineComponent({
@@ -80,7 +88,8 @@ export default defineComponent({
     ButtonRoundings,
     ButtonLoading,
     ButtonDisabled,
-    ButtonIcons
+    ButtonIcons,
+    ButtonElevation
   },
   data () {
     return {
