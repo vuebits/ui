@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
+import { cssValueValidator } from '@/helpers/validators/css-values-validator';
 import {
   bgColorClass,
   hoverBgColorClass,
@@ -32,11 +33,13 @@ export default defineComponent({
   props: {
     height: {
       type: String as PropType<string>,
-      default: 'auto'
+      default: 'auto',
+      validator: (val: string) => cssValueValidator(val)
     },
     width: {
       type: String as PropType<string>,
-      default: 'auto'
+      default: 'auto',
+      validator: (val: string) => cssValueValidator(val)
     },
     image: {
       type: String as PropType<string | null>,
