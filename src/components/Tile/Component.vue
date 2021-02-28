@@ -2,6 +2,7 @@
   <component
     :is="component"
     :class="classes"
+    :style="styles"
     @click="click"
   >
     <slot />
@@ -10,6 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
+import { cssValueValidator } from '@/helpers/validators/css-values-validator';
 import {
   bgColorClass,
   hoverBgColorClass,
@@ -30,12 +32,14 @@ export default defineComponent({
   name: 'VTile',
   props: {
     height: {
-      type: Number,
-      default: 0
+      type: String as PropType<string>,
+      default: 'auto',
+      validator: (val: string) => cssValueValidator(val)
     },
     width: {
-      type: Number,
-      default: 0
+      type: String as PropType<string>,
+      default: 'auto',
+      validator: (val: string) => cssValueValidator(val)
     },
     image: {
       type: String as PropType<string | null>,
@@ -107,6 +111,13 @@ export default defineComponent({
         this.elevatedClass,
         this.roundedClass
       ];
+    },
+    styles (): any {
+      return {
+        '--tile-height': this.height,
+        '--tile-width': this.width,
+        '--tile-bg-image': this.image ? `url(${this.image})` : 'none'
+      };
     }
   },
   methods: {
