@@ -13,11 +13,46 @@
       <ButtonColors />
     </Story>
     <Story
+      file-name="Sizes"
+      component-name="Button"
+      title="Sizes"
+    >
+      <ButtonSizes />
+    </Story>
+    <Story
       file-name="Roundings"
       component-name="Button"
       title="Roundings"
     >
       <ButtonRoundings />
+    </Story>
+    <Story
+      file-name="Loading"
+      component-name="Button"
+      title="Loading state"
+    >
+      <ButtonLoading />
+    </Story>
+    <Story
+      file-name="Disabled"
+      component-name="Button"
+      title="Disabled state"
+    >
+      <ButtonDisabled />
+    </Story>
+    <Story
+      file-name="Icons"
+      component-name="Button"
+      title="Icons"
+    >
+      <ButtonIcons />
+    </Story>
+    <Story
+      file-name="Elevation"
+      component-name="Button"
+      title="Elevation"
+    >
+      <ButtonElevation />
     </Story>
   </div>
 </template>
@@ -33,7 +68,12 @@ import {
 } from '@/docs/components';
 import {
   ButtonColors,
-  ButtonRoundings
+  ButtonSizes,
+  ButtonRoundings,
+  ButtonLoading,
+  ButtonDisabled,
+  ButtonIcons,
+  ButtonElevation
 } from './_stories';
 
 export default defineComponent({
@@ -44,7 +84,12 @@ export default defineComponent({
     ButtonExample,
     Story,
     ButtonColors,
-    ButtonRoundings
+    ButtonSizes,
+    ButtonRoundings,
+    ButtonLoading,
+    ButtonDisabled,
+    ButtonIcons,
+    ButtonElevation
   },
   data () {
     return {

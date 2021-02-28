@@ -1,13 +1,13 @@
 <template>
   <span
-    v-for="color in colors"
-    :key="color"
+    v-for="size in sizes"
+    :key="size"
   >
     <VButton
-      :color="color"
+      :size="size"
       dark
     >
-      I am {{ color }}
+      I am {{ size }}
     </VButton>
   </span>
 </template>
@@ -16,16 +16,16 @@
 import {
   VButton
 } from '@/components';
-import { colors } from '@/docs/helpers/story-params';
+import { sizes } from '@/docs/helpers/story-params';
 
 export default {
-  name: 'ButtonColors',
+  name: 'ButtonSizes',
   components: {
     VButton
   },
   data () {
     return {
-      colors
+      sizes
     };
   }
 };
