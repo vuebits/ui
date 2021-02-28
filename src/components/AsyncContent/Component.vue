@@ -20,11 +20,6 @@
       v-else-if="error"
       :class="$bem({e: 'error-wrapper'})"
     >
-      <VIcon
-        :class="$bem({e: 'error-icon'})"
-        size="3x"
-        name="exclamation-triangle"
-      />
       <p
         :class="$bem({e: 'error-text'})"
       >
@@ -50,14 +45,12 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { VSpinner } from '@/components/Spinner';
-import { VIcon } from '@/components/Icon';
 import { VButton } from '@/components/Button';
 
 export default defineComponent({
   name: 'VAsyncContent',
   components: {
     VSpinner,
-    VIcon,
     VButton
   },
   props: {
@@ -79,7 +72,7 @@ export default defineComponent({
     },
     errorText: {
       type: String as PropType<string>,
-      default: 'Coś poszło nie tak.'
+      default: 'Ops...something went wrong.'
     },
     reloadable: {
       type: Boolean as PropType<boolean>,
@@ -87,7 +80,7 @@ export default defineComponent({
     },
     reloadText: {
       type: String as PropType<string>,
-      default: 'Spróbuj ponownie'
+      default: 'Try again'
     }
   },
   emits: ['reload'],
