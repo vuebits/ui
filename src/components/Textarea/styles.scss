@@ -1,6 +1,7 @@
 .v-textarea {
   display: flex;
   flex-direction: column;
+  font-size: 16px;
 
   &__field {
     display: flex;
@@ -25,7 +26,7 @@
     display: flex;
     align-items: center;
     padding: 0 3 * $sp;
-    font-size: var(--icons-size);
+    font-size: 16px;
 
     &--clickable {
       cursor: pointer;
@@ -34,24 +35,31 @@
 
   &__textarea {
     cursor: text;
-    padding: 2 * $sp 3 * $sp;
+    padding: 3 * $sp;
     font-size: 14px;
     width: 100%;
     border: 0;
     outline: 0;
+
+    &--with-label {
+      padding: $sp 3 * $sp;
+    }
   }
 
   &__label {
+    display: block;
     color: $color-text-2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 13px;
+    padding: $sp 3 * $sp;
+    height: 4 * $sp;
   }
 
   &__hint {
     color: $color-text-2;
-    margin-top: $sp;
-    font-size: 14px;
+    font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
