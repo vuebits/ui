@@ -1,10 +1,16 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createBem } from '@vuebits/bem';
+import { createUI } from '@/index';
 import './plugins/icons';
 import router from './router';
 
+const config = {
+  bem: {
+    hyphenate: true
+  }
+};
+
 createApp(App)
-  .use(createBem({ hyphenate: true }))
+  .use(createUI(config))
   .use(router)
   .mount('#app');
