@@ -2,41 +2,6 @@
   display: flex;
   flex-direction: row;
 
-  &__sidebar {
-    position: fixed;
-    width: 300px;
-    background-color: $color-white;
-    top: $toolbar-height;
-    bottom: 0;
-    border-right: set-border();
-    overflow-y: auto;
-    padding-top: 4 * $sp;
-  }
-
-  &__sidebar-links-header {
-    font-weight: bold;
-    display: inline-block;
-    font-size: 18px;
-    padding: $sp 2 * $sp;
-    width: 100%;
-  }
-
-  &__sidebar-item {
-    padding: $sp 3 * $sp;
-    display: flex;
-    
-    &--active {
-      border-left: set-border($color-secondary, $sp);
-      padding-left: 2 * $sp;
-      font-weight: bold;
-    }
-  }
-
-  &__sidebar-link {
-    display: inline-block;
-    width: 100%;
-  }
-
   &__main {
     margin-left: 300px;
     padding: 2 * $sp;
@@ -45,17 +10,5 @@
 
   &__content {
     padding: 2 * $sp;
-  }
-
-  &__breadcrumbs {
-    margin-bottom: 3 * $sp;
-  }
-
-  &__breadcrumb {
-    color: $color-primary;
-
-    &--active {
-      font-weight: bold;
-    }
   }
 }

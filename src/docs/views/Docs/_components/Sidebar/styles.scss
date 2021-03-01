@@ -1,0 +1,34 @@
+.docs-sidebar {
+  position: fixed;
+  width: 300px;
+  background-color: $color-white;
+  top: $toolbar-height;
+  bottom: 0;
+  border-right: set-border();
+  overflow-y: auto;
+  padding-top: 4 * $sp;
+
+  &__group-header {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 18px;
+    padding: $sp 2 * $sp;
+    width: 100%;
+  }
+
+  &__item {
+    padding: $sp 3 * $sp;
+    display: flex;
+    
+    &--active {
+      border-left: set-border($color-secondary, $sp);
+      padding-left: 2 * $sp;
+      font-weight: bold;
+    }
+  }
+
+  &__item-link {
+    display: inline-block;
+    width: 100%;
+  }
+}

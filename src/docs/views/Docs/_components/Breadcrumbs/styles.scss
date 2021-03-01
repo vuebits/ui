@@ -1,0 +1,11 @@
+.docs-breadcrumbs {
+  margin-bottom: 3 * $sp;
+
+  &__breadcrumb {
+    color: $color-primary;
+
+    &--active {
+      font-weight: bold;
+    }
+  }
+}
