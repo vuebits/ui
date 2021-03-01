@@ -1,10 +1,35 @@
 {
-  "name": "ui",
+  "name": "@vuebits/ui",
   "version": "0.1.0",
-  "private": true,
+  "description": "Vue 3 components library",
+  "main": "./dist/vuebits-ui.common.js",
+  "module": "./dist/vuebits-ui.common.js",
+  "types": "./dist/types/index.d.ts",
+  "author": "Vuebits (https://github.com/vuebits)",
+  "contributors": [
+    "Szczepan Masny <szczepanmasny@gmail.com> (https://github.com/szczepanmasny)",
+    "Agnieszka Ziomek <poziomkaa@gmail.com> (https://github.com/Ziomeka)"
+  ],
+  "homepage": "https://github.com/vuebits/ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuebits/ui.git"
+  },
+  "keywords": [
+    "ui",
+    "design pattern",
+    "vuejs",
+    "vue3",
+    "vue ui",
+    "vuejs ui",
+    "vue3 ui"
+  ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve ./src/docs/main.ts",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name vue-ui src/index.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
