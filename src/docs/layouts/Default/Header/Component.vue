@@ -19,10 +19,10 @@
         :expanded-on-mobile="isMenuExpandedOnMobile"
         @close="closeMenuOnMobile"
       />
-      <!-- <VToolbarHamburger
+      <VToolbarHamburger
         v-model="isMenuExpandedOnMobile"
         :class="$bem({e: 'hamburger'})"
-      /> -->
+      />
     </template>
   </VToolbar>
 </template>
@@ -31,7 +31,8 @@
 import { defineComponent } from 'vue';
 import {
   VToolbar,
-  VToolbarLogo
+  VToolbarLogo,
+  VToolbarHamburger
 } from '@/components';
 import LayoutAppHeaderMenu from './Menu';
 import { RouteName } from '@/docs/router/models';
@@ -41,7 +42,8 @@ export default defineComponent({
   components: {
     VToolbar,
     VToolbarLogo,
-    LayoutAppHeaderMenu
+    LayoutAppHeaderMenu,
+    VToolbarHamburger
   },
   data () {
     return {
