@@ -16,9 +16,9 @@ export default {
 <style lang="scss">
 .knobs {
   width: 300px;
-  padding: 10px;
-  background-color: #f5f5f5;
-  border-left: 1px solid #ccc;
+  padding: 2 * $sp;
+  background-color: $color-bg;
+  border-left: set-border();
 
   &__header {
     font-size: 20px;

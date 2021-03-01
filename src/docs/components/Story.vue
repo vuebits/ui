@@ -176,7 +176,7 @@ export default {
   }
 
   &__title {
-    margin-left: 20px;
+    margin-left: 4 * $sp;
 
     &:hover {
       margin-left: 0;
@@ -185,19 +185,19 @@ export default {
         content: "#";
         cursor: pointer;
         display: inline-block;
-        width: 20px;
+        width: 4 * $sp;
         color: $color-secondary;
       }
     }
   }
 
   &__box {
-    margin: 20px;
-    border: 1px solid #ccc;
+    margin: 4 * $sp;
+    border: set-border();
   }
 
   &__content {
-    padding: 10px;
+    padding: 2 * $sp;
   }
 
   &__code-controls {

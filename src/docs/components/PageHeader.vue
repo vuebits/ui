@@ -13,6 +13,6 @@ export default {
 <style lang="scss">
 .page-header {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 4 * $sp;
 }
 </style>
