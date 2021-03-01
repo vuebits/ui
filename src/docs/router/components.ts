@@ -2,9 +2,9 @@ import { RouteRecordRaw } from 'vue-router';
 import { RouteName } from './models';
 
 export const components = [
+  'AsyncContent',
   'Button',
-  'Tile',
-  'AsyncContent'
+  'Tile'
 ];
 
 const routes: RouteRecordRaw[] = components.map(c => {
