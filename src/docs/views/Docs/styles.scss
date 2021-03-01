@@ -3,9 +3,12 @@
   flex-direction: row;
 
   &__main {
-    margin-left: 300px;
     padding: 2 * $sp;
     flex-grow: 1;
+
+    @include breakpoint(lg) {
+      margin-left: 300px;
+    }
   }
 
   &__content {

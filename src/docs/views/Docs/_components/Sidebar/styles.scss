@@ -7,6 +7,41 @@
   border-right: set-border();
   overflow-y: auto;
   padding-top: 4 * $sp;
+  z-index: 9;
+
+  &--hidden-on-mobile {
+    display: none;
+  }
+
+  &__open-button {
+    position: fixed;
+    top: 150px;
+    left: 2 * $sp;
+
+    @include breakpoint(lg) {
+      display: none;
+    }
+  }
+
+  &__header {
+    padding: 2 * $sp;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__close-button {
+
+    @include breakpoint(lg) {
+      display: none;
+    }
+  }
 
   &__group-header {
     font-weight: bold;

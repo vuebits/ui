@@ -5,6 +5,8 @@
     :light="light"
     :dark="dark"
     :rounded="rounded"
+    :rounded-lg="roundedLg"
+    :round="round"
     :color="color"
     :disabled="disabled"
     :size="size"
