@@ -1,8 +1,8 @@
 <template>
   <div :class="$bem({})">
-    <ComponentHeader>
+    <PageHeader>
       Async Content
-    </ComponentHeader>
+    </PageHeader>
     <AsyncContentExample />
     <ComponentApi :component="component" />
   </div>
@@ -13,14 +13,14 @@ import { defineComponent } from 'vue';
 import { VAsyncContent } from '@/components';
 import AsyncContentExample from './Example.vue';
 import {
-  ComponentHeader,
+  PageHeader,
   ComponentApi
 } from '@/docs/components';
 
 export default defineComponent({
   name: 'DocsComponentsAsyncContent',
   components: {
-    ComponentHeader,
+    PageHeader,
     ComponentApi,
     AsyncContentExample
   },
