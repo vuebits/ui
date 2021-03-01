@@ -18,7 +18,7 @@
       </div>
       <span :class="$bem({e: 'content'})">
         <span
-          v-if="label"
+          v-if="label && (modelValue || placeholder)"
           :class="$bem({e: 'label'})"
         >
           {{ label }}
@@ -27,9 +27,9 @@
           :rows="rows"
           :required="required"
           :value="modelValue"
-          :placeholder="placeholder"
+          :placeholder="placeholder || label"
           :maxlength="maxlength"
-          :class="$bem({e: 'textarea'})"
+          :class="$bem({e: 'textarea', m: { 'with-label': label && (modelValue || placeholder) }})"
           data-test="field"
           @input="input"
           @focus="onFocus"
