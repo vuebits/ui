@@ -46,7 +46,7 @@ export default {
   }
 
   &__title {
-    margin-left: 20px;
+    margin-left: 4 * $sp;
 
     &:hover {
       margin-left: 0;
@@ -55,18 +55,18 @@ export default {
         content: '#';
         cursor: pointer;
         display: inline-block;
-        width: 20px;
+        width: 4 * $sp;
         color: $color-secondary;
       }
     }
   }
 
   &__content {
-    margin: 20px;
+    margin: 4 * $sp;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 1px solid #ccc;
+    border: set-border();
   }
 }
 </style>

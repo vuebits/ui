@@ -42,6 +42,6 @@ export default defineComponent({
 
 <style lang="scss">
 .knob-string {
-  margin-top: 10px;
+  margin-top: 2 * $sp;
 }
 </style>

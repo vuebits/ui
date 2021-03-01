@@ -40,6 +40,6 @@ export default defineComponent({
 
 <style lang="scss">
 .knob-boolean {
-  margin-top: 10px;
+  margin-top: 2 * $sp;
 }
 </style>
