@@ -50,15 +50,22 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { VSpinner } from '@/components/Spinner';
-import { VIcon } from '@/components/Icon';
 import { VButton } from '@/components/Button';
+import { VIcon } from '@/components/Icon';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faExclamationTriangle
+} from '@fortawesome/free-solid-svg-icons';
+library.add(
+  faExclamationTriangle
+);
 
 export default defineComponent({
   name: 'VAsyncContent',
   components: {
     VSpinner,
-    VIcon,
-    VButton
+    VButton,
+    VIcon
   },
   props: {
     loading: {
@@ -79,7 +86,7 @@ export default defineComponent({
     },
     errorText: {
       type: String as PropType<string>,
-      default: 'Coś poszło nie tak.'
+      default: 'Ops...something went wrong.'
     },
     reloadable: {
       type: Boolean as PropType<boolean>,
@@ -87,7 +94,7 @@ export default defineComponent({
     },
     reloadText: {
       type: String as PropType<string>,
-      default: 'Spróbuj ponownie'
+      default: 'Try again'
     }
   },
   emits: ['reload'],
