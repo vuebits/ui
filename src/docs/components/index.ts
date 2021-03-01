@@ -6,5 +6,5 @@ export { default as KnobString } from './KnobString.vue';
 export { default as Knobs } from './Knobs.vue';
 export { default as Story } from './Story.vue';
 export { default as Sandbox } from './Sandbox.vue';
-export { default as ComponentHeader } from './ComponentHeader.vue';
+export { default as PageHeader } from './PageHeader.vue';
 export { default as ComponentApi } from './ComponentApi.vue';

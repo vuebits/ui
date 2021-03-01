@@ -1,8 +1,8 @@
 <template>
   <div :class="$bem({})">
-    <ComponentHeader>
+    <PageHeader>
       Button
-    </ComponentHeader>
+    </PageHeader>
     <ButtonExample />
     <ComponentApi :component="component" />
     <Story
@@ -62,7 +62,7 @@ import { defineComponent } from 'vue';
 import { VButton } from '@/components';
 import ButtonExample from './Example.vue';
 import {
-  ComponentHeader,
+  PageHeader,
   ComponentApi,
   Story
 } from '@/docs/components';
@@ -79,7 +79,7 @@ import {
 export default defineComponent({
   name: 'DocsComponentsButton',
   components: {
-    ComponentHeader,
+    PageHeader,
     ComponentApi,
     ButtonExample,
     Story,

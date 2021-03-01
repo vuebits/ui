@@ -1,17 +1,17 @@
 <template>
-  <h2 class="component-header">
+  <h2 :class="$bem({})">
     <slot />
   </h2>
 </template>
 
 <script>
 export default {
-  name: 'Knobs'
+  name: 'PageHeader'
 };
 </script>
 
 <style lang="scss">
-.component-header {
+.page-header {
   font-size: 24px;
   margin-bottom: 20px;
 }

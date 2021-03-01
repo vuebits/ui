@@ -1,8 +1,8 @@
 <template>
   <div :class="$bem({})">
-    <ComponentHeader>
+    <PageHeader>
       Tile
-    </ComponentHeader>
+    </PageHeader>
     <TileExample />
     <ComponentApi :component="component" />
     <Story
@@ -55,7 +55,7 @@ import { defineComponent } from 'vue';
 import { VTile } from '@/components';
 import TileExample from './Example.vue';
 import {
-  ComponentHeader,
+  PageHeader,
   ComponentApi,
   Story
 } from '@/docs/components';
@@ -71,7 +71,7 @@ import {
 export default defineComponent({
   name: 'DocsComponentsTile',
   components: {
-    ComponentHeader,
+    PageHeader,
     ComponentApi,
     TileExample,
     Story,
