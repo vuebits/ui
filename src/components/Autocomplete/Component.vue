@@ -34,6 +34,7 @@
       @click-right-icon="cleanSelection"
       @keydown.up="goToPrevious"
       @keydown.down="goToNext"
+      @keydown.enter.prevent.stop="selectActiveItem"
     >
       <template #after>
         <transition
@@ -74,7 +75,7 @@
                 <div
                   v-if="item.key"
                   :class="itemClasses(item)"
-                  @click="select(item)"
+                  @mousedown="select(item)"
                 >
                   <slot
                     :id="item.key"
@@ -100,7 +101,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
+import { defineComponent, PropType, toRefs, nextTick } from 'vue';
 import { VInput } from '@/components/Input';
 import { VTextarea } from '@/components/Textarea';
 import { VAsyncContent } from '@/components/AsyncContent';
@@ -338,43 +339,6 @@ export default defineComponent({
         this.scrollToActiveItem();
       }
     },
-    input (value: any): void {
-      const item = {
-        key: null,
-        text: value
-      };
-      this.$emit('input', item);
-      this.$emit('update:modelValue', item);
-      this.$emit('update', item);
-    },
-    focus (): void {
-      this.$emit('focus');
-      this.isFocused = true;
-      this.isExpanded = true;
-    },
-    blur (): void {
-      this.$emit('blur');
-      this.isFocused = false;
-      setTimeout(() => {
-        if (!this.listClicked) {
-          this.isExpanded = false;
-        }
-        this.listClicked = false;
-        this.activeItemKey = null;
-      }, 100);
-    },
-    enter (value: any): void {
-      if (this.activeItemKey) {
-        const selectedItem = this.items.find(i => i.key === this.activeItemKey);
-        if (selectedItem) {
-          this.select(selectedItem);
-        }
-      }
-      this.$emit('enter', {
-        key: null,
-        text: value
-      });
-    },
     select (item: AutocompleteItem): void {
       this.$emit('select', item);
       if (item.key !== this.modelValue?.key) {
@@ -385,6 +349,20 @@ export default defineComponent({
       this.isFocused = false;
       this.isExpanded = false;
       this.listClicked = false;
+    },
+    selectActiveItem (): void {
+      if (this.activeItemKey) {
+        const selectedItem = this.items.find(i => i.key === this.activeItemKey);
+        if (selectedItem) {
+          this.select(selectedItem);
+        }
+      }
+    },
+    closeList (): void {
+      this.isFocused = false;
+      this.isExpanded = false;
+      this.listClicked = false;
+      this.activeItemKey = null;
     },
     itemClasses (item: AutocompleteItem): CssClass[] {
       return [
@@ -404,6 +382,32 @@ export default defineComponent({
     },
     reload (): void {
       this.$emit('reload');
+    },
+    input (value: any): void {
+      const item = {
+        key: null,
+        text: value
+      };
+      this.$emit('input', item);
+      this.$emit('update:modelValue', item);
+      this.$emit('update', item);
+    },
+    focus (): void {
+      this.$emit('focus');
+      this.isFocused = true;
+      this.isExpanded = true;
+    },
+    blur (): void {
+      this.$emit('blur');
+      nextTick(() => {
+        this.closeList();
+      });
+    },
+    enter (value: any): void {
+      this.$emit('enter', {
+        key: null,
+        text: value
+      });
     }
   }
 });
