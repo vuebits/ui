@@ -19,6 +19,15 @@
         :name="['fab', 'github']"
       />
     </VToolbarMenuItem>
+    <VToolbarMenuItem
+      href="https://www.npmjs.com/package/@vuebits/ui"
+      :class="$bem({e: 'item'})"
+      new-window
+    >
+      <VIcon
+        :name="['fab', 'npm']"
+      />
+    </VToolbarMenuItem>
   </VToolbarMenu>
 </template>
 

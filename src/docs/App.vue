@@ -16,5 +16,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../assets/styles';
+@import '../../styles/generic';
+@import '../../styles/elements/common-classes';
+@import '../../styles/elements/global';
 </style>
