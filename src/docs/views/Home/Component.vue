@@ -45,6 +45,8 @@
             color="error"
             round
             elevated
+            href="https://www.npmjs.com/package/@vuebits/ui"
+            new-window
             :class="$bem({e: 'button'})"
           >
             <VIcon
