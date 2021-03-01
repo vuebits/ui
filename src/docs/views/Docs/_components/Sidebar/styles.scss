@@ -11,6 +11,10 @@
 
   &--hidden-on-mobile {
     display: none;
+
+    @include breakpoint(lg) {
+      display: block;
+    }
   }
 
   &__open-button {
