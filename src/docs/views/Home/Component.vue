@@ -34,7 +34,7 @@
             new-window
           >
             <VIcon
-              :name="['fab', 'github']"
+              name="github"
             />
             GitHub
           </VButton>
@@ -50,7 +50,7 @@
             :class="$bem({e: 'button'})"
           >
             <VIcon
-              :name="['fab', 'npm']"
+              name="npm"
             />
             npm
           </VButton>

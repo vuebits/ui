@@ -1,0 +1,23 @@
+.v-icon {
+    display: inline-block;
+    vertical-align: text-top;
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    &--spin {
+        animation: spin 2s infinite linear;
+    }
+    &--pulse {
+        animation: spin 2s infinite linear;
+    }
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
