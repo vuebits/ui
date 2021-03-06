@@ -1,21 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faHome,
-  faBrain,
-  faBug,
-  faCalendar,
-  faEdit,
-  faGamepad
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faHome,
-  faBrain,
-  faBug,
-  faCalendar,
-  faEdit,
-  faGamepad
-);
-
 export const icons = [
   'none',
   'home',
@@ -23,7 +5,9 @@ export const icons = [
   'bug',
   'calendar',
   'edit',
-  'gamepad'
+  'gamepad',
+  'envelope',
+  'download'
 ];
 
 export const sizes = [

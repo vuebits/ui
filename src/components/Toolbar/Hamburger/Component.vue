@@ -13,13 +13,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { VIcon } from '@/components/Icon';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faBars
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faBars
-);
 
 export default defineComponent({
   name: 'VToolbarHamburger',

@@ -93,13 +93,6 @@ import {
 } from '@/composition-functions';
 import ClickOutside from '@/directives/click-outside';
 import { SelectItem } from './models';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCaretDown
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faCaretDown
-);
 
 export default defineComponent({
   name: 'VSelect',

@@ -53,15 +53,6 @@ import {
 } from '@/components';
 import { components } from '@/docs/router/components';
 import { RouteName } from '@/docs/router/models';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faTimes,
-  faList
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faTimes,
-  faList
-);
 
 export default defineComponent({
   name: 'DocsSidebar',

@@ -52,13 +52,6 @@ import { defineComponent, PropType } from 'vue';
 import { VSpinner } from '@/components/Spinner';
 import { VButton } from '@/components/Button';
 import { VIcon } from '@/components/Icon';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faExclamationTriangle
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faExclamationTriangle
-);
 
 export default defineComponent({
   name: 'VAsyncContent',
