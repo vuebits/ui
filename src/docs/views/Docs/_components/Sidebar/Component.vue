@@ -15,7 +15,7 @@
         Docs
       </div>
       <VIconButton
-        icon="times"
+        icon="close"
         round
         :class="$bem({e: 'close-button'})"
         @click="isExpandedOnMobile = false"
