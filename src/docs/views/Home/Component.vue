@@ -19,6 +19,7 @@
           >
             <VIcon
               name="book-open"
+              size="lg"
             />
             Get started
           </VButton>
@@ -35,6 +36,7 @@
           >
             <VIcon
               name="github"
+              size="lg"
             />
             GitHub
           </VButton>
@@ -51,6 +53,7 @@
           >
             <VIcon
               name="npm"
+              size="lg"
             />
             npm
           </VButton>

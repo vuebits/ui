@@ -23,7 +23,7 @@
       <VIcon
         :class="$bem({e: 'error-icon'})"
         size="3x"
-        name="exclamation-triangle"
+        name="error"
       />
       <p
         :class="$bem({e: 'error-text'})"
