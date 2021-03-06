@@ -18,12 +18,12 @@ export default defineComponent({
       required: true
     },
     size: {
-      type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
-      default: null
+      type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | ''>,
+      default: ''
     },
     flip: {
-      type: String as PropType<'horizontal' | 'vertical' | 'both' | null>,
-      default: null
+      type: String as PropType<'horizontal' | 'vertical' | 'both' | ''>,
+      default: ''
     },
     pulse: {
       type: Boolean,
@@ -39,6 +39,8 @@ export default defineComponent({
       return [
         ...this.$bem({
           m: {
+            [this.size]: Boolean(this.size),
+            [`flip-${this.flip}`]: Boolean(this.flip),
             spin: this.spin,
             pulse: this.pulse
           }
