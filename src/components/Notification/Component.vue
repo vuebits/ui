@@ -8,7 +8,7 @@
       <span v-html="message" />
     </div>
     <VIconButton
-      icon="times"
+      icon="close"
       rounded
       :class="$bem({e: 'close'})"
       @click="remove"

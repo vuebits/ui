@@ -1,0 +1,55 @@
+.v-icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+  &--spin {
+    animation: spin 2s infinite linear;
+  }
+  &--pulse {
+    animation: spin 1s infinite steps(8);
+  }
+  @for $i from 2 through 10 {
+    &--#{$i}x {
+    height: #{$i}em;
+    width: #{$i}em;
+    }
+  }
+  &--lg {
+    height: (4em / 3);
+    width: (4em / 3);
+    vertical-align: -25%;
+  }
+
+  &--xs {
+    height: .75em;
+    width: .75em;
+  }
+
+  &--sm {
+    height: .875em;
+    width: .875em;
+  }
+  &--flip-horizontal 
+  {
+    transform: scaleX(-1);
+  }
+  &--flip-vertical {
+    transform: scaleY(-1);
+  }
+  &--flip-both
+  {
+    transform: scale(-1, -1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+  }

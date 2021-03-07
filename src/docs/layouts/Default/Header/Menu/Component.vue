@@ -16,7 +16,8 @@
       new-window
     >
       <VIcon
-        :name="['fab', 'github']"
+        name="github"
+        size="lg"
       />
     </VToolbarMenuItem>
     <VToolbarMenuItem
@@ -25,7 +26,8 @@
       new-window
     >
       <VIcon
-        :name="['fab', 'npm']"
+        name="npm"
+        size="lg"
       />
     </VToolbarMenuItem>
   </VToolbarMenu>

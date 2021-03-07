@@ -34,13 +34,6 @@ import { CssClass } from '@/helpers/css-classes';
 import {
   roundedProps
 } from '@/composition-functions';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCheck
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faCheck
-);
 
 export default defineComponent({
   name: 'VCheckbox',

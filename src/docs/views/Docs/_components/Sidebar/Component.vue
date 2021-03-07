@@ -15,7 +15,7 @@
         Docs
       </div>
       <VIconButton
-        icon="times"
+        icon="close"
         round
         :class="$bem({e: 'close-button'})"
         @click="isExpandedOnMobile = false"
@@ -53,15 +53,6 @@ import {
 } from '@/components';
 import { components } from '@/docs/router/components';
 import { RouteName } from '@/docs/router/models';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faTimes,
-  faList
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faTimes,
-  faList
-);
 
 export default defineComponent({
   name: 'DocsSidebar',

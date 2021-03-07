@@ -100,7 +100,7 @@ export default defineComponent({
     },
     errorIcon: {
       type: String as PropType<string>,
-      default: 'cancel-bold'
+      default: 'error'
     }
   },
   emits: ['scroll-to-end'],

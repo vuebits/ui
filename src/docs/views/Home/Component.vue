@@ -19,6 +19,7 @@
           >
             <VIcon
               name="book-open"
+              size="lg"
             />
             Get started
           </VButton>
@@ -34,7 +35,8 @@
             new-window
           >
             <VIcon
-              :name="['fab', 'github']"
+              name="github"
+              size="lg"
             />
             GitHub
           </VButton>
@@ -50,7 +52,8 @@
             :class="$bem({e: 'button'})"
           >
             <VIcon
-              :name="['fab', 'npm']"
+              name="npm"
+              size="lg"
             />
             npm
           </VButton>

@@ -57,13 +57,6 @@ import {
 } from '@/composition-functions';
 import { VSpinner } from '@/components/Spinner';
 import { VIcon } from '@/components/Icon';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faSpinner
-} from '@fortawesome/free-solid-svg-icons';
-library.add(
-  faSpinner
-);
 
 export default defineComponent({
   name: 'VButton',

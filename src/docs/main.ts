@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import { createUI } from '@/index';
-import './plugins/icons';
 import router from './router';
 
 const config = {
