@@ -1,8 +1,6 @@
 <template>
   <div
     :id="`v-infinite-scroll-${identifier}`"
-    ref="container"
-    v-scrolled-to-end="handleScroll"
     :class="$bem({})"
   >
     <slot />
@@ -50,6 +48,7 @@
         </slot>
       </div>
     </template>
+    <div ref="end" />
   </div>
 </template>
 
@@ -115,21 +114,22 @@ export default defineComponent({
       return this.state === InifiniteScrollState.ERROR;
     },
     textOnLoading (): string {
-      return this.loadingText || 'ładowanie danych...';
+      return this.loadingText || 'loading...';
     },
     textOnComplete (): string {
-      return this.completeText || 'to już koniec';
+      return this.completeText || 'end of data';
     },
     textOnError (): string {
-      return this.errorText || 'błąd';
+      return this.errorText || 'error';
     }
   },
   mounted () {
     this.setIdentifierReset();
+    this.setObserver();
   },
   methods: {
-    handleScroll (isEnd: boolean): void {
-      if (isEnd && this.state === InifiniteScrollState.LOADED) {
+    handleScroll (): void {
+      if (this.state === InifiniteScrollState.LOADED) {
         this.$emit('scroll-to-end');
       }
     },
@@ -140,6 +140,21 @@ export default defineComponent({
       if (this.identifier !== null) {
         this.$watch('identifier', this.reset);
       }
+    },
+    setObserver (): void {
+      const root = this.$el as HTMLElement;
+      const end = this.$refs.end as HTMLElement;
+      const options = {
+        root,
+        rootMargin: '0px',
+        threshold: 1.0
+      };
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry && entry.isIntersecting) {
+          this.handleScroll();
+        }
+      }, options);
+      observer.observe(end);
     }
   }
 });
