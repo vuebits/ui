@@ -4,7 +4,8 @@ import { RouteName } from './models';
 export const components = [
   'AsyncContent',
   'Button',
-  'Tile'
+  'Tile',
+  'InfiniteScroll'
 ];
 
 const routes: RouteRecordRaw[] = components.map(c => {
