@@ -1,0 +1,10 @@
+export { default as CommonClassesColor } from './Color.vue';
+export { default as CommonClassesBgColor } from './BgColor.vue';
+export { default as CommonClassesBorderColor } from './BorderColor.vue';
+export { default as CommonClassesHoverColor } from './HoverColor.vue';
+export { default as CommonClassesHoverBgColor } from './HoverBgColor.vue';
+export { default as CommonClassesRounding } from './Rounding.vue';
+export { default as CommonClassesTheme } from './Theme.vue';
+export { default as CommonClassesOther } from './Other.vue';
+export { default as CommonClassesPadding } from './Padding.vue';
+export { default as CommonClassesMargin } from './Margin.vue';

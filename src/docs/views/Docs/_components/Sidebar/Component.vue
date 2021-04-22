@@ -11,38 +11,42 @@
   />
   <div :class="$bem({m: { 'hidden-on-mobile': !isExpandedOnMobile}})">
     <div :class="$bem({e: 'header'})">
-      <div :class="$bem({e: 'title'})">
-        Docs
-      </div>
+      <div :class="$bem({e: 'title'})" />
       <VIconButton
-        icon="close"
+        icon="times"
         round
         :class="$bem({e: 'close-button'})"
         @click="isExpandedOnMobile = false"
       />
     </div>
-    <router-link
-      :to="componentsRoute"
-      class="v--hoverable"
-      :class="$bem({e: 'group-header'})"
+    <div
+      v-for="group in routeGroups"
+      :key="group.name"
+      :class="$bem({e: 'group'})"
     >
-      Components
-    </router-link>
-    <ul>
-      <li
-        v-for="(item, i) in componentsRoutes"
-        :key="i"
-        class="v--hoverable"
-        :class="$bem({e: 'item', m: {active: item.route.name === $route.name}})"
+      <router-link
+        :to="{ name: group.name }"
+        class="is-hoverable"
+        :class="$bem({e: 'group-header'})"
       >
-        <router-link
-          :to="item.route"
-          :class="$bem({e: 'item-link'})"
+        {{ group.label }}
+      </router-link>
+      <ul>
+        <li
+          v-for="(item, i) in group.routes"
+          :key="i"
+          class="is-hoverable"
+          :class="$bem({e: 'item'})"
         >
-          {{ item.label }}
-        </router-link>
-      </li>
-    </ul>
+          <router-link
+            :to="item.route"
+            :class="$bem({e: 'item-link', m: {active: item.route.name === $route.name}})"
+          >
+            {{ item.label }}
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -51,7 +55,9 @@ import { defineComponent } from 'vue';
 import {
   VIconButton
 } from '@/components';
-import { components } from '@/docs/router/components';
+import { componentsRoutes } from '@/docs/router/components';
+import { stylesRoutes } from '@/docs/router/styles';
+import { gettingStartedRoutes } from '@/docs/router/getting-started';
 import { RouteName } from '@/docs/router/models';
 
 export default defineComponent({
@@ -61,22 +67,40 @@ export default defineComponent({
   },
   data () {
     return {
-      componentsRoute: {
-        name: RouteName.COMPONENTS
-      },
       isExpandedOnMobile: false
     };
   },
   computed: {
-    componentsRoutes (): any[] {
-      return components.map(c => {
-        return {
-          route: {
-            name: `${RouteName.COMPONENTS}${c}`
-          },
-          label: c
-        };
-      });
+    routeGroups (): any[] {
+      const groups = [
+        {
+          name: RouteName.GETTING_STARTED,
+          label: 'Getting started',
+          routes: gettingStartedRoutes
+        },
+        {
+          name: RouteName.STYLES,
+          label: 'Styles',
+          routes: stylesRoutes
+        },
+        {
+          name: RouteName.COMPONENTS,
+          label: 'Components',
+          routes: componentsRoutes
+        }
+      ];
+      return groups.map(g => ({
+        name: g.name,
+        label: g.label,
+        routes: g.routes.map(r => {
+          return {
+            route: {
+              name: `${g.name}${r.name}`
+            },
+            label: r.label
+          };
+        })
+      }));
     }
   }
 });

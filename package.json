@@ -86,8 +86,5 @@
   "directories": {
     "test": "tests"
   },
-  "bugs": {
-    "url": "https://github.com/dobrymechanik/front-ui/issues"
-  },
   "license": "MIT"
 }

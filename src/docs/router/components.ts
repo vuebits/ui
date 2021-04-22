@@ -1,18 +1,54 @@
-import { RouteRecordRaw } from 'vue-router';
-import { RouteName } from './models';
-
-export const components = [
-  'AsyncContent',
-  'Button',
-  'Tile',
-  'InfiniteScroll'
+export const componentsRoutes = [
+  {
+    name: 'AsyncContent',
+    label: 'Async content'
+  },
+  {
+    name: 'Autocomplete',
+    label: 'Autocomplete'
+  },
+  {
+    name: 'Button',
+    label: 'Button'
+  },
+  {
+    name: 'Icon',
+    label: 'Icon'
+  },
+  {
+    name: 'IconButton',
+    label: 'Icon button'
+  },
+  {
+    name: 'InfiniteScroll',
+    label: 'Infinite scroll'
+  },
+  {
+    name: 'Input',
+    label: 'Input'
+  },
+  {
+    name: 'FileUploader',
+    label: 'File uploader'
+  },
+  {
+    name: 'Modal',
+    label: 'Modal'
+  },
+  {
+    name: 'PhoneInput',
+    label: 'Phone input'
+  },
+  {
+    name: 'Textarea',
+    label: 'Textarea'
+  },
+  {
+    name: 'Tile',
+    label: 'Tile'
+  },
+  {
+    name: 'Toolbar',
+    label: 'Toolbar'
+  }
 ];
-
-const routes: RouteRecordRaw[] = components.map(c => {
-  return {
-    path: `components/${c}`,
-    name: `${RouteName.COMPONENTS}${c}`,
-    component: () => import(`../views/Docs/Components/${c}/Component.vue`)
-  };
-});
-export default routes;
