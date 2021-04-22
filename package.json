@@ -28,8 +28,9 @@
     "dist"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve ./src/docs/main.ts",
-    "build": "vue-cli-service build --target lib --name vue-ui src/index.ts",
+    "docs:serve": "vue-cli-service serve ./src/docs/main.ts",
+    "docs:build": "vue-cli-service build ./src/docs/main.ts",
+    "build": "vue-cli-service build --target lib --name vuebits-ui src/index.ts",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "component:create": "node ./utils/component/scripts/create"
