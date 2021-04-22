@@ -100,6 +100,10 @@ export default defineComponent({
     errorIcon: {
       type: String as PropType<string>,
       default: 'error'
+    },
+    tolerance: {
+      type: Number as PropType<number>,
+      default: 100
     }
   },
   emits: ['scroll-to-end'],
@@ -146,7 +150,7 @@ export default defineComponent({
       const end = this.$refs.end as HTMLElement;
       const options = {
         root,
-        rootMargin: '0px',
+        rootMargin: `${this.tolerance}px`,
         threshold: 1.0
       };
       const observer = new IntersectionObserver(([entry]) => {

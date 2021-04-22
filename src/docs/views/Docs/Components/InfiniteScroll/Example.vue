@@ -7,7 +7,8 @@
       <VInfiniteScroll
         class="content-container"
         :state="state"
-        @scrollToEnd="loadMoreContent"
+        :tolerance="100"
+        @scroll-to-end="loadMoreContent"
       >
         Endless load content...<br>
         <div
@@ -61,7 +62,7 @@ export default {
         } else {
           this.state = InifiniteScrollState.COMPLETE;
         }
-      }, 2000);
+      }, 1000);
     }
   }
 };
@@ -69,7 +70,6 @@ export default {
 
 <style lang="scss">
 .content-container {
-  max-height: 200px;
+  height: 200px;
 }
-
 </style>
