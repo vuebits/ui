@@ -1,23 +1,14 @@
 .v-button {
-  font-weight: normal;
   display: inline-flex;
-  align-items: center;
+  font-weight: normal;
+  flex-direction: column;
   cursor: pointer;
   transition: $hover-transition;
-  padding: $sp;
+  padding: 0;
+  align-items: stretch;
 
   &:hover {
     cursor: pointer;
-  }
-
-  &__icon {
-    margin: 0 $sp;
-  }
-
-  &__content {
-    text-align: center;
-    margin: 0 $sp;
-    flex-grow: 1;
   }
 
   &--sm {
@@ -32,12 +23,14 @@
     min-height: 55px;
   }
 
+  &--block {
+    width: 100%;
+  }
+
   &--disabled {
-    color: darken($color-disabled, 20%);
-    background-color: lighten($color-disabled, 40%);
     pointer-events: none;
     cursor: not-allowed;
-    border-color: $color-disabled;
+    opacity: 0.5;
   }
 
   &--outlined {
@@ -48,5 +41,28 @@
 
   &--flat {
     background-color: transparent;
+  }
+
+  &__container {
+    flex-grow: 1;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: $sp;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__icon {
+    margin: 0 $sp;
+  }
+
+  &__content {
+    text-align: center;
+    margin: 0 $sp;
+    flex-grow: 1;
   }
 }

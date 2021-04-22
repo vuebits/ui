@@ -1,43 +1,50 @@
 <template>
-  <component
-    :is="component || 'button'"
-    :disabled="disabled"
+  <button
+    :title="title"
     :class="classes"
     type="button"
-    :to="to"
-    :href="href"
-    :target="target"
-    :rel="newWindow ? 'noopener' : ''"
-    :title="title"
-    @click.passive="onClick"
+    :disabled="disabled"
+    @click="onClick"
     @focus="onFocus"
     @blur="onBlur"
   >
-    <VIcon
-      v-if="leftIcon"
-      :name="leftIcon"
-      :class="$bem({e: 'icon'})"
-    />
-    <span :class="$bem({e: 'content'})">
-      <VSpinner
-        v-if="loading"
-        :color="dark ? 'white' : 'default'"
-        size="1x"
+    <component
+      :is="component"
+      :to="to"
+      :href="href"
+      :target="target"
+      :rel="newWindow ? 'noopener' : ''"
+      :class="$bem({e: 'container'})"
+    >
+      <VIcon
+        v-if="leftIcon"
+        :name="leftIcon"
+        :class="$bem({e: 'icon'})"
       />
-      <slot />
-    </span>
-    <VIcon
-      v-if="rightIcon"
-      :name="rightIcon"
-      :class="$bem({e: 'icon'})"
-    />
-  </component>
+      <span :class="$bem({e: 'content'})">
+        <VSpinner
+          v-if="loading"
+          :color="dark ? 'white' : 'default'"
+          class="has-margin-x-xs"
+          size="1x"
+        />
+        <slot />
+      </span>
+      <VIcon
+        v-if="rightIcon"
+        :name="rightIcon"
+        :class="$bem({e: 'icon'})"
+      />
+    </component>
+  </button>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import {
+  colorClass,
   bgColorClass,
+  hoverColorClass,
   hoverBgColorClass,
   hoverableClass,
   elevationClass,
@@ -66,8 +73,8 @@ export default defineComponent({
   },
   props: {
     color: {
-      type: String as PropType<string | null>,
-      default: null
+      type: String as PropType<string>,
+      default: 'default'
     },
     disabled: {
       type: Boolean as PropType<boolean>,
@@ -92,6 +99,18 @@ export default defineComponent({
     title: {
       type: String as PropType<string | null>,
       default: null
+    },
+    block: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    plain: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    hoverable: {
+      type: Boolean as PropType<boolean>,
+      default: false
     },
     ...themeProps,
     ...borderedProps,
@@ -139,17 +158,26 @@ export default defineComponent({
   },
   computed: {
     classes (): CssClass[] {
-      const colorClasses = this.color && this.color !== 'default' ? [bgColorClass(this.color), hoverBgColorClass(`${this.color}-darken-1`)] : [hoverableClass];
+      let colorClasses: Array<string | null> = [];
+      if (this.color && this.color !== 'default') {
+        if (this.plain) {
+          colorClasses = [colorClass(this.color), hoverColorClass(`${this.color}-darken-1`)];
+        } else {
+          colorClasses = [bgColorClass(this.color), hoverBgColorClass(`${this.color}-darken-1`)];
+        }
+      }
       return [
         ...colorClasses,
         ...this.$bem({
           m: {
             [this.size]: true,
-            disabled: this.disabled
+            disabled: this.disabled,
+            block: this.block
           }
         }),
         {
-          [elevationClass]: this.isFocused
+          [elevationClass]: this.isFocused,
+          [hoverableClass]: this.hoverable
         },
         this.themeClass,
         this.borderedClass,
@@ -160,9 +188,7 @@ export default defineComponent({
   },
   methods: {
     onClick (): void {
-      if (!this.to) {
-        this.$emit('click');
-      }
+      this.$emit('click');
     },
     setFocusStatus (isFocused: boolean): void {
       this.isFocused = isFocused;

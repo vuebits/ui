@@ -2,8 +2,9 @@
   <Sandbox
     id="example"
     title="Example"
+    height="400px"
   >
-    <Preview>
+    <Preview style="height: 300px;">
       <VButton
         :href="href"
         :new-window="newWindow"
@@ -21,6 +22,9 @@
         :title="title"
         :left-icon="leftIcon !== 'none' ? leftIcon : null"
         :right-icon="rightIcon !== 'none' ? rightIcon : null"
+        :block="block"
+        :plain="plain"
+        :hoverable="hoverable"
       >
         Configure me
       </VButton>
@@ -38,6 +42,14 @@
         v-model="color"
         :items="colors"
         label="Color"
+      />
+      <KnobBoolean
+        v-model="plain"
+        label="Plain"
+      />
+      <KnobBoolean
+        v-model="hoverable"
+        label="Hoverable"
       />
       <KnobListItem
         v-model="size"
@@ -79,6 +91,10 @@
       <KnobBoolean
         v-model="loading"
         label="Loading"
+      />
+      <KnobBoolean
+        v-model="block"
+        label="Block"
       />
       <KnobString
         v-model="title"
@@ -137,8 +153,8 @@ export default {
       rounded: false,
       roundedLg: false,
       roundedSmall: false,
+      plain: false,
       outlined: false,
-      flat: false,
       dark: true,
       light: true,
       color: 'primary',
@@ -147,7 +163,9 @@ export default {
       loading: false,
       title: 'some title...',
       leftIcon: 'none',
-      rightIcon: 'none'
+      rightIcon: 'none',
+      block: false,
+      hoverable: false
     };
   }
 };
