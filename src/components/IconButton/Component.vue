@@ -11,9 +11,16 @@
     :disabled="disabled"
     :size="size"
     :title="title"
+    :loading="loading"
+    :plain="plain"
+    :hoverable="hoverable"
     @click="click"
   >
-    <VIcon :name="icon" />
+    <VIcon
+      v-if="!loading"
+      :name="icon"
+      :type="iconType"
+    />
   </VButton>
 </template>
 
@@ -41,6 +48,10 @@ export default defineComponent({
       type: String as PropType<string>,
       default: ''
     },
+    iconType: {
+      type: String as PropType<string | undefined>,
+      default: undefined
+    },
     disabled: {
       type: Boolean as PropType<boolean>,
       default: false
@@ -50,12 +61,24 @@ export default defineComponent({
       default: 'md'
     },
     color: {
-      type: String as PropType<string | null>,
-      default: null
+      type: String as PropType<string>,
+      default: 'default'
     },
     title: {
       type: String as PropType<string | null>,
       default: null
+    },
+    loading: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    plain: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    hoverable: {
+      type: Boolean as PropType<boolean>,
+      default: false
     },
     ...borderedProps,
     ...themeProps,

@@ -158,7 +158,7 @@ export default {
       plain: false,
       outlined: false,
       dark: true,
-      light: true,
+      light: false,
       color: 'primary',
       size: 'md',
       disabled: false,
