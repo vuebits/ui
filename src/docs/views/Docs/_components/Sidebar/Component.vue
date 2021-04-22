@@ -14,7 +14,8 @@
       <div :class="$bem({e: 'title'})" />
       <VIconButton
         icon="times"
-        round
+        rounded
+        hoverable
         :class="$bem({e: 'close-button'})"
         @click="isExpandedOnMobile = false"
       />

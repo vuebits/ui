@@ -6,7 +6,6 @@
   bottom: 0;
   border-right: set-border();
   overflow-y: auto;
-  padding-top: 4 * $sp;
   z-index: 11;
 
   &--hidden-on-mobile {

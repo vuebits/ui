@@ -8,9 +8,9 @@
       <li
         v-for="route in routes"
         :key="route.name"
+        :class="$bem({e: 'list-item'})"
       >
         <router-link
-          class="docs--link"
           :to="getRoute(route.name)"
         >
           {{ route.label }}
@@ -49,6 +49,17 @@ export default {
 
   &__header {
     margin-bottom: 2 * $sp;
+  }
+
+  &__list-item {
+    cursor: pointer;
+    padding: $sp 2 * $sp;
+    color: $color-text-2;
+
+    &:hover {
+      font-weight: bold;
+    color: $color-text;
+    }
   }
 }
 </style>

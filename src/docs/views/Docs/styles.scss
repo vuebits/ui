@@ -3,7 +3,7 @@
   flex-direction: row;
 
   &__main {
-    padding: 2 * $sp;
+    padding: 5 * $sp;
     flex-grow: 1;
 
     @include breakpoint(lg) {

@@ -1,11 +1,16 @@
 .docs-breadcrumbs {
   margin-bottom: 3 * $sp;
+  color: $color-text-2;
 
   &__breadcrumb {
-    color: $color-primary;
+
+    &:hover {
+      font-weight: bold;
+    }
 
     &--active {
       font-weight: bold;
+      color: $color-primary;
     }
   }
 }
