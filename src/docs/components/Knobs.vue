@@ -12,6 +12,7 @@
       position="right"
       transition="slide-right"
       size="sm"
+      close-on-esc
     >
       <VModalHeader
         bordered

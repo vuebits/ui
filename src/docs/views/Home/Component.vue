@@ -87,7 +87,7 @@ export default defineComponent({
   data () {
     return {
       docsRoute: {
-        name: RouteName.DOCS
+        name: RouteName.GETTING_STARTED
       }
     };
   }

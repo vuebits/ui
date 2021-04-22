@@ -15,15 +15,15 @@
     </h3>
     <div :class="$bem({e: 'wrapper'})">
       <div
-        :class="$bem({e: 'controls'})"
-      >
-        <slot name="controls" />
-      </div>
-      <div
         :class="$bem({e: 'content'})"
         :style="{ height: height}"
       >
         <slot />
+      </div>
+      <div
+        :class="$bem({e: 'controls'})"
+      >
+        <slot name="controls" />
       </div>
     </div>
   </div>
@@ -77,16 +77,14 @@ export default {
 
   &__wrapper {
     margin: 4 * $sp;
+    border: set-border();
   }
 
-  &__cotrols {
+  &__controls {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     width: 100%;
-  }
-
-  &__content {
-    border: set-border();
   }
 }
 </style>

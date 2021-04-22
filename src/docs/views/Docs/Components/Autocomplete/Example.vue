@@ -2,9 +2,10 @@
   <Sandbox
     id="example"
     title="Example"
-    height="400px"
   >
-    <Preview>
+    <Preview
+      height="200px"
+    >
       <VAutocomplete
         v-model="value"
         :items="items"
@@ -115,16 +116,19 @@ export default {
           text: 'Item 3'
         }
       ],
-      value: 1,
+      value: {
+        key: 1,
+        text: 'Item 1'
+      },
       icons,
       text: 'some text...',
       bordered: false,
       round: false,
-      rounded: false,
+      rounded: true,
       roundedLg: false,
       roundedSmall: false,
       dark: false,
-      light: false,
+      light: true,
       disabled: false,
       leftIcon: 'none',
       rightIcon: 'none',

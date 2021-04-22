@@ -1,13 +1,22 @@
 
 <template>
-  <div class="preview">
+  <div
+    class="preview"
+    :style="{ height: height}"
+  >
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Preview'
+  name: 'Preview',
+  props: {
+    height: {
+      type: [Number, String],
+      default: 'auto'
+    }
+  }
 };
 </script>
 
