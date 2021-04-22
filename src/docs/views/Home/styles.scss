@@ -1,24 +1,31 @@
 .home {
   display: flex;
-  flex-direction: column;
   text-align: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
 
   &__content {
-    max-width: 800px;
+    margin: 5 * $sp;
+  }
+
+  &__logo {
+    margin-bottom: 5 * $sp;
   }
 
   &__title {
     font-size: 45px;
+    margin-bottom: 5 * $sp;
   }
 
   &__subtitle {
+    font-weight: normal;
     font-size: 25px;
+    margin-bottom: 5 * $sp;
   }
 
   &__button {
-    margin: 4 * $sp;
+    margin: 2 * $sp;
     min-width: 200px;
   }
 }

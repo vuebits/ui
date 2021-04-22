@@ -1,6 +1,6 @@
 .layout-default-header {
   width: 100%;
-  box-shadow: $shadow-bottom;
+  border-bottom: set-border();
   z-index: 12;
 
   &__logo {

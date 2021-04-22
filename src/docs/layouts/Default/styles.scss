@@ -2,7 +2,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: $color-bg;
   position: relative;
 
   &__header {
@@ -13,5 +12,6 @@
 
   &__content {
     margin-top: $toolbar-height;
+    flex-grow: 1;
   }
 }
