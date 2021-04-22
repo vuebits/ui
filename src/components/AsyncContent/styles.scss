@@ -27,14 +27,13 @@
     text-align:center;
   }
 
-  &__error-text {
-    font-size: 16px;
-    margin-top: 4 * $sp;
+  &__error-icon {
     color: $color-error;
   }
 
-  &__error-icon {
-    color: $color-error;
+  &__error-text {
+    font-size: 16px;
+    margin-top: 4 * $sp;
   }
 
   &__reload-button {
