@@ -1,7 +1,5 @@
 
-$checkbox-border-radius: 0;
-$checkbox-size: 20px;
-$checkbox-border-width: 1px;
+$checkbox-size: 24px !default;
 
 .v-checkbox {
   position: relative;
@@ -18,10 +16,9 @@ $checkbox-border-width: 1px;
   }
 
   &__checkmark {
-    font-size: $checkbox-size - 6px;
+    font-size: $checkbox-size - 8px;
     height: $checkbox-size;
     width: $checkbox-size;
-    border: set-border();
     margin-right: 2 * $sp;
     display: flex;
     flex-shrink: 0;
@@ -29,8 +26,16 @@ $checkbox-border-width: 1px;
     align-items: center;
     color: $color-white;
 
+    &--unchecked {
+      background-color: $color-input-bg;
+    }
+
     &--rounded {
       border-radius: $border-radius-main;
+    }
+
+    &--bordered {
+      border: set-border();
     }
 
     &--error {

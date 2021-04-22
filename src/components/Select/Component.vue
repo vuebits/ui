@@ -39,34 +39,44 @@
         <VIcon
           name="caret-down"
           :class="arrowClasses"
-          :color="arrowColor"
         />
       </div>
     </div>
-    <transition name="slide-down">
+    <transition name="slide-top">
       <div
         v-if="isExpanded"
-        class="is--elevated"
-        :class="itemsClasses"
-        :style="{maxHeight: `${maxHeight}px`}"
+        class="is-elevated"
+        :class="dropdownClasses"
       >
+        <VInput
+          v-if="search"
+          ref="search"
+          v-model="searchQuery"
+          :placeholder="computedSearchPlaceholder"
+          no-hint
+        />
         <div
-          v-for="item of items"
-          :key="item.key"
-          @click="select(item)"
+          :class="$bem({e: 'items'})"
+          :style="{maxHeight: `${maxHeight}px`}"
         >
           <div
-            :class="itemClasses(item)"
+            v-for="item of filteredItems"
+            :key="item.key"
+            @click="select(item)"
           >
-            <slot
-              :id="item.key"
-              name="item"
-              :text="item.text"
-              :metadata="item.metadata"
-              :is-active="item.key === modelValue"
+            <div
+              :class="itemClasses(item)"
             >
-              {{ item.text }}
-            </slot>
+              <slot
+                :id="item.key"
+                name="item"
+                :text="item.text"
+                :metadata="item.metadata"
+                :is-active="item.key === modelValue"
+              >
+                {{ item.text }}
+              </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -75,13 +85,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
+import { defineComponent, nextTick, PropType, toRefs } from 'vue';
 import { VIcon } from '@/components/Icon';
+import { VInput } from '@/components/Input';
 import {
   colorClass,
-  hoverBgColorClass,
-  hoverableClass,
-  CssClass
+  CssClass,
+  hoverableClass
 } from '@/helpers/css-classes';
 import {
   borderedProps,
@@ -96,7 +106,10 @@ import { SelectItem } from './models';
 
 export default defineComponent({
   name: 'VSelect',
-  components: { VIcon },
+  components: {
+    VIcon,
+    VInput
+  },
   directives: { ClickOutside },
   props: {
     modelValue: {
@@ -119,22 +132,6 @@ export default defineComponent({
       type: String as PropType<string | null>,
       default: null
     },
-    activeColor: {
-      type: String as PropType<string>,
-      default: 'primary'
-    },
-    hoverBgColor: {
-      type: String as PropType<string>,
-      default: 'primary'
-    },
-    borderColor: {
-      type: String as PropType<string | null>,
-      default: null
-    },
-    arrowColor: {
-      type: String as PropType<string>,
-      default: 'primary'
-    },
     maxHeight: {
       type: Number as PropType<number>,
       default: 320
@@ -150,6 +147,14 @@ export default defineComponent({
     labelColor: {
       type: String as PropType<string>,
       default: 'grey'
+    },
+    search: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    searchPlaceholder: {
+      type: String as PropType<string | null>,
+      default: null
     },
     ...themeProps,
     ...borderedProps,
@@ -178,10 +183,14 @@ export default defineComponent({
   },
   data () {
     return {
-      isExpanded: false as boolean
+      isExpanded: false as boolean,
+      searchQuery: ''
     };
   },
   computed: {
+    computedSearchPlaceholder (): string {
+      return this.searchPlaceholder || this.$ui.t().select.search;
+    },
     classes (): CssClass[] {
       return [
         ...this.$bem({
@@ -194,11 +203,9 @@ export default defineComponent({
           }
         }),
         {
-          'is-elevated': this.isExpanded,
-          [hoverableClass]: !this.isExpanded
+          'is-elevated': this.isExpanded
 
         },
-        this.themeClass,
         this.borderedClass,
         this.roundedClass
       ];
@@ -223,10 +230,10 @@ export default defineComponent({
       ]
       ;
     },
-    itemsClasses (): CssClass[] {
+    dropdownClasses (): CssClass[] {
       return [
         ...this.$bem({
-          e: 'items',
+          e: 'dropdown',
           m: {
             'theme-default': !this.light && !this.dark
           }
@@ -239,10 +246,13 @@ export default defineComponent({
       return this.modelValue !== null ? this.items.find(item => item.key === this.modelValue) || null : null;
     },
     computedPlaceholder (): string | null {
-      return this.placeholder || 'Szukaj';
+      return this.placeholder || this.$ui.t().select.placeholder;
     },
     selectedItemText (): string | null {
       return this.selectedItem ? this.selectedItem.text : this.computedPlaceholder;
+    },
+    filteredItems (): SelectItem[] {
+      return this.searchQuery ? this.items.filter(i => i.text.toLowerCase().includes(this.searchQuery.toLowerCase())) : this.items;
     }
   },
   methods: {
@@ -258,7 +268,15 @@ export default defineComponent({
     },
     toggle (): void {
       if (!this.disabled) {
-        this.isExpanded = !this.isExpanded;
+        if (this.isExpanded) {
+          this.isExpanded = false;
+        } else {
+          this.searchQuery = '';
+          this.isExpanded = true;
+          nextTick(() => {
+            (this.$refs.search as HTMLInputElement).focus();
+          });
+        }
       }
     },
     itemClasses (item: SelectItem): CssClass[] {
@@ -266,10 +284,11 @@ export default defineComponent({
         ...this.$bem({
           e: 'item',
           m: {
+            active: item.key === this.modelValue,
             disabled: item.disabled === true
           }
         }),
-        hoverBgColorClass(this.hoverBgColor)
+        hoverableClass
       ];
     },
     onClickOutside (): void {

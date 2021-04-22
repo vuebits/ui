@@ -9,17 +9,31 @@
     position: relative;
 
     &--light {
-      background-color: $color-white;
+      background-color: $color-input-bg;
+      color: $color-theme-light-font;
     }
   
     &--dark {
       background-color: $color-theme-dark;
+      color: $color-theme-dark-font;
+    }
+
+    &--disabled {
+      overflow: hidden;
     }
   }
 
   &__content {
     display: inline-block;
     width: 100%;
+
+    &--disabled {
+      color: darken($color-disabled, 20%);
+      background-color: lighten($color-disabled, 40%);
+      pointer-events: none;
+      cursor: not-allowed;
+      border-color: $color-disabled;
+    }
   }
 
   &__icon {
@@ -35,8 +49,8 @@
 
   &__textarea {
     cursor: text;
-    padding: 3 * $sp;
-    font-size: 14px;
+    padding: (($font-size-input-label / 2) + 2 * $sp) 3 * $sp;
+    font-size: $font-size-input;
     width: 100%;
     border: 0;
     outline: 0;
@@ -48,13 +62,14 @@
 
   &__label {
     display: block;
-    color: $color-text-2;
+    color: $color-label;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 13px;
+    font-size: $font-size-input-label;
+    line-height: $font-size-input-label;
     padding: $sp 3 * $sp;
-    height: 4 * $sp;
+    height: $font-size-input-label + 2 * $sp;
   }
 
   &__hint {

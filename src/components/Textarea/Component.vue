@@ -7,7 +7,7 @@
       <slot name="before" />
       <div
         v-if="leftIcon"
-        class="v--hoverable"
+        class="is-hoverable"
         :class="$bem({e: 'icon', m: {clickable: leftIconClickable}})"
         @click="onLeftIconClick"
       >
@@ -16,7 +16,7 @@
           :color="leftIconColor"
         />
       </div>
-      <span :class="$bem({e: 'content'})">
+      <span :class="$bem({e: 'content', m: {disabled: disabled}})">
         <span
           v-if="label && (modelValue || placeholder)"
           :class="$bem({e: 'label'})"
@@ -31,6 +31,7 @@
           :maxlength="maxlength"
           :class="$bem({e: 'textarea', m: { 'with-label': label && (modelValue || placeholder) }})"
           data-test="field"
+          :disabled="disabled"
           @input="input"
           @focus="onFocus"
           @blur="onBlur"
@@ -39,7 +40,7 @@
       </span>
       <div
         v-if="rightIcon"
-        class="v--hoverable"
+        class="is-hoverable"
         :class="$bem({e: 'icon', m: {clickable: rightIconClickable}})"
         @click="onRightIconClick"
       >
@@ -51,6 +52,7 @@
       <slot name="after" />
     </span>
     <span
+      v-if="!noHint"
       :class="hintClasses"
       :data-test="error ? 'field-error' : 'field-hint'"
     >
@@ -139,6 +141,10 @@ export default defineComponent({
       type: Number as PropType<number | null>,
       default: null
     },
+    disabled: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
     ...themeProps,
     ...borderedProps,
     ...roundedProps,
@@ -200,7 +206,8 @@ export default defineComponent({
           e: 'field',
           m: {
             light: this.light,
-            dark: this.dark
+            dark: this.dark,
+            disabled: this.disabled
           }
         }),
         {

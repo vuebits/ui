@@ -4,7 +4,6 @@
     placeholder="Type some string..."
     :label="label"
     rounded
-    bordered
     light
     no-hint
     type="string"

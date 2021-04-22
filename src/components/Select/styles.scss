@@ -4,11 +4,13 @@
   cursor: pointer;
 
   &--light {
-    background-color: $color-white;
+    background-color: $color-input-bg;
+    color: $color-theme-light-font;
   }
 
   &--dark {
     background-color: $color-theme-dark;
+    color: $color-theme-dark-font;
   }
 
   &--disabled {
@@ -29,9 +31,10 @@
   }
 
   &__input {
+    height: 100%;
     display: flex;
     align-items: center;
-    padding: 2 * $sp 3 * $sp;
+    padding: 0 3 * $sp;
   }
 
   &__text-container {
@@ -40,17 +43,22 @@
   }
 
   &__label {
-    color: $color-text-2;
-    font-size: 13px;
+    color: $color-label;
+    font-size: $font-size-input-label;
+    line-height: $font-size-input-label;
+    padding: 4px 0;
+    height: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &__input-selected-item {
+    font-size: $font-size-input;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: $sp 0;
   }
 
   &__arrow-wrapper {
@@ -66,13 +74,12 @@
     }
   }
 
-  &__items {
+  &__dropdown {
     position: absolute;
     margin-top: 1px;
     z-index: $layer-dropdown;
     background-color: $color-white;
     width: 100%;
-    overflow-y: auto;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-top: 0;
@@ -88,6 +95,11 @@
     }
   }
 
+  &__items {
+    width: 100%;
+    overflow-y: auto;
+  }
+
   &__item {
     cursor: pointer;
     padding: 2 * $sp 3 * $sp;
@@ -97,10 +109,6 @@
     word-wrap: break-word;
     word-break: break-word;
 
-    &:hover {
-      color: $color-theme-dark-font;
-    }
-
     &--disabled {
       cursor: default;
       opacity: .4;
@@ -108,6 +116,16 @@
       &:hover {
         background-color: transparent;
         color: $color-theme-light-font;
+      }
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-theme-dark-font;
+
+      &:hover {
+        background-color: $color-primary !important;
+        color: $color-theme-dark-font !important;
       }
     }
   }

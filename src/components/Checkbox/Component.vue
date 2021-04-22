@@ -32,7 +32,8 @@ import { defineComponent, PropType } from 'vue';
 import { VIcon } from '@/components/Icon';
 import { CssClass } from '@/helpers/css-classes';
 import {
-  roundedProps
+  roundedProps,
+  borderedProps
 } from '@/composition-functions';
 
 export default defineComponent({
@@ -57,7 +58,8 @@ export default defineComponent({
       type: String as PropType<string>,
       default: 'primary'
     },
-    ...roundedProps
+    ...roundedProps,
+    ...borderedProps
   },
   emits: ['update:modelValue', 'change'],
   computed: {
@@ -70,15 +72,17 @@ export default defineComponent({
       }
     },
     checkmarkClasses (): CssClass[] {
-      const bgClassName = `has-bg-color-${this.modelValue ? this.color : 'white'}`;
+      const bgClassName = this.modelValue ? [`has-bg-color-${this.color}`] : [];
       return [
         ...this.$bem({
           e: 'checkmark',
           m: {
-            rounded: this.rounded
+            rounded: this.rounded,
+            unchecked: !this.modelValue,
+            bordered: this.bordered
           }
         }),
-        bgClassName
+        ...bgClassName
       ];
     }
   },

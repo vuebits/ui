@@ -4,7 +4,6 @@
     placeholder="Type some number..."
     :label="label"
     rounded
-    bordered
     light
     no-hint
     :min="min"

@@ -36,7 +36,7 @@
           :class="$bem({e: 'input', m: { 'with-label': label && (modelValue || placeholder) }})"
           :disabled="disabled"
           data-test="field"
-          @input="input"
+          @input="onInput"
           @focus="onFocus"
           @blur="onBlur"
           @keyup.enter="enter"
@@ -56,6 +56,7 @@
       <slot name="after" />
     </span>
     <span
+      v-if="!noHint"
       :class="hintClasses"
       :data-test="error ? 'field-error' : 'field-hint'"
     >
@@ -152,6 +153,10 @@ export default defineComponent({
       type: String as PropType<string | null>,
       default: null
     },
+    rememberCaretPosition: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
     disabled: {
       type: Boolean as PropType<boolean>,
       default: false
@@ -217,7 +222,8 @@ export default defineComponent({
           e: 'field',
           m: {
             light: this.light,
-            dark: this.dark
+            dark: this.dark,
+            disabled: this.disabled
           }
         }),
         {
@@ -251,10 +257,18 @@ export default defineComponent({
       this.setFocusStatus(false);
       this.$emit('blur');
     },
-    input (e: any): void {
+    onInput (e: any): void {
       const value = e.target.value;
       this.$emit('update:modelValue', value);
       this.$emit('input', value);
+      // if (this.rememberCaretPosition) {
+      //   const input = this.$refs.input as HTMLInputElement;
+      //   const position = input.selectionStart as number;
+      //   nextTick(() => {
+      //     input.focus();
+      //     input.setSelectionRange(position, position);
+      //   });
+      // }
     },
     enter (e: any): void {
       const value = e.target.value;

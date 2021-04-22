@@ -36,10 +36,6 @@ export const componentsRoutes = [
     label: 'Modal'
   },
   {
-    name: 'PhoneInput',
-    label: 'Phone input'
-  },
-  {
     name: 'Textarea',
     label: 'Textarea'
   },

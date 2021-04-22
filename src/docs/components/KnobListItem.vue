@@ -3,7 +3,6 @@
     :model-value="modelValue"
     :items="listItems"
     :label="label"
-    bordered
     light
     no-hint
     rounded
