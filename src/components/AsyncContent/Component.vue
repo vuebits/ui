@@ -1,91 +1,112 @@
 <template>
-  <Sandbox
-    id="example"
-    title="Example"
+  <div
+    :class="$bem({})"
   >
-    <Preview>
-      <VAsyncContent
-        :loading="loading"
-        :error="error"
-        :reloadable="reloadable"
-        :spinner-size="spinnerSize"
-        :loading-text="loadingText"
-        :error-text="errorText"
-        :reload-text="reloadText"
+    <div
+      v-if="loading"
+      :class="$bem({e: 'loading-wrapper'})"
+    >
+      <VSpinner
+        :class="$bem({e: 'loader'})"
+        :size="spinnerSize"
+      />
+      <p
+        :class="$bem({e: 'loading-text'})"
       >
-        Configure me
-      </VAsyncContent>
-    </Preview>
-    <Knobs>
-      <KnobBoolean
-        v-model="loading"
-        label="Loading"
+        {{ loadingText }}
+      </p>
+    </div>
+    <div
+      v-else-if="error"
+      :class="$bem({e: 'error-wrapper'})"
+    >
+      <VIcon
+        :class="$bem({e: 'error-icon'})"
+        size="3x"
+        name="exclamation-triangle"
       />
-      <KnobString
-        v-model="loadingText"
-        label="Loading text"
-      />
-      <KnobListItem
-        v-model="spinnerSize"
-        :items="iconSizes"
-        label="Spinner size"
-      />
-      <KnobBoolean
-        v-model="error"
-        label="Error"
-      />
-      <KnobString
-        v-model="errorText"
-        label="Error text"
-      />
-      <KnobBoolean
-        v-model="reloadable"
-        label="Reloadabilty"
-      />
-      <KnobString
-        v-model="reloadText"
-        label="Reload button text"
-      />
-    </Knobs>
-  </Sandbox>
+      <p
+        :class="$bem({e: 'error-text'})"
+      >
+        {{ computedErrorText }}
+      </p>
+      <VButton
+        v-if="reloadable"
+        color="primary"
+        rounded
+        dark
+        :class="$bem({e: 'reload-button'})"
+        @click="reload"
+      >
+        {{ computedReloadText }}
+      </VButton>
+    </div>
+    <template v-else>
+      <slot />
+    </template>
+  </div>
 </template>
 
-<script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString
-} from '@/docs/components';
-import {
-  VAsyncContent
-} from '@/components';
-import { iconSizes } from '@/docs/helpers/story-params';
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { VSpinner } from '@/components/Spinner';
+import { VIcon } from '@/components/Icon';
+import { VButton } from '@/components/Button';
 
-export default {
-  name: 'ButtonExample',
+export default defineComponent({
+  name: 'VAsyncContent',
   components: {
-    Preview,
-    Sandbox,
-    Knobs,
-    KnobListItem,
-    KnobBoolean,
-    KnobString,
-    VAsyncContent
+    VSpinner,
+    VIcon,
+    VButton
   },
-  data () {
-    return {
-      iconSizes,
-      loading: false,
-      error: false,
-      reloadable: false,
-      spinnerSize: '2x',
-      loadingText: 'loading text',
-      errorText: 'error text',
-      reloadText: 'reload text'
-    };
+  props: {
+    loading: {
+      type: Boolean as PropType<boolean>,
+      required: true
+    },
+    spinnerSize: {
+      type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
+      default: '2x'
+    },
+    loadingText: {
+      type: String as PropType<string>,
+      default: ''
+    },
+    error: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    errorText: {
+      type: String as PropType<string>,
+      default: ''
+    },
+    reloadable: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    reloadText: {
+      type: String as PropType<string>,
+      default: ''
+    }
+  },
+  emits: ['reload'],
+  computed: {
+    computedErrorText (): string {
+      return this.errorText || this.$ui.t().asyncContent.errorText;
+    },
+    computedReloadText (): string {
+      return this.reloadText || this.$ui.t().asyncContent.reloadText;
+    }
+  },
+  methods: {
+    reload (): void {
+      this.$emit('reload');
+    }
   }
-};
+});
 </script>
+
+<style lang="scss">
+@import './styles';
+</style>

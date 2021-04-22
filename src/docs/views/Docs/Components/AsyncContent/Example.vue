@@ -65,7 +65,7 @@ import {
 import { iconSizes } from '@/docs/helpers/story-params';
 
 export default {
-  name: 'ButtonExample',
+  name: 'AsyncContentExample',
   components: {
     Preview,
     Sandbox,
