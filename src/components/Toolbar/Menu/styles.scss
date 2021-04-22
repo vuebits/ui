@@ -12,11 +12,23 @@
     height: 100%;
   }
 
+  &--persistent {
+    position: static;
+    height: 100%;
+  }
+
   &__list {
     display: none;
     box-shadow: $shadow-bottom;
 
     @include breakpoint(lg) {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      box-shadow: none;
+    }
+
+    &--persistent {
       display: flex;
       align-items: center;
       height: 100%;

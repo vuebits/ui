@@ -13,6 +13,8 @@
     >
       <slot />
     </component>
+
+    <slot name="after" />
   </li>
 </template>
 

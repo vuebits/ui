@@ -1,0 +1,45 @@
+.v-toolbar-menu-dropdown {
+  position: relative;
+
+  &--fullsize {
+    position: static;
+  }
+
+  &__dropdown {
+    cursor: default;
+    color: $color-theme-light-font;
+    width: 100%;
+
+    @include breakpoint(lg) {
+      width: auto;
+      position: absolute;
+    }
+
+    &--persistent {
+      width: auto;
+      position: absolute;
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &--fullsize {
+      left: 0;
+      right: 0;
+
+      @include breakpoint(lg) {
+        margin: 0 3 * $sp;
+      }
+
+      @include breakpoint(xl) {
+        margin: auto;
+        width: calc(#{$max-content-width} - 6 * #{$sp});
+      }
+    }
+  }
+}

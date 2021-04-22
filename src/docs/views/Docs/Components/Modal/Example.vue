@@ -157,7 +157,7 @@ export default {
     return {
       isModalShown: false,
       areSlotsShown: false,
-      sizes: [null, ...sizes],
+      sizes,
       positions: [
         'middle',
         'top',
@@ -172,7 +172,7 @@ export default {
       elevated: false,
       rounded: false,
       roundedLg: false,
-      size: null,
+      size: '-',
       width: null,
       position: 'middle',
       transition: 'none',

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="$bem({})"
+    :class="$bem({m: { persistent: persistent }})"
   >
     <ul
       v-if="expandedOnMobile"
@@ -30,6 +30,10 @@ export default defineComponent({
     expandedOnMobile: {
       type: Boolean as PropType<boolean>,
       default: false
+    },
+    persistent: {
+      type: Boolean as PropType<boolean>,
+      default: false
     }
   },
   emits: {
@@ -41,7 +45,8 @@ export default defineComponent({
         ...this.$bem({
           e: 'list',
           m: {
-            expanded: this.expandedOnMobile
+            expanded: this.expandedOnMobile,
+            persistent: this.persistent
           }
         })
       ];
