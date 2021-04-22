@@ -9,7 +9,7 @@ import { CssClass } from '@/helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
-  name: 'DmIcon',
+  name: 'VIcon',
   props: {
     name: {
       type: String as PropType<string>,
