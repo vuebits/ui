@@ -19,15 +19,13 @@
         </div>
       </VInfiniteScroll>
     </Preview>
-    <Knobs />
   </Sandbox>
 </template>
 
 <script>
 import {
   Preview,
-  Sandbox,
-  Knobs
+  Sandbox
 } from '@/docs/components';
 import {
   VInfiniteScroll
@@ -39,7 +37,6 @@ export default {
   components: {
     Preview,
     Sandbox,
-    Knobs,
     VInfiniteScroll
   },
   data () {
