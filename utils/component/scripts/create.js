@@ -28,7 +28,7 @@ const propmptForComponentName = () => {
       dirName = answers.componentName;
       const componentPath = `${path}/${dirName}`;
       fs.copySync(templatePath, componentPath);
-      const componentName = `${componentNamespace.join('')}${dirName}`;
+      const componentName = `V${componentNamespace.join('')}${dirName}`;
       const kebabCaseComponentName = pascalToKebabCase(componentName);
       replace.sync({
         files: ['Component.vue', 'index.ts'].map(file => `${componentPath}/${file}`),
