@@ -2,6 +2,7 @@ $color-white: #FFF !default;
 $color-black: #000 !default;
 $color-grey-light: #F0F2F5 !default;
 $color-grey-athens:#E5E8EC !default;
+$color-grey-shark: #202124 !default;
 $color-grey-bright: #3F4254 !default;
 $color-grey-trout:#4A4E5A !default;
 $color-grey-pale-sky: #6B707D !default;
@@ -56,17 +57,17 @@ $color-theme-dark-font: $color-white !default;
 $color-theme-dark-hover: lighten($color-theme-dark, 10%) !default;
 
 $color-theme-light: $color-white !default;
-$color-theme-light-font: $color-black !default;
+$color-theme-light-font: $color-grey-shark !default;
 $color-theme-light-hover: $color-grey-light !default;
 
 // elements
 $color-border: $color-grey-athens !default;
-$color-text: $color-black !default;
+$color-text: $color-grey-shark !default;
 $color-text-2: $color-grey-trout !default;
 $color-link: $color-blue-denim-darken !default;
 $color-bg: $color-grey-light !default;
 $color-label: $color-primary !default;
 $color-input-bg: lighten($color-primary, 60%) !default;
 $color-blend: rgba($color-black, 0.5) !default;
-$color-hover: rgba($color-primary, 0.1) !default;
+$color-hover: rgba($color-primary, 0.05) !default;
 $color-hover-dark: rgba($color-primary, 0.9) !default;

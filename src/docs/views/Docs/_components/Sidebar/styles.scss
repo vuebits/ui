@@ -61,18 +61,24 @@
 
   &__item {
     display: flex;
+    color: $color-text-2;
   }
 
   &__item-link {
-    padding: $sp 3 * $sp;
+    padding: $sp;
+    padding-left: 5 * $sp;
     display: block;
     width: 100%;
     height: 100%;
+
+    &:hover {
+      color: $color-text;
+      font-weight: bold;
+    }
     
     &--active {
-      border-left: set-border($color-secondary, $sp);
-      padding-left: 2 * $sp;
       font-weight: bold;
+      color: $color-text;
       background-color: $color-bg;
     }
   }

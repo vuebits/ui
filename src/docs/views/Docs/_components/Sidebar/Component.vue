@@ -35,7 +35,6 @@
         <li
           v-for="(item, i) in group.routes"
           :key="i"
-          class="is-hoverable"
           :class="$bem({e: 'item'})"
         >
           <router-link
