@@ -16,37 +16,39 @@
         Configure me
       </VAsyncContent>
     </Preview>
-    <Knobs>
-      <KnobBoolean
-        v-model="loading"
-        label="Loading"
-      />
-      <KnobString
-        v-model="loadingText"
-        label="Loading text"
-      />
-      <KnobListItem
-        v-model="spinnerSize"
-        :items="iconSizes"
-        label="Spinner size"
-      />
-      <KnobBoolean
-        v-model="error"
-        label="Error"
-      />
-      <KnobString
-        v-model="errorText"
-        label="Error text"
-      />
-      <KnobBoolean
-        v-model="reloadable"
-        label="Reloadabilty"
-      />
-      <KnobString
-        v-model="reloadText"
-        label="Reload button text"
-      />
-    </Knobs>
+    <template #controls>
+      <Knobs>
+        <KnobBoolean
+          v-model="loading"
+          label="Loading"
+        />
+        <KnobString
+          v-model="loadingText"
+          label="Loading text"
+        />
+        <KnobListItem
+          v-model="spinnerSize"
+          :items="iconSizes"
+          label="Spinner size"
+        />
+        <KnobBoolean
+          v-model="error"
+          label="Error"
+        />
+        <KnobString
+          v-model="errorText"
+          label="Error text"
+        />
+        <KnobBoolean
+          v-model="reloadable"
+          label="Reloadabilty"
+        />
+        <KnobString
+          v-model="reloadText"
+          label="Reload button text"
+        />
+      </Knobs>
+    </template>
   </Sandbox>
 </template>
 

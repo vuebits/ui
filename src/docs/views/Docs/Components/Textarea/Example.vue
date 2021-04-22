@@ -19,50 +19,52 @@
         :error="error"
       />
     </Preview>
-    <Knobs>
-      <KnobBoolean
-        v-model="dark"
-        label="Dark"
-      />
-      <KnobBoolean
-        v-model="light"
-        label="Light"
-      />
-      <KnobBoolean
-        v-model="bordered"
-        label="Bordered"
-      />
-      <KnobBoolean
-        v-model="rounded"
-        label="Rounded"
-      />
-      <KnobBoolean
-        v-model="roundedLg"
-        label="Rounded large"
-      />
-      <KnobBoolean
-        v-model="round"
-        label="Round"
-      />
-      <KnobBoolean
-        v-model="disabled"
-        label="Disabled"
-      />
-      <KnobListItem
-        v-model="leftIcon"
-        :items="icons"
-        label="Left icon"
-      />
-      <KnobListItem
-        v-model="rightIcon"
-        :items="icons"
-        label="Right icon"
-      />
-      <KnobString
-        v-model="error"
-        label="Error"
-      />
-    </Knobs>
+    <template #controls>
+      <Knobs>
+        <KnobBoolean
+          v-model="dark"
+          label="Dark"
+        />
+        <KnobBoolean
+          v-model="light"
+          label="Light"
+        />
+        <KnobBoolean
+          v-model="bordered"
+          label="Bordered"
+        />
+        <KnobBoolean
+          v-model="rounded"
+          label="Rounded"
+        />
+        <KnobBoolean
+          v-model="roundedLg"
+          label="Rounded large"
+        />
+        <KnobBoolean
+          v-model="round"
+          label="Round"
+        />
+        <KnobBoolean
+          v-model="disabled"
+          label="Disabled"
+        />
+        <KnobListItem
+          v-model="leftIcon"
+          :items="icons"
+          label="Left icon"
+        />
+        <KnobListItem
+          v-model="rightIcon"
+          :items="icons"
+          label="Right icon"
+        />
+        <KnobString
+          v-model="error"
+          label="Error"
+        />
+      </Knobs>
+    </template>
   </Sandbox>
 </template>
 

@@ -1,32 +1,73 @@
 <template>
-  <div class="knobs">
-    <h3 class="knobs__header">
-      Options
-    </h3>
-    <div class="knobs__content">
-      <slot />
-    </div>
+  <div :class="$bem({})">
+    <VButton
+      dark
+      color="secondary"
+      @click="isModalShown = true"
+    >
+      Show options
+    </VButton>
+    <VModal
+      v-model="isModalShown"
+      position="right"
+      transition="slide-right"
+      size="sm"
+    >
+      <VModalHeader
+        bordered
+        :class="$bem({e: 'header'})"
+      >
+        <h2>
+          Options
+        </h2>
+        <VIconButton
+          icon="times"
+          hoverable
+          rounded
+          @click="isModalShown = false"
+        />
+      </VModalHeader>
+      <VModalBody>
+        <slot />
+      </VModalBody>
+    </VModal>
   </div>
 </template>
 
 <script>
+import {
+  VButton,
+  VModal,
+  VModalHeader,
+  VModalBody,
+  VIconButton
+} from '@/components';
+
 export default {
-  name: 'Knobs'
+  name: 'Knobs',
+  components: {
+    VButton,
+    VModal,
+    VModalHeader,
+    VModalBody,
+    VIconButton
+  },
+  data () {
+    return {
+      isModalShown: false
+    };
+  }
 };
 </script>
 
 <style lang="scss">
 .knobs {
-  width: 300px;
-  background-color: $color-bg;
-  border-left: set-border();
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 
   &__header {
-    padding: 2 * $sp;
-    font-size: 4 * $sp;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__content {

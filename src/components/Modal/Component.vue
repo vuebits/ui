@@ -1,18 +1,28 @@
 <template>
   <div
-    v-if="modelValue"
-    :class="$bem({})"
+    v-if="isBlendShown"
+    :class="classes"
   >
     <slot name="top" />
-    <div :class="$bem({e: 'middle'})">
+    <div :class="middleClasses">
       <slot name="left" />
-      <div
-        v-click-outside="onClickOutside"
-        :class="cardClasses"
-        :style="cardStyle"
+      <transition
+        :name="transition"
+        @after-leave="hideBlend"
+        @after-enter="$refs.card.focus()"
       >
-        <slot />
-      </div>
+        <div
+          v-if="isContentShown"
+          ref="card"
+          v-click-outside="onClickOutside"
+          :class="cardClasses"
+          :style="cardStyle"
+          tabindex="0"
+          @keyup.esc="onEsc"
+        >
+          <slot />
+        </div>
+      </transition>
       <slot name="right" />
     </div>
     <slot name="bottom" />
@@ -20,10 +30,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
+import { defineComponent, PropType, toRefs, nextTick } from 'vue';
 import { CssClass } from '@/helpers/css-classes';
 import {
   borderedProps,
+  elevatedProps,
   roundedProps,
   useBordered,
   useRounded
@@ -42,6 +53,10 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false
     },
+    closeOnEsc: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
     size: {
       type: String as PropType<'sm' | 'md' | 'lg' | null>,
       default: null,
@@ -53,14 +68,33 @@ export default defineComponent({
         ].includes(val);
       }
     },
+    position: {
+      type: String as PropType<'middle' | 'top' | 'left' | 'bottom' | 'right' | 'fullscreen'>,
+      default: 'middle',
+      validator: (val: string) => {
+        return !val || [
+          'middle',
+          'top',
+          'left',
+          'bottom',
+          'right',
+          'fullscreen'
+        ].includes(val);
+      }
+    },
     width: {
       type: Number as PropType<number | null>,
       default: null
     },
+    transition: {
+      type: String as PropType<string | null>,
+      default: null
+    },
+    ...elevatedProps,
     ...borderedProps,
     ...roundedProps
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'close'],
   setup (props) {
     const {
       bordered,
@@ -76,17 +110,44 @@ export default defineComponent({
   },
   data () {
     return {
-      scrollPosition: 0
+      scrollPosition: 0,
+      isContentShown: false,
+      isBlendShown: false
     };
   },
   computed: {
+    classes (): CssClass[] {
+      return [
+        ...this.$bem({
+          m: {
+            [this.position]: true
+          }
+        })
+      ];
+    },
+    middleClasses (): CssClass[] {
+      return [
+        ...this.$bem({
+          e: 'middle',
+          m: {
+            [this.position]: true
+          }
+        })
+      ];
+    },
     cardStyle (): any {
       return this.width ? { width: `${this.width}px` } : {};
     },
     cardClasses (): CssClass[] {
-      const mods = this.size ? [this.size] : [];
       return [
-        ...this.$bem({ e: 'card', m: mods }),
+        ...this.$bem({
+          e: 'card',
+          m: {
+            [this.size || 'no-size']: !!this.size,
+            [this.position]: true,
+            elevated: this.elevated
+          }
+        }),
         this.roundedClass,
         this.borderedClass
       ];
@@ -116,11 +177,22 @@ export default defineComponent({
       document.body.classList.add('is-scrolling-disabled');
       document.body.style.top = `-${this.scrollPosition}px`;
     },
-    openHandler (): void {
+    showBlend (): void {
       this.disableScrolling();
+      this.isBlendShown = true;
+      nextTick(() => {
+        this.isContentShown = true;
+      });
+    },
+    hideBlend (): void {
+      this.isBlendShown = false;
+      this.enableScrolling();
+    },
+    openHandler (): void {
+      this.showBlend();
     },
     closeHandler (): void {
-      this.enableScrolling();
+      this.isContentShown = false;
     },
     changeValueHandler (val: boolean): void {
       if (val) {
@@ -131,9 +203,15 @@ export default defineComponent({
     },
     close (): void {
       this.$emit('update:modelValue', false);
+      this.$emit('close');
     },
     onClickOutside (): void {
       if (!this.persistent) {
+        this.close();
+      }
+    },
+    onEsc (): void {
+      if (this.closeOnEsc) {
         this.close();
       }
     }

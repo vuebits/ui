@@ -15,44 +15,46 @@
         :spin="spin"
       />
     </Preview>
-    <Knobs>
-      <KnobListItem
-        v-model="name"
-        :items="icons"
-        label="Name"
-      />
-      <KnobString
-        v-model="prefix"
-        label="Prefix"
-      />
-      <KnobString
-        v-model="type"
-        label="Type"
-      />
-      <KnobListItem
-        v-model="size"
-        :items="sizes"
-        label="Size"
-      />
-      <KnobListItem
-        v-model="rotate"
-        :items="rotations"
-        label="Rotate"
-      />
-      <KnobListItem
-        v-model="flip"
-        :items="flips"
-        label="Flip"
-      />
-      <KnobBoolean
-        v-model="pulse"
-        label="Pulse"
-      />
-      <KnobBoolean
-        v-model="spin"
-        label="Spin"
-      />
-    </Knobs>
+    <template #controls>
+      <Knobs>
+        <KnobListItem
+          v-model="name"
+          :items="icons"
+          label="Name"
+        />
+        <KnobString
+          v-model="prefix"
+          label="Prefix"
+        />
+        <KnobString
+          v-model="type"
+          label="Type"
+        />
+        <KnobListItem
+          v-model="size"
+          :items="sizes"
+          label="Size"
+        />
+        <KnobListItem
+          v-model="rotate"
+          :items="rotations"
+          label="Rotate"
+        />
+        <KnobListItem
+          v-model="flip"
+          :items="flips"
+          label="Flip"
+        />
+        <KnobBoolean
+          v-model="pulse"
+          label="Pulse"
+        />
+        <KnobBoolean
+          v-model="spin"
+          label="Spin"
+        />
+      </Knobs>
+    </template>
   </Sandbox>
 </template>
 

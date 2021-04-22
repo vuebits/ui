@@ -23,67 +23,69 @@
         Configure me
       </VTile>
     </Preview>
-    <Knobs>
-      <KnobBoolean
-        v-model="dark"
-        label="Dark"
-      />
-      <KnobBoolean
-        v-model="light"
-        label="Light"
-      />
-      <KnobListItem
-        v-model="color"
-        :items="colors"
-        label="Color"
-      />
-      <KnobListItem
-        v-model="hoverBgColor"
-        :items="colors"
-        label="Hover color"
-      />
-      <KnobListItem
-        v-model="underlineColor"
-        :items="colors"
-        label="Underline color"
-      />
-      <KnobBoolean
-        v-model="bordered"
-        label="Bordered"
-      />
-      <KnobBoolean
-        v-model="elevated"
-        label="Elevated"
-      />
-      <KnobBoolean
-        v-model="rounded"
-        label="Rounded"
-      />
-      <KnobBoolean
-        v-model="roundedLg"
-        label="Rounded large"
-      />
-      <KnobBoolean
-        v-model="round"
-        label="Round"
-      />
-      <KnobBoolean
-        v-model="centerContent"
-        label="Center content"
-      />
-      <KnobString
-        v-model="width"
-        label="Width"
-      />
-      <KnobString
-        v-model="height"
-        label="Height"
-      />
-      <KnobString
-        v-model="image"
-        label="Image url"
-      />
-    </Knobs>
+    <template #controls>
+      <Knobs>
+        <KnobBoolean
+          v-model="dark"
+          label="Dark"
+        />
+        <KnobBoolean
+          v-model="light"
+          label="Light"
+        />
+        <KnobListItem
+          v-model="color"
+          :items="colors"
+          label="Color"
+        />
+        <KnobListItem
+          v-model="hoverBgColor"
+          :items="colors"
+          label="Hover color"
+        />
+        <KnobListItem
+          v-model="underlineColor"
+          :items="colors"
+          label="Underline color"
+        />
+        <KnobBoolean
+          v-model="bordered"
+          label="Bordered"
+        />
+        <KnobBoolean
+          v-model="elevated"
+          label="Elevated"
+        />
+        <KnobBoolean
+          v-model="rounded"
+          label="Rounded"
+        />
+        <KnobBoolean
+          v-model="roundedLg"
+          label="Rounded large"
+        />
+        <KnobBoolean
+          v-model="round"
+          label="Round"
+        />
+        <KnobBoolean
+          v-model="centerContent"
+          label="Center content"
+        />
+        <KnobString
+          v-model="width"
+          label="Width"
+        />
+        <KnobString
+          v-model="height"
+          label="Height"
+        />
+        <KnobString
+          v-model="image"
+          label="Image url"
+        />
+      </Knobs>
+    </template>
   </Sandbox>
 </template>
 

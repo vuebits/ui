@@ -1,11 +1,11 @@
 <template>
-  <div class="sandbox">
+  <div :class="$bem({})">
     <span
       :id="id"
-      class="sandbox__anchor"
+      :class="$bem({e: 'anchor'})"
     />
     <h3
-      class="sandbox__title"
+      :class="$bem({e: 'title'})"
     >
       <a
         :href="`#${id}`"
@@ -13,11 +13,18 @@
         {{ title }}
       </a>
     </h3>
-    <div
-      class="sandbox__content"
-      :style="{ height: height}"
-    >
-      <slot />
+    <div :class="$bem({e: 'wrapper'})">
+      <div
+        :class="$bem({e: 'controls'})"
+      >
+        <slot name="controls" />
+      </div>
+      <div
+        :class="$bem({e: 'content'})"
+        :style="{ height: height}"
+      >
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -68,11 +75,17 @@ export default {
     }
   }
 
-  &__content {
+  &__wrapper {
     margin: 4 * $sp;
+  }
+
+  &__cotrols {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__content {
     border: set-border();
   }
 }
