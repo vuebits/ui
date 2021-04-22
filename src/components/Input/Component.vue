@@ -7,7 +7,7 @@
       <slot name="before" />
       <div
         v-if="leftIcon"
-        class="v--hoverable"
+        class="is-hoverable"
         :class="$bem({e: 'icon', m: {clickable: leftIconClickable}})"
         @click="onLeftIconClick"
       >
@@ -44,7 +44,7 @@
       </span>
       <div
         v-if="rightIcon"
-        class="v--hoverable"
+        class="is-hoverable"
         :class="$bem({e: 'icon', m: {clickable: rightIconClickable}})"
         @click="onRightIconClick"
       >

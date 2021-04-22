@@ -1,5 +1,4 @@
 import { computed, PropType, Ref } from 'vue';
-import { prefix } from '@/helpers/css-classes';
 
 export const roundedProps = {
   rounded: {
@@ -18,8 +17,8 @@ export const roundedProps = {
 
 export function useRounded (rounded: Ref, roundedLg: Ref, round: Ref) {
   return computed(() => ({
-    [`${prefix}rounded`]: rounded.value,
-    [`${prefix}rounded-lg`]: roundedLg.value,
-    [`${prefix}round`]: round.value
+    'is-rounded': rounded.value,
+    'is-rounded-lg': roundedLg.value,
+    'is-round': round.value
   }));
 };

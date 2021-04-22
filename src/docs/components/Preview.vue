@@ -13,7 +13,7 @@ export default {
 
 <style lang="scss">
 .preview {
-  padding: $sp;
+  padding: 4 * $sp;
   position: relative;
   flex-grow: 1;
   max-height: calc(100vh - 100px);

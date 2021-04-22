@@ -1,13 +1,13 @@
 import { App } from 'vue';
-import { Options, BemOptions, BemItem } from '@/models';
+import {
+  CustomOptions,
+  BemItem
+} from '@/models';
 import { getClassName } from './helpers';
+import { defaultOptions } from './config';
 
-const defaultBemOptions: BemOptions = {
-  hyphenate: true
-};
-
-export function install (Vue: App, options: Options): void {
-  const bemOptions = options.bem || defaultBemOptions;
+export function install (Vue: App, options: CustomOptions): void {
+  const bemOptions = options.bem || defaultOptions.bem;
   Vue.mixin({
     name: 'BemMixin',
     methods: {
@@ -26,4 +26,11 @@ export function install (Vue: App, options: Options): void {
       }
     }
   });
+
+  const ui = {
+    ...defaultOptions,
+    ...options
+  };
+
+  Vue.config.globalProperties.$ui = ui;
 }

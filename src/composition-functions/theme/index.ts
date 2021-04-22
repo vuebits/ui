@@ -1,5 +1,4 @@
 import { computed, PropType, Ref } from 'vue';
-import { prefix } from '@/helpers/css-classes';
 
 export const themeProps = {
   dark: {
@@ -14,7 +13,7 @@ export const themeProps = {
 
 export function useTheme (dark: Ref, light: Ref) {
   return computed(() => ({
-    [`${prefix}theme-dark`]: dark.value,
-    [`${prefix}theme-light`]: light.value
+    'is-dark': dark.value,
+    'is-light': light.value
   }));
 };

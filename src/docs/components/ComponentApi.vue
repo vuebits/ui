@@ -33,7 +33,10 @@
 
 <script lang="ts">
 import { defineComponent, PropType, DefineComponent } from 'vue';
-import { VTile, VTable } from '@/components';
+import {
+  VTile,
+  VTable
+} from '@/components';
 
 export default defineComponent({
   name: 'ComponentApi',
@@ -73,7 +76,7 @@ export default defineComponent({
   },
   computed: {
     propsItems (): {name: string; default: any}[] {
-      const props = this.component.props;
+      const props = this.component.props || {};
       return Object.keys(props).map(key => {
         return {
           name: key,
@@ -96,28 +99,29 @@ export default defineComponent({
 
 <style lang="scss">
 .component-api {
-  margin: 20px;
+  margin: 4 * $sp;
+  overflow-y: auto;
 
   &__name {
-    margin-bottom: 20px;
+    margin-bottom: 4 * $sp;
   }
 
   &__props-wrapper {
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 2 * $sp;
+    margin-bottom: 3 * $sp;
   }
 
   &__props-header {
-    margin-bottom: 15px;
+    margin-bottom: 3 * $sp;
   }
 
   &__emits-wrapper {
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 2 * $sp;
+    margin-bottom: 3 * $sp;
   }
 
   &__emits-header {
-    margin-bottom: 15px;
+    margin-bottom: 3 * $sp;
   }
 }
 </style>

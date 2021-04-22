@@ -43,10 +43,10 @@
         />
       </div>
     </div>
-    <transition name="v--slide-down">
+    <transition name="slide-down">
       <div
         v-if="isExpanded"
-        class="v--elevated"
+        class="is--elevated"
         :class="itemsClasses"
         :style="{maxHeight: `${maxHeight}px`}"
       >
@@ -194,7 +194,7 @@ export default defineComponent({
           }
         }),
         {
-          'v--elevated': this.isExpanded,
+          'is-elevated': this.isExpanded,
           [hoverableClass]: !this.isExpanded
 
         },

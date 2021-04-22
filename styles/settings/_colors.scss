@@ -1,64 +1,72 @@
-$color-white: #FFF;
-$color-black: #000;
-$color-grey-light: #F0F2F5;
-$color-grey-athens:#E5E8EC;
-$color-grey-bright: #3F4254;
-$color-grey-trout:#4A4E5A;
-$color-grey-pale-sky: #6B707D;
-$color-red-lipstick: #B00044;
-$color-yellow-sea: #FFAC01;
-$color-yellow-sazerac: #FFF6E5;
-$color-blue-denim-darken: #0D57C3;
-$color-blue-dodger: #3287FE;
-$color-blue-solitude: #EAF3FE;
-$color-green-apple: #64BA3D;
-$color-green-peppermint: #EFF8EB;
-$color-blue-pickled-bluewood: #35495E;
-$color-green-ocean: #42b983;
+$color-white: #FFF !default;
+$color-black: #000 !default;
+$color-grey-light: #F0F2F5 !default;
+$color-grey-athens:#E5E8EC !default;
+$color-grey-bright: #3F4254 !default;
+$color-grey-trout:#4A4E5A !default;
+$color-grey-pale-sky: #6B707D !default;
+$color-red-lipstick: #B00044 !default;
+$color-yellow-tree-poppy: #FEA321 !default;
+$color-yellow-sea: #FFAC01 !default;
+$color-yellow-sazerac: #FFF6E5 !default;
+$color-blue-denim-darken: #0D57C3 !default;
+$color-blue-torea-bay: #172897 !default;
+$color-blue-dodger: #3287FE !default;
+$color-blue-solitude: #EAF3FE !default;
+$color-green-apple: #64BA3D !default;
+$color-green-peppermint: #EFF8EB !default;
+$color-blue-pickled-bluewood: #35495E !default;
+$color-green-ocean: #42b983 !default;
+
 /* aliases */
 
 // theme
 $color-primary: $color-blue-pickled-bluewood;
 $color-secondary: $color-green-ocean;
 
-// elements
-$color-border: $color-grey-athens;
-$color-text: $color-black;
-$color-text-2: $color-grey-trout;
-$color-link: $color-blue-denim-darken;
-$color-bg: $color-grey-light;
-
 // statuses
-$color-info: $color-blue-dodger;
-$color-success: $color-green-apple;
-$color-warning: $color-yellow-sea;
-$color-error: $color-red-lipstick;
-$color-closed: $color-grey-bright;
-$color-disabled: $color-grey-pale-sky;
+$color-info: $color-blue-dodger !default;
+$color-success: $color-green-apple !default;
+$color-warning: $color-yellow-sea !default;
+$color-error: $color-red-lipstick !default;
+$color-closed: $color-grey-bright !default;
+$color-disabled: $color-grey-pale-sky !default;
 
 // event statuses
-$color-status-1: $color-warning;
-$color-status-2: $color-info;
-$color-status-3: $color-success;
-$color-status-4: $color-closed;
+$color-status-1: $color-warning !default;
+$color-status-2: $color-info !default;
+$color-status-3: $color-success !default;
+$color-status-4: $color-closed !default;
 
 // pale colors
-$color-info-pale: $color-blue-solitude;
-$color-success-pale: $color-green-peppermint;
-$color-warning-pale: $color-yellow-sazerac;
-$color-error-pale: lighten($color-error, 63%);
-$color-closed-pale: lighten($color-status-4, 64%);
+$color-info-pale: $color-blue-solitude !default;
+$color-success-pale: $color-green-peppermint !default;
+$color-warning-pale: $color-yellow-sazerac !default;
+$color-error-pale: lighten($color-error, 63%) !default;
+$color-closed-pale: lighten($color-status-4, 64%) !default;
 
-$color-status-1-pale: $color-warning-pale;
-$color-status-2-pale: $color-info-pale;
-$color-status-3-pale: $color-success-pale;
-$color-status-4-pale: $color-closed-pale;
+$color-status-1-pale: $color-warning-pale !default;
+$color-status-2-pale: $color-info-pale !default;
+$color-status-3-pale: $color-success-pale !default;
+$color-status-4-pale: $color-closed-pale !default;
 
 //themes
-$color-theme-dark: $color-grey-bright;
-$color-theme-dark-font: $color-white;
-$color-theme-dark-hover: lighten($color-theme-dark, 10%);
+$color-theme-dark: $color-grey-bright !default;
+$color-theme-dark-font: $color-white !default;
+$color-theme-dark-hover: lighten($color-theme-dark, 10%) !default;
 
-$color-theme-light: $color-bg;
-$color-theme-light-font: $color-black;
-$color-theme-light-hover: $color-grey-light;
+$color-theme-light: $color-white !default;
+$color-theme-light-font: $color-black !default;
+$color-theme-light-hover: $color-grey-light !default;
+
+// elements
+$color-border: $color-grey-athens !default;
+$color-text: $color-black !default;
+$color-text-2: $color-grey-trout !default;
+$color-link: $color-blue-denim-darken !default;
+$color-bg: $color-grey-light !default;
+$color-label: $color-primary !default;
+$color-input-bg: lighten($color-primary, 60%) !default;
+$color-blend: rgba($color-black, 0.5) !default;
+$color-hover: rgba($color-primary, 0.1) !default;
+$color-hover-dark: rgba($color-primary, 0.9) !default;

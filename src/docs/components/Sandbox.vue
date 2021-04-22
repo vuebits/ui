@@ -13,7 +13,10 @@
         {{ title }}
       </a>
     </h3>
-    <div class="sandbox__content">
+    <div
+      class="sandbox__content"
+      :style="{ height: height}"
+    >
       <slot />
     </div>
   </div>
@@ -30,6 +33,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    height: {
+      type: [Number, String],
+      default: 'auto'
     }
   }
 };

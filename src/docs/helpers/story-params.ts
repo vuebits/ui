@@ -5,15 +5,7 @@ export const icons = [
   'bug',
   'calendar',
   'edit',
-  'gamepad',
-  'envelope',
-  'download'
-];
-
-export const sizes = [
-  'sm',
-  'md',
-  'lg'
+  'gamepad'
 ];
 
 export const iconSizes = [
@@ -32,8 +24,14 @@ export const iconSizes = [
   '10x'
 ];
 
+export const sizes = [
+  'sm',
+  'md',
+  'lg'
+];
+
 export const colors = [
-  'none',
+  'default',
   'primary',
   'secondary',
   'success',
@@ -43,4 +41,22 @@ export const colors = [
   'disabled',
   'black',
   'white'
+];
+
+export const spacings = [
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+];
+
+export const transitions = [
+  'none',
+  'fade',
+  'expand',
+  'slide-top',
+  'slide-bottom',
+  'slide-right',
+  'slide-left'
 ];

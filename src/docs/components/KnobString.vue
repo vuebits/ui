@@ -6,6 +6,7 @@
     rounded
     bordered
     light
+    no-hint
     type="string"
     class="knob-string"
     @update:modelValue="updateModelValue"

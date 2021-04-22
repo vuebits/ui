@@ -17,7 +17,7 @@
     >
       <VIcon
         name="github"
-        size="lg"
+        type="fab"
       />
     </VToolbarMenuItem>
     <VToolbarMenuItem
@@ -27,7 +27,7 @@
     >
       <VIcon
         name="npm"
-        size="lg"
+        type="fab"
       />
     </VToolbarMenuItem>
   </VToolbarMenu>

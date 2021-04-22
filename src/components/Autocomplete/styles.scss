@@ -53,13 +53,14 @@
     word-wrap: break-word;
     word-break: break-word;
 
-    &:hover {
-      color: $color-theme-light-font;
-    }
-
     &--active {
       background-color: $color-primary;
       color: $color-theme-dark-font;
+
+      &:hover {
+        background-color: $color-primary !important;
+        color: $color-theme-dark-font !important;
+      }
     }
 
     &--disabled {

@@ -70,7 +70,7 @@ export default defineComponent({
       }
     },
     checkmarkClasses (): CssClass[] {
-      const bgClassName = `v--bg-color-${this.modelValue ? this.color : 'white'}`;
+      const bgClassName = `has-bg-color-${this.modelValue ? this.color : 'white'}`;
       return [
         ...this.$bem({
           e: 'checkmark',

@@ -105,15 +105,15 @@ export default defineComponent({
   },
   methods: {
     enableScrolling (): void {
-      document.documentElement.classList.remove('v--disable-scrolling');
-      document.body.classList.remove('v--disable-scrolling');
+      document.documentElement.classList.remove('is-scrolling-disabled');
+      document.body.classList.remove('is-scrolling-disabled');
       document.body.style.top = 'unset';
       window.scrollTo(0, this.scrollPosition);
     },
     disableScrolling (): void {
       this.scrollPosition = window.pageYOffset;
-      document.documentElement.classList.add('v--disable-scrolling');
-      document.body.classList.add('v--disable-scrolling');
+      document.documentElement.classList.add('is-scrolling-disabled');
+      document.body.classList.add('is-scrolling-disabled');
       document.body.style.top = `-${this.scrollPosition}px`;
     },
     openHandler (): void {

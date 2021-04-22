@@ -1,5 +1,4 @@
 import { computed, PropType, Ref } from 'vue';
-import { prefix } from '@/helpers/css-classes';
 
 export const elevatedProps = {
   elevated: {
@@ -10,6 +9,6 @@ export const elevatedProps = {
 
 export function useElevated (elevated: Ref) {
   return computed(() => ({
-    [`${prefix}elevated`]: elevated.value
+    'is-elevated': elevated.value
   }));
 };

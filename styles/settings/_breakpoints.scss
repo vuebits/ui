@@ -4,8 +4,11 @@ $md: 768px !default;
 $lg: 1060px !default;
 $xl: 1300px !default;
 
-$min-content-width: 320px;
+$min-content-width: 320px !default;
 $max-content-width: 1920px !default;
+
+$wrapper-margin: 2 * $sp !default;
+$wrapper-margin-lg: 4 * $sp !default;
 
 $breakpoints: (
   xs: $xs,

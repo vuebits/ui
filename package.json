@@ -25,7 +25,9 @@
     "vue3 ui"
   ],
   "files": [
-    "dist"
+    "dist",
+    "styles",
+    "src"
   ],
   "scripts": {
     "docs:serve": "vue-cli-service serve ./src/docs/main.ts",
@@ -36,7 +38,7 @@
     "component:create": "node ./utils/component/scripts/create"
   },
   "dependencies": {
-    "@vuebits/bem": "^1.2.2",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "core-js": "^3.6.5",
     "highlight.js": "^10.6.0",
     "vue": "^3.0.0",
@@ -81,8 +83,11 @@
       "git add"
     ]
   },
+  "directories": {
+    "test": "tests"
+  },
   "bugs": {
-    "url": "https://github.com/vuebits/ui/issues"
+    "url": "https://github.com/dobrymechanik/front-ui/issues"
   },
   "license": "MIT"
 }

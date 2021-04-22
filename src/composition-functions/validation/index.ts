@@ -1,5 +1,4 @@
 import { computed, PropType, Ref } from 'vue';
-import { prefix } from '@/helpers/css-classes';
 
 export const validationProps = {
   error: {
@@ -9,19 +8,23 @@ export const validationProps = {
   hint: {
     type: String as PropType<string | null | undefined>,
     default: null
+  },
+  noHint: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 };
 
 export function useValidation (error: Ref, hint: Ref) {
   const validationBorderClass = computed(() => ({
-    [`${prefix}bordered`]: true,
-    [`${prefix}border-color-error`]: error.value
+    'is-bordered': error.value,
+    'has-border-color-error': error.value
   }));
 
   const hintText = computed(() => error.value || hint.value || '');
 
   const validationHintClass = computed(() => ({
-    [`${prefix}color-error`]: error.value
+    'has-color-error': error.value
   }));
 
   return {

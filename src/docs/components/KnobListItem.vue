@@ -4,6 +4,8 @@
     :items="listItems"
     :label="label"
     bordered
+    light
+    no-hint
     rounded
     class="knob-list-item"
     @change="updateModelValue"
@@ -65,6 +67,5 @@ export default defineComponent({
 <style lang="scss">
 .knob-list-item {
   margin-top: 2 * $sp;
-  background-color: $color-white;
 }
 </style>

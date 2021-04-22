@@ -86,7 +86,7 @@ export default defineComponent({
           }
         }),
         this.themeClass,
-        [borderColorClass(this.activeTabColor)]
+        borderColorClass(this.activeTabColor)
       ];
     },
     selectTab (i: number) {

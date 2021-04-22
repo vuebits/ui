@@ -3,7 +3,9 @@
     <h3 class="knobs__header">
       Options
     </h3>
-    <slot />
+    <div class="knobs__content">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -16,12 +18,21 @@ export default {
 <style lang="scss">
 .knobs {
   width: 300px;
-  padding: 2 * $sp;
   background-color: $color-bg;
   border-left: set-border();
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &__header {
-    font-size: 20px;
+    padding: 2 * $sp;
+    font-size: 4 * $sp;
+  }
+
+  &__content {
+    padding: 2 * $sp;
+    flex-grow: 1;
+    overflow-y: auto;
   }
 }
 </style>

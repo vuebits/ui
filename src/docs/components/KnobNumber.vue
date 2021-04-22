@@ -6,6 +6,8 @@
     rounded
     bordered
     light
+    no-hint
+    :min="min"
     type="number"
     class="knob-number"
     @update:modelValue="updateModelValue"
@@ -29,6 +31,10 @@ export default defineComponent({
     label: {
       type: String as PropType<string>,
       required: true
+    },
+    min: {
+      type: Number as PropType<number>,
+      default: 0
     }
   },
   emits: ['update:modelValue'],

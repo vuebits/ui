@@ -17,7 +17,7 @@
       :left-icon="leftIcon"
       :left-icon-clickable="leftIconClickable"
       :left-icon-color="leftIconColor"
-      :right-icon="!!modelValue?.key ? 'times-circle' : null"
+      :right-icon="!!modelValue?.key ? 'times' : null"
       right-icon-clickable
       :disabled="disabled"
       :bordered="bordered"
@@ -39,11 +39,11 @@
       <template #after>
         <transition
           v-if="isExpanded"
-          name="v--slide-down"
+          name="slide-top"
         >
           <div
             ref="list"
-            class="v--elevated"
+            class="is-elevated"
             :class="itemsClasses"
             :style="{maxHeight: `${maxHeight}px`}"
             @click="listClicked = true"
@@ -58,7 +58,7 @@
                 v-if="filteredItems.length === 0"
                 :class="$bem({e: 'no-items-text'})"
               >
-                Brak pasujących wyników
+                {{ computedNoMatchingItemsText }}
               </div>
               <div
                 v-for="(item, index) of filteredItems"
@@ -107,7 +107,7 @@ import { VTextarea } from '@/components/Textarea';
 import { VAsyncContent } from '@/components/AsyncContent';
 import {
   CssClass,
-  hoverBgColorClass
+  hoverableClass
 } from '@/helpers/css-classes';
 import {
   borderedProps,
@@ -195,10 +195,6 @@ export default defineComponent({
       type: Number as PropType<number>,
       default: 320
     },
-    hoverBgColor: {
-      type: String as PropType<string>,
-      default: 'secondary'
-    },
     listPosition: {
       type: String as PropType<'top' | 'bottom'>,
       default: 'bottom',
@@ -223,6 +219,10 @@ export default defineComponent({
     rows: {
       type: Number as PropType<number | string | null>,
       default: null
+    },
+    noMatchingItemsText: {
+      type: String as PropType<string>,
+      default: ''
     },
     ...themeProps,
     ...borderedProps,
@@ -266,6 +266,9 @@ export default defineComponent({
     };
   },
   computed: {
+    computedNoMatchingItemsText (): string {
+      return this.noMatchingItemsText || this.$ui.t().autocomplete.noMatchingItems;
+    },
     component (): any {
       return this.textarea ? VTextarea : VInput;
     },
@@ -373,7 +376,7 @@ export default defineComponent({
             active: item.key === this.activeItemKey
           }
         }),
-        hoverBgColorClass(this.hoverBgColor)
+        hoverableClass
       ];
     },
     cleanSelection (): void {

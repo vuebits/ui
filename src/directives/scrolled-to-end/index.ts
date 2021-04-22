@@ -6,7 +6,7 @@ const isElementEnd = (element: HTMLElement, tolerance: number): boolean => {
 };
 
 const getTolerance = (tolerance: string | undefined): number => {
-  return tolerance && parseInt(tolerance) ? parseInt(tolerance) : 25;
+  return tolerance && parseInt(tolerance) ? parseInt(tolerance) : 100;
 };
 
 let handleScroll = () => { /* */ };
@@ -17,7 +17,7 @@ const directive: Directive = {
       binding.value(isElementEnd(el, getTolerance(binding.arg)));
       handleScroll = debounce(() => {
         binding.value(isElementEnd(el, getTolerance(binding.arg)));
-      }, 250);
+      }, 100);
       el.addEventListener('scroll', handleScroll);
     }
   },

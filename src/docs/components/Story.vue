@@ -83,7 +83,6 @@ import hljs from 'highlight.js';
 import xml from 'highlight.js/lib/languages/xml';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
-import 'highlight.js/styles/github.css';
 import { VButton } from '@/components';
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('javascript', javascript);
@@ -112,6 +111,10 @@ export default {
     componentName: {
       type: String,
       required: true
+    },
+    groupName: {
+      type: String,
+      default: 'Components'
     }
   },
   data () {
@@ -132,29 +135,31 @@ export default {
       return getComponentSection(this.component, 'style');
     }
   },
-  created () {
+  mounted () {
     this.load();
   },
   methods: {
     async load () {
-      let component = '';
+      setTimeout(async () => {
+        let component = '';
 
-      try {
-        component = await import(
+        try {
+          component = await import(
           /* webpackChunkName: "examples" */
           /* webpackMode: "lazy" */
-          `!raw-loader!../views/Docs/Components/${this.componentName}/_stories/${this.fileName}.vue`
-        );
-      } catch (err) {}
+            `!raw-loader!../views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`
+          );
+        } catch (err) {}
 
-      this.component = component.default
-        .split('@/components')
-        .join('@vuebits/ui');
-      nextTick(() => {
-        hljs.highlightBlock(this.$refs.html);
-        hljs.highlightBlock(this.$refs.js);
-        hljs.highlightBlock(this.$refs.css);
-      });
+        this.component = component.default
+          .split('@/components')
+          .join('@vuebits/ui');
+        nextTick(() => {
+          hljs.highlightBlock(this.$refs.html);
+          hljs.highlightBlock(this.$refs.js);
+          hljs.highlightBlock(this.$refs.css);
+        });
+      }, 100);
     },
     toggleCodeVisibility () {
       this.isCodeShown = !this.isCodeShown;
@@ -193,11 +198,12 @@ export default {
 
   &__box {
     margin: 4 * $sp;
-    border: set-border();
+    border: 1px solid #ccc;
   }
 
   &__content {
-    padding: 2 * $sp;
+    padding: 4 * $sp;
+    margin-bottom: 4 * $sp;
   }
 
   &__code-controls {

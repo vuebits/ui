@@ -4,9 +4,10 @@
   &__item {
     font-size: 18px;
     border-left: set-border(transparent, $sp);
+    padding: 2 * $sp;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.07);
+      background-color: $color-bg;
     }
 
     &--active {

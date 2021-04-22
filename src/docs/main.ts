@@ -6,7 +6,8 @@ import router from './router';
 const config = {
   bem: {
     hyphenate: true
-  }
+  },
+  locale: 'en'
 };
 
 createApp(App)

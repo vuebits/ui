@@ -19,4 +19,6 @@ export default defineComponent({
 @import '../../styles/generic';
 @import '../../styles/elements/common-classes';
 @import '../../styles/elements/global';
+@import '../../styles/elements/transitions';
+@import './assets/styles';
 </style>

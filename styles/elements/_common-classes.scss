@@ -1,249 +1,180 @@
-.v--elevated {
+.is-elevated {
   box-shadow: $shadow-main;
 }
 
-.v--bordered {
+.is-bordered {
   border: set-border();
 }
 
-.v--rounded {
+.is-rounded {
   border-radius: $border-radius-main;
 }
 
-.v--rounded-lg {
+.is-rounded-lg {
   border-radius: $border-radius-large;
 }
 
-.v--round {
+.is-round {
   border-radius: $border-radius-round;
 }
 
-.v--right {
+.is-right {
   text-align: right;
 }
 
-.v--uppercase {
+.is-uppercase {
   text-transform: uppercase;
 }
 
-.v--theme-light {
+.is-hoverable {
+  &:hover {
+    background-color: $color-hover;
+  }
+}
+
+.is-light {
   background-color: $color-theme-light;
   color: $color-theme-light-font;
 }
 
-.v--theme-dark {
+.is-dark {
   background-color: $color-theme-dark;
   color: $color-theme-dark-font;
+
+  &.is-hoverable,
+  .is-hoverable {
+    &:hover {
+      background-color: $color-hover-dark;
+    }
+  }
 }
 
-.v--hoverable {
-  &:hover {
-    background-color: rgba(0, 0, 0, .07);
+@each $name, $spacing in $spacings {
+  .has-padding-#{$name} {
+    padding: $spacing;
+  }
+  .has-padding-x-#{$name} {
+    padding-left: $spacing;
+    padding-right: $spacing;
+  }
+  .has-padding-y-#{$name} {
+    padding-top: $spacing;
+    padding-bottom: $spacing;
+  }
+  .has-padding-top-#{$name} {
+    padding-top: $spacing;
+  }
+  .has-padding-right-#{$name} {
+    padding-right: $spacing;
+  }
+  .has-padding-bottom-#{$name} {
+    padding-bottom: $spacing;
+  }
+  .has-padding-left-#{$name} {
+    padding-left: $spacing;
+  }
+  
+  .has-margin-#{$name} {
+    margin: $spacing;
+  }
+  .has-margin-x-#{$name} {
+    margin-left: $spacing;
+    margin-right: $spacing;
+  }
+  .has-margin-y-#{$name} {
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+  }
+  .has-margin-top-#{$name} {
+    margin-top: $spacing;
+  }
+  .has-margin-right-#{$name} {
+    margin-right: $spacing;
+  }
+  .has-margin-bottom-#{$name} {
+    margin-bottom: $spacing;
+  }
+  .has-margin-left-#{$name} {
+    margin-left: $spacing;
   }
 }
 
 @each $name, $color in $colors {
-  .v--bg-color-#{$name} {
+  .has-bg-color-#{$name} {
     background-color: $color;
-    &-darken-1 {
-      background-color: darken($color, 10%);
-    }
-    &-darken-2 {
-      background-color: darken($color, 20%);
-    }
-    &-darken-3 {
-      background-color: darken($color, 30%);
-    }
-    &-darken-4 {
-      background-color: darken($color, 40%);
-    }
-    &-lighten-1 {
-      background-color: lighten($color, 10%);
-    }
-    &-lighten-2 {
-      background-color: lighten($color, 20%);
-    }
-    &-lighten-3 {
-      background-color: lighten($color, 30%);
-    }
-    &-lighten-4 {
-      background-color: lighten($color, 40%);
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        background-color: darken($color, $i * 10%);
+      }
+      &-lighten-#{$i} {
+        background-color: lighten($color, $i * 10%);
+      }
     }
   }
-  .v--color-#{$name} {
+  .has-color-#{$name} {
     color: $color;
-    &-darken-1 {
-      color: darken($color, 10%);
-    }
-    &-darken-2 {
-      color: darken($color, 20%);
-    }
-    &-darken-3 {
-      color: darken($color, 30%);
-    }
-    &-darken-4 {
-      color: darken($color, 40%);
-    }
-    &-lighten-1 {
-      color: lighten($color, 10%);
-    }
-    &-lighten-2 {
-      color: lighten($color, 20%);
-    }
-    &-lighten-3 {
-      color: lighten($color, 30%);
-    }
-    &-lighten-4 {
-      color: lighten($color, 40%);
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        color: darken($color, $i * 10%);
+      }
+      &-lighten-#{$i} {
+        color: lighten($color, $i * 10%);
+      }
     }
   }
-  .v--border-color-#{$name} {
+  .has-border-color-#{$name} {
     border-color: $color;
-    &-darken-1 {
-      border-color: darken($color, 10%);
-    }
-    &-darken-2 {
-      border-color: darken($color, 20%);
-    }
-    &-darken-3 {
-      border-color: darken($color, 30%);
-    }
-    &-darken-4 {
-      border-color: darken($color, 40%);
-    }
-    &-lighten-1 {
-      border-color: lighten($color, 10%);
-    }
-    &-lighten-2 {
-      border-color: lighten($color, 20%);
-    }
-    &-lighten-3 {
-      border-color: lighten($color, 30%);
-    }
-    &-lighten-4 {
-      border-color: lighten($color, 40%);
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        border-color: darken($color, $i * 10%);
+      }
+      &-lighten-#{$i} {
+        border-color: lighten($color, $i * 10%);
+      }
     }
   }
-  .v--hover-bg-color-#{$name} {
+  .has-hover-bg-color-#{$name} {
     &:hover {
       background-color: $color;
     }
-    &-darken-1 {
-      &:hover {
-        background-color: darken($color, 10%);
+
+    @for $i from 1 through 7 {
+      &-darken-#{$i} {
+        &:hover {
+          background-color: darken($color, $i * 10%);
+        }
       }
-    }
-    &-darken-2 {
-      &:hover {
-        background-color: darken($color, 20%);
-      }
-    }
-    &-darken-3 {
-      &:hover {
-        background-color: darken($color, 30%);
-      }
-    }
-    &-darken-4 {
-      &:hover {
-        background-color: darken($color, 40%);
-      }
-    }
-    &-lighten-1 {
-      &:hover {
-        background-color: lighten($color, 10%);
-      }
-    }
-    &-lighten-2 {
-      &:hover {
-        background-color: lighten($color, 20%);
-      }
-    }
-    &-lighten-3 {
-      &:hover {
-        background-color: lighten($color, 30%);
-      }
-    }
-    &-lighten-4 {
-      &:hover {
-        background-color: lighten($color, 40%);
+      &-lighten-#{$i} {
+        &:hover {
+          background-color: lighten($color, $i * 10%);
+        }
       }
     }
   }
-  .v--hover-color-#{$name} {
+  .has-hover-color-#{$name} {
     &:hover {
       color: $color;
     }
-    &-darken-1 {
-      &:hover {
-        color: darken($color, 10%);
+
+    @for $i from 1 through 4 {
+      &-darken-#{$i} {
+        &:hover {
+          color: darken($color, $i * 10%);
+        }
       }
-    }
-    &-darken-2 {
-      &:hover {
-        color: darken($color, 20%);
+      &-lighten-#{$i} {
+        &:hover {
+          color: lighten($color, $i * 10%);
+        }
       }
-    }
-    &-darken-3 {
-      &:hover {
-        color: darken($color, 30%);
-      }
-    }
-    &-darken-4 {
-      &:hover {
-        color: darken($color, 40%);
-      }
-    }
-    &-lighten-1 {
-      &:hover {
-        color: lighten($color, 10%);
-      }
-    }
-    &-lighten-2 {
-      &:hover {
-        color: lighten($color, 20%);
-      }
-    }
-    &-lighten-3 {
-      &:hover {
-        color: lighten($color, 30%);
-      }
-    }
-    &-lighten-4 {
-      &:hover {
-        color: lighten($color, 40%);
-      }
-    }
-  }
-  .v--fill-color-#{$name} {
-    fill: $color;
-    &-darken-1 {
-      fill: darken($color, 10%);
-    }
-    &-darken-2 {
-      fill: darken($color, 20%);
-    }
-    &-darken-3 {
-      fill: darken($color, 30%);
-    }
-    &-darken-4 {
-      fill: darken($color, 40%);
-    }
-    &-lighten-1 {
-      fill: lighten($color, 10%);
-    }
-    &-lighten-2 {
-      fill: lighten($color, 20%);
-    }
-    &-lighten-3 {
-      fill: lighten($color, 30%);
-    }
-    &-lighten-4 {
-      fill: lighten($color, 40%);
     }
   }
 }
 
-.v--title {
+.is-title {
   font-style: normal;
   font-variant-ligatures: normal;
   font-variant-caps: normal;
@@ -258,38 +189,18 @@
   font-weight: bold;
 }
 
-.v--text {
+.is-text {
   font-size: 16px;
   line-height: 24px;
 }
 
-.v--text-small {
+.is-text-small {
   font-size: 14px;
   line-height: 20px;
 }
 
-.v--disable-scrolling {
+.is-scrolling-disabled {
   overflow-y: hidden;
   position: relative;
   height: 100%;
-}
-
-.v--fade-enter-active,
-.v--fade-leave-active {
-  transition: opacity $animation-time;
-}
-
-.v--fade-enter,
-.v--fade-leave-to {
-  opacity: 0;
-}
-
-.v--slide-down-enter-active,
-.v--slide-down-leave-active {
-  transition: transform $animation-time ease-in-out;
-  transform-origin: top;
-}
-.v--slide-down-enter,
-.v--slide-down-leave-to {
-  transform: scaleY(0);
 }

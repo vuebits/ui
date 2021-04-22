@@ -1,29 +1,44 @@
 // margins, paddings ect.
-$sp: 5px;
+$sp: 4px !default;
+$sp-xs: $sp !default;
+$sp-sm: 2 * $sp !default;
+$sp-md: 3 * $sp !default;
+$sp-lg: 4 * $sp !default;
+$sp-xl: 6 * $sp !default;
+
+$spacings: (
+  xs: $sp-xs,
+  sm: $sp-sm,
+  md: $sp-md,
+  lg: $sp-lg,
+  xl: $sp-xl
+) !default;
+
+$sp-modal: $sp-lg !default;
 
 // borders
-$border-radius-main: $sp;
-$border-radius-large: 2 * $sp;
+$border-radius-main: $sp !default;
+$border-radius-large: 2 * $sp !default;
 $border-radius-round: 10000px !default;
-$border-width: 2px;
+$border-width: 2px !default;
 
 // z-index
-$layer-modal: 100;
-$layer-dropdown: 5;
-$layer-toolbar: 10;
-$layer-notifications: 1000;
+$layer-modal: 100 !default;
+$layer-dropdown: 5 !default;
+$layer-toolbar: 10 !default;
+$layer-notifications: 1000 !default;
 
 // button sizes
 $button-size-sm: 30px !default;
 $button-size-md: 40px !default;
 $button-size-lg: 55px !default;
 
-//Shadows
-$shadow-deep: 0 3px 6px 2px rgba($color-black, .3);
-$shadow-main: 0 2px 4px 0 rgba($color-black, .17);
-$shadow-tiny: 0 1px 2px 0 rgba($color-black, .1);
-$shadow-bottom: 0 0 5px 2px rgba($color-black, .17);
-$shadow-bottom-tiny: 0 1px 2px 1px rgba($color-black, .1);
+// shadows
+$shadow-deep: 0 3px 6px 2px rgba($color-black, .3) !default;
+$shadow-main: 0 2px 4px 0 rgba($color-black, .17) !default;
+$shadow-tiny: 0 1px 2px 0 rgba($color-black, .1) !default;
+$shadow-bottom: 0 0 5px 2px rgba($color-black, .17) !default;
+$shadow-bottom-tiny: 0 1px 2px 1px rgba($color-black, .1) !default;
 
 $colors: (
   white: $color-white,
@@ -39,13 +54,18 @@ $colors: (
   warning: $color-warning,
   disabled: $color-disabled,
   light: $color-bg
-);
+) !default;
 
-//animation times
-$animation-time-short: 100ms !default;
+// animation times
+$animation-time-short: 50ms !default;
 $animation-time: 150ms !default;
 $animation-time-long: 300ms !default;
 
-//transitions
-$transition-fast-ease: all $animation-time-short ease;
-$hover-transition: all $animation-time-long ease-in-out;
+// transitions
+$transition-fast-ease: all $animation-time-short ease !default;
+$hover-transition: all $animation-time-long ease-in-out !default;
+
+// font-sizes
+$font-size-input: 16px !default;
+$font-size-input-label: 12px !default;
+
