@@ -38,7 +38,7 @@
     "component:create": "node ./utils/component/scripts/create"
   },
   "dependencies": {
-    "@fontsource/abel": "^4.2.2",
+    "@fontsource/ubuntu": "^4.2.2",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "core-js": "^3.6.5",
     "highlight.js": "^10.6.0",
