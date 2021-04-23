@@ -16,6 +16,10 @@ export const componentsRoutes = [
     label: 'Checkbox'
   },
   {
+    name: 'Grid',
+    label: 'Grid'
+  },
+  {
     name: 'Icon',
     label: 'Icon'
   },

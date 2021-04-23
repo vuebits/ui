@@ -8,7 +8,7 @@ $simple-flex-max-elements: 4 !default;
   &--spacings-sm {
     margin: 0 -$sp;
 
-    .v-simple-grid-item {
+    > .v-simple-grid-item {
       padding: 0 $sp;
     }
 
@@ -18,7 +18,7 @@ $simple-flex-max-elements: 4 !default;
     margin: 0 -2 * $sp;
     padding: 0;
 
-    .v-simple-grid-item {
+    > .v-simple-grid-item {
       padding: 0 2 * $sp;
     }
 
@@ -28,7 +28,7 @@ $simple-flex-max-elements: 4 !default;
     margin: 0 -4 * $sp;
     padding: 0;
 
-    .v-simple-grid-item {
+    > .v-simple-grid-item {
       padding: 0 4 * $sp;
     }
 

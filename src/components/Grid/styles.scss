@@ -5,7 +5,7 @@
   &--spacings-sm {
     margin: 0 -$sp;
 
-    .v-grid-item {
+    > .v-grid-item {
       padding: 0 $sp;
     }
 
@@ -15,7 +15,7 @@
     margin: 0 -2 * $sp;
     padding: 0;
 
-    .v-grid-item {
+    > .v-grid-item {
       padding: 0 2 * $sp;
     }
 
@@ -25,7 +25,7 @@
     margin: 0 -4 * $sp;
     padding: 0;
 
-    .v-grid-item {
+    > .v-grid-item {
       padding: 0 4 * $sp;
     }
 

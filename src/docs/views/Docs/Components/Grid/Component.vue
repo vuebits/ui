@@ -4,13 +4,17 @@
       Checkbox
     </PageHeader>
     <Example />
-    <ComponentApi :component="component" />
+    <ComponentApi :component="componentGrid" />
+    <ComponentApi :component="componentGridItem" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { VCheckbox } from '@/components';
+import {
+  VGrid,
+  VGridItem
+} from '@/components';
 import Example from './Example.vue';
 import {
   PageHeader,
@@ -18,7 +22,7 @@ import {
 } from '@/docs/components';
 
 export default defineComponent({
-  name: 'DocsComponentsCheckbox',
+  name: 'DocsComponentsGrid',
   components: {
     PageHeader,
     ComponentApi,
@@ -26,7 +30,8 @@ export default defineComponent({
   },
   data () {
     return {
-      component: VCheckbox
+      componentGrid: VGrid,
+      componentGridItem: VGridItem
     };
   }
 });
