@@ -3,7 +3,7 @@
     id="example"
     title="Example"
   >
-    <Preview>
+    <Preview height="200px">
       <VAsyncContent
         :loading="loading"
         :error="error"
@@ -13,7 +13,7 @@
         :error-text="errorText"
         :reload-text="reloadText"
       >
-        Configure me
+        Some content here...
       </VAsyncContent>
     </Preview>
     <template #controls>
@@ -80,7 +80,7 @@ export default {
   data () {
     return {
       iconSizes,
-      loading: false,
+      loading: true,
       error: false,
       reloadable: false,
       spinnerSize: '2x',
@@ -88,6 +88,11 @@ export default {
       errorText: 'error text',
       reloadText: 'reload text'
     };
+  },
+  mounted () {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   }
 };
 </script>
