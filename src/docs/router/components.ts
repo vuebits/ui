@@ -46,5 +46,9 @@ export const componentsRoutes = [
   {
     name: 'Toolbar',
     label: 'Toolbar'
+  },
+  {
+    name: 'Tooltip',
+    label: 'Tooltip'
   }
 ];

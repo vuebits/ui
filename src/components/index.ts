@@ -24,3 +24,4 @@ export * from './Tile';
 export * from './Toolbar';
 export * from './Wrapper';
 export * from './FileUploader';
+export * from './Tooltip';
