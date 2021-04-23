@@ -2,7 +2,6 @@
   <Sandbox
     id="example"
     title="Example"
-    height="400px"
   >
     <Preview>
       <div>

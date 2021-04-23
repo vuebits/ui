@@ -12,6 +12,10 @@ export const componentsRoutes = [
     label: 'Button'
   },
   {
+    name: 'Checkbox',
+    label: 'Checkbox'
+  },
+  {
     name: 'Icon',
     label: 'Icon'
   },

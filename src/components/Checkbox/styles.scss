@@ -26,8 +26,12 @@ $checkbox-size: 24px !default;
     align-items: center;
     color: $color-white;
 
-    &--unchecked {
+    &--light {
       background-color: $color-input-bg;
+    }
+
+    &--dark {
+      background-color: $color-theme-dark;
     }
 
     &--rounded {
@@ -36,6 +40,10 @@ $checkbox-size: 24px !default;
 
     &--bordered {
       border: set-border();
+    }
+
+    &--disabled {
+      opacity: 0.5;
     }
 
     &--error {

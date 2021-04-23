@@ -2,9 +2,8 @@
   <Sandbox
     id="example"
     title="Example"
-    height="400px"
   >
-    <Preview style="height: 300px;">
+    <Preview>
       <VButton
         :href="href"
         :new-window="newWindow"

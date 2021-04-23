@@ -4,18 +4,16 @@
     title="Example"
   >
     <Preview>
-      <VTextarea
-        v-model="text"
+      <VCheckbox
+        id="checkbox-demo"
+        v-model="isChecked"
         :bordered="bordered"
-        :round="round"
         :rounded="rounded"
-        :rounded-lg="roundedLg"
         :dark="dark"
         :light="light"
         :disabled="disabled"
-        :left-icon="leftIcon !== 'none' ? leftIcon : null"
-        :right-icon="rightIcon !== 'none' ? rightIcon : null"
         :error="error"
+        :label="label"
       />
     </Preview>
     <template #controls>
@@ -37,26 +35,12 @@
           label="Rounded"
         />
         <KnobBoolean
-          v-model="roundedLg"
-          label="Rounded large"
-        />
-        <KnobBoolean
-          v-model="round"
-          label="Round"
-        />
-        <KnobBoolean
           v-model="disabled"
           label="Disabled"
         />
-        <KnobListItem
-          v-model="leftIcon"
-          :items="icons"
-          label="Left icon"
-        />
-        <KnobListItem
-          v-model="rightIcon"
-          :items="icons"
-          label="Right icon"
+        <KnobString
+          v-model="label"
+          label="Label"
         />
         <KnobString
           v-model="error"
@@ -72,30 +56,26 @@ import {
   Preview,
   Sandbox,
   Knobs,
-  KnobListItem,
   KnobBoolean,
   KnobString
 } from '@/docs/components';
 import {
-  VTextarea
+  VCheckbox
 } from '@/components';
-import { icons } from '@/docs/helpers/story-params';
 
 export default {
-  name: 'TextareaExample',
+  name: 'CheckboxExample',
   components: {
     Preview,
     Sandbox,
     Knobs,
-    KnobListItem,
     KnobBoolean,
     KnobString,
-    VTextarea
+    VCheckbox
   },
   data () {
     return {
-      icons,
-      text: 'some text...',
+      isChecked: true,
       bordered: false,
       round: false,
       rounded: true,
@@ -104,10 +84,9 @@ export default {
       dark: false,
       light: true,
       disabled: false,
-      leftIcon: 'none',
-      rightIcon: 'none',
       error: '',
-      hint: ''
+      hint: '',
+      label: 'some label...'
     };
   }
 };

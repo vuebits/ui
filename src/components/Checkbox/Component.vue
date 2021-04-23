@@ -7,6 +7,7 @@
       v-model="selectedValue"
       :class="$bem({e: 'input'})"
       type="checkbox"
+      :disabled="disabled"
     >
     <label
       :class="$bem({e: 'label'})"
@@ -33,7 +34,8 @@ import { VIcon } from '@/components/Icon';
 import { CssClass } from '@/helpers/css-classes';
 import {
   roundedProps,
-  borderedProps
+  borderedProps,
+  themeProps
 } from '@/composition-functions';
 
 export default defineComponent({
@@ -58,8 +60,13 @@ export default defineComponent({
       type: String as PropType<string>,
       default: 'primary'
     },
+    disabled: {
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
     ...roundedProps,
-    ...borderedProps
+    ...borderedProps,
+    ...themeProps
   },
   emits: ['update:modelValue', 'change'],
   computed: {
@@ -79,7 +86,10 @@ export default defineComponent({
           m: {
             rounded: this.rounded,
             unchecked: !this.modelValue,
-            bordered: this.bordered
+            bordered: this.bordered,
+            dark: this.dark,
+            light: this.light,
+            disabled: this.disabled
           }
         }),
         ...bgClassName
