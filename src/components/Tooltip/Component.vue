@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
+import { defineComponent, PropType, toRefs, nextTick } from 'vue';
 import {
   colorClass,
   CssClass
@@ -157,6 +157,9 @@ export default defineComponent({
       ];
     }
   },
+  beforeUnmount () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     centerTooltip (tooltip: HTMLElement, activatorRect: DOMRect): void {
       const tooltipRect: DOMRect = tooltip.getBoundingClientRect();
@@ -183,20 +186,27 @@ export default defineComponent({
       const activator: HTMLElement = this.$refs.activator as HTMLElement;
       const activatorRect: DOMRect = activator.getBoundingClientRect();
       const tooltip: HTMLElement = this.$refs.tooltip as HTMLElement;
-      this.centerTooltip(tooltip, activatorRect);
-      this.stickTooltipToActivator(tooltip, activatorRect);
-      this.slideTooltipFromWindowEdge(tooltip);
+      if (tooltip) {
+        this.centerTooltip(tooltip, activatorRect);
+        this.stickTooltipToActivator(tooltip, activatorRect);
+        this.slideTooltipFromWindowEdge(tooltip);
+      }
+    },
+    handleScroll (): void {
+      this.calculatePosition();
     },
     open (): void {
       this.isHidden = true;
       this.isActive = true;
-      setTimeout(() => {
+      window.addEventListener('scroll', this.handleScroll);
+      nextTick(() => {
         this.calculatePosition();
         this.isHidden = false;
         this.$emit('open');
       });
     },
     close (): void {
+      window.removeEventListener('scroll', this.handleScroll);
       this.isActive = false;
       this.$emit('close');
     },
