@@ -33,7 +33,7 @@ import { createUI } from '@vuebits/ui';
     </p>
     <CodeBlock
       language="bash"
-      code="@fortawesome/fontawesome-free"
+      code="npm i @fortawesome/fontawesome-free"
     />
     <p class="docs--p">
       and import icons in your styles:
