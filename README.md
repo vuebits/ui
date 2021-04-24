@@ -33,8 +33,6 @@
 
 `npm i @vuebits/ui` / `yarn add @vuebits/ui`
 
-And install in your entry file (e.g. `main.js`):
-
 ## Quick start
 
 Add library to your Vue 3 app in entry file (eg. main.js):
