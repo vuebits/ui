@@ -9,7 +9,7 @@
         Vuebits UI
       </h1>
       <div :class="$bem({e: 'subtitle'})">
-        Vue 3 components library
+        Open source Vue 3 components library written in TypeScript and Sass
       </div>
       <VSimpleGrid :elements-md="3">
         <VSimpleGridItem>
