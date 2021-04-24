@@ -15,8 +15,19 @@
 
 ## Table of Contents
 
-* [Installation](#installation)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick start](#quick-start)
 
+## Features
+- 35+ UI components,
+- directives,
+- customizable styles (sass variables),
+- internationalization,
+- support for font awesome icons,
+- typescript support,
+- helper css classes,
+- ... and more
 
 ## Installation
 
@@ -24,9 +35,40 @@
 
 And install in your entry file (e.g. `main.js`):
 
+## Quick start
+
+Add library to your Vue 3 app in entry file (eg. main.js):
+
 ```javascript
+import { createApp } from 'vue';
+import App from './App.vue';
 import { createUI } from '@vuebits/ui';
 
-createApp(App).use(createUI({ /* your config here */ })).mount('#app');
+(async () => {
+  const app = createApp(App);
+  app
+    .use(createUI({}))
+    .mount('#app');
+})();
 ```
 
+Import stylesheet file:
+
+```scss
+@import '~@vuebits/ui/styles';
+```
+
+Install fontawesome icons in your project:
+
+```bash
+npm i @fortawesome/fontawesome-free
+```
+
+and import icons in your styles:
+
+```scss
+@import '~@fortawesome/fontawesome-free/css/all.css';
+```
+
+## License
+[MIT](https://opensource.org/licenses/MIT)
