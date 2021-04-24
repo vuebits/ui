@@ -14,6 +14,9 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Quick start](#quick-start)
+- 
+## Documentation
+To check out docs, visit (vuebits-ui.github.io)[https://vue-crud.github.io/] page.
 
 ## Features
 - 35+ UI components,
