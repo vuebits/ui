@@ -56,6 +56,26 @@ export const componentsRoutes = [
     label: 'Notificator'
   },
   {
+    name: 'Select',
+    label: 'Select'
+  },
+  {
+    name: 'SimpleGrid',
+    label: 'Simple grid'
+  },
+  {
+    name: 'Spinner',
+    label: 'Spinner'
+  },
+  {
+    name: 'Table',
+    label: 'Table'
+  },
+  {
+    name: 'Tabs',
+    label: 'Tabs'
+  },
+  {
     name: 'Textarea',
     label: 'Textarea'
   },
