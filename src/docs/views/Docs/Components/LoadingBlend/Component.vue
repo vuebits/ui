@@ -1,37 +1,35 @@
 <template>
   <div :class="$bem({})">
     <PageHeader>
-      Infinite scroll
+      Loading blend
     </PageHeader>
-    <InifiniteScrollExample />
+    <LoadingBlendExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { VInfiniteScroll } from '@/components';
-import InifiniteScrollExample from './Example.vue';
+import { VLoadingBlend } from '@/components';
+import LoadingBlendExample from './Example.vue';
 import {
   PageHeader,
   ComponentApi
 } from '@/docs/components';
-
 export default defineComponent({
-  name: 'DocsComponentsInfiniteScroll',
+  name: 'DocsComponentsLoadingBlend',
   components: {
     PageHeader,
     ComponentApi,
-    InifiniteScrollExample
+    LoadingBlendExample
   },
   data () {
     return {
-      component: VInfiniteScroll
+      component: VLoadingBlend
     };
   }
 });
 </script>
 
 <style lang="scss">
-
 </style>

@@ -1,37 +1,36 @@
 <template>
   <div :class="$bem({})">
     <PageHeader>
-      Infinite scroll
+      Notification
     </PageHeader>
-    <InifiniteScrollExample />
+    <NotificationExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { VInfiniteScroll } from '@/components';
-import InifiniteScrollExample from './Example.vue';
+import { VNotification } from '@/components';
+import NotificationExample from './Example.vue';
 import {
   PageHeader,
   ComponentApi
 } from '@/docs/components';
 
 export default defineComponent({
-  name: 'DocsComponentsInfiniteScroll',
+  name: 'DocsComponentsNotification',
   components: {
     PageHeader,
     ComponentApi,
-    InifiniteScrollExample
+    NotificationExample
   },
   data () {
     return {
-      component: VInfiniteScroll
+      component: VNotification
     };
   }
 });
 </script>
 
 <style lang="scss">
-
 </style>

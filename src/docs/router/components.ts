@@ -16,6 +16,10 @@ export const componentsRoutes = [
     label: 'Checkbox'
   },
   {
+    name: 'FileUploader',
+    label: 'File uploader'
+  },
+  {
     name: 'Grid',
     label: 'Grid'
   },
@@ -36,12 +40,20 @@ export const componentsRoutes = [
     label: 'Input'
   },
   {
-    name: 'FileUploader',
-    label: 'File uploader'
+    name: 'LoadingBlend',
+    label: 'Loading blend'
   },
   {
     name: 'Modal',
     label: 'Modal'
+  },
+  {
+    name: 'Notification',
+    label: 'Notification'
+  },
+  {
+    name: 'Notificator',
+    label: 'Notificator'
   },
   {
     name: 'Textarea',

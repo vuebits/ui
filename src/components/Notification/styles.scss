@@ -1,17 +1,14 @@
 .v-notification {
   $notification-padding: 4 * $sp;
+  $notification-line-height: 20px;
 
   display: flex;
   overflow: hidden;
   max-width: calc(100vw - #{6 * $sp});
-  background-color: $color-white;
+  background-color: rgba($color-white, 0.2);
   border: set-border();
-  border-left: set-border($color-border, 2 * $sp);
-  box-shadow: $shadow-deep;
-
-  &--rounded {
-    border-radius: $border-radius-main;
-  }
+  box-shadow: $shadow-main;
+  color: $color-theme-light-font;
 
   &--sm {
     width: 360px;
@@ -44,11 +41,17 @@
   }
 
   &__content {
-    display: flex;
-    align-items: center;
+    line-height: $notification-line-height;
     flex-grow: 1;
-    text-align: left;
     border-radius: $border-radius-main;
     padding: $notification-padding;
+  }
+
+  &__close-wrapper {
+    height: 2 * $notification-padding + $notification-line-height;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2 * $sp;
   }
 }

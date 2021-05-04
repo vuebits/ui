@@ -5,21 +5,30 @@
     data-test="notification"
   >
     <div :class="$bem({e: 'content'})">
-      <span v-html="message" />
+      <slot>
+        <span v-html="message" />
+      </slot>
     </div>
-    <VIconButton
-      icon="close"
-      rounded
-      :class="$bem({e: 'close'})"
-      @click="remove"
-    />
+    <div :class="$bem({e: 'close-wrapper'})">
+      <VIconButton
+        icon="times"
+        rounded
+        hoverable
+        :class="$bem({e: 'close'})"
+        @click="remove"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, toRefs } from 'vue';
 import { VIconButton } from '@/components';
 import { CssClass } from '@/helpers/css-classes';
+import {
+  roundedProps,
+  useRounded
+} from '@/composition-functions';
 import { NotificationTypeName, NotificationType } from './models';
 
 export default defineComponent({
@@ -51,12 +60,20 @@ export default defineComponent({
       type: Number as PropType<number | null>,
       default: null
     },
-    rounded: {
-      type: Boolean as PropType<boolean>,
-      default: false
-    }
+    ...roundedProps
   },
   emits: ['remove'],
+  setup (props) {
+    const {
+      rounded,
+      roundedLg,
+      round
+    } = toRefs(props);
+
+    return {
+      roundedClass: useRounded(rounded, roundedLg, round)
+    };
+  },
   computed: {
     style (): any {
       return this.width ? { width: `${this.width}px` } : {};
@@ -66,10 +83,10 @@ export default defineComponent({
         ...this.$bem({
           m: {
             [this.size]: true,
-            rounded: this.rounded,
             [this.type]: true
           }
-        })
+        }),
+        this.roundedClass
       ];
     }
   },
