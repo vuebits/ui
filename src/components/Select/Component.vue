@@ -39,6 +39,7 @@
         <VIcon
           name="caret-down"
           :class="arrowClasses"
+          is-internal
         />
       </div>
     </div>

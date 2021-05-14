@@ -19,6 +19,7 @@
         <VIcon
           v-if="selectedValue"
           name="check"
+          is-internal
         />
       </span>
       <slot>

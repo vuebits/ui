@@ -6,6 +6,7 @@
     <VIcon
       name="bars"
       :class="$bem({e: 'icon'})"
+      is-internal
     />
   </span>
 </template>

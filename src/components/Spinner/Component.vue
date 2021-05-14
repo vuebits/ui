@@ -3,6 +3,7 @@
     name="spinner"
     pulse
     :size="size"
+    is-internal
   />
 </template>
 

@@ -24,6 +24,7 @@
         :class="$bem({e: 'error-icon'})"
         size="3x"
         name="exclamation-triangle"
+        is-internal
       />
       <p
         :class="$bem({e: 'error-text'})"

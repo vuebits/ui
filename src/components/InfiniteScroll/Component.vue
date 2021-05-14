@@ -26,6 +26,7 @@
           <VIcon
             :name="completeIcon"
             color="success"
+            is-internal
 
             :class="$bem({e: 'status-icon'})"
           />
@@ -41,6 +42,7 @@
           <VIcon
             :name="errorIcon"
             color="error"
+            is-internal
 
             :class="$bem({e: 'status-icon'})"
           />

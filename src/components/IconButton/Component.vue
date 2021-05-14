@@ -20,6 +20,7 @@
       v-if="!loading"
       :name="icon"
       :type="iconType"
+      :prefix="iconPrefix"
     />
   </VButton>
 </template>
@@ -49,6 +50,10 @@ export default defineComponent({
       default: ''
     },
     iconType: {
+      type: String as PropType<string | undefined>,
+      default: undefined
+    },
+    iconPrefix: {
       type: String as PropType<string | undefined>,
       default: undefined
     },

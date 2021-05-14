@@ -25,6 +25,7 @@
         <VIcon
           name="file-import"
           :class="$bem({e: 'upload-icon'})"
+          is-internal
         />
       </slot>
     </VTile>
