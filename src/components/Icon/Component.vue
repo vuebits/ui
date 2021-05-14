@@ -17,11 +17,11 @@ export default defineComponent({
     },
     prefix: {
       type: String as PropType<string>,
-      default: 'fa-'
+      default: ''
     },
     type: {
       type: String as PropType<string>,
-      default: 'fa'
+      default: ''
     },
     size: {
       type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
@@ -36,36 +36,53 @@ export default defineComponent({
       default: null
     },
     pulse: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       default: false
     },
     spin: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
+      default: false
+    },
+    isInternal: {
+      type: Boolean as PropType<boolean>,
       default: false
     }
   },
   computed: {
+    computedPrefix (): string {
+      return this.prefix || this.$ui.icons.prefix;
+    },
+    computedType (): string {
+      return this.type || this.$ui.icons.type;
+    },
     classes (): CssClass[] {
-      const iconClass = `${this.prefix}${this.name}`;
-      const typeClass = this.type;
-      const iconClasses = [typeClass, iconClass];
-      if (this.size) {
-        iconClasses.push(`${this.prefix}${this.size}`);
+      let iconClasses = [];
+      let predefinedIcon = null;
+      if (this.isInternal) {
+        predefinedIcon = this.$ui.icons.values[this.name] || null;
       }
-      if (this.rotate) {
-        iconClasses.push(`${this.prefix}rotate-${this.rotate}`);
+      if (predefinedIcon) {
+        iconClasses = predefinedIcon.split(' ');
+      } else {
+        iconClasses = [`${this.computedPrefix}${this.name}`, this.computedType];
       }
-      if (this.flip) {
-        iconClasses.push(`${this.prefix}flip-${this.flip}`);
-      }
-      if (this.spin) {
-        iconClasses.push(`${this.prefix}spin`);
-      }
-      if (this.pulse) {
-        iconClasses.push(`${this.prefix}pulse`);
-      }
-      return [...this.$bem({}), ...iconClasses];
+      return [
+        ...this.$bem({
+          m: {
+            [`size-${this.size}`]: !!this.size,
+            [`rotate-${this.rotate}`]: !!this.rotate,
+            [`flip-${this.flip}`]: !!this.flip,
+            pulse: this.pulse,
+            spin: this.spin
+          }
+        }),
+        ...iconClasses
+      ];
     }
   }
 });
 </script>
+
+<style lang="scss">
+@import './styles';
+</style>

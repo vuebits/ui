@@ -1,55 +1,67 @@
 .v-icon {
   display: inline-block;
-  vertical-align: middle;
-  height: 1em;
-  width: 1em;
-  fill: currentColor;
-  &--spin {
-    animation: spin 2s infinite linear;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+
+  &--size-lg {
+    font-size: (4em / 3);
+    line-height: (3em / 4);
+    vertical-align: -.0667em;
   }
-  &--pulse {
-    animation: spin 1s infinite steps(8);
+  
+  &--size-xs {
+    font-size: .75em;
   }
-  @for $i from 2 through 10 {
-    &--#{$i}x {
-    height: #{$i}em;
-    width: #{$i}em;
+  
+  &--size-sm {
+    font-size: .875em;
+  }
+  
+  @for $i from 1 through 10 {
+    &--size-#{$i}x {
+      font-size: $i * 1em;
     }
   }
-  &--lg {
-    height: (4em / 3);
-    width: (4em / 3);
-    vertical-align: -25%;
+
+  &--rotate-90  { 
+    transform: rotate(90deg);
+  }
+  &--rotate-180  { 
+    transform: rotate(180deg);
+  }
+  &--rotate-270  { 
+    transform: rotate(270deg);
   }
 
-  &--xs {
-    height: .75em;
-    width: .75em;
+  &--flip-horizontal { 
+    transform: scale(-1, 1);
   }
-
-  &--sm {
-    height: .875em;
-    width: .875em;
+  &--flip-vertical   { 
+    transform: scale(1, -1);
   }
-  &--flip-horizontal 
-  {
-    transform: scaleX(-1);
-  }
-  &--flip-vertical {
-    transform: scaleY(-1);
-  }
-  &--flip-both
-  {
+  &--flip-both {
     transform: scale(-1, -1);
   }
+
+
+  &--spin {
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+  
+  &--pulse {
+    animation: spin 1s steps(8) infinite;
+  }
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-  }
