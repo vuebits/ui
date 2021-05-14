@@ -12,6 +12,8 @@
         :items="propsItems"
         bordered
         padding="sm"
+        fixed-header
+        :class="$bem({e: 'table'})"
       />
     </div>
     <div :class="$bem({e: 'emits-wrapper'})">
@@ -23,6 +25,8 @@
         :items="emitsItems"
         bordered
         padding="sm"
+        fixed-header
+        :class="$bem({e: 'table'})"
       />
     </div>
   </div>
@@ -115,6 +119,10 @@ export default defineComponent({
 
   &__emits-header {
     margin-bottom: 3 * $sp;
+  }
+
+  &__table {
+    max-height: 300px;
   }
 }
 </style>
