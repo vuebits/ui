@@ -3,45 +3,38 @@
     <h3 :class="$bem({e: 'name'})">
       {{ component.name }}
     </h3>
-    <VTile
-      ref="tile"
-      bordered
-      rounded
-      :class="$bem({e: 'content'})"
-    >
-      <div :class="$bem({e: 'props-wrapper'})">
-        <h4 :class="$bem({e: 'props-header'})">
-          Props
-        </h4>
-        <VTable
-          :headers="propsHeaders"
-          :items="propsItems"
-        />
-      </div>
-      <div :class="$bem({e: 'emits-wrapper'})">
-        <h4 :class="$bem({e: 'emits-header'})">
-          Emits
-        </h4>
-        <VTable
-          :headers="emitsHeaders"
-          :items="emitsItems"
-        />
-      </div>
-    </VTile>
+    <div :class="$bem({e: 'props-wrapper'})">
+      <h4 :class="$bem({e: 'props-header'})">
+        Props
+      </h4>
+      <VTable
+        :headers="propsHeaders"
+        :items="propsItems"
+        bordered
+        padding="sm"
+      />
+    </div>
+    <div :class="$bem({e: 'emits-wrapper'})">
+      <h4 :class="$bem({e: 'emits-header'})">
+        Emits
+      </h4>
+      <VTable
+        :headers="emitsHeaders"
+        :items="emitsItems"
+        bordered
+        padding="sm"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, DefineComponent } from 'vue';
-import {
-  VTile,
-  VTable
-} from '@/components';
+import { VTable } from '@/components';
 
 export default defineComponent({
   name: 'ComponentApi',
   components: {
-    VTile,
     VTable
   },
   props: {

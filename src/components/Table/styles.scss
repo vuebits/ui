@@ -1,5 +1,8 @@
 .v-table {
   $compact-mode-max-width: 1000px;
+  
+  overflow-y: auto;
+  position: relative;
 
   &__table {
     width: 100%;
@@ -26,97 +29,59 @@
   }
 
   &__table-header-cell {
-    padding: $sp;
-    border-bottom: set-border();
-  }
-
-  &__table-row {
-
-    @media (max-width: $compact-mode-max-width) {
-      margin-bottom: 4 * $sp;
-      border: set-border();
-      border-radius: $sp;
-    }
-
-    &:hover {
-      background-color: $color-grey-light;
-    }
-  }
-
-  &__table-cell {
-    padding: $sp;
-    border-bottom: set-border();
-
-    @media (max-width: $compact-mode-max-width) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-
-      &:last-of-type {
-        border-bottom: 0;
-      }
-
-      &::before {
-        content: var(--header);
-        font-weight: bold;
-        width: 20%;
-        min-width: 150px;
-        margin-right: 3 * $sp;
-      }
-    }
-  }
-
-  &__table,
-  &__table-header-row,
-  &__table-header-cell,
-  &__table-body,
-  &__table-row,
-  &__table-cell {
-    @media (max-width: $compact-mode-max-width) {
-      display: block;
-    }
-  }
-
-  &__table-header {
     text-align: left;
+    box-shadow: 0 $border-width 0 $color-border;
+    
+    &--fixed {
+      background-color: $color-theme-light;
+      color: $color-theme-light-font;
+      position: sticky;
+      top: 0;
 
-    @media (max-width: $compact-mode-max-width) {
-      display: none;
+      @media (max-width: $compact-mode-max-width) {
+        position: relative;
+      }
     }
-  }
-
-  &__table-header-cell {
-    padding: $sp;
-    border-bottom: set-border();
   }
 
   &__table-row {
 
-    @media (max-width: $compact-mode-max-width) {
-      margin-bottom: 2 * $sp;
-      border: set-border();
-      border-radius: $sp;
+    &--clickable {
+      cursor: pointer;
     }
 
-    &:hover {
-      background-color: $color-grey-light;
+    &--expanded {
+
+      &:not(:hover) {
+        & > td {
+          color: $color-theme-light-font;
+          background-color: $color-input-bg;
+        }
+      }
+    }
+
+    &:not(:first-of-type) {
+      & > td {
+        border-top: set-border();
+      }
+    }
+
+    @media (max-width: $compact-mode-max-width) {
+      & > td {
+        &:not(:first-of-type) {
+          border-top: $border-width dotted $color-border;
+        }
+      }
     }
   }
 
   &__table-cell {
-    padding: $sp;
-    border-bottom: set-border();
 
     @media (max-width: $compact-mode-max-width) {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
-
-      &:last-of-type {
-        border-bottom: 0;
-      }
 
       &::before {
         content: var(--header);
@@ -125,6 +90,18 @@
         min-width: 150px;
         margin-right: 3 * $sp;
       }
+    }
+
+    &--action {
+      width: 0.1%;
+
+      @media (max-width: $compact-mode-max-width) {
+        width: 100%;
+      }
+    }
+
+    &--hidden {
+      visibility: hidden;
     }
   }
 }
