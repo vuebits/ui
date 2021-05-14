@@ -4,19 +4,21 @@
   justify-content: center;
   align-items: center;
   transition: $hover-transition;
-  padding: 0 $sp;
 
   &--sm {
     height: 20px;
     font-size: 12px;
+    padding: 0 2 * $sp;
   }
 
   &--md {
-    height: 40px;
+    height: 30px;
+    padding: 0 3 * $sp;
   }
 
   &--lg {
-    height: 55px;
+    height: 40px;
+    padding: 0 4 * $sp;
   }
 
   &--disabled {

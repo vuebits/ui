@@ -8,6 +8,10 @@ export const componentsRoutes = [
     label: 'Autocomplete'
   },
   {
+    name: 'Badge',
+    label: 'Badge'
+  },
+  {
     name: 'Button',
     label: 'Button'
   },
