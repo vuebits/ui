@@ -1,6 +1,6 @@
 {
   "name": "@vuebits/ui",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Vue 3 components library",
   "main": "./dist/vuebits-ui.common.js",
   "module": "./dist/vuebits-ui.common.js",
