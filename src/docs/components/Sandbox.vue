@@ -77,7 +77,6 @@ export default {
 
   &__wrapper {
     margin: 4 * $sp;
-    border: set-border();
   }
 
   &__controls {
