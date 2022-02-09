@@ -15,7 +15,7 @@
   }
 
   &__logo {
-    height: 10rem;
+    height: 20rem;
   }
 
   &__title {
@@ -26,13 +26,15 @@
   &__subtitle {
     font-weight: normal;
     font-size: 2.5rem;
-    margin-bottom: 5 * $sp;
+    margin-bottom: 10 * $sp;
+
   }
 
   &__features {
     align-items: stretch;
     width: 120rem;
     max-width: 100%;
+    margin-bottom: 10 * $sp;
   }
 
   &__feature {
