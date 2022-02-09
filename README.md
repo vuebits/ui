@@ -20,12 +20,12 @@
 To check out docs, visit [vuebits-ui.github.io](https://vuebits-ui.github.io/) page.
 
 ## Features
-- 35+ UI components,
+- 45+ UI components,
 - directives,
 - customizable styles (sass variables),
 - internationalization,
-- support for font awesome icons,
-- typescript support,
+- compatibility with all popular icon systems,
+- full typescript support,
 - helper css classes,
 - ... and more
 

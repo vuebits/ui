@@ -58,7 +58,7 @@ import {
   VIconButton,
 } from '@vuebits/ui';
 import { componentsRoutes } from '@/router/components';
-// import { stylesRoutes } from '@/router/styles';
+import { stylesRoutes } from '@/router/styles';
 import { gettingStartedRoutes } from '@/router/getting-started';
 import { RouteName } from '@/router/models';
 
@@ -80,11 +80,11 @@ export default defineComponent({
           label: 'Getting started',
           routes: gettingStartedRoutes,
         },
-        // {
-        //   name: RouteName.STYLES,
-        //   label: 'Styles',
-        //   routes: stylesRoutes
-        // },
+        {
+          name: RouteName.STYLES,
+          label: 'Styles',
+          routes: stylesRoutes,
+        },
         {
           name: RouteName.COMPONENTS,
           label: 'Components',
