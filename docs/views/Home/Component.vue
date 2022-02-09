@@ -12,7 +12,70 @@
         Open source Vue 3 components library written in TypeScript and Sass
       </div>
       <VSimpleGrid
-        :elements-md="3"
+        :elements-sm="2"
+        :elements-md="4"
+        spacings-size="lg"
+        :class="$bem({e: 'features'})"
+      >
+        <VSimpleGridItem>
+          <div :class="$bem({e: 'feature'})">
+            <VIcon
+              name="feather"
+              :class="$bem({e: 'feature-icon'})"
+            />
+            <h2 :class="$bem({e: 'feature-title'})">
+              Lightweight
+            </h2>
+            <p>
+              About 30KiB gzipped
+            </p>
+          </div>
+        </VSimpleGridItem>
+        <VSimpleGridItem>
+          <div :class="$bem({e: 'feature'})">
+            <VIcon
+              name="th"
+              :class="$bem({e: 'feature-icon'})"
+            />
+            <h2 :class="$bem({e: 'feature-title'})">
+              45+
+            </h2>
+            <p>
+              Awesome UI components
+            </p>
+          </div>
+        </VSimpleGridItem>
+        <VSimpleGridItem>
+          <div :class="$bem({e: 'feature'})">
+            <VIcon
+              name="code"
+              :class="$bem({e: 'feature-icon'})"
+            />
+            <h2 :class="$bem({e: 'feature-title'})">
+              TypeScript
+            </h2>
+            <p>
+              Full TypeScript support
+            </p>
+          </div>
+        </VSimpleGridItem>
+        <VSimpleGridItem>
+          <div :class="$bem({e: 'feature'})">
+            <VIcon
+              name="wrench"
+              :class="$bem({e: 'feature-icon'})"
+            />
+            <h2 :class="$bem({e: 'feature-title'})">
+              Fully customizable
+            </h2>
+            <p>
+              Extensive configuration options and many scss editable variables
+            </p>
+          </div>
+        </VSimpleGridItem>
+      </VSimpleGrid>
+      <VSimpleGrid
+        :elements-sm="3"
         :class="$bem({e: 'buttons'})"
       >
         <VSimpleGridItem>

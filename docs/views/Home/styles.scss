@@ -1,18 +1,21 @@
 .home {
+  width: 100%;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
-  width: 100%;
 
   &__content {
-    max-width: 80rem;
-    margin: 5 * $sp;
+    width: 100%;
+    padding: 5 * $sp;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   &__logo {
     height: 10rem;
-    margin: 20 * $sp 0;
   }
 
   &__title {
@@ -26,8 +29,32 @@
     margin-bottom: 5 * $sp;
   }
 
+  &__features {
+    align-items: stretch;
+    width: 120rem;
+    max-width: 100%;
+  }
+
+  &__feature {
+    padding: $sp-lg;
+    height: 100%;
+  }
+
+  &__feature-icon {
+    font-size: 3rem;
+    margin-bottom: $sp-lg;
+    color: $color-secondary;
+  }
+
+  &__feature-title {
+    font-size: 2rem;
+    margin-bottom: $sp-lg;
+  }
+
   &__buttons {
     align-items: center;
+    width: 80rem;
+    max-width: 100%;
   }
 
   &__button {
