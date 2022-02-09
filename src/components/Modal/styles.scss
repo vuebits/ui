@@ -26,7 +26,7 @@
   &__middle {
     display: flex;
     align-items: center;
-    
+
     &--fullscreen,
     &--left,
     &--right {
@@ -39,13 +39,13 @@
     flex-direction: column;
     background-color: $color-white;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 
     &--middle {
       max-width: calc(100vw - #{4 * $sp});
       max-height: calc(100vh - #{30 * $sp});
     }
-    
+
     &--fullscreen,
     &--left,
     &--right {
@@ -65,17 +65,29 @@
     }
 
     &--sm {
-      width: 360px;
+      width: 36rem;
     }
+
     &--md {
-      width: 570px;
+      width: 57rem;
     }
+
     &--lg {
-      width: 960px;
+      width: 96rem;
     }
 
     &:focus {
       outline: 0;
+    }
+
+    & > *:first-of-type {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    & > *:last-of-type {
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
     }
   }
 }

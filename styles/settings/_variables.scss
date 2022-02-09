@@ -1,5 +1,7 @@
+$root-font-size: 62.5% !default;
+
 // margins, paddings ect.
-$sp: 5px !default;
+$sp: 0.4rem !default;
 $sp-xs: $sp !default;
 $sp-sm: 2 * $sp !default;
 $sp-md: 3 * $sp !default;
@@ -17,10 +19,10 @@ $spacings: (
 $sp-modal: $sp-lg !default;
 
 // borders
-$border-radius-main: $sp !default;
-$border-radius-large: 2 * $sp !default;
-$border-radius-round: 10000px !default;
-$border-width: 2px !default;
+$border-radius-main: 2 * $sp !default;
+$border-radius-large: 4 * $sp !default;
+$border-radius-round: 40px !default;
+$border-width: 1px !default;
 
 // z-index
 $layer-modal: 100 !default;
@@ -28,17 +30,31 @@ $layer-dropdown: 5 !default;
 $layer-toolbar: 10 !default;
 $layer-notifications: 1000 !default;
 
-// button sizes
-$button-size-sm: 30px !default;
-$button-size-md: 40px !default;
-$button-size-lg: 55px !default;
+// field spacings
+$field-sp: 2 * $sp !default;
+
+// field sizes
+$field-size-sm: 3rem !default;
+$field-size-md: 4rem !default;
+$field-size-lg: 5.5rem !default;
+
+// icon sizes
+$icon-size-sm: 1.5rem !default;
+$icon-size-md: 2rem !default;
+$icon-size-lg: 2.5rem !default;
+
+// font sizes
+$font-size-sm: 1.2rem !default;
+$font-size-md: 1.5rem !default;
+$font-size-lg: 1.8rem !default;
 
 // shadows
-$shadow-deep: 0 3px 6px 2px rgba($color-black, .3) !default;
-$shadow-main: 0 2px 4px 0 rgba($color-black, .17) !default;
-$shadow-tiny: 0 1px 2px 0 rgba($color-black, .1) !default;
-$shadow-bottom: 0 0 5px 2px rgba($color-black, .17) !default;
-$shadow-bottom-tiny: 0 1px 2px 1px rgba($color-black, .1) !default;
+$shadow-deep: 0 3px 6px 2px rgba($color-black, 0.3) !default;
+$shadow-main: 0 3px 7px 0 rgba($color-black, 0.18) !default;
+$shadow-tiny: 0 1px 2px 0 rgba($color-black, 0.1) !default;
+$shadow-bottom: 0 0 5px 2px rgba($color-black, 0.17) !default;
+$shadow-bottom-tiny: 0 1px 2px 1px rgba($color-black, 0.1) !default;
+$shadow-depressed: inset 0 1px 3px rgba($color-black, 0.5) !default;
 
 $colors: (
   white: $color-white,
@@ -56,6 +72,11 @@ $colors: (
   light: $color-bg
 ) !default;
 
+$gradients: (
+  primary: ($color-primary-gradient-1, $color-primary-gradient-2),
+  secondary: ($color-secondary-gradient-1, $color-secondary-gradient-2)
+) !default;
+
 // animation times
 $animation-time-short: 50ms !default;
 $animation-time: 150ms !default;
@@ -66,6 +87,4 @@ $transition-fast-ease: all $animation-time-short ease !default;
 $hover-transition: all $animation-time-long ease-in-out !default;
 
 // font-sizes
-$font-size-input: 16px !default;
-$font-size-input-label: 12px !default;
-
+$font-size-input-label: 1.2rem !default;

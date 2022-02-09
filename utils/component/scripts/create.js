@@ -2,11 +2,13 @@ const inquirer = require('inquirer'); // eslint-disable-line
 const fs = require('fs-extra'); // eslint-disable-line
 const replace = require('replace-in-file'); // eslint-disable-line
 const templatePath = './utils/component/template';
-const rootPath = './src/components';
+const docsTemplatePath = './utils/component/docs-template';
+const componentsRootPath = './src/components';
+const docsRootPath = './docs';
 
 const componentNamespace = [];
 let dirName;
-let path = rootPath;
+let path = componentsRootPath;
 
 const pascalToKebabCase = (string) => {
   return string
@@ -26,6 +28,7 @@ const propmptForComponentName = () => {
     ])
     .then(answers => {
       dirName = answers.componentName;
+      // component
       const componentPath = `${path}/${dirName}`;
       fs.copySync(templatePath, componentPath);
       const componentName = `V${componentNamespace.join('')}${dirName}`;
@@ -43,6 +46,17 @@ const propmptForComponentName = () => {
       fs.appendFile(`${path}/index.ts`, `export * from './${dirName}';\n`, () => { /* */ });
       fs.appendFile(`${path}/index.scss`, `\n@import './${dirName}';`, () => { /* */ });
       console.log(`${componentName} component has been created`);
+      // docs
+      if (componentNamespace.length === 0) {
+        const componentDocsPath = `${docsRootPath}/views/Docs/Components/${dirName}`;
+        fs.copySync(docsTemplatePath, componentDocsPath);
+        replace.sync({
+          files: ['Component.vue', 'Example.vue'].map(file => `${componentDocsPath}/${file}`),
+          from: /ComponentName/g,
+          to: dirName
+        });
+        console.log(`Docs for ${componentName} component have been created. Link them in docs router`);
+      }
     });
 };
 

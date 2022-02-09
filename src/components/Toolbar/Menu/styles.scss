@@ -34,10 +34,10 @@
       height: 100%;
       box-shadow: none;
     }
-  
+
     &--expanded {
       display: block;
-      
+
       @include breakpoint(lg) {
         display: flex;
       }

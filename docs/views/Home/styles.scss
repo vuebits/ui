@@ -1,0 +1,37 @@
+.home {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  &__content {
+    max-width: 80rem;
+    margin: 5 * $sp;
+  }
+
+  &__logo {
+    height: 10rem;
+    margin: 20 * $sp 0;
+  }
+
+  &__title {
+    font-size: 4.5rem;
+    margin-bottom: 5 * $sp;
+  }
+
+  &__subtitle {
+    font-weight: normal;
+    font-size: 2.5rem;
+    margin-bottom: 5 * $sp;
+  }
+
+  &__buttons {
+    align-items: center;
+  }
+
+  &__button {
+    margin: 2 * $sp;
+    min-width: 20rem;
+  }
+}

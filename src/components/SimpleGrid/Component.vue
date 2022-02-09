@@ -2,41 +2,57 @@
   <component
     :is="rootTag"
     :class="classes"
+    v-bind="$ui.testElName('simple-grid')"
   >
     <slot />
   </component>
 </template>
 
 <script lang="ts">
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
   name: 'VSimpleGrid',
   props: {
     elementsXs: {
-      type: [Number, String] as PropType<string | number | null>,
-      default: null
+      type: [
+        Number,
+        String,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     elementsSm: {
-      type: [Number, String] as PropType<string | number | null>,
-      default: null
+      type: [
+        Number,
+        String,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     elementsMd: {
-      type: [Number, String] as PropType<string | number | null>,
-      default: null
+      type: [
+        Number,
+        String,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     elementsLg: {
-      type: [Number, String] as PropType<string | number | null>,
-      default: null
+      type: [
+        Number,
+        String,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     elementsXl: {
-      type: [Number, String] as PropType<string | number | null>,
-      default: null
+      type: [
+        Number,
+        String,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     list: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     spacingsSize: {
       type: String as PropType<'sm' | 'md' | 'lg' | 'no'>,
@@ -46,10 +62,10 @@ export default defineComponent({
           'sm',
           'md',
           'lg',
-          'no'
+          'no',
         ].includes(val);
-      }
-    }
+      },
+    },
   },
   computed: {
     classes (): CssClass[] {
@@ -60,13 +76,13 @@ export default defineComponent({
       if (this.elementsLg) mods.push(`elements-lg-${this.elementsLg}`);
       if (this.elementsXl) mods.push(`elements-xl-${this.elementsXl}`);
       return this.$bem({
-        m: mods
+        m: mods,
       });
     },
     rootTag (): string {
       return this.list ? 'ul' : 'div';
-    }
-  }
+    },
+  },
 });
 </script>
 

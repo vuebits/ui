@@ -1,25 +1,69 @@
+@use 'sass:math';
+@use 'sass:color';
+
 .v-textarea {
+  $root: &;
   display: flex;
-  flex-direction: column;
-  font-size: 16px;
+  align-items: stretch;
+  position: relative;
 
-  &__field {
-    display: flex;
-    align-items: stretch;
-    position: relative;
+  &--light {
+    background-color: $color-input-bg;
+    color: $color-theme-light-font;
+  }
 
-    &--light {
-      background-color: $color-input-bg;
-      color: $color-theme-light-font;
+  &--dark {
+    background-color: $color-theme-dark;
+    color: $color-theme-dark-font;
+  }
+
+  &--disabled {
+    overflow: hidden;
+  }
+
+  &--round {
+    border-radius: 6 * $sp;
+
+    & #{$root}__label,
+    & #{$root}__textarea {
+      padding-left: 4 * $sp;
+      padding-right: 4 * $sp;
     }
-  
-    &--dark {
-      background-color: $color-theme-dark;
-      color: $color-theme-dark-font;
+  }
+
+  &--sm {
+    min-height: $field-size-sm;
+
+    & #{$root}__textarea {
+      font-size: $font-size-sm;
     }
 
-    &--disabled {
-      overflow: hidden;
+    & #{$root}__icon {
+      font-size: $icon-size-sm;
+    }
+  }
+
+  &--md {
+    min-height: $field-size-md;
+
+    & #{$root}__textarea {
+      font-size: $font-size-md;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-md;
+    }
+  }
+
+  &--lg {
+    min-height: $field-size-lg;
+
+    & #{$root}__textarea {
+      font-size: $font-size-lg;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-lg;
     }
   }
 
@@ -28,8 +72,8 @@
     width: 100%;
 
     &--disabled {
-      color: darken($color-disabled, 20%);
-      background-color: lighten($color-disabled, 40%);
+      color: color.adjust($color-disabled, $lightness: -20%);
+      background-color: color.adjust($color-disabled, $lightness: 40%);
       pointer-events: none;
       cursor: not-allowed;
       border-color: $color-disabled;
@@ -40,7 +84,10 @@
     display: flex;
     align-items: center;
     padding: 0 3 * $sp;
-    font-size: 16px;
+
+    &--round {
+      border-radius: 6 * $sp;
+    }
 
     &--clickable {
       cursor: pointer;
@@ -49,15 +96,10 @@
 
   &__textarea {
     cursor: text;
-    padding: (($font-size-input-label / 2) + 2 * $sp) 3 * $sp;
-    font-size: $font-size-input;
+    padding: $sp $field-sp;
     width: 100%;
     border: 0;
     outline: 0;
-
-    &--with-label {
-      padding: $sp 3 * $sp;
-    }
   }
 
   &__label {
@@ -68,17 +110,16 @@
     text-overflow: ellipsis;
     font-size: $font-size-input-label;
     line-height: $font-size-input-label;
-    padding: $sp 3 * $sp;
-    height: $font-size-input-label + 2 * $sp;
+    padding: $sp $field-sp 0;
   }
 
   &__hint {
     color: $color-text-2;
-    font-size: 13px;
+    font-size: 1.3rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 20px;
+    height: 2rem;
 
     &--error {
       color: $color-error;

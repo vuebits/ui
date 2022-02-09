@@ -24,6 +24,10 @@ export interface Dictionary {
   phoneInput: {
     errorText: string;
   };
+  pagination: {
+    page: string;
+    total: string;
+  };
   select: {
     placeholder: string;
     search: string;
@@ -41,6 +45,15 @@ export interface Dictionary {
     dropAreaTextWhenDisabled: string;
     title: string;
     validationError: string;
+  };
+  weekdays: string[];
+  months: string[];
+  timeline: {
+    noItems: string;
+  };
+  table: {
+    loading: string;
+    noItems: string;
   };
 }
 
@@ -71,12 +84,39 @@ export interface LocaleOptions {
   };
   t (): Dictionary;
 }
+export interface CustomTestOptions {
+  test?: {
+    elAttrName: string;
+    elNamePrefix: string;
+  };
+}
+
+export interface TestOptions {
+  test: {
+    elAttrName: string;
+    elNamePrefix: string;
+  };
+  testElName (name: string): {
+    [key in string]: string
+  };
+}
 
 export interface IconsOptions {
   icons: {
     type: string;
     prefix: string;
-    values: {[key in string]: string};
+    values: {
+      error: string;
+      spinner: string;
+      check: string;
+      previous: string;
+      next: string;
+      expand: string;
+      collapse: string;
+      file: string;
+      close: string;
+      hamburger: string;
+    };
   };
 }
 
@@ -88,7 +128,16 @@ export interface CustomIconsOptions {
   };
 }
 
-export interface Options extends LocaleOptions, BemOptions, IconsOptions {}
+export interface Options extends
+  LocaleOptions,
+  BemOptions,
+  IconsOptions,
+  TestOptions {
+}
 
-export interface CustomOptions extends CustomLocaleOptions, CustomBemOptions, CustomIconsOptions {
+export interface CustomOptions extends
+  CustomLocaleOptions,
+  CustomBemOptions,
+  CustomIconsOptions,
+  CustomTestOptions {
 }

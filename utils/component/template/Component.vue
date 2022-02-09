@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'VComponent'
+  name: 'VComponent',
 });
 </script>
 

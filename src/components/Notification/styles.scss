@@ -1,7 +1,6 @@
 .v-notification {
   $notification-padding: 4 * $sp;
-  $notification-line-height: 20px;
-
+  $notification-line-height: 2rem;
   display: flex;
   overflow: hidden;
   max-width: calc(100vw - #{6 * $sp});
@@ -11,33 +10,35 @@
   color: $color-theme-light-font;
 
   &--sm {
-    width: 360px;
+    width: 36rem;
   }
+
   &--md {
-    width: 570px;
+    width: 57rem;
   }
+
   &--lg {
-    width: 960px;
+    width: 96rem;
   }
 
   &--info {
     border-color: $color-info;
-    background-color: $color-info-pale;
+    background-color: $color-white;
   }
 
   &--success {
     border-color: $color-success;
-    background-color: $color-success-pale;
+    background-color: $color-white;
   }
 
   &--warning {
     border-color: $color-warning;
-    background-color: $color-warning-pale;
+    background-color: $color-white;
   }
 
   &--error {
     border-color: $color-error;
-    background-color: $color-error-pale;
+    background-color: $color-white;
   }
 
   &__content {

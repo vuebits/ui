@@ -18,5 +18,6 @@ export const bgColorClass = (color: string | null) => className('bg-color', colo
 export const hoverColorClass = (color: string | null) => className('hover-color', color);
 export const hoverBgColorClass = (color: string | null) => className('hover-bg-color', color);
 export const borderColorClass = (color: string | null) => className('border-color', color);
+export const gradientClass = (color: string | null) => className('gradient', color);
 export const elevationClass = 'is-elevated';
 export const hoverableClass = 'is-hoverable';

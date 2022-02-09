@@ -1,0 +1,17 @@
+.docs {
+  display: flex;
+  flex-direction: row;
+
+  &__main {
+    padding: 5 * $sp;
+    flex-grow: 1;
+
+    @include breakpoint(lg) {
+      margin-left: 30rem;
+    }
+  }
+
+  &__content {
+    padding: 2 * $sp;
+  }
+}

@@ -1,18 +1,46 @@
 <template>
-  <div :class="classes">
-    <table :class="$bem({e: 'table'})">
+  <div
+    :class="classes"
+    v-bind="$ui.testElName('table')"
+  >
+    <div :class="$bem({e: 'loader'})">
+      <div
+        v-if="loading"
+        :class="$bem({e: 'loader-progress'})"
+      />
+    </div>
+    <table
+      :class="$bem({e: 'table', m: {loading: loading}})"
+      v-bind="$ui.testElName('table-table')"
+    >
+      <colgroup>
+        <slot name="colgroup">
+          <col
+            v-for="(c, i) in columns"
+            :key="i"
+            :width="c.width"
+            :style="c.style ?? {}"
+          >
+        </slot>
+      </colgroup>
       <thead
-        :class="$bem({e: 'table-header'})"
+        :class="$bem({e: 'header'})"
       >
         <tr
-          :class="$bem({e: 'table-header-row'})"
+          :class="$bem({e: 'header-row'})"
         >
           <th
             v-for="header in headers"
-            :key="header.name"
+            :key="header.for"
             :class="headerCellClasses"
           >
-            {{ header.text }}
+            <slot
+              :name="`header-${header.for}`"
+              :for="header.for"
+              :label="header.label"
+            >
+              {{ header.label }}
+            </slot>
           </th>
           <th
             v-if="expandable"
@@ -21,62 +49,94 @@
         </tr>
       </thead>
       <tbody
-        :class="$bem({e: 'table-body'})"
+        :class="$bem({e: 'body'})"
       >
-        <template
-          v-for="(item, index) in items"
-          :key="index"
-        >
-          <tr
-            :class="rowClasses(item)"
-            class="is-hoverable"
-            @click="handleRowClick(item)"
+        <template v-if="items.length">
+          <template
+            v-for="(item, index) in items"
+            :key="index"
           >
-            <slot name="item">
-              <td
-                v-for="header in headers"
-                :key="header.name"
-                :class="cellClasses(item)"
-                :style="`--header: '${header.text}'`"
-              >
-                <slot
-                  :name="`item-${header.name}`"
-                  :field="item[header.name]"
-                >
-                  {{ item[header.name] }}
-                </slot>
-              </td>
-            </slot>
-            <td
-              v-if="expandable"
-              :class="cellClasses(item, true)"
-            >
-              <VIcon
-                v-if="expandOnRowClick"
-                :name="getExpandIcon(item)"
-                is-internal
-              />
-              <VIconButton
-                v-else
-                :icon="getExpandIcon(item)"
-                hoverable
-                rounded
-                @click="toggleExpansion(item)"
-              />
-            </td>
-          </tr>
-          <tr v-if="isExpanded(item)">
-            <td
-              :colspan="headers.length + 1"
-              :class="$bem({ e: 'expanded-item' })"
+            <tr
+              :class="rowClasses(item)"
+              class="is-hoverable"
+              v-bind="$ui.testElName('table-row')"
+              @click="handleRowClick(item)"
+              @mouseenter="hoveredIndex = index"
+              @mouseleave="handleMouseleave(index)"
             >
               <slot
-                name="expanded-item"
+                name="item"
                 :item="item"
-              />
-            </td>
-          </tr>
+              >
+                <td
+                  v-for="header in headers"
+                  :key="header.for"
+                  :class="cellClasses(item)"
+                  :style="`--header: '${header.label}'`"
+                >
+                  <slot
+                    :name="header.for"
+                    :field="item[header.for]"
+                    :item="item"
+                    :isRowHovered="hoveredIndex === index"
+                  >
+                    {{ item[header.for] }}
+                  </slot>
+                </td>
+              </slot>
+              <td
+                v-if="expandable"
+                :class="cellClasses(item, true)"
+              >
+                <VIcon
+                  v-if="expandOnRowClick"
+                  :name="getExpandIcon(item)"
+                />
+                <VIconButton
+                  v-else
+                  :icon="getExpandIcon(item)"
+                  hoverable
+                  rounded
+                  v-bind="$ui.testElName('table-row-expand')"
+                  @click="toggleExpansion(item)"
+                />
+              </td>
+            </tr>
+            <tr
+              v-if="isExpanded(item)"
+              :key="`details-${index}`"
+            >
+              <td
+                :colspan="columnsCount"
+                :class="$bem({ e: 'expanded-item' })"
+              >
+                <slot
+                  name="expanded-item"
+                  :item="item"
+                />
+              </td>
+            </tr>
+          </template>
         </template>
+        <tr v-else>
+          <td
+            :class="[$bem({e: 'body-placeholder'}), paddingClass]"
+            :colspan="columnsCount"
+          >
+            <slot
+              v-if="loading"
+              name="loading"
+            >
+              {{ $ui.t().table.loading }}
+            </slot>
+            <slot
+              v-else
+              name="no-items"
+            >
+              {{ $ui.t().table.noItems }}
+            </slot>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -84,7 +144,11 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { TableHeader } from './models';
+import {
+  TableHeader,
+  TableItem,
+  TableColumn,
+} from './models';
 import {
   themeProps,
   roundedProps,
@@ -95,56 +159,66 @@ import {
   useRounded,
   useElevated,
   useBordered,
-  usePadding
-} from '@/composition-functions';
+  usePadding,
+} from '../../composables';
 import {
-  CssClass
-} from '@/helpers/css-classes';
-import { VIconButton } from '@/components/IconButton';
-import { VIcon } from '@/components/Icon';
-
-type TableItem = {[key in string]: any};
+  CssClass,
+} from '../../helpers/css-classes';
+import { VIconButton } from '../IconButton';
+import { VIcon } from '../Icon';
 
 export default defineComponent({
   name: 'VTable',
   components: {
     VIconButton,
-    VIcon
+    VIcon,
   },
   props: {
     headers: {
       type: Array as PropType<TableHeader[]>,
-      required: true
+      required: true,
     },
     items: {
       type: Array as PropType<TableItem[]>,
-      required: true
+      required: true,
     },
     fixedHeader: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     expandable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     multipleExpand: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     hideMainContentOnExpand: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     expandOnRowClick: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
+    },
+    loading: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    columns: {
+      type: Array as PropType<TableColumn[]>,
+      default: () => [],
+    },
+    sortable: {
+      type: Boolean,
+      default: false,
     },
     ...themeProps,
     ...roundedProps,
     ...elevatedProps,
     ...borderedProps,
-    ...paddingProps
+    ...paddingProps,
   },
   setup (props) {
     const {
@@ -155,7 +229,7 @@ export default defineComponent({
       round,
       elevated,
       bordered,
-      padding
+      padding,
     } = toRefs(props);
 
     return {
@@ -163,12 +237,13 @@ export default defineComponent({
       roundedClass: useRounded(rounded, roundedLg, round),
       elevatedClass: useElevated(elevated),
       borderedClass: useBordered(bordered),
-      paddingClass: usePadding(padding)
+      paddingClass: usePadding(padding),
     };
   },
   data () {
     return {
-      expandedItems: [] as TableItem[]
+      expandedItems: [] as TableItem[],
+      hoveredIndex: null as null | number,
     };
   },
   computed: {
@@ -178,28 +253,31 @@ export default defineComponent({
         this.themeClass,
         this.roundedClass,
         this.elevatedClass,
-        this.borderedClass
+        this.borderedClass,
       ];
     },
     headerCellClasses (): CssClass[] {
       return [
         ...this.$bem({
-          e: 'table-header-cell',
+          e: 'header-cell',
           m: {
-            fixed: this.fixedHeader
-          }
+            fixed: this.fixedHeader,
+          },
         }),
         this.themeClass,
-        this.paddingClass
+        this.paddingClass,
       ];
-    }
+    },
+    columnsCount (): number {
+      return this.headers.length + (this.expandable ? 1 : 0);
+    },
   },
   methods: {
     isExpanded (item: TableItem): boolean {
       return !!this.expandedItems.find(i => JSON.stringify(i) === JSON.stringify(item));
     },
     getExpandIcon (item: TableItem): string {
-      return this.isExpanded(item) ? 'chevron-up' : 'chevron-down';
+      return this.isExpanded(item) ? this.$ui.icons.values.collapse : this.$ui.icons.values.expand;
     },
     toggleExpansion (item: TableItem): void {
       if (this.isExpanded(item)) {
@@ -218,27 +296,30 @@ export default defineComponent({
     rowClasses (item: TableItem): CssClass[] {
       return [
         ...this.$bem({
-          e: 'table-row',
+          e: 'row',
           m: {
             expanded: this.isExpanded(item),
-            clickable: this.expandOnRowClick
-          }
-        })
+            clickable: this.expandOnRowClick,
+          },
+        }),
       ];
     },
     cellClasses (item: TableItem, isActionCell = false): CssClass[] {
       return [
         ...this.$bem({
-          e: 'table-cell',
+          e: 'cell',
           m: {
             action: isActionCell,
-            hidden: this.hideMainContentOnExpand && this.isExpanded(item) && !isActionCell
-          }
+            hidden: this.hideMainContentOnExpand && this.isExpanded(item) && !isActionCell,
+          },
         }),
-        this.paddingClass
+        this.paddingClass,
       ];
-    }
-  }
+    },
+    handleMouseleave (i: number): void {
+      if (i === this.hoveredIndex) this.hoveredIndex = null;
+    },
+  },
 });
 </script>
 

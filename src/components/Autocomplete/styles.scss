@@ -1,6 +1,29 @@
 .v-autocomplete {
   position: relative;
 
+  &__selected-items {
+    padding: 0 $field-sp;
+  }
+
+  &__selected-item-badge {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin: $sp;
+    padding-right: 0;
+  }
+
+  &__selected-item-remove {
+    margin-left: 2 * $sp;
+  }
+
+  &__input {
+
+    &--expanded {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+
   &__items {
     position: absolute;
     left: 0;
@@ -13,6 +36,7 @@
     border-top: 0;
     background-color: $color-white;
     color: $color-theme-light-font;
+    box-shadow: $shadow-main;
 
     &--bottom {
       top: 100%;
@@ -30,6 +54,17 @@
     &--theme-dark {
       background-color: $color-theme-dark;
       color: $color-theme-dark-font;
+    }
+
+    &--rounded {
+      border-bottom-left-radius: $border-radius-main;
+      border-bottom-right-radius: $border-radius-main;
+    }
+
+    &--rounded-lg,
+    &--round {
+      border-bottom-left-radius: $border-radius-large;
+      border-bottom-right-radius: $border-radius-large;
     }
   }
 
@@ -63,9 +98,19 @@
       }
     }
 
+    &--selected {
+      background-color: $color-primary;
+      color: $color-theme-dark-font;
+
+      &:hover {
+        background-color: $color-primary !important;
+        color: $color-theme-dark-font !important;
+      }
+    }
+
     &--disabled {
       cursor: default;
-      opacity: .4;
+      opacity: 0.4;
 
       &:hover {
         background-color: transparent;

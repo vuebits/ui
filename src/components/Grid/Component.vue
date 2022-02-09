@@ -1,11 +1,14 @@
 <template>
-  <div :class="classes">
+  <div
+    :class="classes"
+    v-bind="$ui.testElName('grid')"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
@@ -19,19 +22,19 @@ export default defineComponent({
           'sm',
           'md',
           'lg',
-          'no'
+          'no',
         ].includes(val);
-      }
-    }
+      },
+    },
   },
   computed: {
     classes (): CssClass[] {
       const mods: string[] = [`spacings-${this.spacingsSize}`];
       return this.$bem({
-        m: mods
+        m: mods,
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

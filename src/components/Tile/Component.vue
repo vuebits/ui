@@ -3,6 +3,7 @@
     :is="component"
     :class="classes"
     :style="styles"
+    v-bind="$ui.testElName('tile')"
     @click="click"
   >
     <slot />
@@ -11,12 +12,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { cssValueValidator } from '@/helpers/validators/css-values-validator';
+import { cssValueValidator } from '../../helpers/validators/css-values-validator';
 import {
   bgColorClass,
   hoverBgColorClass,
-  borderColorClass
-} from '@/helpers/css-classes';
+  borderColorClass,
+} from '../../helpers/css-classes';
 import {
   borderedProps,
   elevatedProps,
@@ -25,8 +26,8 @@ import {
   useBordered,
   useElevated,
   useTheme,
-  useRounded
-} from '@/composition-functions';
+  useRounded,
+} from '../../composables';
 
 export default defineComponent({
   name: 'VTile',
@@ -34,44 +35,44 @@ export default defineComponent({
     height: {
       type: String as PropType<string>,
       default: 'auto',
-      validator: (val: string) => cssValueValidator(val)
+      validator: (val: string) => cssValueValidator(val),
     },
     width: {
       type: String as PropType<string>,
       default: 'auto',
-      validator: (val: string) => cssValueValidator(val)
+      validator: (val: string) => cssValueValidator(val),
     },
     image: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     color: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     underlineColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     hoverBgColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     centerContent: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     listItem: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     ...themeProps,
     ...borderedProps,
     ...elevatedProps,
-    ...roundedProps
+    ...roundedProps,
   },
   emits: {
-    click: null
+    click: null,
   },
   setup (props) {
     const {
@@ -81,14 +82,14 @@ export default defineComponent({
       rounded,
       roundedLg,
       round,
-      elevated
+      elevated,
     } = toRefs(props);
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
       elevatedClass: useElevated(elevated),
-      roundedClass: useRounded(rounded, roundedLg, round)
+      roundedClass: useRounded(rounded, roundedLg, round),
     };
   },
   computed: {
@@ -103,28 +104,28 @@ export default defineComponent({
         ...this.$bem({
           m: {
             underlined: !!this.underlineColor,
-            'center-content': this.centerContent
-          }
+            'center-content': this.centerContent,
+          },
         }),
         this.themeClass,
         this.borderedClass,
         this.elevatedClass,
-        this.roundedClass
+        this.roundedClass,
       ];
     },
     styles (): any {
       return {
         '--tile-height': this.height,
         '--tile-width': this.width,
-        '--tile-bg-image': this.image ? `url(${this.image})` : 'none'
+        '--tile-bg-image': this.image ? `url(${this.image})` : 'none',
       };
-    }
+    },
   },
   methods: {
     click (): void {
       this.$emit('click');
-    }
-  }
+    },
+  },
 });
 </script>
 

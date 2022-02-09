@@ -1,5 +1,5 @@
 
-$checkbox-size: 24px !default;
+$checkbox-size: 2.4rem !default;
 
 .v-checkbox {
   position: relative;
@@ -16,7 +16,7 @@ $checkbox-size: 24px !default;
   }
 
   &__checkmark {
-    font-size: $checkbox-size - 8px;
+    font-size: $checkbox-size - 0.8rem;
     height: $checkbox-size;
     width: $checkbox-size;
     margin-right: 2 * $sp;
@@ -60,11 +60,7 @@ $checkbox-size: 24px !default;
     align-items: center;
 
     @media (hover: none) {
-      min-height: 40px;
+      min-height: 4rem;
     }
-  }
-
-  &__error {
-    width: 100%;
   }
 }

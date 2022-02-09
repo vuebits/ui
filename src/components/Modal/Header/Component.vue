@@ -1,6 +1,7 @@
 <template>
   <div
     :class="classes"
+    v-bind="$ui.testElName('modal-header')"
   >
     <slot />
   </div>
@@ -10,38 +11,38 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import {
   bgColorClass,
-  CssClass
-} from '@/helpers/css-classes';
+  CssClass,
+} from '../../../helpers/css-classes';
 import {
   themeProps,
-  useTheme
-} from '@/composition-functions';
+  useTheme,
+} from '../../../composables';
 
 export default defineComponent({
   name: 'VModalHeader',
   props: {
     hideBorder: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     elevated: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     color: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
-    ...themeProps
+    ...themeProps,
   },
   setup (props) {
     const {
       dark,
-      light
+      light,
     } = toRefs(props);
 
     return {
-      themeClass: useTheme(dark, light)
+      themeClass: useTheme(dark, light),
     };
   },
   computed: {
@@ -51,14 +52,14 @@ export default defineComponent({
         ...this.$bem({
           m: {
             bordered: !this.hideBorder,
-            elevated: this.elevated
-          }
+            elevated: this.elevated,
+          },
         }),
         ...colorClasses,
-        this.themeClass
+        this.themeClass,
       ];
-    }
-  }
+    },
+  },
 });
 </script>
 

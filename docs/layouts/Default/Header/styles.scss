@@ -1,0 +1,13 @@
+.layout-default-header {
+  width: 100%;
+  border-bottom: set-border();
+  z-index: 12;
+
+  &__logo {
+    height: 5rem;
+  }
+
+  &__hamburger {
+    margin-left: 3 * $sp;
+  }
+}

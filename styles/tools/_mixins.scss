@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../settings/breakpoints';
 
 @mixin center-transform {
@@ -9,7 +10,7 @@
 
 @mixin breakpoint($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   } @else {

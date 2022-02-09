@@ -4,34 +4,33 @@
     @click="toggleMenu"
   >
     <VIcon
-      name="bars"
+      :name="$ui.icons.values.hamburger"
       :class="$bem({e: 'icon'})"
-      is-internal
     />
   </span>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VIcon } from '@/components/Icon';
+import { VIcon } from '../../Icon';
 
 export default defineComponent({
   name: 'VToolbarHamburger',
   components: {
-    VIcon
+    VIcon,
   },
   props: {
     modelValue: {
       type: Boolean as PropType<boolean>,
-      required: true
-    }
+      required: true,
+    },
   },
   emits: ['update:modelValue'],
   methods: {
     toggleMenu (): void {
       this.$emit('update:modelValue', !this.modelValue);
-    }
-  }
+    },
+  },
 });
 </script>
 

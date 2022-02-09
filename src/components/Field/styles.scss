@@ -1,0 +1,23 @@
+.v-field {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: 1.4rem;
+    color: $color-text-2;
+    margin-bottom: $sp;
+  }
+
+  &__hint {
+    color: $color-text-2;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2rem;
+
+    &--error {
+      color: $color-error;
+    }
+  }
+}

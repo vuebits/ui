@@ -1,6 +1,7 @@
 <template>
   <div
     :class="$bem({})"
+    v-bind="$ui.testElName('notificator')"
   >
     <VNotification
       v-for="item in items"
@@ -18,8 +19,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VNotification } from '@/components/Notification';
-import { NotificationTypeName } from '@/components/Notification/models';
+import { VNotification } from '../Notification';
+import { NotificationTypeName } from '../Notification/models';
 
 export interface Notification {
   id: number;
@@ -30,12 +31,12 @@ export interface Notification {
 export default defineComponent({
   name: 'VNotificator',
   components: {
-    VNotification
+    VNotification,
   },
   props: {
     items: {
       type: Array as PropType<Notification[]>,
-      required: true
+      required: true,
     },
     size: {
       type: String as PropType<'sm' | 'md' | 'lg'>,
@@ -44,25 +45,25 @@ export default defineComponent({
         return [
           'sm',
           'md',
-          'lg'
+          'lg',
         ].includes(val);
-      }
+      },
     },
     width: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     rounded: {
       type: Boolean as PropType<boolean>,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: ['remove-notification'],
   methods: {
     removeNotification (item: Notification): void {
       this.$emit('remove-notification', item);
-    }
-  }
+    },
+  },
 });
 </script>
 

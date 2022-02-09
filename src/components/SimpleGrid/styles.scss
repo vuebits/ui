@@ -1,4 +1,5 @@
-$simple-flex-max-elements: 4 !default;
+@use 'sass:math';
+$simple-flex-max-elements: 12 !default;
 
 .v-simple-grid {
   display: flex;
@@ -6,7 +7,7 @@ $simple-flex-max-elements: 4 !default;
   list-style: none;
 
   &--spacings-sm {
-    margin: 0 -$sp;
+    margin: 0 - $sp;
 
     > .v-simple-grid-item {
       padding: 0 $sp;
@@ -40,8 +41,9 @@ $simple-flex-max-elements: 4 !default;
 
   @for $i from 1 through $simple-flex-max-elements {
     &--elements-xs-#{$i} {
+
       .v-simple-grid-item {
-        width: percentage(1 / $i);
+        width: math.percentage(math.div(1, $i));
       }
     }
   }
@@ -50,9 +52,10 @@ $simple-flex-max-elements: 4 !default;
   @each $breakpoint in $breakpoints {
     @for $i from 1 through $simple-flex-max-elements {
       &--elements-#{$breakpoint}-#{$i} {
+
         .v-simple-grid-item {
           @include breakpoint($breakpoint) {
-            width: percentage(1 / $i);
+            width: math.percentage(math.div(1, $i));
           }
         }
       }

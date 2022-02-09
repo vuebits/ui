@@ -1,0 +1,17 @@
+.v-card {
+  padding: 5 * $sp;
+  background-color: $color-white;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.08);
+
+  &__header {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    color: $color-primary;
+    font-weight: 700;
+  }
+}

@@ -42,12 +42,13 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createUI } from '@vuebits/ui';
 
-(async () => {
-  const app = createApp(App);
-  app
-    .use(createUI({}))
-    .mount('#app');
-})();
+const config = {
+  // your config here
+};
+
+createApp(App)
+  .use(createUI(config))
+  .mount('#app');
 ```
 
 Import stylesheet file:

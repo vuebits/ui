@@ -1,7 +1,7 @@
 <template>
   <div
     :class="$bem({})"
-    :style="styleVariables"
+    v-bind="$ui.testElName('file-uploader')"
   >
     <VTile
       v-if="!isDropAreaHidden"
@@ -13,6 +13,7 @@
       :dark="dark"
       :light="light"
       :color="color"
+      v-bind="$ui.testElName('file-uploader-drop-area')"
       @dragenter="toggleDrag"
       @dragleave="toggleDrag"
       @dragover.prevent
@@ -23,9 +24,8 @@
       </div>
       <slot name="background-icon">
         <VIcon
-          name="file-import"
+          :name="$ui.icons.values.file"
           :class="$bem({e: 'upload-icon'})"
-          is-internal
         />
       </slot>
     </VTile>
@@ -34,106 +34,111 @@
       ref="file"
       type="file"
       :class="$bem({e: 'file-input'})"
+      v-bind="$ui.testElName('file-uploader-input')"
       :multiple="multipleFiles"
       :accept="acceptString"
       @change="fileAddedFromDisc"
     >
-    <VButton
-      v-if="!isButtonHidden"
-      dark
-      :class="buttonClasses"
-      :color="buttonColor"
-      rounded
-      elevated
-      left-icon="upload"
-      @click="addFileFromDisc"
+    <slot
+      name="button"
+      :on="{
+        click: addFileFromDisc,
+      }"
     >
-      {{ btnText }}
-    </VButton>
+      <VButton
+        v-if="!isButtonHidden"
+        dark
+        :class="buttonClasses"
+        :color="buttonColor"
+        rounded
+        elevated
+        left-icon="upload"
+        v-bind="$ui.testElName('file-uploader-button')"
+        @click="addFileFromDisc"
+      >
+        {{ btnText }}
+      </VButton>
+    </slot>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VIcon } from '@/components/Icon';
-import { VButton } from '@/components/Button';
-import { VTile } from '@/components/Tile';
-import { CssClass } from '@/helpers/css-classes';
+import { VIcon } from '../Icon';
+import { VButton } from '../Button';
+import { VTile } from '../Tile';
+import { CssClass } from '../../helpers/css-classes';
 import {
   themeProps,
   roundedProps,
-  elevatedProps
-} from '@/composition-functions';
+  elevatedProps,
+} from '../../composables';
 
 export default defineComponent({
   name: 'VFileUploader',
   components: {
     VIcon,
     VButton,
-    VTile
+    VTile,
   },
   props: {
-    width: {
-      type: Number as PropType<number>,
-      default: 0
-    },
     buttonText: {
       type: String as PropType<string>,
-      default: null
+      default: null,
     },
     buttonColor: {
       type: String as PropType<string>,
-      default: 'primary'
+      default: 'primary',
     },
     dropAreaText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     errorText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     dropAreaTextWhenDragging: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     dropAreaTextWhenDisabled: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     isButtonHidden: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     isDropAreaHidden: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     multipleFiles: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     color: {
       type: String as PropType<string>,
-      default: 'default'
+      default: 'default',
     },
     acceptedTypes: {
       type: Array as PropType<string[]>,
-      default: () => []
+      default: () => [],
     },
     acceptedExtensions: {
       type: Array as PropType<string[]>,
-      default: () => []
+      default: () => [],
     },
     ...themeProps,
     ...roundedProps,
-    ...elevatedProps
+    ...elevatedProps,
   },
   emits: ['upload'],
   data () {
     return {
       isDraggedInDropArea: false,
-      isDropAreaDisabled: false
+      isDropAreaDisabled: false,
     };
   },
   computed: {
@@ -142,16 +147,13 @@ export default defineComponent({
         ...this.$bem({
           e: 'drop-area',
           m: {
-            disabled: this.isDropAreaDisabled
-          }
-        })
+            disabled: this.isDropAreaDisabled,
+          },
+        }),
       ];
     },
     buttonClasses (): CssClass[] {
       return [...this.$bem({ e: 'upload-button' })];
-    },
-    styleVariables (): any {
-      return { '--upload-width': this.width ? `${this.width}px` : '100%' };
     },
     btnText (): string | null {
       return this.buttonText || this.$ui.t().fileUploader.selectFromDisk;
@@ -167,8 +169,11 @@ export default defineComponent({
       return this.errorText || this.$ui.t().fileUploader.validationError;
     },
     acceptString (): string {
-      return [...this.acceptedTypes, ...this.acceptedExtensions].join(',');
-    }
+      return [
+        ...this.acceptedTypes,
+        ...this.acceptedExtensions,
+      ].join(',');
+    },
   },
   methods: {
     onDrop (ev: DragEvent): void {
@@ -204,6 +209,7 @@ export default defineComponent({
     },
     fileAddedFromDisc (event: Event): void {
       this.emitFileUpload((event.target as HTMLInputElement).files);
+      (this.$refs.file as HTMLInputElement).value = '';
     },
     handleDropAreaState (): void {
       this.isDropAreaDisabled = true;
@@ -211,8 +217,8 @@ export default defineComponent({
         this.isDropAreaDisabled = false;
         document.body.onfocus = null;
       };
-    }
-  }
+    },
+  },
 });
 </script>
 

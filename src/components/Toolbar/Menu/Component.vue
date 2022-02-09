@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="$bem({m: { persistent: persistent }})"
-  >
+  <div :class="$bem({ m: { persistent: persistent } })">
     <ul
       v-if="expandedOnMobile"
       v-click-outside="clickOutside"
@@ -20,8 +18,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ClickOutside } from '@/directives';
-import { CssClass } from '@/helpers/css-classes';
+import { ClickOutside } from '../../../directives';
+import { CssClass } from '../../../helpers/css-classes';
 
 export default defineComponent({
   name: 'VToolbarMenu',
@@ -29,15 +27,15 @@ export default defineComponent({
   props: {
     expandedOnMobile: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     persistent: {
       type: Boolean as PropType<boolean>,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: {
-    'click-outside': null
+    'click-outside': null,
   },
   computed: {
     listClasses (): CssClass[] {
@@ -46,17 +44,17 @@ export default defineComponent({
           e: 'list',
           m: {
             expanded: this.expandedOnMobile,
-            persistent: this.persistent
-          }
-        })
+            persistent: this.persistent,
+          },
+        }),
       ];
-    }
+    },
   },
   methods: {
     clickOutside (): void {
       this.$emit('click-outside');
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -1,5 +1,8 @@
 <template>
-  <div :class="$bem({})">
+  <div
+    :class="$bem({})"
+    v-bind="$ui.testElName('checkbox')"
+  >
     <input
       :id="`check_${id}`"
       ref="checkboxRef"
@@ -8,6 +11,7 @@
       :class="$bem({e: 'input'})"
       type="checkbox"
       :disabled="disabled"
+      v-bind="$ui.testElName('checkbox-input')"
     >
     <label
       :class="$bem({e: 'label'})"
@@ -18,8 +22,7 @@
       >
         <VIcon
           v-if="selectedValue"
-          name="check"
-          is-internal
+          :name="$ui.icons.values.check"
         />
       </span>
       <slot>
@@ -31,45 +34,53 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VIcon } from '@/components/Icon';
-import { CssClass } from '@/helpers/css-classes';
+import { VIcon } from '../Icon';
+import { CssClass } from '../../helpers/css-classes';
 import {
   roundedProps,
   borderedProps,
-  themeProps
-} from '@/composition-functions';
+  themeProps,
+  validationProps,
+} from '../../composables';
 
 export default defineComponent({
   name: 'VCheckbox',
   components: {
-    VIcon
+    VIcon,
   },
   props: {
     modelValue: {
       type: Boolean as PropType<boolean>,
-      required: true
+      required: true,
     },
     id: {
-      type: [Number, String] as PropType<number | string>,
-      required: true
+      type: [
+        Number,
+        String,
+      ] as PropType<number | string>,
+      required: true,
     },
     label: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     color: {
       type: String as PropType<string>,
-      default: 'primary'
+      default: 'primary',
     },
     disabled: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     ...roundedProps,
     ...borderedProps,
-    ...themeProps
+    ...themeProps,
+    ...validationProps,
   },
-  emits: ['update:modelValue', 'change'],
+  emits: [
+    'update:modelValue',
+    'change',
+  ],
   computed: {
     selectedValue: {
       get (): boolean {
@@ -77,7 +88,7 @@ export default defineComponent({
       },
       set (val: boolean): void {
         this.update(val);
-      }
+      },
     },
     checkmarkClasses (): CssClass[] {
       const bgClassName = this.modelValue ? [`has-bg-color-${this.color}`] : [];
@@ -90,19 +101,20 @@ export default defineComponent({
             bordered: this.bordered,
             dark: this.dark,
             light: this.light,
-            disabled: this.disabled
-          }
+            disabled: this.disabled,
+            error: this.error,
+          },
         }),
-        ...bgClassName
+        ...bgClassName,
       ];
-    }
+    },
   },
   methods: {
     update (val: boolean): void {
       this.$emit('update:modelValue', val);
       this.$emit('change', val);
-    }
-  }
+    },
+  },
 });
 </script>
 
