@@ -1,63 +1,63 @@
 <template>
-  <span :class="$bem({})">
-    <span
-      :class="fieldClasses"
-      :style="styles"
+  <span
+    :class="classes"
+    :style="styles"
+    v-bind="$ui.testElName('textarea')"
+  >
+    <slot name="before" />
+    <div
+      v-if="leftIcon"
+      class="is-hoverable"
+      :class="[...$bem({e: 'icon', m: {clickable: leftIconClickable, round: round}}), roundedClass]"
+      v-bind="$ui.testElName('textarea-icon-left')"
+      @click="onLeftIconClick"
     >
-      <slot name="before" />
-      <div
-        v-if="leftIcon"
-        class="is-hoverable"
-        :class="$bem({e: 'icon', m: {clickable: leftIconClickable}})"
-        @click="onLeftIconClick"
+      <VIcon
+        :name="leftIcon"
+        :color="leftIconColor"
+      />
+    </div>
+    <span :class="$bem({e: 'content', m: {disabled: disabled}})">
+      <span
+        v-if="label && (modelValue || placeholder)"
+        :class="$bem({e: 'label'})"
       >
-        <VIcon
-          :name="leftIcon"
-          :color="leftIconColor"
-        />
-      </div>
-      <span :class="$bem({e: 'content', m: {disabled: disabled}})">
-        <span
-          v-if="label && (modelValue || placeholder)"
-          :class="$bem({e: 'label'})"
-        >
-          {{ label }}
-        </span>
-        <textarea
-          :rows="rows"
-          :required="required"
-          :value="modelValue"
-          :placeholder="placeholder || label"
-          :maxlength="maxlength"
-          :class="$bem({e: 'textarea', m: { 'with-label': label && (modelValue || placeholder) }})"
-          data-test="field"
-          :disabled="disabled"
-          @input="input"
-          @focus="onFocus"
-          @blur="onBlur"
-          @keyup.enter="enter"
-        />
+        {{ label }}
       </span>
-      <div
-        v-if="rightIcon"
-        class="is-hoverable"
-        :class="$bem({e: 'icon', m: {clickable: rightIconClickable}})"
-        @click="onRightIconClick"
-      >
-        <VIcon
-          :name="rightIcon"
-          :color="rightIconColor"
-        />
-      </div>
-      <slot name="after" />
+      <slot name="before-text" />
+      <textarea
+        ref="textarea"
+        :readonly="readonly"
+        :autofocus="autofocus"
+        :rows="rows"
+        :required="required"
+        :value="modelValue || undefined"
+        :placeholder="placeholder || label || undefined"
+        :maxlength="maxlength ?? undefined"
+        :class="$bem({e: 'textarea', m: { 'with-label': !!label && (!!modelValue || !!placeholder) }})"
+        data-test="field"
+        :disabled="disabled"
+        v-bind="$ui.testElName('textarea-field')"
+        @input="input"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown.enter="enter"
+      />
+      <slot name="after-text" />
     </span>
-    <span
-      v-if="!noHint"
-      :class="hintClasses"
-      :data-test="error ? 'field-error' : 'field-hint'"
+    <div
+      v-if="rightIcon"
+      class="is-hoverable"
+      :class="[...$bem({e: 'icon', m: {clickable: rightIconClickable, round: round}}), roundedClass]"
+      v-bind="$ui.testElName('textarea-icon-right')"
+      @click="onRightIconClick"
     >
-      {{ hintText }}
-    </span>
+      <VIcon
+        :name="rightIcon"
+        :color="rightIconColor"
+      />
+    </div>
+    <slot name="after" />
   </span>
 </template>
 
@@ -65,99 +65,117 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import {
   CssClass,
-  elevationClass
-} from '@/helpers/css-classes';
+  elevationClass,
+} from '../../helpers/css-classes';
 import {
   borderedProps,
   themeProps,
   roundedProps,
   validationProps,
+  depressedProps,
   useBordered,
   useTheme,
   useRounded,
-  useValidation
-} from '@/composition-functions';
-import { VIcon } from '@/components/Icon';
+  useValidation,
+  useDepressed,
+  sizeProps,
+} from '../../composables';
+import { VIcon } from '../Icon';
 
 export default defineComponent({
   name: 'VTextarea',
   components: {
-    VIcon
+    VIcon,
   },
   props: {
     modelValue: {
-      type: [String, Number] as PropType<string | number | null>,
-      default: null
+      type: [
+        String,
+        Number,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     placeholder: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     type: {
       type: String as PropType<string>,
-      default: 'text'
+      default: 'text',
     },
     required: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     maxlength: {
-      type: Number as PropType<number | string | null>,
-      default: null
+      type: Number as PropType<number | null>,
+      default: null,
     },
     rows: {
-      type: Number as PropType<number | string | null>,
-      default: null
+      type: Number as PropType<number | undefined>,
+      default: null,
     },
     label: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     leftIcon: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     rightIcon: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     leftIconClickable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     rightIconClickable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     leftIconColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     rightIconColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     width: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     disabled: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
+    },
+    autofocus: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    readonly: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
     ...themeProps,
     ...borderedProps,
     ...roundedProps,
-    ...validationProps
+    ...validationProps,
+    ...depressedProps,
+    ...sizeProps,
   },
   emits: [
-    'update:modelValue',
     'enter',
     'focus',
     'blur',
-    'input',
+    'update:modelValue',
     'click-left-icon',
-    'click-right-icon'
+    'click-right-icon',
+    'enter-no-shift',
+    'enter-shift',
+    'input',
   ],
   setup (props) {
     const {
@@ -166,29 +184,25 @@ export default defineComponent({
       bordered,
       rounded,
       roundedLg,
-      round,
       error,
-      hint
+      depressed,
     } = toRefs(props);
 
     const {
       validationBorderClass,
-      hintText,
-      validationHintClass
-    } = useValidation(error, hint);
+    } = useValidation(error);
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
-      roundedClass: useRounded(rounded, roundedLg, round),
+      roundedClass: useRounded(rounded, roundedLg),
+      depressedClass: useDepressed(depressed),
       validationBorderClass,
-      hintText,
-      validationHintClass
     };
   },
   data () {
     return {
-      isFocused: false as boolean
+      isFocused: false as boolean,
     };
   },
   computed: {
@@ -197,37 +211,29 @@ export default defineComponent({
     },
     styles (): {[key in string]: any} {
       return {
-        ...this.widthStyle
+        ...this.widthStyle,
       };
     },
-    fieldClasses (): CssClass[] {
+    classes (): CssClass[] {
       return [
         ...this.$bem({
-          e: 'field',
           m: {
             light: this.light,
             dark: this.dark,
-            disabled: this.disabled
-          }
+            disabled: this.disabled,
+            round: this.round,
+            [this.size]: true,
+          },
         }),
         {
-          [elevationClass]: this.isFocused
+          [elevationClass]: this.isFocused,
         },
         this.borderedClass,
         this.validationBorderClass,
-        this.roundedClass
+        this.roundedClass,
+        this.depressedClass,
       ];
     },
-    hintClasses (): CssClass[] {
-      return [
-        ...this.$bem({
-          e: 'hint',
-          m: {
-            error: !!this.error
-          }
-        })
-      ];
-    }
   },
   methods: {
     setFocusStatus (isFocused: boolean): void {
@@ -254,9 +260,17 @@ export default defineComponent({
     },
     enter (e: any): void {
       const value = e.target.value;
+      if (!e.shiftKey) {
+        this.$emit('enter-no-shift', e);
+      } else {
+        this.$emit('enter-shift', e);
+      }
       this.$emit('enter', value);
-    }
-  }
+    },
+    focus (): void {
+      (this.$refs.textarea as HTMLInputElement).focus();
+    },
+  },
 });
 </script>
 

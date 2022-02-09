@@ -1,11 +1,14 @@
 <template>
-  <i :class="classes">
+  <i
+    :class="classes"
+    v-bind="$ui.testElName('icon')"
+  >
     <slot />
   </i>
 </template>
 
 <script lang="ts">
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
@@ -13,40 +16,36 @@ export default defineComponent({
   props: {
     name: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     prefix: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     type: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     size: {
       type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
-      default: null
+      default: null,
     },
     rotate: {
       type: String as PropType<'90' | '180' | '270' | null>,
-      default: null
+      default: null,
     },
     flip: {
       type: String as PropType<'horizontal' | 'vertical' | 'both' | null>,
-      default: null
+      default: null,
     },
     pulse: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     spin: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
-    isInternal: {
-      type: Boolean as PropType<boolean>,
-      default: false
-    }
   },
   computed: {
     computedPrefix (): string {
@@ -57,15 +56,10 @@ export default defineComponent({
     },
     classes (): CssClass[] {
       let iconClasses = [];
-      let predefinedIcon = null;
-      if (this.isInternal) {
-        predefinedIcon = this.$ui.icons.values[this.name] || null;
-      }
-      if (predefinedIcon) {
-        iconClasses = predefinedIcon.split(' ');
-      } else {
-        iconClasses = [`${this.computedPrefix}${this.name}`, this.computedType];
-      }
+      iconClasses = [
+        `${this.computedPrefix}${this.name}`,
+        this.computedType,
+      ];
       return [
         ...this.$bem({
           m: {
@@ -73,13 +67,13 @@ export default defineComponent({
             [`rotate-${this.rotate}`]: !!this.rotate,
             [`flip-${this.flip}`]: !!this.flip,
             pulse: this.pulse,
-            spin: this.spin
-          }
+            spin: this.spin,
+          },
         }),
-        ...iconClasses
+        ...iconClasses,
       ];
-    }
-  }
+    },
+  },
 });
 </script>
 

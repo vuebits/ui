@@ -2,14 +2,16 @@
   <div
     v-if="isBlendShown"
     :class="classes"
+    v-bind="$ui.testElName('modal')"
   >
     <slot name="top" />
     <div :class="middleClasses">
       <slot name="left" />
       <transition
-        :name="transition"
+        :name="transition?? undefined"
+        mode="out-in"
         @after-leave="hideBlend"
-        @after-enter="$refs.card.focus()"
+        @after-enter="onContentLoad"
       >
         <div
           v-if="isContentShown"
@@ -18,6 +20,7 @@
           :class="cardClasses"
           :style="cardStyle"
           tabindex="0"
+          v-bind="$ui.testElName('modal-card')"
           @keyup.esc="onEsc"
         >
           <slot />
@@ -31,15 +34,15 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs, nextTick } from 'vue';
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../helpers/css-classes';
 import {
   borderedProps,
   elevatedProps,
   roundedProps,
   useBordered,
-  useRounded
-} from '@/composition-functions';
-import ClickOutside from '@/directives/click-outside';
+  useRounded,
+} from '../../composables';
+import { ClickOutside } from '../../directives';
 
 export default defineComponent({
   name: 'VModal',
@@ -47,15 +50,15 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Boolean as PropType<boolean>,
-      required: true
+      required: true,
     },
     persistent: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     closeOnEsc: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     size: {
       type: String as PropType<'sm' | 'md' | 'lg' | null>,
@@ -64,55 +67,60 @@ export default defineComponent({
         return !val || [
           'sm',
           'md',
-          'lg'
+          'lg',
         ].includes(val);
-      }
+      },
     },
     position: {
-      type: String as PropType<'middle' | 'top' | 'left' | 'bottom' | 'right' | 'fullscreen'>,
+      type: String as PropType<
+        'middle' | 'top' | 'left' | 'bottom' | 'right' | 'fullscreen'
+      >,
       default: 'middle',
       validator: (val: string) => {
-        return !val || [
-          'middle',
-          'top',
-          'left',
-          'bottom',
-          'right',
-          'fullscreen'
-        ].includes(val);
-      }
+        return (
+          !val ||
+          [
+            'middle',
+            'top',
+            'left',
+            'bottom',
+            'right',
+            'fullscreen',
+          ].includes(
+            val,
+          )
+        );
+      },
     },
     width: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     transition: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     ...elevatedProps,
     ...borderedProps,
-    ...roundedProps
+    ...roundedProps,
   },
-  emits: ['update:modelValue', 'close'],
+  emits: [
+    'update:modelValue',
+    'close',
+  ],
   setup (props) {
-    const {
-      bordered,
-      rounded,
-      roundedLg,
-      round
-    } = toRefs(props);
+    const { bordered, rounded, roundedLg, round } = toRefs(props);
 
     return {
       borderedClass: useBordered(bordered),
-      roundedClass: useRounded(rounded, roundedLg, round)
+      roundedClass: useRounded(rounded, roundedLg, round),
     };
   },
   data () {
     return {
       scrollPosition: 0,
       isContentShown: false,
-      isBlendShown: false
+      isBlendShown: false,
     };
   },
   computed: {
@@ -120,9 +128,9 @@ export default defineComponent({
       return [
         ...this.$bem({
           m: {
-            [this.position]: true
-          }
-        })
+            [this.position]: true,
+          },
+        }),
       ];
     },
     middleClasses (): CssClass[] {
@@ -130,9 +138,9 @@ export default defineComponent({
         ...this.$bem({
           e: 'middle',
           m: {
-            [this.position]: true
-          }
-        })
+            [this.position]: true,
+          },
+        }),
       ];
     },
     cardStyle (): any {
@@ -145,18 +153,18 @@ export default defineComponent({
           m: {
             [this.size || 'no-size']: !!this.size,
             [this.position]: true,
-            elevated: this.elevated
-          }
+            elevated: this.elevated,
+          },
         }),
         this.roundedClass,
-        this.borderedClass
+        this.borderedClass,
       ];
-    }
+    },
   },
   watch: {
     modelValue (val) {
       this.changeValueHandler(val);
-    }
+    },
   },
   created (): void {
     if (this.modelValue) this.openHandler();
@@ -214,8 +222,11 @@ export default defineComponent({
       if (this.closeOnEsc) {
         this.close();
       }
-    }
-  }
+    },
+    onContentLoad (): void {
+      (this.$refs.card as HTMLElement).focus();
+    },
+  },
 });
 </script>
 

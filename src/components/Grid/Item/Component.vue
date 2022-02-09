@@ -1,13 +1,14 @@
 <template>
   <div
     :class="classes"
+    v-bind="$ui.testElName('grid-item')"
   >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../../helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
@@ -15,24 +16,24 @@ export default defineComponent({
   props: {
     colsXs: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     colsSm: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     colsMd: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     colsLg: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     colsXl: {
       type: Number as PropType<number | null>,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     classes (): CssClass[] {
@@ -43,10 +44,10 @@ export default defineComponent({
       if (this.colsLg) mods.push(`cols-lg-${this.colsLg}`);
       if (this.colsXl) mods.push(`cols-xl-${this.colsXl}`);
       return this.$bem({
-        m: mods
+        m: mods,
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

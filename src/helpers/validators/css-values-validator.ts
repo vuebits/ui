@@ -3,7 +3,7 @@ export const cssValueValidator = (value: string): boolean => {
     'auto',
     'inherit',
     'initial',
-    'unset'
+    'unset',
   ].includes(word);
   const allowedSufixes = [
     'px',
@@ -11,7 +11,7 @@ export const cssValueValidator = (value: string): boolean => {
     'rem',
     '%',
     'vh',
-    'vw'
+    'vw',
   ];
   const allowedValues = new RegExp(`(\\d*\\.?\\d+)(${allowedSufixes.join('|')})`);
   switch (true) {

@@ -1,67 +1,67 @@
 <template>
-  <span :class="$bem({})">
-    <span
-      :class="fieldClasses"
-      :style="styles"
+  <span
+    :class="classes"
+    :style="styles"
+    v-bind="$ui.testElName('input')"
+  >
+    <slot name="before" />
+    <div
+      v-if="leftIcon"
+      :class="[...$bem({e: 'icon', m: {clickable: leftIconClickable, round: round}}), roundedClass]"
+      v-bind="$ui.testElName('input-icon-left')"
+      @click="onLeftIconClick"
     >
-      <slot name="before" />
-      <div
-        v-if="leftIcon"
-        class="is-hoverable"
-        :class="$bem({e: 'icon', m: {clickable: leftIconClickable}})"
-        @click="onLeftIconClick"
+      <VIcon
+        :name="leftIcon"
+        :color="leftIconColor"
+      />
+    </div>
+    <span :class="$bem({e: 'content', m: {disabled: disabled}})">
+      <span
+        v-if="label && (modelValue || placeholder)"
+        :class="$bem({e: 'label'})"
       >
-        <VIcon
-          :name="leftIcon"
-          :color="leftIconColor"
-        />
-      </div>
-      <span :class="$bem({e: 'content', m: {disabled: disabled}})">
-        <span
-          v-if="label && (modelValue || placeholder)"
-          :class="$bem({e: 'label'})"
-        >
-          {{ label }}
-        </span>
-        <input
-          ref="input"
-          :type="type"
-          :min="min"
-          :max="max"
-          :maxlength="maxlength"
-          :required="required"
-          :step="step"
-          :value="modelValue"
-          :placeholder="placeholder || label"
-          :class="$bem({e: 'input', m: { 'with-label': label && (modelValue || placeholder) }})"
-          :disabled="disabled"
-          data-test="field"
-          @input="onInput"
-          @focus="onFocus"
-          @blur="onBlur"
-          @keyup.enter="enter"
-        >
+        {{ label }}
       </span>
-      <div
-        v-if="rightIcon"
-        class="is-hoverable"
-        :class="$bem({e: 'icon', m: {clickable: rightIconClickable}})"
-        @click="onRightIconClick"
+      <slot name="before-text" />
+      <input
+        ref="input"
+        :autofocus="autofocus"
+        :type="type"
+        :min="min ?? undefined"
+        :max="max ?? undefined"
+        :maxlength="maxlength ?? undefined"
+        :required="required"
+        :step="step"
+        :value="modelValue || undefined"
+        :readonly="readonly"
+        :placeholder="placeholder || label || undefined"
+        :class="$bem({e: 'input', m: { 'with-label': !!label && (!!modelValue || !!placeholder) }})"
+        :disabled="disabled"
+        data-test="field"
+        v-bind="$ui.testElName('input-field')"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown.enter="enter"
+        @click="$emit('click')"
+        @mouseenter="$emit('mouseenter')"
+        @mouseleave="$emit('mouseleave')"
       >
-        <VIcon
-          :name="rightIcon"
-          :color="rightIconColor"
-        />
-      </div>
-      <slot name="after" />
+      <slot name="after-text" />
     </span>
-    <span
-      v-if="!noHint"
-      :class="hintClasses"
-      :data-test="error ? 'field-error' : 'field-hint'"
+    <div
+      v-if="rightIcon"
+      :class="[...$bem({e: 'icon', m: {clickable: rightIconClickable, round: round}}), roundedClass]"
+      v-bind="$ui.testElName('input-icon-right')"
+      @click="onRightIconClick"
     >
-      {{ hintText }}
-    </span>
+      <VIcon
+        :name="rightIcon"
+        :color="rightIconColor"
+      />
+    </div>
+    <slot name="after" />
   </span>
 </template>
 
@@ -69,111 +69,130 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import {
   CssClass,
-  elevationClass
-} from '@/helpers/css-classes';
+  elevationClass,
+} from '../../helpers/css-classes';
 import {
   borderedProps,
   themeProps,
   roundedProps,
   validationProps,
+  depressedProps,
   useBordered,
   useTheme,
   useRounded,
-  useValidation
-} from '@/composition-functions';
-import { VIcon } from '@/components/Icon';
+  useValidation,
+  useDepressed,
+  sizeProps,
+} from '../../composables';
+import { VIcon } from '../Icon';
 
 export default defineComponent({
   name: 'VInput',
   components: {
-    VIcon
+    VIcon,
   },
   props: {
     modelValue: {
-      type: [String, Number] as PropType<string | number | null>,
-      default: null
+      type: [
+        String,
+        Number,
+      ] as PropType<string | number | null>,
+      default: null,
     },
     placeholder: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     type: {
       type: String as PropType<string>,
-      default: 'text'
+      default: 'text',
     },
     required: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     min: {
       type: Number as PropType<number | string | null>,
-      default: null
+      default: null,
     },
     max: {
       type: Number as PropType<number | string | null>,
-      default: null
+      default: null,
     },
     maxlength: {
       type: Number as PropType<number | string | null>,
-      default: null
+      default: null,
     },
     step: {
       type: Number as PropType<number>,
-      default: 1
+      default: 1,
     },
     label: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     width: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
     leftIcon: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     rightIcon: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     leftIconClickable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     rightIconClickable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     leftIconColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     rightIconColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     rememberCaretPosition: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
+    },
+    autofocus: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    readonly: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
     ...themeProps,
     ...borderedProps,
     ...roundedProps,
-    ...validationProps
+    ...validationProps,
+    ...depressedProps,
+    ...sizeProps,
   },
   emits: [
     'update:modelValue',
     'enter',
     'focus',
     'blur',
-    'input',
     'click-left-icon',
-    'click-right-icon'
+    'click-right-icon',
+    'click',
+    'mouseenter',
+    'mouseleave',
+    'input',
   ],
   setup (props) {
     const {
@@ -182,29 +201,25 @@ export default defineComponent({
       bordered,
       rounded,
       roundedLg,
-      round,
       error,
-      hint
+      depressed,
     } = toRefs(props);
 
     const {
       validationBorderClass,
-      hintText,
-      validationHintClass
-    } = useValidation(error, hint);
+    } = useValidation(error);
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
-      roundedClass: useRounded(rounded, roundedLg, round),
+      roundedClass: useRounded(rounded, roundedLg),
+      depressedClass: useDepressed(depressed),
       validationBorderClass,
-      hintText,
-      validationHintClass
     };
   },
   data () {
     return {
-      isFocused: false as boolean
+      isFocused: false as boolean,
     };
   },
   computed: {
@@ -213,37 +228,29 @@ export default defineComponent({
     },
     styles (): {[key in string]: any} {
       return {
-        ...this.widthStyle
+        ...this.widthStyle,
       };
     },
-    fieldClasses (): CssClass[] {
+    classes (): CssClass[] {
       return [
         ...this.$bem({
-          e: 'field',
           m: {
+            [this.size]: true,
             light: this.light,
             dark: this.dark,
-            disabled: this.disabled
-          }
+            disabled: this.disabled,
+            round: this.round,
+          },
         }),
         {
-          [elevationClass]: this.isFocused
+          [elevationClass]: this.isFocused,
         },
         this.borderedClass,
         this.validationBorderClass,
-        this.roundedClass
+        this.roundedClass,
+        this.depressedClass,
       ];
     },
-    hintClasses (): CssClass[] {
-      return [
-        ...this.$bem({
-          e: 'hint',
-          m: {
-            error: !!this.error
-          }
-        })
-      ];
-    }
   },
   methods: {
     setFocusStatus (isFocused: boolean): void {
@@ -253,22 +260,14 @@ export default defineComponent({
       this.setFocusStatus(true);
       this.$emit('focus');
     },
-    onBlur (): void {
+    onBlur (e: any): void {
       this.setFocusStatus(false);
-      this.$emit('blur');
+      this.$emit('blur', e);
     },
     onInput (e: any): void {
       const value = e.target.value;
       this.$emit('update:modelValue', value);
       this.$emit('input', value);
-      // if (this.rememberCaretPosition) {
-      //   const input = this.$refs.input as HTMLInputElement;
-      //   const position = input.selectionStart as number;
-      //   nextTick(() => {
-      //     input.focus();
-      //     input.setSelectionRange(position, position);
-      //   });
-      // }
     },
     enter (e: any): void {
       const value = e.target.value;
@@ -282,8 +281,8 @@ export default defineComponent({
     },
     focus (): void {
       (this.$refs.input as HTMLInputElement).focus();
-    }
-  }
+    },
+  },
 });
 </script>
 

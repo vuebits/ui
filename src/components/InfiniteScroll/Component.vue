@@ -2,17 +2,16 @@
   <div
     :id="`v-infinite-scroll-${identifier}`"
     :class="$bem({})"
+    v-bind="$ui.testElName('infinite-scroll')"
   >
     <slot />
 
     <template v-if="isLoading">
       <slot name="loading">
-        <div
-          :class="$bem({e: 'status'})"
-        >
+        <div :class="$bem({ e: 'status' })">
           <VSpinner
             :size="iconsSize"
-            :class="$bem({e: 'status-icon'})"
+            :class="$bem({ e: 'status-icon' })"
           />
           {{ textOnLoading }}
         </div>
@@ -20,31 +19,23 @@
     </template>
     <template v-if="isComplete">
       <slot name="complete">
-        <div
-          :class="$bem({e: 'status'})"
-        >
+        <div :class="$bem({ e: 'status' })">
           <VIcon
-            :name="completeIcon"
+            :name="completeIcon || $ui.icons.values.check"
             color="success"
-            is-internal
-
-            :class="$bem({e: 'status-icon'})"
+            :class="$bem({ e: 'status-icon' })"
           />
           {{ textOnComplete }}
         </div>
       </slot>
     </template>
     <template v-if="isError">
-      <div
-        :class="$bem({e: 'status'})"
-      >
+      <div :class="$bem({ e: 'status' })">
         <slot name="error">
           <VIcon
-            :name="errorIcon"
+            :name="errorIcon || $ui.icons.values.error"
             color="error"
-            is-internal
-
-            :class="$bem({e: 'status-icon'})"
+            :class="$bem({ e: 'status-icon' })"
           />
           {{ textOnError }}
         </slot>
@@ -56,57 +47,68 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ScrolledToEnd } from '@/directives';
-import { VSpinner } from '@/components/Spinner';
-import { VIcon } from '@/components/Icon';
+import { VSpinner } from '../Spinner';
+import { VIcon } from '../Icon';
 import { InifiniteScrollState } from './models';
 
 export default defineComponent({
   name: 'VInfiniteScroll',
-  directives: {
-    ScrolledToEnd
-  },
   components: {
     VSpinner,
-    VIcon
+    VIcon,
   },
   props: {
     identifier: {
       type: Number as PropType<number>,
-      default: 1
+      default: 1,
     },
     state: {
       type: String as PropType<InifiniteScrollState>,
-      required: true
+      required: true,
     },
     loadingText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     errorText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     completeText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     iconsSize: {
-      type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
-      default: '2x'
+      type: String as PropType<
+        | 'lg'
+        | 'xs'
+        | 'sm'
+        | '1x'
+        | '2x'
+        | '3x'
+        | '4x'
+        | '5x'
+        | '6x'
+        | '7x'
+        | '8x'
+        | '9x'
+        | '10x'
+        | null
+      >,
+      default: '2x',
     },
     completeIcon: {
-      type: String as PropType<string>,
-      default: 'check'
+      type: String as PropType<string | null>,
+      default: null,
     },
     errorIcon: {
-      type: String as PropType<string>,
-      default: 'error'
+      type: String as PropType<string | null>,
+      default: null,
     },
     tolerance: {
       type: Number as PropType<number>,
-      default: 100
-    }
+      default: 100,
+    },
   },
   emits: ['scroll-to-end'],
   computed: {
@@ -127,7 +129,7 @@ export default defineComponent({
     },
     textOnError (): string {
       return this.errorText || 'error';
-    }
+    },
   },
   mounted () {
     this.setIdentifierReset();
@@ -153,7 +155,7 @@ export default defineComponent({
       const options = {
         root,
         rootMargin: `${this.tolerance}px`,
-        threshold: 1.0
+        threshold: 1.0,
       };
       const observer = new IntersectionObserver(([entry]) => {
         if (entry && entry.isIntersecting) {
@@ -161,8 +163,8 @@ export default defineComponent({
         }
       }, options);
       observer.observe(end);
-    }
-  }
+    },
+  },
 });
 </script>
 

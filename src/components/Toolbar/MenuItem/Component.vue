@@ -20,51 +20,51 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { CssClass } from '@/helpers/css-classes';
+import { CssClass } from '../../../helpers/css-classes';
 import {
   linkProps,
-  useLink
-} from '@/composition-functions';
+  useLink,
+} from '../../../composables';
 
 export default defineComponent({
   name: 'VToolbarMenuItem',
   props: {
     active: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
-    ...linkProps
+    ...linkProps,
   },
   emits: {
-    click: null
+    click: null,
   },
   setup (props) {
     const {
       to,
       href,
-      newWindow
+      newWindow,
     } = toRefs(props);
 
     const {
       component,
-      target
+      target,
     } = useLink(to, href, newWindow);
 
     return {
       component,
-      target
+      target,
     };
   },
   computed: {
     classes (): CssClass[] {
       return [...this.$bem({})];
-    }
+    },
   },
   methods: {
     onClick (): void {
       this.$emit('click');
-    }
-  }
+    },
+  },
 });
 </script>
 

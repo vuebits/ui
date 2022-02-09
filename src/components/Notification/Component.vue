@@ -2,9 +2,12 @@
   <div
     :class="classes"
     :style="style"
-    data-test="notification"
+    v-bind="$ui.testElName('notification')"
   >
-    <div :class="$bem({e: 'content'})">
+    <div
+      :class="$bem({e: 'content'})"
+      v-bind="$ui.testElName('notification-content')"
+    >
       <slot>
         <span v-html="message" />
       </slot>
@@ -15,6 +18,7 @@
         rounded
         hoverable
         :class="$bem({e: 'close'})"
+        v-bind="$ui.testElName('notification-close')"
         @click="remove"
       />
     </div>
@@ -23,27 +27,27 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { VIconButton } from '@/components';
-import { CssClass } from '@/helpers/css-classes';
+import { VIconButton } from '../../components';
+import { CssClass } from '../../helpers/css-classes';
 import {
   roundedProps,
-  useRounded
-} from '@/composition-functions';
+  useRounded,
+} from '../../composables';
 import { NotificationTypeName, NotificationType } from './models';
 
 export default defineComponent({
   name: 'VNotification',
   components: {
-    VIconButton
+    VIconButton,
   },
   props: {
     type: {
       type: String as PropType<NotificationTypeName>,
-      default: NotificationType.DEFAULT
+      default: NotificationType.DEFAULT,
     },
     message: {
       type: String as PropType<string>,
-      required: true
+      required: true,
     },
     size: {
       type: String as PropType<'sm' | 'md' | 'lg'>,
@@ -52,26 +56,26 @@ export default defineComponent({
         return [
           'sm',
           'md',
-          'lg'
+          'lg',
         ].includes(val);
-      }
+      },
     },
     width: {
       type: Number as PropType<number | null>,
-      default: null
+      default: null,
     },
-    ...roundedProps
+    ...roundedProps,
   },
   emits: ['remove'],
   setup (props) {
     const {
       rounded,
       roundedLg,
-      round
+      round,
     } = toRefs(props);
 
     return {
-      roundedClass: useRounded(rounded, roundedLg, round)
+      roundedClass: useRounded(rounded, roundedLg, round),
     };
   },
   computed: {
@@ -83,18 +87,18 @@ export default defineComponent({
         ...this.$bem({
           m: {
             [this.size]: true,
-            [this.type]: true
-          }
+            [this.type]: true,
+          },
         }),
-        this.roundedClass
+        this.roundedClass,
       ];
-    }
+    },
   },
   methods: {
     remove (): void {
       this.$emit('remove');
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -1,6 +1,8 @@
 .v-modal-footer {
   padding: 4 * $sp;
   width: 100%;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
 
   &--bordered {
     border-top: set-border();

@@ -22,19 +22,19 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { VToolbarMenuItem } from '../MenuItem';
-import ClickOutside from '@/directives/click-outside';
-import { CssClass } from '@/helpers/css-classes';
+import { ClickOutside } from '../../../directives';
+import { CssClass } from '../../../helpers/css-classes';
 
 export default defineComponent({
   name: 'VToolbarMenuDropdown',
   components: {
-    VToolbarMenuItem
+    VToolbarMenuItem,
   },
   directives: { ClickOutside },
   props: {
     modelValue: {
       type: Boolean as PropType<boolean>,
-      required: true
+      required: true,
     },
     position: {
       type: String as PropType<'left' | 'right' | 'fullsize'>,
@@ -42,27 +42,27 @@ export default defineComponent({
       validator: (val: string) => [
         'left',
         'right',
-        'fullsize'
-      ].includes(val)
+        'fullsize',
+      ].includes(val),
     },
     activeTextColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     activeColor: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     persistent: {
       type: Boolean as PropType<boolean>,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: [
     'open',
     'close',
     'update:modelValue',
-    'outside'
+    'outside',
   ],
   computed: {
     isExpanded: {
@@ -72,14 +72,14 @@ export default defineComponent({
       set (val: boolean): void {
         this.$emit('update:modelValue', val);
         this.$emit(val ? 'open' : 'close');
-      }
+      },
     },
     classes (): CssClass[] {
       return this.$bem({
         m: {
           fullsize: this.position === 'fullsize',
-          active: this.isExpanded
-        }
+          active: this.isExpanded,
+        },
       });
     },
     dropdownClasses (): CssClass[] {
@@ -87,10 +87,10 @@ export default defineComponent({
         e: 'dropdown',
         m: {
           [this.position]: true,
-          persistent: this.persistent
-        }
+          persistent: this.persistent,
+        },
       });
-    }
+    },
   },
   methods: {
     toggleDropdown (): void {
@@ -98,8 +98,8 @@ export default defineComponent({
     },
     clickOutside (): void {
       this.$emit('outside');
-    }
-  }
+    },
+  },
 });
 </script>
 

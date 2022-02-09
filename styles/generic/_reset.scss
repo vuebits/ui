@@ -1,5 +1,6 @@
 // ! ress.css • v1.1.1 - MIT License - github.com/filipelinhares/ress
 // sass-lint:disable-all
+
 html {
   box-sizing: border-box;
   overflow-y: scroll;
@@ -24,6 +25,7 @@ html {
 }
 
 audio {
+
   &:not([controls]) {
     display: none;
     height: 0;
@@ -83,7 +85,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: monospace;
 }
 
 b,
@@ -109,11 +111,11 @@ sup {
 }
 
 sub {
-  bottom: -.25em;
+  bottom: -0.25em;
 }
 
 sup {
-  top: -.5em;
+  top: -0.5em;
 }
 
 input {
@@ -138,6 +140,7 @@ button,
 
 [type='search'] {
   -webkit-appearance: textfield;
+  outline-offset: -2px;
 }
 
 [type='search']::-webkit-search-cancel-button,
@@ -200,6 +203,7 @@ textarea {
   background-color: transparent;
   border-style: none;
   color: inherit;
+
   &:focus {
     outline: 0;
   }
@@ -222,8 +226,8 @@ legend {
   border: 0;
   color: inherit;
   display: table;
-  max-width: 100%; 
-  white-space: normal; 
+  max-width: 100%;
+  white-space: normal;
 }
 
 ::-webkit-file-upload-button {
@@ -231,16 +235,12 @@ legend {
   font: inherit;
 }
 
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
 img {
   border-style: none;
 }
 
-ul, ol {
+ul,
+ol {
   padding: 0;
 }
 
@@ -264,9 +264,11 @@ video {
 }
 
 @media screen {
+
   [hidden~='screen'] {
     display: inherit;
   }
+
   [hidden~='screen']:not(:active):not(:focus):not(:target) {
     position: absolute !important;
     clip: rect(0 0 0 0) !important;

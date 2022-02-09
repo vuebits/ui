@@ -2,6 +2,7 @@
   <component
     :is="itemTag"
     :class="$bem({})"
+    v-bind="$ui.testElName('simple-grid-item')"
   >
     <slot />
   </component>
@@ -15,13 +16,13 @@ export default defineComponent({
   props: {
     listItem: {
       type: Boolean as PropType<boolean>,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     itemTag (): string {
       return this.listItem ? 'li' : 'div';
-    }
-  }
+    },
+  },
 });
 </script>

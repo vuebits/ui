@@ -12,14 +12,16 @@
     "sourceMap": true,
     "baseUrl": ".",
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "types",
     "types": [
-      "webpack-env",
       "jest"
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "docs/*"
+      ],
+      "@vuebits/ui": [
+        "src"
       ]
     },
     "lib": [
@@ -31,12 +33,9 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

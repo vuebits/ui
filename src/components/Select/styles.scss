@@ -1,7 +1,51 @@
+@use 'sass:color';
+$select-item-border: set-border() !default;
+
 .v-select {
+  $root: &;
   position: relative;
   width: 100%;
   cursor: pointer;
+
+  &--error {
+    border: set-border($color-error) !important;
+  }
+
+  &--sm {
+    height: $field-size-sm;
+
+    & #{$root}__input {
+      font-size: $font-size-sm;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-sm;
+    }
+  }
+
+  &--md {
+    height: $field-size-md;
+
+    & #{$root}__input {
+      font-size: $font-size-md;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-md;
+    }
+  }
+
+  &--lg {
+    height: $field-size-lg;
+
+    & #{$root}__input {
+      font-size: $font-size-lg;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-lg;
+    }
+  }
 
   &--light {
     background-color: $color-input-bg;
@@ -13,9 +57,18 @@
     color: $color-theme-dark-font;
   }
 
+  &--round {
+    border-radius: 6 * $sp;
+
+    & #{$root}__text-container {
+      padding-left: 4 * $sp;
+      padding-right: 4 * $sp;
+    }
+  }
+
   &--disabled {
-    color: darken($color-disabled, 20%);
-    background-color: lighten($color-disabled, 40%);
+    color: color.adjust($color-disabled, $lightness: -20%);
+    background-color: color.adjust($color-disabled, $lightness: 40%);
     pointer-events: none;
     border-color: $color-disabled;
   }
@@ -26,44 +79,68 @@
 
   &--expanded {
     transition-delay: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding: 0 3 * $sp;
+
+    &--round {
+      border-radius: 6 * $sp;
+    }
+
+    &--clickable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+    }
   }
 
   &__input {
     height: 100%;
     display: flex;
-    align-items: center;
-    padding: 0 3 * $sp;
+    align-items: stretch;
   }
 
   &__text-container {
     flex-grow: 1;
     width: 0;
+    padding: 0 $field-sp;
+    display: flex;
+    flex-direction: column;
   }
 
   &__label {
     color: $color-label;
     font-size: $font-size-input-label;
     line-height: $font-size-input-label;
-    padding: 4px 0;
-    height: 20px;
+    padding-top: $sp;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &__input-selected-item {
-    font-size: $font-size-input;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-selected-item-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: $sp 0;
   }
 
   &__arrow-wrapper {
+    padding: 0 3 * $sp;
     display: flex;
-    margin-left: $sp;
+    align-items: center;
   }
 
   &__arrow {
@@ -80,9 +157,10 @@
     z-index: $layer-dropdown;
     background-color: $color-white;
     width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
     border-top: 0;
+    overflow: hidden;
 
     &--theme-light {
       background-color: $color-white;
@@ -93,11 +171,23 @@
       background-color: $color-theme-dark;
       color: $color-theme-dark-font;
     }
+
+    &--rounded {
+      border-bottom-left-radius: $border-radius-main;
+      border-bottom-right-radius: $border-radius-main;
+    }
+
+    &--rounded-lg,
+    &--round {
+      border-bottom-left-radius: $border-radius-large;
+      border-bottom-right-radius: $border-radius-large;
+    }
   }
 
   &__items {
     width: 100%;
     overflow-y: auto;
+    box-shadow: $shadow-deep;
   }
 
   &__item {
@@ -109,9 +199,13 @@
     word-wrap: break-word;
     word-break: break-word;
 
+    &:not(:last-of-type) {
+      border-bottom: $select-item-border;
+    }
+
     &--disabled {
       cursor: default;
-      opacity: .4;
+      opacity: 0.4;
 
       &:hover {
         background-color: transparent;
@@ -122,11 +216,6 @@
     &--active {
       background-color: $color-primary;
       color: $color-theme-dark-font;
-
-      &:hover {
-        background-color: $color-primary !important;
-        color: $color-theme-dark-font !important;
-      }
     }
   }
 }

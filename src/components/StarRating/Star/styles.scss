@@ -1,0 +1,22 @@
+.v-star-rating-star {
+  overflow: visible !important;
+
+  &__stop {
+
+    @each $name, $color in $colors {
+      &--#{"" + $name} {
+        stop-color: $color;
+      }
+    }
+  }
+
+  &__polygon {
+
+    @each $name, $color in $colors {
+      &--#{"" + $name} {
+        stroke: $color;
+      }
+    }
+  }
+
+}

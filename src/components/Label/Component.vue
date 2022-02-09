@@ -2,6 +2,7 @@
   <label
     :class="$bem({})"
     :required="required"
+    v-bind="$ui.testElName('label')"
   >
     <slot />
     <span
@@ -21,9 +22,9 @@ export default defineComponent({
   props: {
     required: {
       type: Boolean as PropType<boolean>,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 });
 </script>
 

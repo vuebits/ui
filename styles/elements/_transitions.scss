@@ -1,9 +1,10 @@
 .fade {
+
   &-enter-active,
   &-leave-active {
     transition: opacity $animation-time;
   }
-  
+
   &-enter-from,
   &-leave-to {
     opacity: 0;
@@ -11,11 +12,13 @@
 }
 
 .expand {
+
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
     transform-origin: center;
   }
+
   &-enter-from,
   &-leave-to {
     transform: scale(0);
@@ -23,11 +26,13 @@
 }
 
 .slide-top {
+
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
     transform-origin: top;
   }
+
   &-enter-from,
   &-leave-to {
     transform: scaleY(0);
@@ -35,11 +40,13 @@
 }
 
 .slide-bottom {
+
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
     transform-origin: bottom;
   }
+
   &-enter-from,
   &-leave-to {
     transform: scaleY(0);
@@ -47,11 +54,13 @@
 }
 
 .slide-left {
+
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
     transform-origin: left;
   }
+
   &-enter-from,
   &-leave-to {
     transform: scaleX(0);
@@ -59,13 +68,70 @@
 }
 
 .slide-right {
+
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
     transform-origin: right;
   }
+
   &-enter-from,
   &-leave-to {
     transform: scaleX(0);
+  }
+}
+
+.slide-fade {
+
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.5s ease-in-out;
+  }
+
+  &-enter-from {
+    transform: translateY(-$sp-xs);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translateY($sp-xs);
+    opacity: 0;
+  }
+}
+
+.slide {
+
+  &-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+
+  &-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  &-enter-to,
+  &-leave-from {
+    max-height: 10rem;
+    overflow: hidden;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    overflow: hidden;
+    max-height: 0;
   }
 }

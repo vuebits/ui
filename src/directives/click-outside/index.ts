@@ -6,14 +6,14 @@ const HAS_NAVIGATOR = typeof navigator !== 'undefined';
 const IS_TOUCH =
   HAS_WINDOWS &&
   ('ontouchstart' in window ||
-    (HAS_NAVIGATOR && navigator.msMaxTouchPoints > 0));
+    (HAS_NAVIGATOR && (navigator as any).msMaxTouchPoints > 0));
 const EVENTS = IS_TOUCH ? ['touchstart'] : ['click'];
 
 function processDirectiveArguments (bindingValue: any) {
   const isFunction = typeof bindingValue === 'function';
   if (!isFunction && typeof bindingValue !== 'object') {
     throw new Error(
-      'v-click-outside: Binding value must be a function or an object'
+      'v-click-outside: Binding value must be a function or an object',
     );
   }
 
@@ -21,7 +21,7 @@ function processDirectiveArguments (bindingValue: any) {
     handler: isFunction ? bindingValue : bindingValue.handler,
     middleware: bindingValue.middleware || ((item: any) => item),
     events: bindingValue.events || EVENTS,
-    isActive: !(bindingValue.isActive === false)
+    isActive: !(bindingValue.isActive === false),
   };
 }
 
@@ -44,7 +44,7 @@ function onEvent ({ el, event, handler, middleware }: any) {
 
 function beforeMount (el: any, { value }: any): void {
   const { events, handler, middleware, isActive } = processDirectiveArguments(
-    value
+    value,
   );
   if (!isActive) {
     return;
@@ -52,7 +52,7 @@ function beforeMount (el: any, { value }: any): void {
 
   el[HANDLERS_PROPERTY] = events.map((eventName: any) => ({
     event: eventName,
-    handler: (event: any) => onEvent({ event, el, handler, middleware })
+    handler: (event: any) => onEvent({ event, el, handler, middleware }),
   }));
 
   el[HANDLERS_PROPERTY].forEach(({ event, handler }: any) =>
@@ -63,14 +63,14 @@ function beforeMount (el: any, { value }: any): void {
         return;
       }
       document.documentElement.addEventListener(event, handler, false);
-    }, 0)
+    }, 0),
   );
 }
 
 function unmounted (el: any) {
   const handlers = el[HANDLERS_PROPERTY] || [];
   handlers.forEach(({ event, handler }: any) =>
-    document.documentElement.removeEventListener(event, handler, false)
+    document.documentElement.removeEventListener(event, handler, false),
   );
   delete el[HANDLERS_PROPERTY];
 }
@@ -86,7 +86,7 @@ function updated (el: any, { value, oldValue }: any) {
 const directive: Directive = {
   beforeMount,
   updated,
-  unmounted
+  unmounted,
 };
 
 export default directive;

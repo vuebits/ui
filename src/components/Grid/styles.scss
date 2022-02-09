@@ -3,7 +3,7 @@
   flex-wrap: wrap;
 
   &--spacings-sm {
-    margin: 0 -$sp;
+    margin: 0 - $sp;
 
     > .v-grid-item {
       padding: 0 $sp;

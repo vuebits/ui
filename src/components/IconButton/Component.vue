@@ -14,95 +14,99 @@
     :loading="loading"
     :plain="plain"
     :hoverable="hoverable"
-    @click="click"
+    :gradient="gradient"
+    :theme="theme"
+    v-bind="$ui.testElName('icon-button')"
   >
-    <VIcon
-      v-if="!loading"
-      :name="icon"
-      :type="iconType"
-      :prefix="iconPrefix"
-    />
+    <template #container>
+      <VIcon
+        v-if="!loading"
+        :name="icon"
+        :type="iconType"
+        :prefix="iconPrefix"
+      />
+    </template>
   </VButton>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VButton } from '@/components/Button';
-import { VIcon } from '@/components/Icon';
+import { VButton } from '../Button';
+import { VIcon } from '../Icon';
 import {
-  CssClass
-} from '@/helpers/css-classes';
+  CssClass,
+} from '../../helpers/css-classes';
 import {
   borderedProps,
   themeProps,
-  roundedProps
-} from '@/composition-functions';
+  roundedProps,
+  sizeProps,
+} from '../../composables';
 
 export default defineComponent({
   name: 'VIconButton',
   components: {
     VButton,
-    VIcon
+    VIcon,
   },
   props: {
     icon: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     iconType: {
       type: String as PropType<string | undefined>,
-      default: undefined
+      default: undefined,
     },
     iconPrefix: {
       type: String as PropType<string | undefined>,
-      default: undefined
+      default: undefined,
     },
     disabled: {
       type: Boolean as PropType<boolean>,
-      default: false
-    },
-    size: {
-      type: String as PropType<string>,
-      default: 'md'
+      default: false,
     },
     color: {
       type: String as PropType<string>,
-      default: 'default'
+      default: 'default',
     },
     title: {
       type: String as PropType<string | null>,
-      default: null
+      default: null,
     },
     loading: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     plain: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     hoverable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
+    },
+    gradient: {
+      type: String as PropType<string | null>,
+      default: null,
+    },
+    theme: {
+      type: String as PropType<string | null>,
+      default: null,
     },
     ...borderedProps,
     ...themeProps,
-    ...roundedProps
+    ...roundedProps,
+    ...sizeProps,
   },
-  emits: ['click'],
   computed: {
     classes (): CssClass[] {
       const mods = [this.size];
       return this.$bem({
-        m: mods
+        m: mods,
       });
-    }
+    },
   },
-  methods: {
-    click (): void {
-      this.$emit('click');
-    }
-  }
 });
 </script>
 

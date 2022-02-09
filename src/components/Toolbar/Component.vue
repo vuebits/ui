@@ -1,6 +1,7 @@
 <template>
   <nav
     :class="classes"
+    v-bind="$ui.testElName('toolbar')"
   >
     <VWrapper :class="$bem({e: 'top-container'})">
       <div :class="$bem({e: 'left-side'})">
@@ -31,44 +32,44 @@
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { VWrapper } from '@/components/Wrapper';
+import { VWrapper } from '../Wrapper';
 import {
   bgColorClass,
-  CssClass
-} from '@/helpers/css-classes';
+  CssClass,
+} from '../../helpers/css-classes';
 import {
   themeProps,
-  useTheme
-} from '@/composition-functions';
+  useTheme,
+} from '../../composables';
 
 export default defineComponent({
   name: 'VToolbar',
   components: {
-    VWrapper
+    VWrapper,
   },
   props: {
     fixed: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     absolute: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     color: {
       type: String,
-      default: 'default'
+      default: 'default',
     },
-    ...themeProps
+    ...themeProps,
   },
   setup (props) {
     const {
       dark,
-      light
+      light,
     } = toRefs(props);
 
     return {
-      themeClass: useTheme(dark, light)
+      themeClass: useTheme(dark, light),
     };
   },
   computed: {
@@ -78,14 +79,14 @@ export default defineComponent({
         ...this.$bem({
           m: {
             fixed: this.fixed,
-            absolute: this.absolute
-          }
+            absolute: this.absolute,
+          },
         }),
         ...colorClasses,
-        this.themeClass
+        this.themeClass,
       ];
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -1,6 +1,7 @@
 <template>
   <div
     :class="$bem({})"
+    v-bind="$ui.testElName('modal-body')"
   >
     <slot />
   </div>
@@ -10,7 +11,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'VModalBody'
+  name: 'VModalBody',
 });
 </script>
 

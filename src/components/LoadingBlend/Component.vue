@@ -2,6 +2,7 @@
   <div
     v-if="loading"
     :class="$bem({})"
+    v-bind="$ui.testElName('loading-blend')"
   >
     <VSpinner />
   </div>
@@ -9,19 +10,19 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VSpinner } from '@/components/Spinner';
+import { VSpinner } from '../Spinner';
 
 export default defineComponent({
   name: 'VLoadingBlend',
   components: {
-    VSpinner
+    VSpinner,
   },
   props: {
     loading: {
       type: Boolean as PropType<boolean>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 });
 </script>
 

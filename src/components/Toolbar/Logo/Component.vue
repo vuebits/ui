@@ -34,40 +34,43 @@ export default defineComponent({
   props: {
     src: {
       type: String as PropType<string>,
-      required: true
+      required: true,
     },
     alt: {
       type: String as PropType<string>,
-      default: null
+      default: null,
     },
     to: {
-      type: [Object, String],
-      default: null
+      type: [
+        Object,
+        String,
+      ],
+      default: null,
     },
     href: {
       type: String as PropType<string>,
-      default: null
+      default: null,
     },
     title: {
       type: String as PropType<string>,
-      default: null
-    }
+      default: null,
+    },
   },
   emits: {
-    click: null
+    click: null,
   },
   computed: {
     component (): string {
       if (this.to) return 'RouterLink';
       if (this.href) return 'a';
       return 'span';
-    }
+    },
   },
   methods: {
     onClick (): void {
       this.$emit('click');
-    }
-  }
+    },
+  },
 });
 </script>
 

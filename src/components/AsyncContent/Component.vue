@@ -1,15 +1,18 @@
 <template>
   <div
     :class="$bem({})"
+    v-bind="$ui.testElName('async-content')"
   >
     <div
       v-if="loading"
       :class="$bem({e: 'loading-wrapper'})"
     >
-      <VSpinner
-        :class="$bem({e: 'loader'})"
-        :size="spinnerSize"
-      />
+      <slot name="loader">
+        <VSpinner
+          :class="$bem({e: 'loader'})"
+          :size="spinnerSize"
+        />
+      </slot>
       <p
         :class="$bem({e: 'loading-text'})"
       >
@@ -23,8 +26,7 @@
       <VIcon
         :class="$bem({e: 'error-icon'})"
         size="3x"
-        name="exclamation-triangle"
-        is-internal
+        :name="$ui.icons.values.error"
       />
       <p
         :class="$bem({e: 'error-text'})"
@@ -37,59 +39,64 @@
         rounded
         dark
         :class="$bem({e: 'reload-button'})"
+        v-bind="$ui.testElName('async-content-reload')"
         @click="reload"
       >
         {{ computedReloadText }}
       </VButton>
     </div>
-    <template v-else>
-      <slot />
-    </template>
+    <transition
+      name="slide"
+    >
+      <div v-if="!loading && !error">
+        <slot />
+      </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { VSpinner } from '@/components/Spinner';
-import { VIcon } from '@/components/Icon';
-import { VButton } from '@/components/Button';
+import { VSpinner } from '../Spinner';
+import { VIcon } from '../Icon';
+import { VButton } from '../Button';
 
 export default defineComponent({
   name: 'VAsyncContent',
   components: {
     VSpinner,
     VIcon,
-    VButton
+    VButton,
   },
   props: {
     loading: {
       type: Boolean as PropType<boolean>,
-      required: true
+      required: true,
     },
     spinnerSize: {
       type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
-      default: '2x'
+      default: '2x',
     },
     loadingText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     error: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     errorText: {
       type: String as PropType<string>,
-      default: ''
+      default: '',
     },
     reloadable: {
       type: Boolean as PropType<boolean>,
-      default: false
+      default: false,
     },
     reloadText: {
       type: String as PropType<string>,
-      default: ''
-    }
+      default: '',
+    },
   },
   emits: ['reload'],
   computed: {
@@ -98,13 +105,13 @@ export default defineComponent({
     },
     computedReloadText (): string {
       return this.reloadText || this.$ui.t().asyncContent.reloadText;
-    }
+    },
   },
   methods: {
     reload (): void {
       this.$emit('reload');
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -1,5 +1,8 @@
 <template>
-  <div :class="$bem({})">
+  <div
+    :class="$bem({})"
+    v-bind="$ui.testElName('wrapper')"
+  >
     <slot />
   </div>
 </template>
@@ -8,7 +11,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'VWrapper'
+  name: 'VWrapper',
 });
 </script>
 
