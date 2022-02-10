@@ -89,6 +89,7 @@
     "vite": "^2.7.2",
     "vite-plugin-env-compatible": "^1.1.1",
     "vite-plugin-html": "2.1.1",
+    "vite-plugin-plain-text": "^1.1.4",
     "vue-tsc": "^0.30.2"
   },
   "lint-staged": {

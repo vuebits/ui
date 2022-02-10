@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import envCompatible from 'vite-plugin-env-compatible';
 import { injectHtml } from 'vite-plugin-html';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import plainText from 'vite-plugin-plain-text';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -41,6 +42,7 @@ export default defineConfig({
     viteCommonjs(),
     envCompatible(),
     injectHtml(),
+    plainText(/\/COMPONENT$/),
   ],
   css: {
     preprocessorOptions: {

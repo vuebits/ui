@@ -140,20 +140,20 @@ export default defineComponent({
   },
   methods: {
     async load () {
-      setTimeout(async () => {
-        let component = '';
+      // setTimeout(async () => {
+      //   let component = '';
 
-        try {
-          component = await import(`../views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue?raw`);
-        } catch (err) {}
+      //   try {
+      //     component = await import(`../views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`);
+      //   } catch (err) {}
 
-        this.component = component.default;
-        nextTick(() => {
-          hljs.highlightElement(this.$refs.html);
-          hljs.highlightElement(this.$refs.js);
-          hljs.highlightElement(this.$refs.css);
-        });
-      }, 100);
+      //   this.component = component.default;
+      //   nextTick(() => {
+      //     hljs.highlightBlock(this.$refs.html);
+      //     hljs.highlightBlock(this.$refs.js);
+      //     hljs.highlightBlock(this.$refs.css);
+      //   });
+      // }, 100);
     },
     toggleCodeVisibility () {
       this.isCodeShown = !this.isCodeShown;
