@@ -54,6 +54,14 @@ const propsHeaders = [
     for: 'name',
   },
   {
+    label: 'Type',
+    for: 'type',
+  },
+  {
+    label: 'Required',
+    for: 'required',
+  },
+  {
     label: 'Default',
     for: 'default',
   },
@@ -74,9 +82,14 @@ const bem = createBem('component-api');
 const propsItems = computed(() => {
   const props = component.value.props || {};
   return Object.keys(props).map(key => {
+    const type = props[key].type;
+    const getTypeString = (t: any) => typeof t === 'function' ? t.name : JSON.stringify(t);
+    const typeString = Array.isArray(type) ? type.map((t: any) => getTypeString(t)).join(', ') : getTypeString(type);
     return {
       name: key,
-      default: props[key].default,
+      type: typeString,
+      default: JSON.stringify(props[key].default),
+      required: props[key].required ?? false,
     };
   });
 });
