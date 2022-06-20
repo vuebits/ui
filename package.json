@@ -20,6 +20,10 @@
   "license": "MIT",
   "scripts": {
     "prepare": "simple-git-hooks",
+    "docs:serve": "cd ./docs && npm run serve",
+    "docs:preview": "cd ./docs && npm run preview",
+    "docs:build": "cd ./docs && npm run build",
+    "lib:build": "cd ./lib && npm run build",
     "component:create": "node ./utils/component/scripts/create",
     "lint": "eslint --ext .js,.ts,.vue .",
     "stylelint": "npx stylelint '**/*.scss'",

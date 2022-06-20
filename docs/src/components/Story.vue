@@ -83,7 +83,7 @@ import xml from 'highlight.js/lib/languages/xml';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
 import { VButton } from '@vuebits/ui';
-import { defineComponent, nextTick } from 'vue';
+import { defineComponent } from 'vue';
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', css);
