@@ -3,6 +3,7 @@ module.exports = {
   env: {
     node: true,
     jest: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -13,13 +14,14 @@ module.exports = {
     ecmaVersion: 2020,
   },
   ignorePatterns: [
-      'dist',
-      'dist-docs',
-      'node_modules',
-      'public',
-      'styles',
-      'utils',
-      'types',
+    'docs/dist',
+    'docs/node_modules',
+    'docs/public',
+    'lib/dist',
+    'lib/node_modules',
+    'lib/types',
+    'lib/styles',
+    'utils',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -105,13 +107,12 @@ module.exports = {
       'error',
       {
         singleline: 1,
-        multiline: {
-          max: 1,
-          allowFirstLine: false,
-        },
+        multiline: 1,
       },
     ],
     'vue/no-v-for-template-key-on-child': 'off',
+    'vue/script-setup-uses-vars': 'error',
+    'vue/multi-word-component-names': 'off',
   },
   overrides: [
     {

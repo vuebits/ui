@@ -1,0 +1,14 @@
+.v-radio-group {
+  display: block;
+
+  &--inline {
+    display: flex;
+  }
+
+  &__item {
+
+    &--inline {
+      margin-right: $sp-xl;
+    }
+  }
+}

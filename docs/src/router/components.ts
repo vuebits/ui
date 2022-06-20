@@ -80,6 +80,14 @@ export const componentsRoutes = [
     label: 'Pagination',
   },
   {
+    name: 'Radio',
+    label: 'Radio',
+  },
+  {
+    name: 'RadioGroup',
+    label: 'Radio group',
+  },
+  {
     name: 'Select',
     label: 'Select',
   },

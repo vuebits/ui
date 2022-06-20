@@ -8,6 +8,7 @@ import {
 import { install, uiSymbol } from './core';
 export * from './components';
 export * from './directives';
+export { createBem } from './helpers/bem';
 
 export function createUI (options: CustomOptions): {install: (T: App) => void} {
   return {

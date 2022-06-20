@@ -1,10 +1,10 @@
 <template>
-  <div :class="$bem({})">
-    <h3 :class="$bem({e: 'name'})">
+  <div :class="bem({})">
+    <h3 :class="bem({e: 'name'})">
       {{ component.name }}
     </h3>
-    <div :class="$bem({e: 'props-wrapper'})">
-      <h4 :class="$bem({e: 'props-header'})">
+    <div :class="bem({e: 'props-wrapper'})">
+      <h4 :class="bem({e: 'props-header'})">
         Props
       </h4>
       <VTable
@@ -13,11 +13,11 @@
         bordered
         padding="sm"
         fixed-header
-        :class="$bem({e: 'table'})"
+        :class="bem({e: 'table'})"
       />
     </div>
-    <div :class="$bem({e: 'emits-wrapper'})">
-      <h4 :class="$bem({e: 'emits-header'})">
+    <div :class="bem({e: 'emits-wrapper'})">
+      <h4 :class="bem({e: 'emits-header'})">
         Emits
       </h4>
       <VTable
@@ -26,72 +26,69 @@
         bordered
         padding="sm"
         fixed-header
-        :class="$bem({e: 'table'})"
+        :class="bem({e: 'table'})"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { VTable } from '@vuebits/ui';
+<script lang="ts" setup>
+import { computed, toRefs } from 'vue';
+import { VTable, createBem } from '@vuebits/ui';
 
-export default defineComponent({
-  name: 'ComponentApi',
-  components: {
-    VTable,
-  },
-  props: {
-    component: {
-      type: Object,
-      required: true,
-    },
-  },
-  data () {
-    return {
-      propsHeaders: [
-        {
-          label: 'Name',
-          for: 'name',
-        },
-        {
-          label: 'Default',
-          for: 'default',
-        },
-      ],
-      emitsHeaders: [
-        {
-          label: 'Event',
-          for: 'event',
-        },
-        {
-          label: 'Validation',
-          for: 'validation',
-        },
-      ],
-    };
-  },
-  computed: {
-    propsItems (): {name: string; default: any}[] {
-      const props = this.component.props || {};
-      return Object.keys(props).map(key => {
-        return {
-          name: key,
-          default: props[key].default,
-        };
-      });
-    },
-    emitsItems (): {event: string; validation: any}[] {
-      const emits: {[key in string]: any} = (this.component as any).__emits;
-      return emits ? Object.keys(emits).map(key => {
-        return {
-          event: key,
-          validation: emits[key],
-        };
-      }) : [];
-    },
-  },
+type Props = {
+  component: any;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  component: null,
 });
+
+const {
+  component,
+} = toRefs(props);
+
+const propsHeaders = [
+  {
+    label: 'Name',
+    for: 'name',
+  },
+  {
+    label: 'Default',
+    for: 'default',
+  },
+];
+const emitsHeaders = [
+  {
+    label: 'Event',
+    for: 'event',
+  },
+  {
+    label: 'Validation',
+    for: 'validation',
+  },
+];
+
+const bem = createBem('component-api');
+
+const propsItems = computed(() => {
+  const props = component.value.props || {};
+  return Object.keys(props).map(key => {
+    return {
+      name: key,
+      default: props[key].default,
+    };
+  });
+});
+
+const emitsItems = computed(() => {
+  const emits: string[] = component.value.emits || [];
+  return emits.map(e => ({
+    event: e,
+    validation: '',
+  }));
+});
+
 </script>
 
 <style lang="scss">
