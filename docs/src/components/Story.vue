@@ -77,18 +77,18 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import hljs from 'highlight.js';
 import xml from 'highlight.js/lib/languages/xml';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
 import { VButton } from '@vuebits/ui';
-import { defineComponent } from 'vue';
+import { defineComponent, nextTick } from 'vue';
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', css);
 
-const getComponentSection = (string: string, tagName: string) => {
+const getComponentSection = (string, tagName) => {
   const start = string.search(`<${tagName}>`);
   const end = string.search(`</${tagName}>`);
   return string.substr(start + tagName.length + 3, end - start - tagName.length - 3);
@@ -140,25 +140,26 @@ export default defineComponent({
   },
   methods: {
     async load () {
-      // setTimeout(async () => {
-      //   let component = '';
+      setTimeout(async () => {
+        let component = '';
 
-      //   try {
-      //     component = await import(`../views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`);
-      //   } catch (err) {}
+        try {
+          const fileName = `/src/views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`;
+          component = import.meta.glob('/src/views/Docs/**/_stories/*.vue', { as: 'raw' })[fileName];
+        } catch (err) {}
 
-      //   this.component = component.default;
-      //   nextTick(() => {
-      //     hljs.highlightBlock(this.$refs.html);
-      //     hljs.highlightBlock(this.$refs.js);
-      //     hljs.highlightBlock(this.$refs.css);
-      //   });
-      // }, 100);
+        this.component = component;
+        nextTick(() => {
+          hljs.highlightBlock(this.$refs.html);
+          hljs.highlightBlock(this.$refs.js);
+          hljs.highlightBlock(this.$refs.css);
+        });
+      }, 100);
     },
     toggleCodeVisibility () {
       this.isCodeShown = !this.isCodeShown;
     },
-    setActiveCode (code: any) {
+    setActiveCode (code) {
       this.activeCode = code;
     },
   },
