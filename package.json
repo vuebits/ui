@@ -1,22 +1,4 @@
 {
-  "version": "0.5.0",
-  "description": "Vue 3 components library",
-  "author": "Vuebits (https://github.com/vuebits)",
-  "contributors": [
-    "Szczepan Masny <szczepanmasny@gmail.com> (https://github.com/szczepanmasny)",
-    "Agnieszka Ziomek <poziomkaa@gmail.com> (https://github.com/Ziomeka)"
-  ],
-  "homepage": "https://github.com/vuebits/ui",
-  "keywords": [
-    "ui",
-    "design pattern",
-    "vuejs",
-    "vue3",
-    "vue ui",
-    "vuejs ui",
-    "vue3 ui"
-  ],
-  "license": "MIT",
   "scripts": {
     "prepare": "simple-git-hooks",
     "docs:serve": "cd ./docs && npm run serve",
