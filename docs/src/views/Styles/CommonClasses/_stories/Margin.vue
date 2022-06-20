@@ -37,10 +37,10 @@ export default {
         'top-',
         'right-',
         'bottom-',
-        'left-'
-      ]
+        'left-',
+      ],
     };
-  }
+  },
 };
 </script>
 

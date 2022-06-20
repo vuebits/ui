@@ -397,7 +397,7 @@ export default defineComponent({
     isItemSelected (key: string | number | undefined): boolean {
       return !!key && this.selectedItems.map(i => i.key).includes(key);
     },
-    onKeydown (e: any): void{
+    onKeydown (e: any): void {
       if (e.code === 'Tab') {
         this.closeList();
       }

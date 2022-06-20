@@ -37,9 +37,9 @@ export default {
   name: 'CommonClassesBorderColor',
   data () {
     return {
-      colors
+      colors,
     };
-  }
+  },
 };
 </script>
 

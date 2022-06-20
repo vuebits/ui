@@ -37,9 +37,9 @@ export default {
   name: 'CommonClassesHoverColor',
   data () {
     return {
-      colors
+      colors,
     };
-  }
+  },
 };
 </script>
 

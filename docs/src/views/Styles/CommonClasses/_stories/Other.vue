@@ -20,7 +20,7 @@
 <script>
 
 export default {
-  name: 'CommonClassesOther'
+  name: 'CommonClassesOther',
 };
 </script>
 

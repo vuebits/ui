@@ -90,7 +90,7 @@
 import { defineComponent } from 'vue';
 import {
   PageHeader,
-  Story
+  Story,
 } from '@/docs/components';
 import {
   CommonClassesColor,
@@ -102,7 +102,7 @@ import {
   CommonClassesTheme,
   CommonClassesOther,
   CommonClassesPadding,
-  CommonClassesMargin
+  CommonClassesMargin,
 } from './_stories';
 
 export default defineComponent({
@@ -119,8 +119,8 @@ export default defineComponent({
     CommonClassesTheme,
     CommonClassesOther,
     CommonClassesPadding,
-    CommonClassesMargin
-  }
+    CommonClassesMargin,
+  },
 });
 </script>
 

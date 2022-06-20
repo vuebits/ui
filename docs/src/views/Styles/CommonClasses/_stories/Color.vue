@@ -37,9 +37,9 @@ export default {
   name: 'CommonClassesColor',
   data () {
     return {
-      colors
+      colors,
     };
-  }
+  },
 };
 </script>
 

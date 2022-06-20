@@ -232,15 +232,15 @@ $hover-transition: all $animation-time-long ease-in-out !default;
 import { defineComponent } from 'vue';
 import {
   PageHeader,
-  CodeBlock
+  CodeBlock,
 } from '@/docs/components';
 
 export default defineComponent({
   name: 'DocsStylesVariables',
   components: {
     PageHeader,
-    CodeBlock
-  }
+    CodeBlock,
+  },
 });
 </script>
 

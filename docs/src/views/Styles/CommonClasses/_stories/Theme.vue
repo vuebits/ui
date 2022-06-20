@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name: 'CommonClassesTheme'
+  name: 'CommonClassesTheme',
 };
 </script>
 

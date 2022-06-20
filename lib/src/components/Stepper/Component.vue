@@ -108,7 +108,7 @@
                 :data="step"
                 :position="i + 1"
                 :index="i"
-                :goTo="goTo"
+                :go-to="goTo"
                 :is-last="i + 1 === steps.length"
               />
             </div>
@@ -127,7 +127,7 @@
                   :data="step"
                   :position="i + 1"
                   :index="i"
-                  :goTo="goTo"
+                  :go-to="goTo"
                   :is-last="i + 1 === steps.length"
                 >
                   <slot
@@ -136,7 +136,7 @@
                     :data="step"
                     :position="i + 1"
                     :index="i"
-                    :goTo="goTo"
+                    :go-to="goTo"
                     :is-last="i + 1 === steps.length"
                   >
                     {{ step.content }}

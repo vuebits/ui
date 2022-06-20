@@ -17,7 +17,7 @@
 <script>
 
 export default {
-  name: 'CommonClassesRounding'
+  name: 'CommonClassesRounding',
 };
 </script>
 

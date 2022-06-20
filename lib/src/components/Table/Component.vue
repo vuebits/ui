@@ -78,7 +78,7 @@
                     :name="header.for"
                     :field="item[header.for]"
                     :item="item"
-                    :isRowHovered="hoveredIndex === index"
+                    :is-row-hovered="hoveredIndex === index"
                   >
                     {{ item[header.for] }}
                   </slot>
