@@ -22,11 +22,11 @@ export default defineConfig({
       },
       {
         find: '@vuebits/ui',
-        replacement: path.resolve(__dirname, 'src'),
+        replacement: path.resolve(__dirname, '../lib/src'),
       },
       {
         find: '@',
-        replacement: path.resolve(__dirname, 'docs'),
+        replacement: path.resolve(__dirname, './src'),
       },
     ],
     extensions: [
@@ -50,12 +50,12 @@ export default defineConfig({
         additionalData: `
           @use 'sass:color';
           @import '@/assets/styles/config.scss';
-          @import './styles/config.scss';
+          @import '../lib/styles/config.scss';
         `,
       },
     },
   },
   build: {
-    outDir: 'dist-docs',
+    outDir: 'dist',
   },
 });

@@ -1,13 +1,13 @@
 import { App } from 'vue';
 
 const assetLibrary = (filename: string) => {
-  const svg = import.meta.globEager('/docs/assets/**/*.svg');
-  const png = import.meta.globEager('/docs/assets/**/*.png');
+  const svg = import.meta.globEager('/src/assets/**/*.svg');
+  const png = import.meta.globEager('/src/assets/**/*.png');
   const modules = {
     ...svg,
     ...png,
   };
-  return modules[`/docs/assets/${filename}`].default;
+  return modules[`/src/assets/${filename}`].default;
 };
 
 export const asset = (Vue: App) => {

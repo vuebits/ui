@@ -13,15 +13,16 @@
     "baseUrl": ".",
     "declaration": true,
     "declarationDir": "types",
+    "allowJs": true,
     "types": [
       "jest"
     ],
     "paths": {
       "@/*": [
-        "docs/*"
+        "src/*"
       ],
       "@vuebits/ui": [
-        "src"
+        "../lib/src"
       ]
     },
     "lib": [
