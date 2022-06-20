@@ -1,0 +1,196 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$btn-border-radius: 0 !default;
+$btn-themes: (
+  primary: (
+    bg: $color-primary,
+    text: $color-theme-dark-font,
+    bg-hover: $color-primary-hover
+  ),
+  secondary: (
+    bg: $color-secondary,
+    text: $color-theme-dark-font,
+    bg-hover: $color-secondary-hover
+  )
+) !default;
+
+.v-button {
+  $root: &;
+  display: inline-flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: $hover-transition;
+  align-items: stretch;
+  border-radius: $btn-border-radius;
+
+  &:focus {
+    box-shadow: $shadow-main;
+  }
+
+  &--sm {
+    min-width: $field-size-sm;
+    min-height: $field-size-sm;
+    font-size: $font-size-sm;
+
+    & #{$root}__icon {
+      font-size: $icon-size-sm;
+    }
+  }
+
+  &--md {
+    min-width: $field-size-md;
+    min-height: $field-size-md;
+    font-size: $font-size-md;
+
+    & #{$root}__icon {
+      font-size: $icon-size-md;
+    }
+  }
+
+  &--lg {
+    min-width: $field-size-lg;
+    min-height: $field-size-lg;
+    font-size: $font-size-lg;
+
+    & #{$root}__icon {
+      font-size: $icon-size-lg;
+    }
+  }
+
+  &--block {
+    width: 100%;
+  }
+
+  &--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &--outlined {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  &--flat {
+    background-color: transparent;
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  @each $name, $data in $btn-themes {
+    &--theme-#{"" + $name} {
+
+      @if map-has-key($data, 'text') {
+        color: map.get($data, 'text');
+      }
+
+      @if map-has-key($data, 'bg') {
+        background-color: map.get($data, 'bg');
+      }
+
+      @if map-has-key($data, 'text') {
+        color: map.get($data, 'text');
+      }
+
+      @if map-has-key($data, 'bg-hover') {
+
+        &:hover {
+          background-color: map.get($data, 'bg-hover');
+        }
+      }
+
+      @if map-has-key($data, 'text-hover') {
+
+        &:hover {
+          color: map.get($data, 'text-hover');
+        }
+      }
+
+      @if map-has-key($data, 'border') {
+        border: set-border(map.get($data, 'border'));
+      }
+
+      @if map-has-key($data, 'border-hover') {
+
+        &:hover {
+          border: set-border(map.get($data, 'border-hover'));
+        }
+      }
+    }
+  }
+
+  @each $name, $data in $btn-themes {
+    &--inverted-theme-#{"" + $name},
+    .invert-buttons &#{$root}--theme-#{"" + $name} {
+
+      @if map-has-key($data, 'bg') {
+        color: map.get($data, 'bg');
+        border: set-border(map.get($data, 'bg'));
+      }
+
+      @if map-has-key($data, 'bg-hover') {
+
+        &:hover {
+          color: map.get($data, 'bg-hover');
+        }
+      }
+
+      @if map-has-key($data, 'border') {
+        background-color: map.get($data, 'border');
+        color: $color-white;
+      }
+    }
+  }
+
+  @each $name, $gradient in $gradients {
+    &--gradient-#{"" + $name} {
+      background: linear-gradient(
+        to top,
+        list.nth($gradient, 2),
+        list.nth($gradient, 1) 51%,
+        list.nth($gradient, 2) 100%
+      );
+      background-size: auto 200%;
+      transition: background 0.3s;
+      color: $color-theme-dark-font;
+
+      &:hover {
+        background-position: center bottom;
+      }
+    }
+  }
+
+  &__container {
+    flex-grow: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--with-icons {
+      justify-content: space-between;
+    }
+  }
+
+  &__icon {
+    padding: $sp $field-sp;
+  }
+
+  &__content {
+    padding: $sp $field-sp;
+  }
+
+  &__loader {
+    padding: $sp $field-sp;
+  }
+}

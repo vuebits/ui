@@ -1,0 +1,22 @@
+@use 'sass:math';
+
+$responsive-grid-max-elements: 12 !default;
+
+.v-grid-item {
+  width: 100%;
+  @for $i from 1 through $responsive-grid-max-elements {
+    &--cols-xs-#{$i} {
+      width: math.percentage(math.div($i, $responsive-grid-max-elements));
+    }
+  }
+  $breakpoints: sm, md, lg, xl;
+  @each $breakpoint in $breakpoints {
+    @for $i from 1 through $responsive-grid-max-elements {
+      &--cols-#{$breakpoint}-#{$i} {
+        @include breakpoint($breakpoint) {
+          width: math.percentage(math.div($i, $responsive-grid-max-elements));
+        }
+      }
+    }
+  }
+}

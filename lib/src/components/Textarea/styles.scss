@@ -1,0 +1,128 @@
+@use 'sass:math';
+@use 'sass:color';
+
+.v-textarea {
+  $root: &;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  &--light {
+    background-color: $color-input-bg;
+    color: $color-theme-light-font;
+  }
+
+  &--dark {
+    background-color: $color-theme-dark;
+    color: $color-theme-dark-font;
+  }
+
+  &--disabled {
+    overflow: hidden;
+  }
+
+  &--round {
+    border-radius: 6 * $sp;
+
+    & #{$root}__label,
+    & #{$root}__textarea {
+      padding-left: 4 * $sp;
+      padding-right: 4 * $sp;
+    }
+  }
+
+  &--sm {
+    min-height: $field-size-sm;
+
+    & #{$root}__textarea {
+      font-size: $font-size-sm;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-sm;
+    }
+  }
+
+  &--md {
+    min-height: $field-size-md;
+
+    & #{$root}__textarea {
+      font-size: $font-size-md;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-md;
+    }
+  }
+
+  &--lg {
+    min-height: $field-size-lg;
+
+    & #{$root}__textarea {
+      font-size: $font-size-lg;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-lg;
+    }
+  }
+
+  &__content {
+    display: inline-block;
+    width: 100%;
+
+    &--disabled {
+      color: color.adjust($color-disabled, $lightness: -20%);
+      background-color: color.adjust($color-disabled, $lightness: 40%);
+      pointer-events: none;
+      cursor: not-allowed;
+      border-color: $color-disabled;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding: 0 3 * $sp;
+
+    &--round {
+      border-radius: 6 * $sp;
+    }
+
+    &--clickable {
+      cursor: pointer;
+    }
+  }
+
+  &__textarea {
+    cursor: text;
+    padding: $sp $field-sp;
+    width: 100%;
+    border: 0;
+    outline: 0;
+  }
+
+  &__label {
+    display: block;
+    color: $color-label;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: $font-size-input-label;
+    line-height: $font-size-input-label;
+    padding: $sp $field-sp 0;
+  }
+
+  &__hint {
+    color: $color-text-2;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2rem;
+
+    &--error {
+      color: $color-error;
+    }
+  }
+}

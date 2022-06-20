@@ -1,0 +1,126 @@
+@use 'sass:math';
+@use 'sass:color';
+
+.v-input {
+  $root: &;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  &--sm {
+    min-height: $field-size-sm;
+
+    & #{$root}__input {
+      font-size: $font-size-sm;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-sm;
+    }
+  }
+
+  &--md {
+    min-height: $field-size-md;
+
+    & #{$root}__input {
+      font-size: $font-size-md;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-md;
+    }
+  }
+
+  &--lg {
+    min-height: $field-size-lg;
+
+    & #{$root}__input {
+      font-size: $font-size-lg;
+    }
+
+    & #{$root}__icon {
+      font-size: $icon-size-lg;
+    }
+  }
+
+  &--light {
+    background-color: $color-input-bg;
+    color: $color-theme-light-font;
+  }
+
+  &--dark {
+    background-color: $color-theme-dark;
+    color: $color-theme-dark-font;
+  }
+
+  &--disabled {
+    overflow: hidden;
+  }
+
+  &--round {
+    border-radius: 6 * $sp;
+
+    & #{$root}__label,
+    & #{$root}__input {
+      padding-left: 4 * $sp;
+      padding-right: 4 * $sp;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &--disabled {
+      color: color.adjust($color-disabled, $lightness: -20%);
+      background-color: color.adjust($color-disabled, $lightness: 40%);
+      pointer-events: none;
+      cursor: not-allowed;
+      border-color: $color-disabled;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding: 0 3 * $sp;
+
+    &--round {
+      border-radius: 6 * $sp;
+    }
+
+    &--clickable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+    }
+  }
+
+  &__input {
+    cursor: text;
+    padding: 0 $field-sp;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    flex-grow: 1;
+
+    &:-webkit-autofill {
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+  }
+
+  &__label {
+    display: block;
+    color: $color-label;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: $font-size-input-label;
+    line-height: $font-size-input-label;
+    padding: $sp $field-sp 0;
+  }
+}

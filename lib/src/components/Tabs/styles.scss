@@ -1,0 +1,24 @@
+.v-tabs {
+  $shadow-tabs: 0 -2px 5px -2px rgba($color-black, 0.17);
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 4 * $sp;
+    position: relative;
+  }
+
+  &__tab {
+    padding: 2 * $sp;
+    cursor: pointer;
+
+    &--active {
+      font-weight: bold;
+      cursor: default;
+      border-bottom-width: $sp;
+      border-bottom-style: solid;
+    }
+  }
+}

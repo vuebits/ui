@@ -1,0 +1,93 @@
+.v-modal {
+  position: fixed;
+  display: flex;
+  z-index: $layer-modal;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: $color-blend;
+  flex-direction: column;
+
+  &--middle {
+    padding-top: 10 * $sp;
+    align-items: center;
+  }
+
+  &--right {
+    align-items: flex-end;
+  }
+
+  &--bottom {
+    justify-content: flex-end;
+  }
+
+  &__middle {
+    display: flex;
+    align-items: center;
+
+    &--fullscreen,
+    &--left,
+    &--right {
+      height: 100%;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    position: relative;
+    overflow: visible;
+
+    &--middle {
+      max-width: calc(100vw - #{4 * $sp});
+      max-height: calc(100vh - #{30 * $sp});
+    }
+
+    &--fullscreen,
+    &--left,
+    &--right {
+      height: 100%;
+      max-width: 100%;
+    }
+
+    &--fullscreen,
+    &--top,
+    &--bottom {
+      width: 100%;
+      max-height: 100%;
+    }
+
+    &--elevated {
+      box-shadow: $shadow-deep;
+    }
+
+    &--sm {
+      width: 36rem;
+    }
+
+    &--md {
+      width: 57rem;
+    }
+
+    &--lg {
+      width: 96rem;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    & > *:first-of-type {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    & > *:last-of-type {
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+  }
+}

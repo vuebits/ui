@@ -1,0 +1,19 @@
+@use 'sass:map';
+@import '../settings/breakpoints';
+
+@mixin center-transform {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn 'Breakpoint mixin supports: xs, sm, md, lg, xl';
+  }
+}

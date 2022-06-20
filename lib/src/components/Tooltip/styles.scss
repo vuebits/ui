@@ -1,0 +1,35 @@
+.v-tooltip {
+  position: relative;
+  display: inline-block;
+
+  &--active {
+    z-index: 100000;
+  }
+
+  &__blend {
+    z-index: -1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $color-blend;
+  }
+
+  &__activator {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &__tooltip {
+    position: fixed;
+
+    &--no-wrap {
+      white-space: nowrap;
+    }
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+}

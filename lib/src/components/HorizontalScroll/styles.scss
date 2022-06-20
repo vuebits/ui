@@ -1,0 +1,79 @@
+
+.v-horizontal-scroll {
+  $root: &;
+  position: relative;
+  overflow: hidden;
+
+  &__container {
+    display: flex;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    height: inherit;
+    align-items: center;
+    margin-bottom: -2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  &__arrow {
+    position: absolute;
+    cursor: pointer;
+    top: $sp;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    background-color: rgba($color-primary, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--disabled {
+      display: none;
+    }
+
+    &--left {
+      left: $sp;
+    }
+
+    &--right {
+      right: $sp;
+    }
+  }
+
+  &__child {
+
+    &--disabled {
+      pointer-events: none;
+      filter: grayscale(100%);
+    }
+  }
+
+  &--touch {
+    #{$root}__container {
+      flex-wrap: wrap;
+      display: flex;
+      @media (pointer: coarse) {
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+        padding: 0 2rem;
+      }
+    }
+    #{$root}__arrow {
+      display: none;
+      @media (pointer: coarse) {
+        display: block;
+      }
+    }
+  }
+
+  &--no-scroll {
+    #{$root}__container {
+      overflow-x: auto;
+    }
+  }
+
+  &--no-arrows {
+    #{$root}__arrow {
+      display: none;
+    }
+  }
+}

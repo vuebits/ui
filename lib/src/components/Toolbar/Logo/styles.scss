@@ -1,0 +1,21 @@
+.v-toolbar-logo {
+  cursor: pointer;
+
+  &__link {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__image {
+    height: 100%;
+    width: auto;
+  }
+
+  &__title {
+    margin-left: 4 * $sp;
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+}

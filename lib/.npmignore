@@ -1,0 +1,6 @@
+node_modules
+.git*
+.gitignore
+jest.config.js
+tsconfig.json
+coverage

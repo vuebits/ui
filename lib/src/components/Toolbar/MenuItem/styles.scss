@@ -1,0 +1,14 @@
+.v-toolbar-menu-item {
+  cursor: pointer;
+
+  @include breakpoint(lg) {
+    height: 100%;
+  }
+
+  &__link {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0;
+  }
+}

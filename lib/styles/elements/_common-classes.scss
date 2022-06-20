@@ -1,0 +1,225 @@
+@use 'sass:color';
+@use 'sass:list';
+
+.is-elevated {
+  box-shadow: $shadow-main;
+}
+
+.is-depressed {
+  box-shadow: $shadow-depressed;
+}
+
+.is-bordered {
+  border: set-border();
+}
+
+.is-rounded {
+  border-radius: $border-radius-main;
+}
+
+.is-rounded-lg {
+  border-radius: $border-radius-large;
+}
+
+.is-round {
+  border-radius: $border-radius-round;
+}
+
+.is-right {
+  text-align: right;
+}
+
+.is-uppercase {
+  text-transform: uppercase;
+}
+
+.is-hoverable {
+
+  &:hover {
+    background-color: $color-hover;
+  }
+}
+
+.is-light {
+  background-color: $color-theme-light;
+  color: $color-theme-light-font;
+}
+
+.is-dark {
+  background-color: $color-theme-dark;
+  color: $color-theme-dark-font;
+
+  &.is-hoverable,
+  .is-hoverable {
+
+    &:hover {
+      background-color: $color-hover-dark;
+    }
+  }
+}
+
+@each $name, $spacing in $spacings {
+  .has-padding-#{"" + $name} {
+    padding: $spacing;
+  }
+  .has-padding-x-#{"" + $name} {
+    padding-left: $spacing;
+    padding-right: $spacing;
+  }
+  .has-padding-y-#{"" + $name} {
+    padding-top: $spacing;
+    padding-bottom: $spacing;
+  }
+  .has-padding-top-#{"" + $name} {
+    padding-top: $spacing;
+  }
+  .has-padding-right-#{"" + $name} {
+    padding-right: $spacing;
+  }
+  .has-padding-bottom-#{"" + $name} {
+    padding-bottom: $spacing;
+  }
+  .has-padding-left-#{"" + $name} {
+    padding-left: $spacing;
+  }
+
+  .has-margin-#{"" + $name} {
+    margin: $spacing;
+  }
+  .has-margin-x-#{"" + $name} {
+    margin-left: $spacing;
+    margin-right: $spacing;
+  }
+  .has-margin-y-#{"" + $name} {
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+  }
+  .has-margin-top-#{"" + $name} {
+    margin-top: $spacing;
+  }
+  .has-margin-right-#{"" + $name} {
+    margin-right: $spacing;
+  }
+  .has-margin-bottom-#{"" + $name} {
+    margin-bottom: $spacing;
+  }
+  .has-margin-left-#{"" + $name} {
+    margin-left: $spacing;
+  }
+}
+
+@each $name, $color in $colors {
+  .has-bg-color-#{"" + $name} {
+    background-color: $color;
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        background-color: color.adjust($color, $lightness: - ($i * 10%));
+      }
+      &-lighten-#{$i} {
+        background-color: color.adjust($color, $lightness: $i * 10%);
+      }
+    }
+  }
+  .has-color-#{"" + $name} {
+    color: $color;
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        color: color.adjust($color, $lightness: - ($i * 10%));
+      }
+      &-lighten-#{$i} {
+        color: color.adjust($color, $lightness: $i * 10%);
+      }
+    }
+  }
+  .has-border-color-#{"" + $name} {
+    border-color: $color;
+
+    @for $i from 1 through 3 {
+      &-darken-#{$i} {
+        border-color: color.adjust($color, $lightness: - ($i * 10%));
+      }
+      &-lighten-#{$i} {
+        border-color: color.adjust($color, $lightness: $i * 10%);
+      }
+    }
+  }
+  .has-hover-bg-color-#{"" + $name} {
+
+    &:hover {
+      background-color: $color;
+    }
+
+    @for $i from 1 through 7 {
+      &-darken-#{$i} {
+
+        &:hover {
+          background-color: color.adjust($color, $lightness: - ($i * 10%));
+        }
+      }
+      &-lighten-#{$i} {
+
+        &:hover {
+          background-color: color.adjust($color, $lightness: $i * 10%);
+        }
+      }
+    }
+  }
+  .has-hover-color-#{"" + $name} {
+
+    &:hover {
+      color: $color;
+    }
+
+    @for $i from 1 through 4 {
+      &-darken-#{$i} {
+
+        &:hover {
+          color: color.adjust($color, $lightness: - ($i * 10%));
+        }
+      }
+      &-lighten-#{$i} {
+
+        &:hover {
+          color: color.adjust($color, $lightness: $i * 10%);
+        }
+      }
+    }
+  }
+}
+
+@each $name, $gradient in $gradients {
+  .has-gradient-#{"" + $name} {
+    background: linear-gradient(to top, list.nth($gradient, 2), list.nth($gradient, 1));
+  }
+}
+
+.is-title {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-stretch: normal;
+  font-size: 3rem;
+  line-height: 1.1;
+  line-height: 3.6rem;
+  font-weight: bold;
+}
+
+.is-text {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+.is-text-small {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+.is-scrolling-disabled {
+  overflow-y: hidden;
+  position: relative;
+  height: 100%;
+}
