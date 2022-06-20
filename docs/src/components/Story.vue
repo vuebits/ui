@@ -158,7 +158,7 @@ export default defineComponent({
     toggleCodeVisibility () {
       this.isCodeShown = !this.isCodeShown;
     },
-    setActiveCode (code) {
+    setActiveCode (code: any) {
       this.activeCode = code;
     },
   },

@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "declaration": true,
     "declarationDir": "types",
+    "allowJs": true,
     "types": [
       "jest"
     ],
