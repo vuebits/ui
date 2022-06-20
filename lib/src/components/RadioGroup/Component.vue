@@ -30,7 +30,7 @@ type Emits = {
   (e: 'update:model-value', name: RadioValue): void;
 }
 type Props = {
-  modelValue?: RadioValue;
+  modelValue?: string | number | null;
   name: string | number;
   items: RadioItem[];
   color?: string;
