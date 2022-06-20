@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { nextTick } from 'vue';
 import hljs from 'highlight.js';
 import xml from 'highlight.js/lib/languages/xml';
