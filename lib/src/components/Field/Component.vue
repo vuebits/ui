@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { CssClass } from 'src/helpers/css-classes';
+import { CssClass } from '../../helpers/css-classes';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
