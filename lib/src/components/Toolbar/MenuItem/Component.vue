@@ -35,9 +35,7 @@ export default defineComponent({
     },
     ...linkProps,
   },
-  emits: {
-    click: null,
-  },
+  emits: ['click'],
   setup (props) {
     const {
       to,

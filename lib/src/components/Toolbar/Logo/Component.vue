@@ -56,9 +56,7 @@ export default defineComponent({
       default: null,
     },
   },
-  emits: {
-    click: null,
-  },
+  emits: ['click'],
   computed: {
     component (): string {
       if (this.to) return 'RouterLink';

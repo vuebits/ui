@@ -71,9 +71,7 @@ export default defineComponent({
     ...elevatedProps,
     ...roundedProps,
   },
-  emits: {
-    click: null,
-  },
+  emits: ['click'],
   setup (props) {
     const {
       dark,

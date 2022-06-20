@@ -68,12 +68,8 @@ const propsHeaders = [
 ];
 const emitsHeaders = [
   {
-    label: 'Event',
-    for: 'event',
-  },
-  {
-    label: 'Validation',
-    for: 'validation',
+    label: 'Event name',
+    for: 'name',
   },
 ];
 
@@ -97,8 +93,7 @@ const propsItems = computed(() => {
 const emitsItems = computed(() => {
   const emits: string[] = component.value.emits || [];
   return emits.map(e => ({
-    event: e,
-    validation: '',
+    name: e,
   }));
 });
 

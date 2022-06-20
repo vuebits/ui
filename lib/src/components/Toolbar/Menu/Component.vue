@@ -34,9 +34,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: {
-    'click-outside': null,
-  },
+  emits: ['click-outside'],
   computed: {
     listClasses (): CssClass[] {
       return [
