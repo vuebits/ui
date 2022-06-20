@@ -1,9 +1,0 @@
-.v-wrapper {
-  max-width: $max-content-width;
-  margin: auto;
-  padding: 0 2 * $sp;
-
-  @include breakpoint(lg) {
-    padding: 0 3 * $sp;
-  }
-}

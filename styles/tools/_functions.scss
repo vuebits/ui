@@ -1,3 +1,0 @@
-@function set-border($color: $color-border, $width: $border-width, $style: solid) {
-  @return $width $style $color;
-}
