@@ -3,8 +3,8 @@ const fs = require('fs-extra'); // eslint-disable-line
 const replace = require('replace-in-file'); // eslint-disable-line
 const templatePath = './utils/component/template';
 const docsTemplatePath = './utils/component/docs-template';
-const componentsRootPath = './src/components';
-const docsRootPath = './docs';
+const componentsRootPath = './lib/src/components';
+const docsRootPath = './docs/src';
 
 const componentNamespace = [];
 let dirName;

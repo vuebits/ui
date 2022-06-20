@@ -42,6 +42,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-0",
+    "fs-extra": "^10.1.0",
     "lint-staged": "^12.1.7",
     "replace-in-file": "^6.2.0",
     "sass": "^1.43.4",
