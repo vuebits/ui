@@ -136,6 +136,10 @@ export const componentsRoutes = [
     label: 'Timeline',
   },
   {
+    name: 'Timepicker',
+    label: 'Timepicker',
+  },
+  {
     name: 'Toolbar',
     label: 'Toolbar',
   },

@@ -1,0 +1,53 @@
+.v-timepicker {
+  display: flex;
+  align-items: center;
+
+  &__time-chunk {
+    width: 6rem;
+  }
+
+  &__time-separator {
+    margin: 0 $sp;
+  }
+
+  &__time-chunk-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    min-width: 3rem;
+    border-radius: 50%;
+    padding: $sp;
+
+    &--selectable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+
+    &--disabled {
+      color: $color-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    padding: $sp;
+
+    &:hover {
+      background-color: $color-hover;
+      cursor: pointer;
+    }
+  }
+}
