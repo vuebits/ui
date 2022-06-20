@@ -113,6 +113,7 @@ module.exports = {
     'vue/no-v-for-template-key-on-child': 'off',
     'vue/script-setup-uses-vars': 'error',
     'vue/multi-word-component-names': 'off',
+    'vue/require-explicit-emits': 'off',
   },
   overrides: [
     {

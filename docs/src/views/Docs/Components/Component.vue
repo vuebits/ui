@@ -1,5 +1,11 @@
 <template>
   <div :class="$bem({})">
+    <div :class="$bem({e: 'header'})">
+      <div :class="$bem({e: 'header-left'})" />
+      <div :class="$bem({e: 'header-right'})">
+        <LocaleSwitcher :class="$bem({e: 'locale-switcher'})" />
+      </div>
+    </div>
     <router-view v-if="!isExactRoute" />
     <template v-else>
       <PageHeader>
@@ -19,6 +25,7 @@ import { RouteName } from '@/router/models';
 import {
   PageHeader,
   TableOfContents,
+  LocaleSwitcher,
 } from '@/components';
 import { componentsRoutes } from '@/router/components';
 
@@ -27,6 +34,7 @@ export default defineComponent({
   components: {
     PageHeader,
     TableOfContents,
+    LocaleSwitcher,
   },
   data () {
     return {
@@ -43,4 +51,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.docs-components {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 </style>

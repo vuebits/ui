@@ -10,40 +10,32 @@
     :min="min"
     type="number"
     class="knob-number"
-    @input="updatevalue"
+    @input="updateValue"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
 import { VInput } from '@vuebits/ui';
 
-export default defineComponent({
-  name: 'KnobNumber',
-  components: {
-    VInput,
-  },
-  props: {
-    modelValue: {
-      type: Number as PropType<number>,
-      required: true,
-    },
-    label: {
-      type: String as PropType<string>,
-      required: true,
-    },
-    min: {
-      type: Number as PropType<number>,
-      default: 0,
-    },
-  },
-  emits: ['update:modelValue'],
-  methods: {
-    updatevalue (value: number): void {
-      this.$emit('update:modelValue', Number(value));
-    },
-  },
+type Props = {
+  modelValue: number;
+  label: string;
+  min?: number;
+}
+
+withDefaults(defineProps<Props>(), {
+  min: 0,
 });
+
+type Emits = {
+    (e: 'update:model-value', value: number): void;
+}
+
+const emit = defineEmits<Emits>();
+
+const updateValue = (value: string | number): void => {
+  emit('update:model-value', Number(value));
+};
 </script>
 
 <style lang="scss">

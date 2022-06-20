@@ -1,110 +1,112 @@
 <template>
   <div
-    :class="$bem({})"
+    :class="bem({})"
   >
     <VTile
-      :class="$bem({e: 'code-box'})"
+      :class="bem({e: 'code-box'})"
       rounded
     >
       <pre
-        ref="code"
+        ref="codeEl"
         :class="codeClasses"
       ><code><slot>{{ cleanCode }}</slot></code></pre>
     </VTile>
     <div
-      :class="$bem({e: 'bottom'})"
+      :class="bem({e: 'bottom'})"
     >
       <VButton
         elevated
         size="sm"
-        :class="$bem({e: 'copy'})"
+        :class="bem({e: 'copy'})"
         @click="copy"
       >
         {{ copyText }}
       </VButton>
     </div>
     <div
-      ref="clipboard"
+      ref="clipboardEl"
     />
   </div>
 </template>
 
-<script>
-import { nextTick } from 'vue';
+<script setup lang="ts">
+import { nextTick,
+  computed,
+  ref,
+  toRefs }
+  from 'vue';
+import { createBem,
+  VTile,
+  VButton } from '@vuebits/ui';
 import hljs from 'highlight.js';
 import xml from 'highlight.js/lib/languages/xml';
 import javascript from 'highlight.js/lib/languages/javascript';
 import scss from 'highlight.js/lib/languages/scss';
 import bash from 'highlight.js/lib/languages/bash';
-import {
-  VTile,
-  VButton,
-} from '@vuebits/ui';
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', scss);
 hljs.registerLanguage('bash', bash);
 
-export default {
-  name: 'CodeBlock',
-  components: {
-    VTile,
-    VButton,
-  },
-  props: {
-    language: {
-      type: String,
-      required: true,
-    },
-    code: {
-      type: String,
-      required: true,
-    },
-  },
-  data () {
-    return {
-      copyText: 'Copy',
-    };
-  },
-  computed: {
-    codeClasses () {
-      return [
-        ...this.$bem({ e: 'code' }),
-        `language-${this.language}`,
-        'hljs',
-      ];
-    },
-    cleanCode () {
-      return this.code.trim();
-    },
-  },
-  created () {
-    this.load();
-  },
-  methods: {
-    async load () {
-      nextTick(() => {
-        hljs.highlightBlock(this.$refs.code);
-      });
-    },
-    copy () {
-      this.copyText = 'Copied!';
+type Props = {
+  language: string;
+  code: string;
+}
 
-      const clipboard = document.createElement('textarea');
-      clipboard.innerHTML = this.cleanCode;
-      const parentElement = this.$refs.clipboard;
-      parentElement.appendChild(clipboard);
-      clipboard.select();
-      clipboard.setSelectionRange(0, 99999); /* For mobile devices */
-      document.execCommand('copy');
-      parentElement.removeChild(clipboard);
+const props = withDefaults(defineProps<Props>(), {
+  language: '',
+  code: '',
+});
 
-      setTimeout(() => {
-        this.copyText = 'Copy';
-      }, 2000);
-    },
-  },
+const {
+  language,
+  code,
+} = toRefs(props);
+
+const copyText = ref('Copy');
+const clipboardEl = ref<HTMLElement | null>(null);
+const codeEl = ref<HTMLElement | null>(null);
+
+const bem = createBem('code-block');
+
+const codeClasses = computed(() => {
+  return [
+    ...bem({ e: 'code' }),
+    `language-${language.value}`,
+    'hljs',
+  ];
+});
+
+const cleanCode = computed(() => {
+  return code.value.trim();
+});
+
+const load = async () => {
+  nextTick(() => {
+    if (!codeEl.value) return;
+    hljs.highlightBlock(codeEl.value);
+  });
 };
+
+const copy = () => {
+  copyText.value = 'Copied!';
+  const clipboard = document.createElement('textarea');
+  clipboard.innerHTML = cleanCode.value;
+  const parentElement = clipboardEl.value;
+  if (!parentElement) return;
+  parentElement.appendChild(clipboard);
+  clipboard.select();
+  clipboard.setSelectionRange(0, 99999); /* For mobile devices */
+  document.execCommand('copy');
+  parentElement.removeChild(clipboard);
+
+  setTimeout(() => {
+    copyText.value = 'Copy';
+  }, 2000);
+};
+
+load();
+
 </script>
 
 <style lang="scss">

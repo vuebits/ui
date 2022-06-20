@@ -1,5 +1,5 @@
 <template>
-  <div :class="$bem({})">
+  <div :class="bem()">
     <VButton
       dark
       color="secondary"
@@ -16,7 +16,7 @@
     >
       <VModalHeader
         bordered
-        :class="$bem({e: 'header'})"
+        :class="bem({e: 'header'})"
       >
         <h2>
           Options
@@ -29,7 +29,7 @@
         />
       </VModalHeader>
       <VModalBody
-        :class="$bem({e: 'body'})"
+        :class="bem({e: 'body'})"
       >
         <slot />
       </VModalBody>
@@ -37,30 +37,21 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from 'vue';
 import {
   VButton,
   VModal,
   VModalHeader,
   VModalBody,
   VIconButton,
+  createBem,
 } from '@vuebits/ui';
 
-export default {
-  name: 'Knobs',
-  components: {
-    VButton,
-    VModal,
-    VModalHeader,
-    VModalBody,
-    VIconButton,
-  },
-  data () {
-    return {
-      isModalShown: false,
-    };
-  },
-};
+const bem = createBem('knobs');
+
+const isModalShown = ref(false);
+
 </script>
 
 <style lang="scss">

@@ -8,63 +8,49 @@
     round
     bordered
     class="knob-list-item"
-    @change="updatevalue"
+    @change="updateValue"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
 import { VSelect } from '@vuebits/ui';
+import { computed } from 'vue';
+import { SelectItem } from '../../../lib/src/components/Select/models';
 
-export default defineComponent({
-  name: 'KnobListItem',
-  components: {
-    VSelect,
-  },
-  props: {
-    modelValue: {
-      type: [
-        Number,
-        String,
-      ] as PropType<string | number | null>,
-      default: null,
-    },
-    items: {
-      type: Array as PropType<any[]>,
-      required: true,
-    },
-    label: {
-      type: String as PropType<string>,
-      required: true,
-    },
-  },
-  emits: [
-    'update:modelValue',
-    'select',
-    'change',
-  ],
-  computed: {
-    listItems (): any[] {
-      return this.items.map(item => {
-        return typeof item === 'object'
-          ? item
-          : {
-            key: item,
-            text: item.toString(),
-          };
-      });
-    },
-  },
-  methods: {
-    updatevalue (item: any): void {
-      this.$emit('update:modelValue', item.key);
-      this.$emit('select', item);
-      if (item.key !== this.modelValue) {
-        this.$emit('change', item);
-      }
-    },
-  },
+type Props = {
+  modelValue: string | number | null;
+  label: string;
+  items: string[];
+}
+
+const props = withDefaults(defineProps<Props>(), {});
+
+type Emits = {
+    (e: 'select', item: SelectItem): void;
+    (e: 'change', item: SelectItem): void;
+    (e: 'update:model-value', key: string | number): void;
+}
+
+const emit = defineEmits<Emits>();
+
+const listItems = computed<SelectItem[]>(() => {
+  return props.items.map(item => {
+    return typeof item === 'object'
+      ? item
+      : {
+        key: item,
+        text: item.toString(),
+      };
+  });
 });
+
+const updateValue = (item: SelectItem): void => {
+  emit('update:model-value', item.key);
+  emit('select', item);
+  if (item.key !== props.modelValue) {
+    emit('change', item);
+  }
+};
 </script>
 
 <style lang="scss">

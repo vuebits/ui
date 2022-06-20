@@ -11,32 +11,26 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
 import { VCheckbox } from '@vuebits/ui';
 
-export default defineComponent({
-  name: 'KnobBoolean',
-  components: {
-    VCheckbox,
-  },
-  props: {
-    modelValue: {
-      type: Boolean as PropType<boolean>,
-      required: true,
-    },
-    label: {
-      type: String as PropType<string>,
-      required: true,
-    },
-  },
-  emits: ['update:modelValue'],
-  methods: {
-    updateValue (isChecked: boolean): void {
-      this.$emit('update:modelValue', isChecked);
-    },
-  },
-});
+type Props = {
+  modelValue: boolean;
+  label: string;
+}
+
+withDefaults(defineProps<Props>(), {});
+
+type Emits = {
+    (e: 'update:model-value', isChecked: boolean): void;
+}
+
+const emit = defineEmits<Emits>();
+
+const updateValue = (isChecked: boolean): void => {
+  emit('update:model-value', isChecked);
+};
+
 </script>
 
 <style lang="scss">

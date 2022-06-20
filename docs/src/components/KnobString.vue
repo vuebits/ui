@@ -9,36 +9,29 @@
     no-hint
     type="string"
     class="knob-string"
-    @input="updatevalue"
+    @input="updateValue"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
 import { VInput } from '@vuebits/ui';
 
-export default defineComponent({
-  name: 'KnobString',
-  components: {
-    VInput,
-  },
-  props: {
-    modelValue: {
-      type: String as PropType<string>,
-      required: true,
-    },
-    label: {
-      type: String as PropType<string>,
-      required: true,
-    },
-  },
-  emits: ['update:modelValue'],
-  methods: {
-    updatevalue (value: string): void {
-      this.$emit('update:modelValue', value);
-    },
-  },
-});
+type Props = {
+  modelValue: string;
+  label: string;
+}
+
+withDefaults(defineProps<Props>(), {});
+
+type Emits = {
+    (e: 'update:model-value', value: string): void;
+}
+
+const emit = defineEmits<Emits>();
+
+const updateValue = (value: string): void => {
+  emit('update:model-value', value);
+};
 </script>
 
 <style lang="scss">

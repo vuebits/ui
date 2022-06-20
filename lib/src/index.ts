@@ -1,4 +1,3 @@
-
 import { App, inject } from 'vue';
 import {
   Options,
@@ -17,7 +16,7 @@ export function createUI (options: CustomOptions): {install: (T: App) => void} {
 }
 
 export function useUi () {
-  const uiInstance = inject(uiSymbol);
+  const uiInstance = inject<Options>(uiSymbol);
   if (!uiSymbol) throw new Error('No ui provided');
 
   return uiInstance;
