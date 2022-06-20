@@ -36,6 +36,7 @@ export default defineConfig({
       '.json',
       '.vue',
     ],
+    dedupe: ['vue'],
   },
   plugins: [
     vue(),
