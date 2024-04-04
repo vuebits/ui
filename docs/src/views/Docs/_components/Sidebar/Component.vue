@@ -61,7 +61,7 @@
 import { defineComponent } from 'vue'
 import { UiIconButton } from '@vuebits/ui'
 import { componentsRoutes } from '@/router/components'
-import { stylesRoutes } from '@/router/styles';
+import { stylesRoutes } from '@/router/styles'
 import { gettingStartedRoutes } from '@/router/getting-started'
 import { RouteName } from '@/router/models'
 
@@ -86,7 +86,7 @@ export default defineComponent({
         {
           name: RouteName.STYLES,
           label: 'Styles',
-          routes: stylesRoutes
+          routes: stylesRoutes,
         },
         {
           name: RouteName.COMPONENTS,

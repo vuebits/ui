@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Common classes
-    </PageHeader>
+    <PageHeader> Common classes </PageHeader>
     <Story
       file-name="Color"
       component-name="CommonClasses"
@@ -87,11 +85,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  PageHeader,
-  Story,
-} from '@/docs/components';
+import { defineComponent } from 'vue'
+import { PageHeader, Story } from '@/docs/components'
 import {
   CommonClassesColor,
   CommonClassesBgColor,
@@ -103,7 +98,7 @@ import {
   CommonClassesOther,
   CommonClassesPadding,
   CommonClassesMargin,
-} from './_stories';
+} from './_stories'
 
 export default defineComponent({
   name: 'DocsStylesCommonClasses',
@@ -121,8 +116,7 @@ export default defineComponent({
     CommonClassesPadding,
     CommonClassesMargin,
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -1,24 +1,15 @@
 <template>
-  <div
-    class="rounding"
-  >
-    <div class="is-rounded">
-      is-rounded
-    </div>
-    <div class="is-rounded-lg">
-      is-rounded-lg
-    </div>
-    <div class="is-round">
-      is-round
-    </div>
+  <div class="rounding">
+    <div class="is-rounded">is-rounded</div>
+    <div class="is-rounded-lg">is-rounded-lg</div>
+    <div class="is-round">is-round</div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'CommonClassesRounding',
-};
+}
 </script>
 
 <style>

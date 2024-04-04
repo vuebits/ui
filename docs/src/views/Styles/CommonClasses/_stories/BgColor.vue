@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="bg-color"
-  >
+  <div class="bg-color">
     <div
       v-for="color in colors"
       :key="color"
@@ -14,11 +12,7 @@
       >
         has-bg-color-{{ color }}-lighten-{{ 3 - i }}
       </div>
-      <div
-        :class="`has-bg-color-${color}`"
-      >
-        has-bg-color-{{ color }}
-      </div>
+      <div :class="`has-bg-color-${color}`">has-bg-color-{{ color }}</div>
       <div
         v-for="i in 2"
         :key="i"
@@ -31,16 +25,16 @@
 </template>
 
 <script>
-import { colors } from '@/docs/helpers/story-params';
+import { colors } from '@/docs/helpers/story-params'
 
 export default {
   name: 'CommonClassesBgColor',
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>
 
 <style>

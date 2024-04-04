@@ -1,11 +1,10 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Variables
-    </PageHeader>
+    <PageHeader> Variables </PageHeader>
     <p class="docs--p">
-      If you use sass styles in your app you can overwrite default variables with your own variables.
-      For this you have to define your own variable values before importing the library configuration. For example:
+      If you use sass styles in your app you can overwrite default variables with your own
+      variables. For this you have to define your own variable values before importing the
+      library configuration. For example:
     </p>
     <CodeBlock
       language="js"
@@ -47,9 +46,7 @@ $layer-notifications: 10000000;
 @import '~@vuebits/ui/styles/config';
       "
     />
-    <p class="docs--p">
-      Full list of default colors:
-    </p>
+    <p class="docs--p">Full list of default colors:</p>
     <CodeBlock
       language="scss"
       code="
@@ -120,9 +117,7 @@ $color-theme-light-font: $color-black !default;
 $color-theme-light-hover: $color-grey-light !default;
       "
     />
-    <p class="docs--p">
-      Breakpoints:
-    </p>
+    <p class="docs--p">Breakpoints:</p>
     <CodeBlock
       language="scss"
       code="
@@ -145,18 +140,14 @@ $breakpoints: (
 
       "
     />
-    <p class="docs--p">
-      Typography:
-    </p>
+    <p class="docs--p">Typography:</p>
     <CodeBlock
       language="scss"
       code="
 $font-main: 'Rubik', sans-serif !default;
       "
     />
-    <p class="docs--p">
-      Other variables:
-    </p>
+    <p class="docs--p">Other variables:</p>
     <CodeBlock
       language="scss"
       code="
@@ -229,11 +220,8 @@ $hover-transition: all $animation-time-long ease-in-out !default;
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  PageHeader,
-  CodeBlock,
-} from '@/docs/components';
+import { defineComponent } from 'vue'
+import { PageHeader, CodeBlock } from '@/docs/components'
 
 export default defineComponent({
   name: 'DocsStylesVariables',
@@ -241,8 +229,7 @@ export default defineComponent({
     PageHeader,
     CodeBlock,
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
