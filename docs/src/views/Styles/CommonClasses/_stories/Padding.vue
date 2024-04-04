@@ -33,8 +33,7 @@ export default {
 <style>
 .padding {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .padding__spacing {
   display: inline-block;

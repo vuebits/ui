@@ -42,8 +42,7 @@ export default {
 <style>
 .border-color {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .border-color__color {
   margin: 0 20px 20px 0;

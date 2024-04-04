@@ -37,8 +37,7 @@ export default {
 <style>
 .margin {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .margin__spacing-wrapper {
   display: inline-block;

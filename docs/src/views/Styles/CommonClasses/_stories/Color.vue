@@ -40,8 +40,7 @@ export default {
 <style>
 .color {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .color__color {
   margin: 0 20px 20px 0;
