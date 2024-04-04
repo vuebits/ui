@@ -1,6 +1,6 @@
 $table-compact-mode-max-width: 80em !default;
 
-.v-table {
+.ui-table {
   overflow-y: auto;
   position: relative;
 
@@ -23,7 +23,6 @@ $table-compact-mode-max-width: 80em !default;
   }
 
   @keyframes table-load {
-
     0% {
       left: -100%;
     }
@@ -38,7 +37,7 @@ $table-compact-mode-max-width: 80em !default;
     border-collapse: collapse;
 
     &--loading {
-      opacity:0.5;
+      opacity: 0.5;
       cursor: default;
       pointer-events: none;
       transition-duration: 0.2s;
@@ -81,15 +80,12 @@ $table-compact-mode-max-width: 80em !default;
   }
 
   &__row {
-
     &--clickable {
       cursor: pointer;
     }
 
     &--expanded {
-
       &:not(:hover) {
-
         & > td {
           color: $color-theme-light-font;
           background-color: $color-input-bg;
@@ -98,16 +94,13 @@ $table-compact-mode-max-width: 80em !default;
     }
 
     &:not(:first-of-type) {
-
       & > td {
         border-top: set-border();
       }
     }
 
     @media (max-width: $table-compact-mode-max-width) {
-
       & > td {
-
         &:not(:first-of-type) {
           border-top: $border-width dotted $color-border;
         }
@@ -116,15 +109,16 @@ $table-compact-mode-max-width: 80em !default;
   }
 
   &__cell {
-
     @media (max-width: $table-compact-mode-max-width) {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 100%;
+      width: 100% !important;
+      text-align: right !important;
 
       &::before {
         content: var(--header);
+        text-align: left;
         font-weight: bold;
         width: 20%;
         min-width: 15rem;
@@ -143,7 +137,6 @@ $table-compact-mode-max-width: 80em !default;
     &--hidden {
       visibility: hidden;
     }
-
   }
 
   &__body-placeholder {

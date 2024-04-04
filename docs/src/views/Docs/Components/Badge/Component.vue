@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Badge
-    </PageHeader>
+    <PageHeader> Badge </PageHeader>
     <BadgeExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VBadge } from '@vuebits/ui';
-import BadgeExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiBadge } from '@vuebits/ui'
+import BadgeExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsBadge',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     BadgeExample,
   },
-  data () {
+  data() {
     return {
-      component: VBadge,
-    };
+      component: UiBadge,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

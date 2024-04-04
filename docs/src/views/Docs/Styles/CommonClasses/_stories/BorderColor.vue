@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="border-color"
-  >
+  <div class="border-color">
     <div
       v-for="color in colors"
       :key="color"
@@ -14,9 +12,7 @@
       >
         is-bordered has-border-color-{{ color }}-lighten-{{ 3 - i }}
       </div>
-      <div
-        :class="`is-bordered has-border-color-${color}`"
-      >
+      <div :class="`is-bordered has-border-color-${color}`">
         is-bordered has-border-color-{{ color }}
       </div>
       <div
@@ -31,23 +27,22 @@
 </template>
 
 <script>
-import { colors } from '@/helpers/story-params';
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'CommonClassesBorderColor',
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>
 
 <style>
 .border-color {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .border-color__color {
   margin: 0 20px 20px 0;

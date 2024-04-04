@@ -1,11 +1,19 @@
 @use 'sass:math';
 @use 'sass:color';
 
-.v-input {
+.ui-input {
   $root: &;
   display: flex;
   align-items: stretch;
   position: relative;
+
+  &--disabled {
+    opacity: 0.8;
+    pointer-events: none;
+    cursor: not-allowed;
+    border-color: $color-disabled;
+    overflow: hidden;
+  }
 
   &--sm {
     min-height: $field-size-sm;
@@ -15,6 +23,7 @@
     }
 
     & #{$root}__icon {
+      width: $field-size-sm;
       font-size: $icon-size-sm;
     }
   }
@@ -27,6 +36,7 @@
     }
 
     & #{$root}__icon {
+      width: $field-size-md;
       font-size: $icon-size-md;
     }
   }
@@ -39,6 +49,7 @@
     }
 
     & #{$root}__icon {
+      width: $field-size-lg;
       font-size: $icon-size-lg;
     }
   }
@@ -53,42 +64,54 @@
     color: $color-theme-dark-font;
   }
 
-  &--disabled {
-    overflow: hidden;
+  &--rounded {
+    & #{$root}__content {
+      &--left-padding {
+        padding-left: $border-radius-main;
+      }
+
+      &--right-padding {
+        padding-right: $border-radius-main;
+      }
+    }
+  }
+
+  &--rounded-lg {
+    & #{$root}__content {
+      &--left-padding {
+        padding-left: $border-radius-large;
+      }
+
+      &--right-padding {
+        padding-right: $border-radius-large;
+      }
+    }
   }
 
   &--round {
-    border-radius: 6 * $sp;
+    & #{$root}__content {
+      &--left-padding {
+        padding-left: 4 * $sp;
+      }
 
-    & #{$root}__label,
-    & #{$root}__input {
-      padding-left: 4 * $sp;
-      padding-right: 4 * $sp;
+      &--right-padding {
+        padding-right: 4 * $sp;
+      }
     }
   }
 
   &__content {
+    padding: $sp $field-sp;
     display: flex;
     flex-direction: column;
     width: 100%;
-
-    &--disabled {
-      color: color.adjust($color-disabled, $lightness: -20%);
-      background-color: color.adjust($color-disabled, $lightness: 40%);
-      pointer-events: none;
-      cursor: not-allowed;
-      border-color: $color-disabled;
-    }
   }
 
   &__icon {
     display: flex;
     align-items: center;
-    padding: 0 3 * $sp;
-
-    &--round {
-      border-radius: 6 * $sp;
-    }
+    justify-content: center;
+    flex-shrink: 0;
 
     &--clickable {
       cursor: pointer;
@@ -101,11 +124,11 @@
 
   &__input {
     cursor: text;
-    padding: 0 $field-sp;
     width: 100%;
     border: 0;
     outline: 0;
     flex-grow: 1;
+    padding: 0;
 
     &:-webkit-autofill {
       background-clip: text;
@@ -121,6 +144,5 @@
     text-overflow: ellipsis;
     font-size: $font-size-input-label;
     line-height: $font-size-input-label;
-    padding: $sp $field-sp 0;
   }
 }

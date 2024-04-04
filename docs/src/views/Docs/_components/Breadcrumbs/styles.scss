@@ -1,9 +1,8 @@
 .docs-breadcrumbs {
   margin-bottom: 3 * $sp;
-  color: $color-text-2;
+  color: $color-text-secondary;
 
   &__breadcrumb {
-
     &:hover {
       font-weight: bold;
     }

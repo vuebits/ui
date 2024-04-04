@@ -2,22 +2,24 @@
   <div :class="$bem({})">
     <ul
       v-if="!vertical && steps.length > 1"
-      :class="$bem({e: 'steps-axis'})"
+      :class="$bem({ e: 'steps-axis' })"
     >
       <li
         v-for="(step, i) in steps"
         :key="i"
-        :class="$bem({e: 'steps-axis-step'})"
+        :class="$bem({ e: 'steps-axis-step' })"
       >
         <div
-          :class="$bem({
-            e: 'step-icon',
-            m: {
-              active: isStepActive(i),
-              complete: step.complete,
-              horizontal: true
-            }
-          })"
+          :class="
+            $bem({
+              e: 'step-icon',
+              m: {
+                active: isStepActive(i),
+                complete: step.complete,
+                horizontal: true,
+              },
+            })
+          "
         >
           <slot
             name="icon"
@@ -26,11 +28,11 @@
             :data="step"
             :position="i + 1"
           >
-            <VIcon
+            <UiIcon
               v-if="step.complete"
               :name="$ui.icons.values.check"
             />
-            <VIcon
+            <UiIcon
               v-else-if="step.icon"
               :name="step.icon"
             />
@@ -39,23 +41,30 @@
             </template>
           </slot>
         </div>
-        <div :class="$bem({e: 'step-axis-step-line'})" />
+        <div :class="$bem({ e: 'step-axis-step-line' })" />
       </li>
     </ul>
-    <ul :class="$bem({e: 'steps'})">
+    <ul :class="$bem({ e: 'steps' })">
       <template
         v-for="(step, i) in steps"
         :key="i"
       >
         <li
           v-if="vertical || isStepActive(i)"
-          :class="$bem({e: 'step'})"
+          :class="$bem({ e: 'step' })"
         >
           <div
             v-if="vertical && steps.length > 1"
-            :class="$bem({e: 'step-side'})"
+            :class="$bem({ e: 'step-side' })"
           >
-            <div :class="$bem({e: 'step-icon', m: {active: isStepActive(i), complete: step.complete}})">
+            <div
+              :class="
+                $bem({
+                  e: 'step-icon',
+                  m: { active: isStepActive(i), complete: step.complete },
+                })
+              "
+            >
               <slot
                 name="icon"
                 :icon="step.icon"
@@ -63,11 +72,11 @@
                 :data="step"
                 :position="i + 1"
               >
-                <VIcon
+                <UiIcon
                   v-if="step.complete"
                   :name="$ui.icons.values.check"
                 />
-                <VIcon
+                <UiIcon
                   v-else-if="step.icon"
                   :name="step.icon"
                 />
@@ -76,18 +85,21 @@
                 </template>
               </slot>
             </div>
-            <div :class="$bem({e: 'step-line'})" />
+            <div :class="$bem({ e: 'step-line' })" />
           </div>
-          <div :class="$bem({e: 'step-main'})">
-            <div :class="$bem({e: 'step-header'})">
-              <div :class="$bem({e: 'step-titles'})">
+          <div :class="$bem({ e: 'step-main' })">
+            <div :class="$bem({ e: 'step-header' })">
+              <div :class="$bem({ e: 'step-titles' })">
                 <slot
                   name="step-title"
                   :text="step.title"
                   :data="step"
                   :position="i + 1"
                 >
-                  <h2 :class="$bem({e: 'step-title'})">
+                  <h2
+                    v-if="step.title"
+                    :class="$bem({ e: 'step-title' })"
+                  >
                     {{ step.title }}
                   </h2>
                 </slot>
@@ -97,7 +109,10 @@
                   :data="step"
                   :position="i + 1"
                 >
-                  <h3 :class="$bem({e: 'step-subtitle'})">
+                  <h3
+                    v-if="step.subtitle"
+                    :class="$bem({ e: 'step-subtitle' })"
+                  >
                     {{ step.subtitle }}
                   </h3>
                 </slot>
@@ -119,7 +134,7 @@
             >
               <div
                 v-if="isStepActive(i) && !nextStep"
-                :class="$bem({e: 'step-content'})"
+                :class="$bem({ e: 'step-content' })"
               >
                 <slot
                   :name="`step-content-${i + 1}`"
@@ -152,13 +167,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VIcon } from '../Icon';
+import { defineComponent, PropType } from 'vue'
+import { UiIcon } from '../Icon'
 
 export default defineComponent({
-  name: 'VStepper',
+  name: 'UiStepper',
   components: {
-    VIcon,
+    UiIcon,
   },
   props: {
     modelValue: {
@@ -179,29 +194,29 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  data () {
+  data() {
     return {
       nextStep: null as number | null,
-    };
+    }
   },
   computed: {
-    transition (): string {
-      return this.vertical ? 'slide-top' : 'slide-left';
+    transition(): string {
+      return this.vertical ? 'slide-top' : 'slide-left'
     },
   },
   methods: {
-    isStepActive (index: number): boolean {
-      return index + 1 === this.modelValue;
+    isStepActive(index: number): boolean {
+      return index + 1 === this.modelValue
     },
-    goTo (step: number): void {
-      this.nextStep = step;
+    goTo(step: number): void {
+      this.nextStep = step
     },
-    showNextStep (): void {
-      this.$emit('update:modelValue', this.nextStep);
-      this.nextStep = null;
+    showNextStep(): void {
+      this.$emit('update:modelValue', this.nextStep)
+      this.nextStep = null
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

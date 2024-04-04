@@ -1,1 +1,1 @@
-export { default as VModalHeaderTitle } from './Component.vue';
+export { default as UiModalHeaderTitle } from './Component.vue'

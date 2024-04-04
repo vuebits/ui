@@ -8,7 +8,6 @@
     @mousemove="mouseMoving"
     @click="selected"
   >
-
     <linearGradient
       :id="grad"
       x1="0"
@@ -18,11 +17,11 @@
     >
       <stop
         :offset="getFill"
-        :class="$bem({e: 'stop', m: (rtl) ? inactiveColor : activeColor})"
+        :class="$bem({ e: 'stop', m: rtl ? inactiveColor : activeColor })"
       />
       <stop
         :offset="getFill"
-        :class="$bem({e: 'stop', m: (rtl) ? activeColor : inactiveColor})"
+        :class="$bem({ e: 'stop', m: rtl ? activeColor : inactiveColor })"
       />
     </linearGradient>
 
@@ -46,14 +45,14 @@
       v-show="fill > 1"
       :points="starPointsToString"
       :fill="getGradId"
-      :class="$bem({e: 'polygon', m: {[glowColor]: !!glowColor}})"
-      :filter="'url(#'+glowId+')'"
+      :class="$bem({ e: 'polygon', m: { [glowColor]: !!glowColor } })"
+      :filter="'url(#' + glowId + ')'"
     />
 
     <polygon
       :points="starPointsToString"
       :fill="getGradId"
-      :class="$bem({e: 'polygon', m: {[borderColor]: !!borderColor}})"
+      :class="$bem({ e: 'polygon', m: { [borderColor]: !!borderColor } })"
       :stroke-width="border"
       :stroke-linejoin="roundedCorners ? 'round' : 'miter'"
     />
@@ -65,10 +64,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-  name: 'VStarRatingStar',
+  name: 'UiStarRatingStar',
   props: {
     fill: {
       type: Number as PropType<number>,
@@ -119,95 +118,84 @@ export default defineComponent({
       default: '',
     },
   },
-  emits: [
-    'star-mouse-move',
-    'star-selected',
-  ],
-  data () {
+  emits: ['star-mouse-move', 'star-selected'],
+  data() {
     return {
-      starPoints: [
-        19.8,
-        2.2,
-        6.6,
-        43.56,
-        39.6,
-        17.16,
-        0,
-        17.16,
-        33,
-        43.56,
-      ] as number[],
+      starPoints: [19.8, 2.2, 6.6, 43.56, 39.6, 17.16, 0, 17.16, 33, 43.56] as number[],
       grad: '',
       glowId: '',
-    };
+    }
   },
   computed: {
-    starPointsToString (): string {
-      return this.starPoints.join(',');
+    starPointsToString(): string {
+      return this.starPoints.join(',')
     },
-    getGradId (): string {
-      return `url(#${this.grad})`;
+    getGradId(): string {
+      return `url(#${this.grad})`
     },
-    getSize (): number {
+    getSize(): number {
       // Adjust star size when rounded corners are set with no border, to account for the 'hidden' border
-      const size = (this.roundedCorners && this.borderWidth <= 0) ? this.size - this.border : this.size;
-      return size + this.border;
+      const size =
+        this.roundedCorners && this.borderWidth <= 0 ? this.size - this.border : this.size
+      return size + this.border
     },
-    getFill (): string {
-      return (this.rtl) ? `${100 - this.fill}%` : `${this.fill}%`;
+    getFill(): string {
+      return this.rtl ? `${100 - this.fill}%` : `${this.fill}%`
     },
-    border (): number {
-      return (this.roundedCorners && this.borderWidth <= 0) ? 0 : this.borderWidth;
+    border(): number {
+      return this.roundedCorners && this.borderWidth <= 0 ? 0 : this.borderWidth
     },
-    getBorderColor (): string {
+    getBorderColor(): string {
       if (this.roundedCorners && this.borderWidth <= 0) {
         // create a hidden border
-        return (this.fill <= 0) ? this.inactiveColor : this.activeColor;
+        return this.fill <= 0 ? this.inactiveColor : this.activeColor
       }
-      return this.borderColor;
+      return this.borderColor
     },
-    maxSize (): number {
-      return this.starPoints.reduce((a: number, b: number) => Math.max(a, b));
+    maxSize(): number {
+      return this.starPoints.reduce((a: number, b: number) => Math.max(a, b))
     },
-    viewBox (): string {
-      return `0 0 ${this.maxSize} ${this.maxSize}`;
+    viewBox(): string {
+      return `0 0 ${this.maxSize} ${this.maxSize}`
     },
   },
-  created () {
-    this.starPoints = (this.points.length) ? this.points : this.starPoints;
-    this.calculatePoints();
-    this.grad = this.getRandomId();
-    this.glowId = this.getRandomId();
+  created() {
+    this.starPoints = this.points.length ? this.points : this.starPoints
+    this.calculatePoints()
+    this.grad = this.getRandomId()
+    this.glowId = this.getRandomId()
   },
   methods: {
-    mouseMoving ($event: any): void {
+    mouseMoving($event: any): void {
       this.$emit('star-mouse-move', {
         event: $event,
         position: this.getPosition($event),
         id: this.starId,
-      });
+      })
     },
-    getPosition ($event: any) {
+    getPosition($event: any) {
       // calculate position in percentage.
-      const starWidth = (92 / 100) * this.size;
-      const offset = (this.rtl) ? Math.min($event.offsetX, 45) : Math.max($event.offsetX, 1);
-      const position = Math.round((100 / starWidth) * offset);
-      return Math.min(position, 100);
+      const starWidth = (92 / 100) * this.size
+      const offset = this.rtl ? Math.min($event.offsetX, 45) : Math.max($event.offsetX, 1)
+      const position = Math.round((100 / starWidth) * offset)
+      return Math.min(position, 100)
     },
-    selected ($event: any) {
+    selected($event: any) {
       this.$emit('star-selected', {
         id: this.starId,
         position: this.getPosition($event),
-      });
+      })
     },
-    getRandomId () {
-      return Math.random().toString(36).substring(7);
+    getRandomId() {
+      return Math.random().toString(36).substring(7)
     },
-    calculatePoints () {
-      this.starPoints = this.starPoints.map(point => ((this.size / this.maxSize) * point) + (this.border * 1.5));
+    calculatePoints() {
+      this.starPoints = this.starPoints.map(
+        (point) => (this.size / this.maxSize) * point + this.border * 1.5,
+      )
     },
   },
-});
+})
 </script>
 
 <style lang="scss" src="./styles.scss" />

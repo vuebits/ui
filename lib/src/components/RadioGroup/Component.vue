@@ -1,6 +1,6 @@
 <template>
-  <div :class="bem({m: {inline: inline}})">
-    <VRadio
+  <div :class="bem({ m: { inline: inline } })">
+    <UiRadio
       v-for="item of items"
       :key="item.name"
       v-model="selectedValue"
@@ -13,32 +13,32 @@
       :dark="dark"
       :label="item.label"
       :disabled="item.disabled"
-      :class="bem({ e: 'item', m: {inline: inline} })"
+      :class="bem({ e: 'item', m: { inline: inline } })"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, toRefs } from 'vue';
-import { VRadio } from '../Radio';
-import { createBem } from '../../helpers/bem';
-import { RadioValue } from '../Radio/models';
-import { RadioItem } from './models';
+import { computed, toRefs } from 'vue'
+import { UiRadio } from '../Radio'
+import { defineBem } from '../../helpers/bem'
+import { RadioValue } from '../Radio/models'
+import { RadioItem } from './models'
 
 type Emits = {
-  (e: 'select', name: RadioValue): void;
-  (e: 'update:model-value', name: RadioValue): void;
+  (e: 'select', name: RadioValue): void
+  (e: 'update:model-value', name: RadioValue): void
 }
 type Props = {
-  modelValue?: string | number | null;
-  name: string | number;
-  items: RadioItem[];
-  color?: string;
-  bordered?: boolean;
-  error?: boolean;
-  light?: boolean;
-  dark?: boolean;
-  inline?: boolean;
+  modelValue?: RadioValue
+  name: string | number
+  items: RadioItem[]
+  color?: string
+  bordered?: boolean
+  error?: boolean
+  light?: boolean
+  dark?: boolean
+  inline?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,33 +50,23 @@ const props = withDefaults(defineProps<Props>(), {
   error: false,
   light: false,
   dark: false,
-});
-const emit = defineEmits<Emits>();
-const bem = createBem('ls-radio-group');
+})
+const emit = defineEmits<Emits>()
+const bem = defineBem('ui-radio-group')
 
-const {
-  modelValue,
-  name,
-  items,
-  color,
-  bordered,
-  error,
-  light,
-  dark,
-  inline,
-} = toRefs(props);
+const { modelValue, name, items, color, bordered, error, light, dark, inline } = toRefs(props)
 
 const selectedValue = computed({
-  get (): RadioValue {
-    return modelValue.value;
+  get(): RadioValue {
+    return modelValue.value
   },
-  set (value: RadioValue): void {
-    emit('select', value);
-    emit('update:model-value', value);
+  set(value: RadioValue): void {
+    emit('select', value)
+    emit('update:model-value', value)
   },
-});
+})
 </script>
 
 <style lang="scss">
-@import "./styles";
+@import './styles';
 </style>

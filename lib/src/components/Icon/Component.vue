@@ -3,78 +3,116 @@
     :class="classes"
     v-bind="$ui.testElName('icon')"
   >
-    <slot />
+    <slot>
+      <svg
+        v-if="ui.icons.format === 'js'"
+        :width="svgSize"
+        :height="svgSize"
+        :viewBox="ui.icons.viewbox"
+        :class="bem({ e: 'svg' })"
+      >
+        <path
+          :d="computedPath"
+          :class="bem({ e: 'path' })"
+        />
+      </svg>
+    </slot>
   </i>
 </template>
 
 <script lang="ts">
-import { CssClass } from '../../helpers/css-classes';
-import { defineComponent, PropType } from 'vue';
+export default {
+  name: 'UiIcon',
+}
+</script>
 
-export default defineComponent({
-  name: 'VIcon',
-  props: {
-    name: {
-      type: String as PropType<string>,
-      default: '',
-    },
-    prefix: {
-      type: String as PropType<string>,
-      default: '',
-    },
-    type: {
-      type: String as PropType<string>,
-      default: '',
-    },
-    size: {
-      type: String as PropType<'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x' | null>,
-      default: null,
-    },
-    rotate: {
-      type: String as PropType<'90' | '180' | '270' | null>,
-      default: null,
-    },
-    flip: {
-      type: String as PropType<'horizontal' | 'vertical' | 'both' | null>,
-      default: null,
-    },
-    pulse: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    spin: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-  },
-  computed: {
-    computedPrefix (): string {
-      return this.prefix || this.$ui.icons.prefix;
-    },
-    computedType (): string {
-      return this.type || this.$ui.icons.type;
-    },
-    classes (): CssClass[] {
-      let iconClasses = [];
-      iconClasses = [
-        `${this.computedPrefix}${this.name}`,
-        this.computedType,
-      ];
-      return [
-        ...this.$bem({
-          m: {
-            [`size-${this.size}`]: !!this.size,
-            [`rotate-${this.rotate}`]: !!this.rotate,
-            [`flip-${this.flip}`]: !!this.flip,
-            pulse: this.pulse,
-            spin: this.spin,
-          },
-        }),
-        ...iconClasses,
-      ];
-    },
-  },
-});
+<script lang="ts" setup>
+import { CssClass } from '../../helpers/css-classes'
+import { computed } from 'vue'
+import { defineBem } from '../../helpers/bem'
+import { useUi } from '../../index'
+import { IconSize } from '../../types'
+
+type Props = {
+  name?: string
+  prefix?: string
+  type?: string
+  path?: string
+  size?: IconSize | null
+  rotate?: '90' | '180' | '270' | null
+  flip?: 'horizontal' | 'vertical' | 'both' | null
+  pulse?: boolean
+  spin?: boolean
+}
+
+const svgSize = computed(() => {
+  if (ui.icons.format !== 'js') return 1
+  const svgSizeFactors: Record<IconSize, number> = {
+    lg: 4 / 3,
+    sm: 0.875,
+    xs: 0.75,
+    '1x': 1,
+    '2x': 2,
+    '3x': 3,
+    '4x': 4,
+    '5x': 5,
+    '6x': 6,
+    '7x': 7,
+    '8x': 8,
+    '9x': 9,
+    '10x': 10,
+  }
+  const sizeFactor = props.size ? svgSizeFactors[props.size] : 1
+  return ui.icons.size * sizeFactor
+})
+
+const props = withDefaults(defineProps<Props>(), {
+  name: '',
+  prefix: '',
+  type: '',
+  path: '',
+  size: null,
+  rotate: null,
+  flip: null,
+  pulse: false,
+  spin: false,
+})
+const bem = defineBem('ui-icon')
+
+const ui = useUi()
+
+const isJsFormat = computed(() => ui.icons.format === 'js')
+
+const computedPrefix = computed((): string => {
+  if (ui.icons.format === 'js') return ''
+  return props.prefix || ui.icons.prefix
+})
+
+const computedType = computed((): string => {
+  if (ui.icons.format === 'js') return ''
+  return props.type || ui.icons.type
+})
+
+const computedPath = computed((): string => props.path || props.name)
+
+const classes = computed((): CssClass[] => {
+  let iconClasses: string[] = []
+  iconClasses = isJsFormat.value
+    ? []
+    : [`${computedPrefix.value}${props.name}`, computedType.value]
+  return [
+    ...bem({
+      m: {
+        [`size-${props.size}`]: !!props.size,
+        [`rotate-${props.rotate}`]: !!props.rotate,
+        [`flip-${props.flip}`]: !!props.flip,
+        pulse: props.pulse,
+        spin: props.spin,
+      },
+    }),
+    ...iconClasses,
+  ]
+})
 </script>
 
 <style lang="scss">

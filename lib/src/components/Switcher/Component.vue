@@ -1,137 +1,142 @@
 <template>
   <div
-    :class="$bem({})"
-    v-bind="$ui.testElName('switcher')"
+    :class="bem({})"
+    v-bind="ui.testElName('switcher')"
   >
     <p
       v-if="offLabel"
-      :class="$bem({e: 'label', m: 'off'})"
+      :class="bem({ e: 'label', m: 'off' })"
     >
       {{ offLabel }}
     </p>
     <div
       :class="containerClasses"
-      v-bind="$ui.testElName('switcher-slider')"
+      v-bind="ui.testElName('switcher-slider')"
       @click="checkValue"
     >
-      <div
-        :class="sliderClasses"
-      />
+      <div :class="sliderClasses" />
     </div>
     <p
       v-if="onLabel"
-      :class="$bem({e: 'label', m: 'on'})"
+      :class="bem({ e: 'label', m: 'on' })"
     >
       {{ onLabel }}
     </p>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { computed, toRefs } from 'vue'
 import {
-  gradientClass,
-  bgColorClass,
-  CssClass,
-} from '../../helpers/css-classes';
-import { defineComponent } from 'vue';
+  useBordered,
+  useRounded,
+  useElevated,
+  BorderedProps,
+  ElevatedProps,
+  RoundedProps,
+  SizeProps,
+  defaultBorderedProps,
+  defaultElevatedProps,
+  defaultRoundedProps,
+  defaultSizeProps,
+  defaultThemeProps,
+  ThemeProps,
+  useTheme,
+} from '../../composables'
+import { defineBem, useUi } from '../../index'
+import { bgColorClass, CssClass, gradientClass } from '../../helpers/css-classes'
 
-export default defineComponent({
-  name: 'VSwitcher',
-  props: {
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    offLabel: {
-      type: String,
-      default: '',
-    },
-    onLabel: {
-      type: String,
-      default: '',
-    },
-    color: {
-      type: String,
-      default: null,
-    },
-    gradient: {
-      type: String,
-      default: null,
-    },
-    inverseColors: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: [
-    'update:modelValue',
-    'change',
-  ],
-  data () {
-    return {
-      isChecked: false,
-    };
-  },
-  computed: {
-    colorClasses (): any[] {
-      const colorClasses = [];
-      if (this.gradient) colorClasses.push(gradientClass(this.gradient));
-      if (this.color) colorClasses.push(bgColorClass(this.color));
-      return colorClasses;
-    },
-    sliderClasses (): CssClass[] {
-      const colorClasses = this.inverseColors ? [bgColorClass('white')] : this.colorClasses;
-      return [
-        ...this.$bem({
-          e: 'slider',
-          m: {
-            checked: this.isChecked,
-            'inverse-colors': this.inverseColors,
-          },
-        }),
-        ...colorClasses,
-      ];
-    },
-    containerClasses (): CssClass[] {
-      const colorClasses = this.inverseColors ? this.colorClasses : [bgColorClass('white')];
-      return [
-        ...this.$bem({
-          e: 'container',
-          m: {
-            checked: this.isChecked,
-            disabled: this.disabled,
-          },
-        }),
-        ...colorClasses,
-      ];
-    },
-  },
-  watch: {
-    value () {
-      this.isChecked = this.modelValue;
-    },
-  },
-  created () {
-    this.isChecked = this.modelValue;
-  },
-  methods: {
-    checkValue () {
-      if (this.disabled) return;
+const bem = defineBem('ui-switcher')
+const ui = useUi()
 
-      if (this.isChecked) {
-        this.isChecked = false;
-      } else {
-        this.isChecked = true;
-      }
-      this.$emit('change');
-      this.$emit('update:modelValue', this.isChecked);
-    },
+const isChecked = defineModel<boolean>('modelValue', { required: true })
+
+const props = withDefaults(
+  defineProps<
+    {
+      color?: string
+      falseColor?: string
+      disabled?: boolean
+      loading?: boolean
+      leftIcon?: string | null
+      rightIcon?: string | null
+      title?: string | null
+      gradient?: string | null
+      offLabel?: string
+      onLabel?: string
+    } & ThemeProps &
+      BorderedProps &
+      RoundedProps &
+      ElevatedProps &
+      SizeProps
+  >(),
+  {
+    color: 'primary',
+    disabled: false,
+    loading: false,
+    gradient: null,
+    ...defaultThemeProps,
+    ...defaultBorderedProps,
+    ...defaultRoundedProps,
+    ...defaultElevatedProps,
+    ...defaultSizeProps,
   },
-});
+)
+
+const emit = defineEmits<{
+  change: []
+}>()
+const { dark, light, bordered, rounded, roundedLg, round, elevated } = toRefs(props)
+
+const themeClass = useTheme(dark, light)
+const borderedClass = useBordered(bordered)
+const roundedClass = useRounded(rounded, roundedLg, round)
+const elevatedClass = useElevated(elevated)
+
+const colorClass = computed((): string | null => {
+  if (!isChecked.value && props.falseColor) return bgColorClass(props.falseColor)
+  const gradient = gradientClass(props.gradient)
+  if (gradient) return gradient
+  return bgColorClass(props.color)
+})
+
+const containerClasses = computed((): CssClass[] => [
+  ...bem({
+    e: 'container',
+    m: {
+      [props.size]: true,
+      checked: isChecked.value,
+      disabled: props.disabled,
+    },
+  }),
+  themeClass.value,
+  borderedClass.value,
+  roundedClass.value,
+])
+
+const sliderClasses = computed((): CssClass[] => [
+  ...bem({
+    e: 'slider',
+    m: {
+      [props.size]: true,
+      checked: isChecked.value,
+    },
+  }),
+  roundedClass.value,
+  elevatedClass.value,
+  colorClass.value,
+])
+
+const checkValue = () => {
+  if (props.disabled) return
+
+  if (isChecked.value) {
+    isChecked.value = false
+  } else {
+    isChecked.value = true
+  }
+  emit('change')
+}
 </script>
 
 <style lang="scss">

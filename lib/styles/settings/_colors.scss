@@ -4,16 +4,18 @@
 $color-black: #000 !default;
 $color-white: #fff !default;
 $color-lightgray: #d8d8d8 !default;
-$color-gray: #afb0b1 !default;
-$color-light: #f1f2f3 !default;
-$color-dark: #25074f !default;
-$color-dark-2: #370d74 !default;
-$color-red: #e02020 !default;
-$color-green: #95c11e !default;
+$color-gray: #808080 !default;
+$color-red: #e63939 !default;
+$color-green: #6ca632 !default;
+$color-blue: #259df4 !default;
+$color-orange: #ff781f !default;
+$color-yellow: #e3d112 !default;
 $color-blue-pickled-bluewood: #35495e !default;
 $color-green-ocean: #42b983 !default;
 
 // THEME COLORS
+$color-light: $color-white !default;
+$color-dark: $color-black !default;
 
 // primary
 $color-primary: $color-blue-pickled-bluewood;
@@ -28,18 +30,19 @@ $color-secondary-gradient-1: color.adjust($color-secondary, $lightness: -20%) !d
 $color-secondary-gradient-2: color.adjust($color-secondary, $lightness: 10%) !default;
 
 // STATUSES
-$color-error: $color-red;
-$color-success: $color-green;
+$color-error: $color-red !default;
+$color-success: $color-green !default;
 
 // TYPOGRAPHY
-$color-text: $color-black;
-$color-text-2: #808184;
-$color-text-3: #646464;
+$color-text: $color-black !default;
+$color-text-secondary: rgba($color-text, 0.7) !default;
+$color-text-dark: $color-white !default;
+$color-text-dark-secondary: rgba($color-text-dark, 0.7) !default;
 
 // statuses
-$color-info: #0af !default;
+$color-info: $color-blue !default;
 $color-success: $color-green !default;
-$color-warning: #ff0 !default;
+$color-warning: $color-yellow !default;
 $color-error: $color-red !default;
 $color-disabled: $color-gray !default;
 
@@ -57,7 +60,7 @@ $color-border: #e0e0e0 !default;
 $color-link: $color-primary !default;
 $color-bg: $color-light !default;
 $color-label: $color-primary !default;
-$color-input-bg: $color-white;
+$color-input-bg: $color-white !default;
 $color-blend: rgba($color-black, 0.5) !default;
 $color-hover: rgba($color-primary, 0.05) !default;
 $color-hover-dark: rgba($color-primary, 0.9) !default;

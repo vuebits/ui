@@ -4,9 +4,8 @@
     title="Example"
   >
     <Preview>
-      <VGrid :spacings-size="spacingsSize">
-        <VGridItem
-
+      <UiGrid :spacings-size="spacingsSize">
+        <UiGridItem
           :cols-xs="colsXs1"
           :cols-sm="colsSm1"
           :cols-md="colsMd1"
@@ -42,8 +41,8 @@
               />
             </Knobs>
           </div>
-        </VGridItem>
-        <VGridItem
+        </UiGridItem>
+        <UiGridItem
           :cols-xs="colsXs2"
           :cols-sm="colsSm2"
           :cols-md="colsMd2"
@@ -79,8 +78,8 @@
               />
             </Knobs>
           </div>
-        </VGridItem>
-      </VGrid>
+        </UiGridItem>
+      </UiGrid>
     </Preview>
     <template #controls>
       <Knobs>
@@ -95,17 +94,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobNumber,
-  KnobListItem,
-} from '@/components';
-import {
-  VGrid,
-  VGridItem,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobNumber, KnobListItem } from '@/components'
+import { UiGrid, UiGridItem } from '@vuebits/ui'
 
 export default {
   name: 'CheckboxExample',
@@ -115,17 +105,12 @@ export default {
     Knobs,
     KnobNumber,
     KnobListItem,
-    VGrid,
-    VGridItem,
+    UiGrid,
+    UiGridItem,
   },
-  data () {
+  data() {
     return {
-      spacingsSizes: [
-        'sm',
-        'md',
-        'lg',
-        'no',
-      ],
+      spacingsSizes: ['sm', 'md', 'lg', 'no'],
       spacingsSize: 'md',
       colsXs1: 12,
       colsSm1: 6,
@@ -137,7 +122,7 @@ export default {
       colsMd2: 6,
       colsLg2: 4,
       colsXl2: 3,
-    };
+    }
   },
-};
+}
 </script>

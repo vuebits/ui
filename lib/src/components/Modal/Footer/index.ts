@@ -1,3 +1,3 @@
-import VModalFooter from './Component.vue';
+import UiModalFooter from './Component.vue'
 
-export { VModalFooter };
+export { UiModalFooter }

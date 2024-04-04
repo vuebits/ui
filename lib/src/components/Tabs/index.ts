@@ -1,1 +1,1 @@
-export { default as VTabs } from './Component.vue';
+export { default as UiTabs } from './Component.vue'

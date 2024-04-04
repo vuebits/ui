@@ -5,7 +5,7 @@
   >
     <Preview>
       <div>
-        <VTimepicker
+        <UiTimepicker
           v-model="time"
           :show-seconds="showSeconds"
           :hours-step="hoursStep"
@@ -50,16 +50,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobNumber,
-} from '@/components';
-import {
-  VTimepicker,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobNumber } from '@/components'
+import { UiTimepicker } from '@vuebits/ui'
 
 export default {
   name: 'TimepickerExample',
@@ -67,18 +59,18 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VTimepicker,
+    UiTimepicker,
     KnobBoolean,
     KnobNumber,
   },
-  data () {
+  data() {
     return {
       time: '12:45:04',
       showSeconds: true,
       hoursStep: 1,
       minutesStep: 15,
       secondsStep: 15,
-    };
+    }
   },
-};
+}
 </script>

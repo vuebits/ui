@@ -4,28 +4,24 @@
     title="Example"
   >
     <Preview>
-      <VTimeline :items="items">
-        <template #item="{item}">
-          <VCard
+      <UiTimeline :items="items">
+        <template #item="{ item }">
+          <UiCard
             rounded
             elevated
           >
             <h3>{{ item.title }}</h3>
             <p>{{ item.content }}</p>
-          </VCard>
+          </UiCard>
         </template>
-        <template #date="{item}">
-          <span :style="{color: item.highlight? 'black' : 'grey'}">
+        <template #date="{ item }">
+          <span :style="{ color: item.highlight ? 'black' : 'grey' }">
             {{ item.date }}
           </span>
         </template>
-        <template #more>
-          Load more ...
-        </template>
-        <template #no-items>
-          No items ...
-        </template>
-      </VTimeline>
+        <template #more> Load more ... </template>
+        <template #no-items> No items ... </template>
+      </UiTimeline>
     </Preview>
     <template #controls>
       <Knobs />
@@ -34,15 +30,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-} from '@/components';
-import {
-  VTimeline,
-  VCard,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs } from '@/components'
+import { UiTimeline, UiCard } from '@vuebits/ui'
 
 export default {
   name: 'TimelineExample',
@@ -50,10 +39,10 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VTimeline,
-    VCard,
+    UiTimeline,
+    UiCard,
   },
-  data () {
+  data() {
     return {
       items: [
         {
@@ -94,7 +83,7 @@ export default {
           },
         },
       ],
-    };
+    }
   },
-};
+}
 </script>

@@ -4,38 +4,23 @@
       v-for="theme in themes"
       :key="theme"
     >
-      <VButton
-        :theme="theme"
-      >
-        I am {{ theme }}
-      </VButton>
-      <VButton
-        invert-theme
-        :theme="theme"
-      >
-        I am inverted {{ theme }}
-      </VButton>
+      <UiButton :theme="theme"> I am {{ theme }} </UiButton>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
+import { UiButton } from '@vuebits/ui'
 
 export default {
   name: 'Buttonthemes',
   components: {
-    VButton,
+    UiButton,
   },
-  data () {
+  data() {
     return {
-      themes: [
-        'primary',
-        'secondary',
-      ],
-    };
+      themes: ['primary', 'secondary'],
+    }
   },
-};
+}
 </script>

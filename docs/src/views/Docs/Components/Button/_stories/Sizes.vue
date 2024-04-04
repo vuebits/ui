@@ -4,31 +4,29 @@
       v-for="size in sizes"
       :key="size"
     >
-      <VButton
+      <UiButton
         :size="size"
         dark
       >
         I am {{ size }}
-      </VButton>
+      </UiButton>
     </span>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
-import { sizes } from '@/helpers/story-params';
+import { UiButton } from '@vuebits/ui'
+import { sizes } from '@/helpers/story-params'
 
 export default {
   name: 'ButtonSizes',
   components: {
-    VButton,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       sizes,
-    };
+    }
   },
-};
+}
 </script>

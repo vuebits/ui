@@ -11,15 +11,15 @@
       <div :class="$bem({e: 'subtitle'})">
         Open source Vue 3 components library written in TypeScript and Sass
       </div>
-      <VSimpleGrid
+      <UiSimpleGrid
         :elements-sm="2"
         :elements-md="4"
         spacings-size="lg"
         :class="$bem({e: 'features'})"
       >
-        <VSimpleGridItem>
+        <UiSimpleGridItem>
           <div :class="$bem({e: 'feature'})">
-            <VIcon
+            <UiIcon
               name="feather"
               :class="$bem({e: 'feature-icon'})"
             />
@@ -30,10 +30,10 @@
               About 30KiB gzipped
             </p>
           </div>
-        </VSimpleGridItem>
-        <VSimpleGridItem>
+        </UiSimpleGridItem>
+        <UiSimpleGridItem>
           <div :class="$bem({e: 'feature'})">
-            <VIcon
+            <UiIcon
               name="th"
               :class="$bem({e: 'feature-icon'})"
             />
@@ -44,10 +44,10 @@
               Awesome UI components
             </p>
           </div>
-        </VSimpleGridItem>
-        <VSimpleGridItem>
+        </UiSimpleGridItem>
+        <UiSimpleGridItem>
           <div :class="$bem({e: 'feature'})">
-            <VIcon
+            <UiIcon
               name="code"
               :class="$bem({e: 'feature-icon'})"
             />
@@ -58,10 +58,10 @@
               Full TypeScript support
             </p>
           </div>
-        </VSimpleGridItem>
-        <VSimpleGridItem>
+        </UiSimpleGridItem>
+        <UiSimpleGridItem>
           <div :class="$bem({e: 'feature'})">
-            <VIcon
+            <UiIcon
               name="wrench"
               :class="$bem({e: 'feature-icon'})"
             />
@@ -72,14 +72,14 @@
               Extensive configuration options and many scss editable variables
             </p>
           </div>
-        </VSimpleGridItem>
-      </VSimpleGrid>
-      <VSimpleGrid
+        </UiSimpleGridItem>
+      </UiSimpleGrid>
+      <UiSimpleGrid
         :elements-sm="3"
         :class="$bem({e: 'buttons'})"
       >
-        <VSimpleGridItem>
-          <VButton
+        <UiSimpleGridItem>
+          <UiButton
             dark
             gradient="primary"
             round
@@ -88,15 +88,15 @@
             :class="$bem({e: 'button'})"
             :to="docsRoute"
           >
-            <VIcon
+            <UiIcon
               name="book-open"
               class="has-margin-right-sm"
             />
             Get started
-          </VButton>
-        </VSimpleGridItem>
-        <VSimpleGridItem>
-          <VButton
+          </UiButton>
+        </UiSimpleGridItem>
+        <UiSimpleGridItem>
+          <UiButton
             bordered
             hoverable
             round
@@ -106,16 +106,16 @@
             href="https://github.com/vuebits/ui"
             new-window
           >
-            <VIcon
+            <UiIcon
               name="github"
               type="fab"
               class="has-margin-right-sm"
             />
             GitHub
-          </VButton>
-        </VSimpleGridItem>
-        <VSimpleGridItem>
-          <VButton
+          </UiButton>
+        </UiSimpleGridItem>
+        <UiSimpleGridItem>
+          <UiButton
             dark
             color="secondary"
             round
@@ -131,9 +131,9 @@
               class="has-margin-right-sm"
             />
             npm
-          </VButton>
-        </VSimpleGridItem>
-      </VSimpleGrid>
+          </UiButton>
+        </UiSimpleGridItem>
+      </UiSimpleGrid>
     </div>
   </div>
 </template>
@@ -141,20 +141,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  VSimpleGrid,
-  VSimpleGridItem,
-  VButton,
-  VIcon,
+  UiSimpleGrid,
+  UiSimpleGridItem,
+  UiButton,
+  UiIcon,
 } from '@vuebits/ui';
 import { RouteName } from '@/router/models';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    VSimpleGrid,
-    VSimpleGridItem,
-    VButton,
-    VIcon,
+    UiSimpleGrid,
+    UiSimpleGridItem,
+    UiButton,
+    UiIcon,
   },
   data () {
     return {

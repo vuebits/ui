@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VNotificator
+      <UiNotificator
         :items="items"
         :round="round"
         :rounded="rounded"
@@ -13,7 +13,7 @@
         :width="width"
         @remove-notification="removeNotification"
       />
-      <VButton
+      <UiButton
         class="has-margin-top-lg"
         color="primary"
         rounded
@@ -21,7 +21,7 @@
         @click="addNotification"
       >
         Add notification
-      </VButton>
+      </UiButton>
     </Preview>
     <template #controls>
       <Knobs>
@@ -52,19 +52,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobNumber,
-} from '@/components';
-import {
-  VNotificator,
-  VButton,
-} from '@vuebits/ui';
-import { sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobNumber } from '@/components'
+import { UiNotificator, UiButton } from '@vuebits/ui'
+import { sizes } from '@/helpers/story-params'
 
 export default {
   name: 'NotificatorExample',
@@ -75,10 +65,10 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobNumber,
-    VNotificator,
-    VButton,
+    UiNotificator,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       round: false,
       rounded: true,
@@ -86,13 +76,7 @@ export default {
       width: null,
       size: 'sm',
       sizes,
-      types: [
-        'default',
-        'success',
-        'info',
-        'warning',
-        'error',
-      ],
+      types: ['default', 'success', 'info', 'warning', 'error'],
       items: [
         {
           id: '1',
@@ -116,23 +100,22 @@ export default {
         },
       ],
       id: 4,
-    };
+    }
   },
   methods: {
-    removeNotification (notification) {
-      this.items = this.items.filter(i => i.id !== notification.id);
+    removeNotification(notification) {
+      this.items = this.items.filter((i) => i.id !== notification.id)
     },
-    addNotification () {
-      this.id++;
+    addNotification() {
+      this.id++
       this.items.push({
         id: this.id,
         message: 'Lorem ipsum...',
         type: this.types[Math.floor(Math.random() * this.types.length)],
-      });
+      })
     },
   },
-};
+}
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

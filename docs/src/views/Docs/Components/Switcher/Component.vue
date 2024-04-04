@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Switcher
-    </PageHeader>
+    <PageHeader> Switcher </PageHeader>
     <SwitcherExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VSwitcher } from '@vuebits/ui';
-import SwitcherExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiSwitcher } from '@vuebits/ui'
+import SwitcherExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsSwitcher',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     SwitcherExample,
   },
-  data () {
+  data() {
     return {
-      component: VSwitcher,
-    };
+      component: UiSwitcher,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

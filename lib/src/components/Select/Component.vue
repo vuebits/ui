@@ -1,116 +1,175 @@
 <template>
-  <div
-    v-click-outside="onClickOutside"
-    :class="classes"
+  <UiTooltip
+    ref="tooltip"
+    clickable
+    :position="listPosition"
     v-bind="$ui.testElName('select')"
-    @blur="isExpanded = false"
+    :class="$bem({})"
+    @open="handleOpen"
+    @close="handleClose"
   >
-    <div
-      :class="$bem({ e: 'input' })"
-      v-bind="$ui.testElName('select-value')"
-      @click="toggle"
-    >
+    <template #activator="{ on }">
       <div
-        v-if="leftIcon"
-        :class="[...$bem({e: 'icon', m: {clickable: leftIconClickable, round: round}}), roundedClass]"
-        v-bind="$ui.testElName('select-icon-left')"
-        @click="onLeftIconClick"
+        :class="classes"
+        v-bind="$ui.testElName('select-value')"
+        class="is-hoverable"
+        tabindex="0"
+        v-on="on"
       >
-        <VIcon
-          :name="leftIcon"
-          :color="leftIconColor"
-        />
-      </div>
-      <div :class="$bem({ e: 'text-container' })">
         <div
-          v-if="label"
-          :class="$bem({ e: 'label' })"
+          v-if="leftIcon"
+          :class="[
+            ...$bem({
+              e: 'icon',
+              m: { clickable: leftIconClickable, round: round },
+            }),
+            roundedClass,
+          ]"
+          v-bind="$ui.testElName('select-icon-left')"
+          @click="onLeftIconClick"
         >
-          {{ label }}
+          <UiIcon
+            :name="leftIcon"
+            :color="leftIconColor"
+          />
         </div>
-        <div :class="$bem({ e: 'input-selected-item' })">
-          <div :class="$bem({ e: 'input-selected-item-text' })">
-            <slot
-              :id="selectedItem ? selectedItem.key : null"
-              name="selected-item"
-              :placeholder="placeholder"
-              :text-with-placeholder="selectedItemText"
-              :text="selectedItem ? selectedItem.text : null"
-              :metadata="selectedItem ? selectedItem.metadata : null"
+        <div :class="$bem({ e: 'text-container' })">
+          <div
+            v-if="label"
+            :class="$bem({ e: 'label' })"
+          >
+            {{ label }}
+          </div>
+          <div
+            v-if="multiple"
+            :class="$bem({ e: 'selected-items' })"
+          >
+            <template v-if="!selectedItems.length">
+              {{ computedPlaceholder }}
+            </template>
+            <UiBadge
+              v-for="(item, i) in selectedItems"
+              :key="i"
+              :class="$bem({ e: 'selected-item-badge' })"
+              color="primary"
+              round
             >
-              {{ selectedItemText }}
-            </slot>
+              <slot
+                :id="item.key"
+                name="selected-item"
+                :text="item.text"
+                :metadata="item.metadata"
+              >
+                <div :class="$bem({ e: 'selected-item-badge-text' })">
+                  {{ item.text }}
+                </div>
+              </slot>
+              <UiIconButton
+                :icon="$ui.icons.values.close"
+                size="sm"
+                round
+                color="primary"
+                :class="$bem({ e: 'selected-item-remove' })"
+                @click.stop="removeItemFromSelected(item.key)"
+              />
+            </UiBadge>
+          </div>
+          <div
+            v-else
+            :class="$bem({ e: 'selected-item' })"
+          >
+            <div :class="$bem({ e: 'selected-item-text' })">
+              <slot
+                :id="selectedItem ? selectedItem.key : null"
+                name="selected-item"
+                :placeholder="placeholder"
+                :text-with-placeholder="selectedItemText"
+                :text="selectedItem ? selectedItem.text : null"
+                :metadata="selectedItem ? selectedItem.metadata : null"
+              >
+                {{ selectedItemText }}
+              </slot>
+            </div>
           </div>
         </div>
+        <div
+          v-if="!hideArrow"
+          :class="$bem({ e: 'arrow-wrapper' })"
+        >
+          <UiIcon
+            :name="$ui.icons.values.expand"
+            :class="arrowClasses"
+          />
+        </div>
+        <div
+          v-if="clearable && modelValue"
+          :class="[...$bem({ e: 'icon', m: { clickable: true, round: round } }), roundedClass]"
+          v-bind="$ui.testElName('select-clear-button')"
+          @click.stop="clearSelection"
+        >
+          <UiIcon :name="$ui.icons.values.close" />
+        </div>
       </div>
+    </template>
+    <template #default="{ close }">
       <div
-        v-if="!hideArrow"
-        :class="$bem({ e: 'arrow-wrapper' })"
-      >
-        <VIcon
-          :name="$ui.icons.values.expand"
-          :class="arrowClasses"
-        />
-      </div>
-      <div
-        v-if="clearable && modelValue"
-        :class="[...$bem({e: 'icon', m: {clickable: true, round: round}}), roundedClass]"
-        v-bind="$ui.testElName('select-clear-button')"
-        @click.stop="clearSelection"
-      >
-        <VIcon
-          :name="$ui.icons.values.close"
-        />
-      </div>
-    </div>
-    <transition name="slide-top">
-      <div
-        v-if="isExpanded"
         :class="dropdownClasses"
-        class="is-elevated"
         v-bind="$ui.testElName('select-dropdown')"
       >
-        <VInput
+        <div
           v-if="search"
-          ref="search"
-          v-model="searchQuery"
-          :placeholder="computedSearchPlaceholder"
-          no-hint
-          v-bind="$ui.testElName('select-search')"
-        />
+          :class="$bem({ e: 'search-input' })"
+        >
+          <input
+            ref="searchInput"
+            v-model="searchQuery"
+            :placeholder="computedSearchPlaceholder"
+            no-hint
+            v-bind="$ui.testElName('select-search')"
+            @input="$emit('search', $event)"
+          />
+        </div>
         <div
           :class="$bem({ e: 'items' })"
           :style="{ maxHeight: `${maxHeight}px` }"
           v-bind="$ui.testElName('select-list')"
         >
           <div
-            v-for="item of filteredItems"
-            :key="item.key"
+            v-for="(item, i) of filteredItems"
+            :key="i"
             :class="itemClasses(item)"
             v-bind="$ui.testElName('select-item')"
-            @click="select(item)"
+            @click="handleItemClick(item, close)"
           >
             <slot
               :id="item.key"
               name="item"
               :text="item.text"
               :metadata="item.metadata"
-              :is-active="item.key === modelValue"
+              :is-active="isItemSelected(item.key)"
             >
               {{ item.text }}
             </slot>
           </div>
+          <div
+            v-if="!filteredItems.length"
+            :class="$bem({ e: 'no-items' })"
+          >
+            {{ $ui.t().select.noMatchingItems }}
+          </div>
         </div>
       </div>
-    </transition>
-  </div>
+    </template>
+  </UiTooltip>
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, PropType, toRefs } from 'vue';
-import { VIcon } from '../Icon';
-import { VInput } from '../Input';
-import { colorClass, CssClass, hoverableClass } from '../../helpers/css-classes';
+import { computed, defineComponent, nextTick, PropType, ref, toRefs } from 'vue'
+import { UiIcon } from '../Icon'
+import { UiBadge } from '../Badge'
+import { UiIconButton } from '../IconButton'
+import { UiTooltip } from '../Tooltip'
+import { colorClass, CssClass, hoverableClass } from '../../helpers/css-classes'
 import {
   borderedProps,
   themeProps,
@@ -120,24 +179,29 @@ import {
   useRounded,
   sizeProps,
   validationProps,
-} from '../../composables';
-import { ClickOutside } from '../../directives';
-import { SelectItem } from './models';
+} from '../../composables'
+import { ClickOutside } from '../../directives'
+import { SelectItem, SelectItemKey, SelectValue } from './models'
+import { defineBem } from '../../helpers/bem'
+import { TooltipPosition } from '../../models'
 
 export default defineComponent({
-  name: 'VSelect',
+  name: 'UiSelect',
   components: {
-    VIcon,
-    VInput,
+    UiIcon,
+    UiBadge,
+    UiIconButton,
+    UiTooltip,
   },
   directives: { ClickOutside },
   props: {
     modelValue: {
-      type: [
-        Number,
-        String,
-      ] as PropType<string | number | null>,
+      type: [Number, String, Array] as PropType<SelectValue>,
       default: null,
+    },
+    multiple: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
     items: {
       type: Array as PropType<SelectItem[]>,
@@ -195,46 +259,125 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false,
     },
+    externalSearch: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    listPosition: {
+      type: String as PropType<TooltipPosition | null>,
+      default: null,
+    },
     ...themeProps,
     ...borderedProps,
     ...roundedProps,
     ...sizeProps,
     ...validationProps,
   },
-  emits: [
-    'update:modelValue',
-    'select',
-    'change',
-    'click-left-icon',
-  ],
-  setup (props) {
-    const {
-      dark,
-      light,
-      bordered,
-      rounded,
-      roundedLg,
-    } = toRefs(props);
+  emits: ['update:model-value', 'select', 'change', 'click-left-icon', 'search'],
+  setup(props, { emit }) {
+    const { dark, light, bordered, rounded, roundedLg } = toRefs(props)
+
+    const isExpanded = ref(false)
+    const bem = defineBem('UiSelect')
+    const searchQuery = ref('')
+    const searchFocusing = ref(false)
+    const searchInput = ref<HTMLInputElement | null>(null)
+    const selectedItem = computed((): SelectItem | null =>
+      !props.modelValue || Array.isArray(props.modelValue)
+        ? null
+        : props.items.find((item) => item.key === props.modelValue) ?? null,
+    )
+    const selectedKeys = computed(() =>
+      Array.isArray(props.modelValue)
+        ? props.modelValue
+        : props.modelValue
+          ? [props.modelValue]
+          : [],
+    )
+    const selectedItems = computed((): SelectItem[] =>
+      props.items.filter((item) => {
+        return selectedKeys.value.includes(item.key)
+      }),
+    )
+    const isItemSelected = (key: SelectItemKey): boolean =>
+      !!key && selectedKeys.value.includes(key)
+    const update = (value: SelectValue): void => {
+      emit('update:model-value', value)
+    }
+    const removeItemFromSelected = (key: SelectItemKey): void => {
+      const selection = selectedItems.value.filter((i) => i.key !== key)
+      update(selection.map((i) => i.key))
+      emit('change', selection)
+    }
+    const handleItemClick = (item: SelectItem, close: any): void => {
+      if (item.disabled) return
+      if (props.multiple) {
+        if (!isItemSelected(item.key)) {
+          const selection = [...selectedItems.value, item]
+          update(selection.map((i) => i.key))
+
+          emit('change', selection)
+          emit('select', selection)
+        } else {
+          removeItemFromSelected(item.key)
+        }
+      } else {
+        if (!isItemSelected(item.key) || Array.isArray(props.modelValue)) {
+          update(item.key)
+          emit('change', item)
+          emit('select', item)
+        }
+        isExpanded.value = false
+        close()
+      }
+    }
+
+    const clearSelection = (): void => {
+      update(props.multiple ? [] : null)
+    }
+
+    const handleOpen = (): void => {
+      searchQuery.value = ''
+      isExpanded.value = true
+      nextTick(() => {
+        if (props.search) {
+          searchFocusing.value = true
+          searchInput.value?.focus()
+        }
+      })
+    }
+
+    const handleClose = (): void => {
+      searchQuery.value = ''
+      isExpanded.value = false
+    }
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
       roundedClass: useRounded(rounded, roundedLg),
-    };
-  },
-  data () {
-    return {
-      isExpanded: false as boolean,
-      searchQuery: '',
-    };
+      bem,
+      selectedItems,
+      isItemSelected,
+      selectedItem,
+      isExpanded,
+      searchQuery,
+      handleItemClick,
+      clearSelection,
+      removeItemFromSelected,
+      searchInput,
+      handleOpen,
+      handleClose,
+    }
   },
   computed: {
-    computedSearchPlaceholder (): string {
-      return this.searchPlaceholder || this.$ui.t().select.search;
+    computedSearchPlaceholder(): string {
+      return this.searchPlaceholder || this.$ui.t().select.search
     },
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return [
         ...this.$bem({
+          e: 'input',
           m: {
             closed: !this.isExpanded,
             expanded: this.isExpanded,
@@ -251,17 +394,17 @@ export default defineComponent({
         },
         this.borderedClass,
         this.roundedClass,
-      ];
+      ]
     },
-    labelClasses (): CssClass[] {
+    labelClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'label',
         }),
         colorClass(this.labelColor),
-      ];
+      ]
     },
-    arrowClasses (): CssClass[] {
+    arrowClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'arrow',
@@ -269,9 +412,9 @@ export default defineComponent({
             expanded: this.isExpanded,
           },
         }),
-      ];
+      ]
     },
-    dropdownClasses (): CssClass[] {
+    dropdownClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'dropdown',
@@ -283,80 +426,42 @@ export default defineComponent({
           },
         }),
         this.themeClass,
-      ];
+      ]
     },
-    selectedItem (): SelectItem | null {
-      return this.modelValue !== null
-        ? this.items.find(item => item.key === this.modelValue) || null
-        : null;
+    computedPlaceholder(): string | null {
+      return this.placeholder || this.$ui.t().select.placeholder
     },
-    computedPlaceholder (): string | null {
-      return this.placeholder || this.$ui.t().select.placeholder;
+    selectedItemText(): string | null {
+      return this.selectedItem ? this.selectedItem.text : this.computedPlaceholder
     },
-    selectedItemText (): string | null {
-      return this.selectedItem
-        ? this.selectedItem.text
-        : this.computedPlaceholder;
-    },
-    filteredItems (): SelectItem[] {
-      return this.searchQuery
-        ? this.items.filter(i =>
-          i.text.toLowerCase().includes(this.searchQuery.toLowerCase()),
-        )
-        : this.items;
+    filteredItems(): SelectItem[] {
+      return this.searchQuery && !this.externalSearch
+        ? this.items.filter((i) =>
+            i.text.toLowerCase().includes(this.searchQuery.toLowerCase()),
+          )
+        : this.items
     },
   },
   methods: {
-    select (item: SelectItem | null): void {
-      if (!item || !item.disabled) {
-        this.isExpanded = false;
-        this.$emit('update:modelValue', item?.key || null);
-        this.$emit('select', item);
-        if (!item || item.key !== this.modelValue) {
-          this.$emit('change', item);
-        }
-      }
-    },
-    clearSelection (): void {
-      this.select(null);
-    },
-    toggle (): void {
-      if (!this.disabled) {
-        if (this.isExpanded) {
-          this.isExpanded = false;
-        } else {
-          this.searchQuery = '';
-          this.isExpanded = true;
-          nextTick(() => {
-            if (this.search) (this.$refs.search as HTMLInputElement).focus();
-          });
-        }
-      }
-    },
-    itemClasses (item: SelectItem): CssClass[] {
+    itemClasses(item: SelectItem): CssClass[] {
       return [
         ...this.$bem({
           e: 'item',
           m: {
-            active: item.key === this.modelValue,
+            active: this.isItemSelected(item.key),
             disabled: item.disabled === true,
           },
         }),
         {
-          [hoverableClass]: item.key !== this.modelValue,
+          [hoverableClass]: !this.isItemSelected(item.key),
         },
-      ];
+      ]
     },
-    onClickOutside (): void {
-      if (!this.persistent) {
-        this.isExpanded = false;
-      }
-    },
-    onLeftIconClick (): void {
-      if (this.leftIconClickable) this.$emit('click-left-icon');
+    onLeftIconClick(): void {
+      if (this.leftIconClickable) this.$emit('click-left-icon')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

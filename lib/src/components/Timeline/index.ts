@@ -1,1 +1,1 @@
-export { default as VTimeline } from './Component.vue';
+export { default as UiTimeline } from './Component.vue'

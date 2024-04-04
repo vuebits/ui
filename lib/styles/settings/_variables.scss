@@ -13,7 +13,7 @@ $spacings: (
   sm: $sp-sm,
   md: $sp-md,
   lg: $sp-lg,
-  xl: $sp-xl
+  xl: $sp-xl,
 ) !default;
 
 $sp-modal: $sp-lg !default;
@@ -29,6 +29,7 @@ $layer-modal: 100 !default;
 $layer-dropdown: 5 !default;
 $layer-toolbar: 10 !default;
 $layer-notifications: 1000 !default;
+$layer-tooltip: 5 !default;
 
 // field spacings
 $field-sp: 2 * $sp !default;
@@ -63,18 +64,24 @@ $colors: (
   primary: $color-primary,
   secondary: $color-secondary,
   text: $color-text,
-  text-2: $color-text-2,
+  text-2: $color-text-secondary,
   success: $color-success,
   info: $color-info,
   error: $color-error,
   warning: $color-warning,
   disabled: $color-disabled,
-  light: $color-bg
+  light: $color-bg,
 ) !default;
 
 $gradients: (
-  primary: ($color-primary-gradient-1, $color-primary-gradient-2),
-  secondary: ($color-secondary-gradient-1, $color-secondary-gradient-2)
+  primary: (
+    $color-primary-gradient-1,
+    $color-primary-gradient-2,
+  ),
+  secondary: (
+    $color-secondary-gradient-1,
+    $color-secondary-gradient-2,
+  ),
 ) !default;
 
 // animation times

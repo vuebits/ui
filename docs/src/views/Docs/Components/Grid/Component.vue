@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Checkbox
-    </PageHeader>
+    <PageHeader> Checkbox </PageHeader>
     <Example />
     <ComponentApi :component="componentGrid" />
     <ComponentApi :component="componentGridItem" />
@@ -10,16 +8,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  VGrid,
-  VGridItem,
-} from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiGrid, UiGridItem } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsGrid',
@@ -28,14 +20,13 @@ export default defineComponent({
     ComponentApi,
     Example,
   },
-  data () {
+  data() {
     return {
-      componentGrid: VGrid,
-      componentGridItem: VGridItem,
-    };
+      componentGrid: UiGrid,
+      componentGridItem: UiGridItem,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

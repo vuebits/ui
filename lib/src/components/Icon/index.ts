@@ -1,1 +1,1 @@
-export { default as VIcon } from './Component.vue';
+export { default as UiIcon } from './Component.vue'

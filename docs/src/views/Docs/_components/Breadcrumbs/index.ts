@@ -1,1 +1,1 @@
-export { default as DocsBreadcrumbs } from './Component.vue';
+export { default as DocsBreadcrumbs } from './Component.vue'

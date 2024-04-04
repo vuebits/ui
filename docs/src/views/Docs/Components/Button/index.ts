@@ -1,1 +1,1 @@
-export { default as DocsComponentsButton } from './Component.vue';
+export { default as DocsComponentsButton } from './Component.vue'

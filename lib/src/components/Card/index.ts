@@ -1,1 +1,1 @@
-export { default as VCard } from './Component.vue';
+export { default as UiCard } from './Card.vue'

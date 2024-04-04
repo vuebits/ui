@@ -1,9 +1,9 @@
 {
   "name": "@vuebits/ui",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Vue 3 components library",
-  "main": "./dist/vuebits-ui.umd.js",
-  "module": "./dist/vuebits-ui.es.js",
+  "main": "./dist/lib.es.js",
+  "module": "./dist/lib.es.js",
   "author": "Vuebits (https://github.com/vuebits)",
   "contributors": [
     "Szczepan Masny <szczepanmasny@gmail.com> (https://github.com/szczepanmasny)",
@@ -27,31 +27,31 @@
   ],
   "types": "./types/index.d.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuebits/ui.git"
+  },
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly",
-    "test:unit": "jest"
+    "types:check": "vue-tsc --emitDeclarationOnly",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.1",
     "vue": "^3.2.19"
   },
   "devDependencies": {
-    "@originjs/vite-plugin-commonjs": "^1.0.1",
-    "@types/jest": "^27.4.0",
-    "@vitejs/plugin-vue": "^2.0.1",
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vue/compiler-sfc": "^3.2.26",
     "@vue/test-utils": "^2.0.0-0",
-    "@vue/vue3-jest": "^27.0.0-alpha.4",
-    "babel-jest": "^27.4.6",
-    "jest": "^27.4.7",
-    "jest-transform-stub": "^2.0.0",
+    "jsdom": "^24.0.0",
     "sass": "^1.43.4",
-    "ts-jest": "^27.1.2",
-    "typescript": "^4.4.3",
-    "vite": "^2.7.2",
-    "vite-plugin-env-compatible": "^1.1.1",
-    "vite-plugin-html": "2.1.1",
-    "vite-plugin-plain-text": "^1.1.4",
-    "vue-tsc": "^0.30.2"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.5",
+    "vitest": "^1.3.1",
+    "vue-tsc": "^1.8.8"
   },
   "peerDependencies": {
     "vue": "^3.2.19"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VAutocomplete
+    <UiAutocomplete
       v-model="selected"
       :items="filteredItems"
       bordered
@@ -15,16 +15,14 @@
 </template>
 
 <script>
-import {
-  VAutocomplete,
-} from '@vuebits/ui';
+import { UiAutocomplete } from '@vuebits/ui'
 
 export default {
   name: 'AutocompleteExternalSearch',
   components: {
-    VAutocomplete,
+    UiAutocomplete,
   },
-  data () {
+  data() {
     return {
       selected: null,
       loading: false,
@@ -51,16 +49,18 @@ export default {
         },
       ],
       filteredItems: [],
-    };
+    }
   },
   methods: {
-    search (text) {
-      this.loading = true;
+    search(text) {
+      this.loading = true
       setTimeout(() => {
-        this.filteredItems = this.items.filter((i) => !text || i.text?.toLowerCase().includes(text.toLowerCase() || ''));
-        this.loading = false;
-      }, 500);
+        this.filteredItems = this.items.filter(
+          (i) => !text || i.text?.toLowerCase().includes(text.toLowerCase() || ''),
+        )
+        this.loading = false
+      }, 500)
     },
   },
-};
+}
 </script>

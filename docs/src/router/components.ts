@@ -80,6 +80,10 @@ export const componentsRoutes = [
     label: 'Pagination',
   },
   {
+    name: 'ProgressBar',
+    label: 'Progress bar',
+  },
+  {
     name: 'Radio',
     label: 'Radio',
   },
@@ -147,4 +151,4 @@ export const componentsRoutes = [
     name: 'Tooltip',
     label: 'Tooltip',
   },
-];
+]

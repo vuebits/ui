@@ -1,17 +1,11 @@
 <template>
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    "
-  >
+  <div style="display: flex; flex-flow: row wrap">
     <div
       v-for="rotate in rotations"
       :key="rotate"
-      style="margin: 1rem; text-align: center;"
+      style="margin: 1rem; text-align: center"
     >
-      <VIcon
+      <UiIcon
         name="check"
         :rotate="rotate"
       />
@@ -21,24 +15,17 @@
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
+import { UiIcon } from '@vuebits/ui'
 
 export default {
   name: 'IconRotate',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
-      rotations: [
-        '-',
-        '90',
-        '180',
-        '270',
-      ],
-    };
+      rotations: ['-', '90', '180', '270'],
+    }
   },
-};
+}
 </script>

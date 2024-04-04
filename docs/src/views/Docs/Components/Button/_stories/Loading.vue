@@ -1,28 +1,22 @@
 <template>
   <div>
-    <VButton
-      dark
-    >
-      I am normal
-    </VButton>
-    <VButton
+    <UiButton dark> I am normal </UiButton>
+    <UiButton
       dark
       loading
     >
       I am loading
-    </VButton>
+    </UiButton>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
+import { UiButton } from '@vuebits/ui'
 
 export default {
   name: 'ButtonLoading',
   components: {
-    VButton,
+    UiButton,
   },
-};
+}
 </script>

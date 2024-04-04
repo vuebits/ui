@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { CssClass } from '../../../helpers/css-classes';
+import { defineComponent, PropType } from 'vue'
+import { CssClass } from '../../../helpers/css-classes'
 
 export default defineComponent({
-  name: 'VModalFooter',
+  name: 'UiModalFooter',
   props: {
     hideBorder: {
       type: Boolean as PropType<boolean>,
@@ -28,17 +28,17 @@ export default defineComponent({
     },
   },
   computed: {
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return this.$bem({
         m: {
           bordered: !this.hideBorder,
           elevated: this.elevated,
           'align-right': this.alignRight,
         },
-      });
+      })
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

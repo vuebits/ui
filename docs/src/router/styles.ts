@@ -7,4 +7,4 @@ export const stylesRoutes = [
     name: 'CommonClasses',
     label: 'Common classes',
   },
-];
+]

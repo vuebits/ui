@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VSimpleGrid
+      <UiSimpleGrid
         :spacings-size="spacingsSize"
         :elements-xs="elementsXs"
         :elements-sm="elementsSm"
@@ -12,15 +12,15 @@
         :elements-lg="elementsLg"
         :elements-xl="elementsXl"
       >
-        <VSimpleGridItem
+        <UiSimpleGridItem
           v-for="i in 12"
           :key="i"
         >
           <div class="is-bordered has-padding-sm">
             {{ i }}
           </div>
-        </VSimpleGridItem>
-      </VSimpleGrid>
+        </UiSimpleGridItem>
+      </UiSimpleGrid>
     </Preview>
     <template #controls>
       <Knobs>
@@ -55,17 +55,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobNumber,
-  KnobListItem,
-} from '@/components';
-import {
-  VSimpleGrid,
-  VSimpleGridItem,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobNumber, KnobListItem } from '@/components'
+import { UiSimpleGrid, UiSimpleGridItem } from '@vuebits/ui'
 
 export default {
   name: 'SimpleGridExample',
@@ -75,24 +66,19 @@ export default {
     Knobs,
     KnobNumber,
     KnobListItem,
-    VSimpleGrid,
-    VSimpleGridItem,
+    UiSimpleGrid,
+    UiSimpleGridItem,
   },
-  data () {
+  data() {
     return {
-      spacingsSizes: [
-        'sm',
-        'md',
-        'lg',
-        'no',
-      ],
+      spacingsSizes: ['sm', 'md', 'lg', 'no'],
       spacingsSize: 'md',
       elementsXs: 1,
       elementsSm: 2,
       elementsMd: 3,
       elementsLg: 4,
       elementsXl: 6,
-    };
+    }
   },
-};
+}
 </script>

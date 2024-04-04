@@ -1,20 +1,19 @@
-
 <template>
   <div
-    :style="{ height: height}"
+    :style="{ height: height }"
     :class="[
-      ...$bem({}),
+      ...bem({}),
       'is-bordered',
       {
-        'is-dark': isDark
-      }
+        'is-dark': isDark,
+      },
     ]"
   >
-    <div :class="$bem({e: 'content'})">
+    <div :class="bem({ e: 'content' })">
       <slot />
     </div>
-    <div :class="$bem({e: 'controls'})">
-      <VIconButton
+    <div :class="bem({ e: 'controls' })">
+      <UiIconButton
         color="white"
         light
         icon="sun"
@@ -22,7 +21,7 @@
         icon-prefix="fa-"
         @click="isDark = false"
       />
-      <VIconButton
+      <UiIconButton
         color="dark"
         icon="moon"
         icon-type="fa"
@@ -34,29 +33,20 @@
   </div>
 </template>
 
-<script>
-import { VIconButton } from '@vuebits/ui';
+<script setup lang="ts">
+import { ref } from 'vue'
+import { UiIconButton, defineBem } from '@vuebits/ui'
 
-export default {
-  name: 'Preview',
-  components: {
-    VIconButton,
+const bem = defineBem('Preview')
+
+defineProps({
+  height: {
+    type: [Number, String],
+    default: 'auto',
   },
-  props: {
-    height: {
-      type: [
-        Number,
-        String,
-      ],
-      default: 'auto',
-    },
-  },
-  data () {
-    return {
-      isDark: false,
-    };
-  },
-};
+})
+
+const isDark = ref(false)
 </script>
 
 <style lang="scss">

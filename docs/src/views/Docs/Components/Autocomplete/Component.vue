@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Autocomplete
-    </PageHeader>
+    <PageHeader> Autocomplete </PageHeader>
     <Example />
     <ComponentApi :component="component" />
     <Story
@@ -23,18 +21,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VAutocomplete } from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
-import {
-  AutocompleteMultiple,
-  AutocompleteExternalSearch,
-} from './_stories';
+import { defineComponent } from 'vue'
+import { UiAutocomplete } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
+import { AutocompleteMultiple, AutocompleteExternalSearch } from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsAutocomplete',
@@ -46,13 +37,12 @@ export default defineComponent({
     AutocompleteMultiple,
     AutocompleteExternalSearch,
   },
-  data () {
+  data() {
     return {
-      component: VAutocomplete,
-    };
+      component: UiAutocomplete,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

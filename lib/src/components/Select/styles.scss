@@ -1,86 +1,95 @@
 @use 'sass:color';
 $select-item-border: set-border() !default;
 
-.v-select {
+.ui-select {
   $root: &;
-  position: relative;
   width: 100%;
-  cursor: pointer;
 
-  &--error {
-    border: set-border($color-error) !important;
-  }
+  &__input {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    outline: 0;
 
-  &--sm {
-    height: $field-size-sm;
-
-    & #{$root}__input {
-      font-size: $font-size-sm;
+    &--error {
+      border: set-border($color-error) !important;
     }
 
-    & #{$root}__icon {
-      font-size: $icon-size-sm;
-    }
-  }
+    &--sm {
+      min-height: $field-size-sm;
 
-  &--md {
-    height: $field-size-md;
+      & #{$root}__input {
+        min-height: $field-size-sm;
+        font-size: $font-size-sm;
+      }
 
-    & #{$root}__input {
-      font-size: $font-size-md;
-    }
-
-    & #{$root}__icon {
-      font-size: $icon-size-md;
-    }
-  }
-
-  &--lg {
-    height: $field-size-lg;
-
-    & #{$root}__input {
-      font-size: $font-size-lg;
+      & #{$root}__icon {
+        font-size: $icon-size-sm;
+      }
     }
 
-    & #{$root}__icon {
-      font-size: $icon-size-lg;
+    &--md {
+      min-height: $field-size-md;
+
+      & #{$root}__input {
+        min-height: $field-size-md;
+        font-size: $font-size-md;
+      }
+
+      & #{$root}__icon {
+        font-size: $icon-size-md;
+      }
     }
-  }
 
-  &--light {
-    background-color: $color-input-bg;
-    color: $color-theme-light-font;
-  }
+    &--lg {
+      min-height: $field-size-lg;
 
-  &--dark {
-    background-color: $color-theme-dark;
-    color: $color-theme-dark-font;
-  }
+      & #{$root}__input {
+        min-height: $field-size-lg;
+        font-size: $font-size-lg;
+      }
 
-  &--round {
-    border-radius: 6 * $sp;
-
-    & #{$root}__text-container {
-      padding-left: 4 * $sp;
-      padding-right: 4 * $sp;
+      & #{$root}__icon {
+        font-size: $icon-size-lg;
+      }
     }
-  }
 
-  &--disabled {
-    color: color.adjust($color-disabled, $lightness: -20%);
-    background-color: color.adjust($color-disabled, $lightness: 40%);
-    pointer-events: none;
-    border-color: $color-disabled;
-  }
+    &--light {
+      background-color: $color-input-bg;
+      color: $color-theme-light-font;
+    }
 
-  &--closed {
-    transition-delay: $animation-time;
-  }
+    &--dark {
+      background-color: $color-theme-dark;
+      color: $color-theme-dark-font;
+    }
 
-  &--expanded {
-    transition-delay: 0;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    &--round {
+      border-radius: 6 * $sp;
+
+      & #{$root}__text-container {
+        padding-left: 4 * $sp;
+        padding-right: 4 * $sp;
+      }
+    }
+
+    &--disabled {
+      color: color.adjust($color-disabled, $lightness: -20%);
+      background-color: color.adjust($color-disabled, $lightness: 40%);
+      pointer-events: none;
+      border-color: $color-disabled;
+    }
+
+    &--closed {
+      transition-delay: $animation-time;
+    }
+
+    &--expanded {
+      transition-delay: 0;
+    }
   }
 
   &__icon {
@@ -101,12 +110,6 @@ $select-item-border: set-border() !default;
     }
   }
 
-  &__input {
-    height: 100%;
-    display: flex;
-    align-items: stretch;
-  }
-
   &__text-container {
     flex-grow: 1;
     width: 0;
@@ -125,13 +128,48 @@ $select-item-border: set-border() !default;
     text-overflow: ellipsis;
   }
 
-  &__input-selected-item {
+  &__selected-items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $sp;
+    flex-grow: 1;
+    padding: $sp 0;
+  }
+
+  &__selected-item-badge {
+    max-width: 100%;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1;
+    min-height: 2.4rem !important;
+    white-space: nowrap;
+
+    .ui-icon-button {
+      min-height: 2.4rem;
+      width: 2.4rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__selected-item-badge-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__selected-item-remove {
+    margin-left: 2 * $sp;
+    flex-shrink: 0;
+  }
+
+  &__selected-item {
     flex-grow: 1;
     display: flex;
     align-items: center;
   }
 
-  &__input-selected-item-text {
+  &__selected-item-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -152,15 +190,12 @@ $select-item-border: set-border() !default;
   }
 
   &__dropdown {
-    position: absolute;
-    margin-top: 1px;
-    z-index: $layer-dropdown;
     background-color: $color-white;
     width: 100%;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
     border-top: 0;
     overflow: hidden;
+    box-shadow: $shadow-deep;
+    min-width: 15rem;
 
     &--theme-light {
       background-color: $color-white;
@@ -173,21 +208,30 @@ $select-item-border: set-border() !default;
     }
 
     &--rounded {
-      border-bottom-left-radius: $border-radius-main;
-      border-bottom-right-radius: $border-radius-main;
+      border-radius: $border-radius-main;
     }
 
     &--rounded-lg,
     &--round {
-      border-bottom-left-radius: $border-radius-large;
-      border-bottom-right-radius: $border-radius-large;
+      border-radius: $border-radius-large;
     }
+  }
+
+  &__search-input {
+    font-size: 1.6rem;
+    padding: $sp-sm;
+    border-bottom: set-border();
   }
 
   &__items {
     width: 100%;
     overflow-y: auto;
-    box-shadow: $shadow-deep;
+  }
+
+  &__no-items {
+    width: 100%;
+    padding: 2 * $sp 3 * $sp;
+    text-align: center;
   }
 
   &__item {

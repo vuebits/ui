@@ -1,1 +1,1 @@
-export { default as VLabel } from './Component.vue';
+export { default as UiLabel } from './Component.vue'

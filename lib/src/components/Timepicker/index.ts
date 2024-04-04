@@ -1,1 +1,1 @@
-export { default as VTimepicker } from './Component.vue';
+export { default as UiTimepicker } from './Component.vue'

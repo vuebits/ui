@@ -1,7 +1,8 @@
-import { IconsOptions } from '../../../models';
+import { IconsOptions } from '../../../models'
 
 export const defaultIcons: IconsOptions = {
   icons: {
+    format: 'font',
     prefix: 'fa-',
     type: 'fa',
     values: {
@@ -12,9 +13,9 @@ export const defaultIcons: IconsOptions = {
       next: 'chevron-right',
       expand: 'chevron-down',
       collapse: 'chevron-up',
-      file: 'file-import',
+      upload: 'file-import',
       close: 'times',
-      hamburger: 'bars',
+      menu: 'bars',
     },
   },
-};
+}

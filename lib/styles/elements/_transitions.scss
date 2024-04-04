@@ -1,5 +1,4 @@
 .fade {
-
   &-enter-active,
   &-leave-active {
     transition: opacity $animation-time;
@@ -12,7 +11,6 @@
 }
 
 .expand {
-
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
@@ -26,7 +24,6 @@
 }
 
 .slide-top {
-
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
@@ -40,7 +37,6 @@
 }
 
 .slide-bottom {
-
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
@@ -54,7 +50,6 @@
 }
 
 .slide-left {
-
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
@@ -68,7 +63,6 @@
 }
 
 .slide-right {
-
   &-enter-active,
   &-leave-active {
     transition: transform $animation-time ease-in-out;
@@ -82,7 +76,6 @@
 }
 
 .slide-fade {
-
   &-enter-active,
   &-leave-active {
     transition: all 0.5s ease-in-out;
@@ -100,7 +93,6 @@
 }
 
 .slide {
-
   &-enter-active {
     -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;

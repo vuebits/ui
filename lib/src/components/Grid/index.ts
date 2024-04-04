@@ -1,2 +1,2 @@
-export { default as VGrid } from './Component.vue';
-export * from './Item';
+export { default as UiGrid } from './Component.vue'
+export * from './Item'

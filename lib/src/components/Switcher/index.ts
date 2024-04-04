@@ -1,1 +1,1 @@
-export { default as VSwitcher } from './Component.vue';
+export { default as UiSwitcher } from './Component.vue'

@@ -1,1 +1,1 @@
-export { default as VTooltip } from './Component.vue';
+export { default as UiTooltip } from './Component.vue'

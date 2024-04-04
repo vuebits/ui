@@ -1,1 +1,1 @@
-export { default as VStarRating } from './Component.vue';
+export { default as UiStarRating } from './Component.vue'

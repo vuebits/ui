@@ -1,43 +1,38 @@
 <template>
   <div>
-    <VFileUploader
-      @upload="upload"
-    >
-      <template #button="{on}">
-        <VButton
+    <UiFileUploader @upload="upload">
+      <template #button="{ on }">
+        <UiButton
           round
           gradient="secondary"
           v-on="on"
         >
           Upload
-        </VButton>
+        </UiButton>
       </template>
-    </VFileUploader>
+    </UiFileUploader>
     {{ file }}
   </div>
 </template>
 
 <script>
-import {
-  VFileUploader,
-  VButton,
-} from '@vuebits/ui';
+import { UiFileUploader, UiButton } from '@vuebits/ui'
 
 export default {
   name: 'FileUploaderCustomButton',
   components: {
-    VFileUploader,
-    VButton,
+    UiFileUploader,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       file: null,
-    };
+    }
   },
   methods: {
-    upload (file) {
-      this.file = file.name;
+    upload(file) {
+      this.file = file.name
     },
   },
-};
+}
 </script>

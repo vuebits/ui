@@ -4,9 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VSpinner
-        :size="size"
-      />
+      <UiSpinner :size="size" />
     </Preview>
     <template #controls>
       <Knobs>
@@ -21,15 +19,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-} from '@/components';
-import {
-  VSpinner,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobListItem } from '@/components'
+import { UiSpinner } from '@vuebits/ui'
 
 export default {
   name: 'SpinnerExample',
@@ -38,9 +29,9 @@ export default {
     Sandbox,
     Knobs,
     KnobListItem,
-    VSpinner,
+    UiSpinner,
   },
-  data () {
+  data() {
     return {
       sizes: [
         '-',
@@ -59,7 +50,7 @@ export default {
         '10x',
       ],
       size: '3x',
-    };
+    }
   },
-};
+}
 </script>

@@ -1,28 +1,22 @@
 <template>
   <div>
-    <VButton
-      dark
-    >
-      I am normal
-    </VButton>
-    <VButton
+    <UiButton dark> I am normal </UiButton>
+    <UiButton
       dark
       elevated
     >
       I am elevated
-    </VButton>
+    </UiButton>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
+import { UiButton } from '@vuebits/ui'
 
 export default {
   name: 'ButtonElevation',
   components: {
-    VButton,
+    UiButton,
   },
-};
+}
 </script>

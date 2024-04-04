@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      File uploader
-    </PageHeader>
+    <PageHeader> File uploader </PageHeader>
     <FileUploaderExample />
     <ComponentApi :component="component" />
     <Story
@@ -16,17 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VFileUploader } from '@vuebits/ui';
-import FileUploaderExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
-import {
-  FileUploaderCustomButton,
-} from './_stories';
+import { defineComponent } from 'vue'
+import { UiFileUploader } from '@vuebits/ui'
+import FileUploaderExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
+import { FileUploaderCustomButton } from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsAsyncContent',
@@ -37,13 +29,12 @@ export default defineComponent({
     FileUploaderExample,
     FileUploaderCustomButton,
   },
-  data () {
+  data() {
     return {
-      component: VFileUploader,
-    };
+      component: UiFileUploader,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

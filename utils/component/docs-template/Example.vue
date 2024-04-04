@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VComponentName />
+      <UiComponentName />
     </Preview>
     <template #controls>
       <Knobs />
@@ -13,14 +13,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs
-} from '@/components';
-import {
-  VComponentName
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs } from '@/components'
+import { UiComponentName } from '@vuebits/ui'
 
 export default {
   name: 'ComponentNameExample',
@@ -28,11 +22,10 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VComponentName
+    UiComponentName,
   },
-  data () {
-    return {
-    };
-  }
-};
+  data() {
+    return {}
+  },
+}
 </script>

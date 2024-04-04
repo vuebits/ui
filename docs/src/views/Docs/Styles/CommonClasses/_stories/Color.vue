@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="color"
-  >
+  <div class="color">
     <div
       v-for="color in colors"
       :key="color"
@@ -14,11 +12,7 @@
       >
         has-color-{{ color }}-lighten-{{ 3 - i }}
       </div>
-      <div
-        :class="`has-color-${color}`"
-      >
-        has-color-{{ color }}
-      </div>
+      <div :class="`has-color-${color}`">has-color-{{ color }}</div>
       <div
         v-for="i in 2"
         :key="i"
@@ -31,23 +25,22 @@
 </template>
 
 <script>
-import { colors } from '@/helpers/story-params';
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'CommonClassesColor',
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>
 
 <style>
 .color {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .color__color {
   margin: 0 20px 20px 0;

@@ -1,15 +1,13 @@
 <template>
-  <div :class="$bem({})">
-    VComponent
-  </div>
+  <div :class="$bem({})">UiComponent</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'VComponent',
-});
+  name: 'UiComponent',
+})
 </script>
 
 <style lang="scss">

@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Table
-    </PageHeader>
+    <PageHeader> Table </PageHeader>
     <TableExample />
     <ComponentApi :component="component" />
     <Story
@@ -13,36 +11,28 @@
       <TableColumns />
     </Story>
     <Story
+      file-name="FieldColor"
+      component-name="Table"
+      title="Field Color"
+    >
+      <TableFieldColor />
+    </Story>
+    <Story
       file-name="ItemsPlaceholder"
       component-name="Table"
       title="Items Placeholder"
     >
       <TableItemsPlaceholder />
     </Story>
-    <Story
-      file-name="HoveredRow"
-      component-name="Table"
-      title="Hovered Row"
-    >
-      <TableHoveredRow />
-    </Story>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTable } from '@vuebits/ui';
-import TableExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
-import {
-  TableColumns,
-  TableItemsPlaceholder,
-  TableHoveredRow,
-} from './_stories';
+import { defineComponent } from 'vue'
+import { UiTable } from '@vuebits/ui'
+import TableExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
+import { TableColumns, TableFieldColor, TableItemsPlaceholder } from './_stories'
 export default defineComponent({
   name: 'DocsComponentsTable',
   components: {
@@ -51,16 +41,15 @@ export default defineComponent({
     TableExample,
     Story,
     TableColumns,
+    TableFieldColor,
     TableItemsPlaceholder,
-    TableHoveredRow,
   },
-  data () {
+  data() {
     return {
-      component: VTable,
-    };
+      component: UiTable,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

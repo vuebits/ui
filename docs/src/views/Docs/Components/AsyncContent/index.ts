@@ -1,1 +1,1 @@
-export { default as DocsComponentsAsyncContent } from './Component.vue';
+export { default as DocsComponentsAsyncContent } from './Component.vue'

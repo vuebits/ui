@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Icon button
-    </PageHeader>
+    <PageHeader> Icon button </PageHeader>
     <IconButtonExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VIconButton } from '@vuebits/ui';
-import IconButtonExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiIconButton } from '@vuebits/ui'
+import IconButtonExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsIconButton',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     IconButtonExample,
   },
-  data () {
+  data() {
     return {
-      component: VIconButton,
-    };
+      component: UiIconButton,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

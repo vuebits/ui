@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VInput
+      <UiInput
         ref="input"
         v-model="text"
         autofocus
@@ -103,18 +103,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VInput,
-} from '@vuebits/ui';
-import { icons, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiInput } from '@vuebits/ui'
+import { icons, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'InputExample',
@@ -125,9 +116,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VInput,
+    UiInput,
   },
-  data () {
+  data() {
     return {
       icons,
       types: [
@@ -172,10 +163,10 @@ export default {
       placeholder: '',
       sizes,
       size: 'md',
-    };
+    }
   },
-  mounted () {
-    this.$refs.input.focus();
+  mounted() {
+    this.$refs.input.focus()
   },
-};
+}
 </script>

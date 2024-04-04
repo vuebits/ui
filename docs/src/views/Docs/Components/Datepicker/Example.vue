@@ -4,12 +4,18 @@
     title="Example"
   >
     <Preview>
-      <VDatepicker
+      <UiDatepicker
         v-model="date"
         :disable-before="disableBefore"
+        :first-day-of-week="1"
         :round="round"
         :rounded="rounded"
         :rounded-lg="roundedLg"
+        :highlight-saturdays="highlightSaturdays"
+        :highlight-sundays="highlightSundays"
+        :loading="loading"
+        :weekday-format="weekdayFormat"
+        :six-weeks="sixWeeks"
       />
       {{ date }}
     </Preview>
@@ -27,21 +33,35 @@
           v-model="round"
           label="Round"
         />
+        <KnobBoolean
+          v-model="highlightSaturdays"
+          label="Highlight saturdays"
+        />
+        <KnobBoolean
+          v-model="highlightSundays"
+          label="Highlight sundays"
+        />
+        <KnobBoolean
+          v-model="loading"
+          label="Loading"
+        />
+        <KnobListItem
+          v-model="weekdayFormat"
+          :items="weekdayFormats"
+          label="Weekday format"
+        />
+        <KnobBoolean
+          v-model="sixWeeks"
+          label="Six weeks"
+        />
       </Knobs>
     </template>
   </Sandbox>
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-} from '@/components';
-import {
-  VDatepicker,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobListItem } from '@/components'
+import { UiDatepicker } from '@vuebits/ui'
 
 export default {
   name: 'DatepickerExample',
@@ -50,16 +70,22 @@ export default {
     Sandbox,
     Knobs,
     KnobBoolean,
-    VDatepicker,
+    KnobListItem,
+    UiDatepicker,
   },
-  data () {
+  data() {
     return {
       date: null,
-      disableBefore: new Date(),
       round: true,
       rounded: false,
       roundedLg: false,
-    };
+      highlightSaturdays: true,
+      highlightSundays: true,
+      loading: false,
+      weekdayFormat: 'short',
+      weekdayFormats: ['short', 'narrow', 'long'],
+      sixWeeks: false,
+    }
   },
-};
+}
 </script>

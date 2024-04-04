@@ -1,6 +1,6 @@
-import VModal from './Component.vue';
+import UiModal from './Component.vue'
 
-export { VModal };
-export * from './Body';
-export * from './Header';
-export * from './Footer';
+export { UiModal }
+export * from './Body'
+export * from './Header'
+export * from './Footer'

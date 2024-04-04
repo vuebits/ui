@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Configuration
-    </PageHeader>
+    <PageHeader> Configuration </PageHeader>
     <p class="docs--p">
       If you want to customize your library you can pass config along with ui. For example:
     </p>
@@ -27,7 +25,8 @@ new Vue({
       "
     />
     <p class="docs--p">
-      You can also overwrite scss variables used in library. For this purpose import scss styles in your app instead of css:
+      You can also overwrite scss variables used in library. For this purpose import scss styles
+      in your app instead of css:
     </p>
     <CodeBlock
       language="scss"
@@ -53,14 +52,16 @@ module.exports = {
       "
     />
     <p class="docs--p">
-      and import library config in <code>/src/assets/styles/config.scss</code> file:
+      and import library config in
+      <code>/src/assets/styles/config.scss</code> file:
     </p>
     <CodeBlock
       language="scss"
       code="@import '~@vuebits/ui/styles/config';"
     />
     <p class="docs--p">
-      Now you can set your own scss variables that will overwrite variables used in library, for example:
+      Now you can set your own scss variables that will overwrite variables used in library, for
+      example:
     </p>
     <CodeBlock
       language="scss"
@@ -102,11 +103,8 @@ $animation-time-long: 600ms;
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  PageHeader,
-  CodeBlock,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { PageHeader, CodeBlock } from '@/components'
 
 export default defineComponent({
   name: 'DocsGettingStartedConfiguration',
@@ -114,8 +112,7 @@ export default defineComponent({
     PageHeader,
     CodeBlock,
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

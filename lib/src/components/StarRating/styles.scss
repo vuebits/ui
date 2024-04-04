@@ -1,4 +1,4 @@
-.v-star-rating {
+.ui-star-rating {
   $root: &;
   display: flex;
   align-items: center;
@@ -28,5 +28,4 @@
     margin-top: 2 * $sp;
     margin-left: 2 * $sp;
   }
-
 }

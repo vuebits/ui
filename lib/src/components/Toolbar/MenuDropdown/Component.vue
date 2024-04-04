@@ -1,5 +1,5 @@
 <template>
-  <VToolbarMenuItem
+  <UiToolbarMenuItem
     v-click-outside="clickOutside"
     :active="isExpanded"
     :class="classes"
@@ -16,19 +16,19 @@
         <slot name="dropdown" />
       </div>
     </template>
-  </VToolbarMenuItem>
+  </UiToolbarMenuItem>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VToolbarMenuItem } from '../MenuItem';
-import { ClickOutside } from '../../../directives';
-import { CssClass } from '../../../helpers/css-classes';
+import { defineComponent, PropType } from 'vue'
+import { UiToolbarMenuItem } from '../MenuItem'
+import { ClickOutside } from '../../../directives'
+import { CssClass } from '../../../helpers/css-classes'
 
 export default defineComponent({
-  name: 'VToolbarMenuDropdown',
+  name: 'UiToolbarMenuDropdown',
   components: {
-    VToolbarMenuItem,
+    UiToolbarMenuItem,
   },
   directives: { ClickOutside },
   props: {
@@ -39,11 +39,7 @@ export default defineComponent({
     position: {
       type: String as PropType<'left' | 'right' | 'fullsize'>,
       default: 'left',
-      validator: (val: string) => [
-        'left',
-        'right',
-        'fullsize',
-      ].includes(val),
+      validator: (val: string) => ['left', 'right', 'fullsize'].includes(val),
     },
     activeTextColor: {
       type: String as PropType<string | null>,
@@ -58,49 +54,44 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: [
-    'open',
-    'close',
-    'update:modelValue',
-    'outside',
-  ],
+  emits: ['open', 'close', 'update:modelValue', 'outside'],
   computed: {
     isExpanded: {
-      get (): boolean {
-        return this.modelValue;
+      get(): boolean {
+        return this.modelValue
       },
-      set (val: boolean): void {
-        this.$emit('update:modelValue', val);
-        this.$emit(val ? 'open' : 'close');
+      set(val: boolean): void {
+        this.$emit('update:modelValue', val)
+        this.$emit(val ? 'open' : 'close')
       },
     },
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return this.$bem({
         m: {
           fullsize: this.position === 'fullsize',
           active: this.isExpanded,
         },
-      });
+      })
     },
-    dropdownClasses (): CssClass[] {
+    dropdownClasses(): CssClass[] {
       return this.$bem({
         e: 'dropdown',
         m: {
           [this.position]: true,
           persistent: this.persistent,
         },
-      });
+      })
     },
   },
   methods: {
-    toggleDropdown (): void {
-      this.isExpanded = !this.isExpanded;
+    toggleDropdown(): void {
+      this.isExpanded = !this.isExpanded
     },
-    clickOutside (): void {
-      this.$emit('outside');
+    clickOutside(): void {
+      this.$emit('outside')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

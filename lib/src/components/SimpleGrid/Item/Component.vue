@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-  name: 'VSimpleGridItem',
+  name: 'UiSimpleGridItem',
   props: {
     listItem: {
       type: Boolean as PropType<boolean>,
@@ -20,9 +20,9 @@ export default defineComponent({
     },
   },
   computed: {
-    itemTag (): string {
-      return this.listItem ? 'li' : 'div';
+    itemTag(): string {
+      return this.listItem ? 'li' : 'div'
     },
   },
-});
+})
 </script>

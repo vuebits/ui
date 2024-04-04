@@ -1,1 +1,1 @@
-export { default as DocsComponentsTile } from './Component.vue';
+export { default as DocsComponentsTile } from './Component.vue'

@@ -7,8 +7,8 @@
     <slot name="top" />
     <div :class="middleClasses">
       <slot name="left" />
-      <transition
-        :name="transition?? undefined"
+      <Transition
+        :name="transition ?? undefined"
         mode="out-in"
         @after-leave="hideBlend"
         @after-enter="onContentLoad"
@@ -25,7 +25,7 @@
         >
           <slot />
         </div>
-      </transition>
+      </Transition>
       <slot name="right" />
     </div>
     <slot name="bottom" />
@@ -33,19 +33,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs, nextTick } from 'vue';
-import { CssClass } from '../../helpers/css-classes';
+import { defineComponent, PropType, toRefs, nextTick } from 'vue'
+import { CssClass } from '../../helpers/css-classes'
 import {
   borderedProps,
   elevatedProps,
   roundedProps,
   useBordered,
   useRounded,
-} from '../../composables';
-import { ClickOutside } from '../../directives';
+} from '../../composables'
+import { ClickOutside } from '../../directives'
 
 export default defineComponent({
-  name: 'VModal',
+  name: 'UiModal',
   directives: { ClickOutside },
   props: {
     modelValue: {
@@ -64,32 +64,14 @@ export default defineComponent({
       type: String as PropType<'sm' | 'md' | 'lg' | null>,
       default: null,
       validator: (val: string) => {
-        return !val || [
-          'sm',
-          'md',
-          'lg',
-        ].includes(val);
+        return !val || ['sm', 'md', 'lg'].includes(val)
       },
     },
     position: {
-      type: String as PropType<
-        'middle' | 'top' | 'left' | 'bottom' | 'right' | 'fullscreen'
-      >,
+      type: String as PropType<'middle' | 'top' | 'left' | 'bottom' | 'right' | 'fullscreen'>,
       default: 'middle',
       validator: (val: string) => {
-        return (
-          !val ||
-          [
-            'middle',
-            'top',
-            'left',
-            'bottom',
-            'right',
-            'fullscreen',
-          ].includes(
-            val,
-          )
-        );
+        return !val || ['middle', 'top', 'left', 'bottom', 'right', 'fullscreen'].includes(val)
       },
     },
     width: {
@@ -104,36 +86,33 @@ export default defineComponent({
     ...borderedProps,
     ...roundedProps,
   },
-  emits: [
-    'update:modelValue',
-    'close',
-  ],
-  setup (props) {
-    const { bordered, rounded, roundedLg, round } = toRefs(props);
+  emits: ['update:modelValue', 'close'],
+  setup(props) {
+    const { bordered, rounded, roundedLg, round } = toRefs(props)
 
     return {
       borderedClass: useBordered(bordered),
       roundedClass: useRounded(rounded, roundedLg, round),
-    };
+    }
   },
-  data () {
+  data() {
     return {
       scrollPosition: 0,
       isContentShown: false,
       isBlendShown: false,
-    };
+    }
   },
   computed: {
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return [
         ...this.$bem({
           m: {
             [this.position]: true,
           },
         }),
-      ];
+      ]
     },
-    middleClasses (): CssClass[] {
+    middleClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'middle',
@@ -141,12 +120,12 @@ export default defineComponent({
             [this.position]: true,
           },
         }),
-      ];
+      ]
     },
-    cardStyle (): any {
-      return this.width ? { width: `${this.width}px` } : {};
+    cardStyle(): any {
+      return this.width ? { width: `${this.width}px` } : {}
     },
-    cardClasses (): CssClass[] {
+    cardClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'card',
@@ -158,76 +137,76 @@ export default defineComponent({
         }),
         this.roundedClass,
         this.borderedClass,
-      ];
+      ]
     },
   },
   watch: {
-    modelValue (val) {
-      this.changeValueHandler(val);
+    modelValue(val) {
+      this.changeValueHandler(val)
     },
   },
-  created (): void {
-    if (this.modelValue) this.openHandler();
+  created(): void {
+    if (this.modelValue) this.openHandler()
   },
-  unmounted (): void {
-    this.enableScrolling();
+  unmounted(): void {
+    this.enableScrolling()
   },
   methods: {
-    enableScrolling (): void {
-      document.documentElement.classList.remove('is-scrolling-disabled');
-      document.body.classList.remove('is-scrolling-disabled');
-      document.body.style.top = 'unset';
-      window.scrollTo(0, this.scrollPosition);
+    enableScrolling(): void {
+      document.documentElement.classList.remove('is-scrolling-disabled')
+      document.body.classList.remove('is-scrolling-disabled')
+      document.body.style.top = 'unset'
+      window.scrollTo(0, this.scrollPosition)
     },
-    disableScrolling (): void {
-      this.scrollPosition = window.pageYOffset;
-      document.documentElement.classList.add('is-scrolling-disabled');
-      document.body.classList.add('is-scrolling-disabled');
-      document.body.style.top = `-${this.scrollPosition}px`;
+    disableScrolling(): void {
+      this.scrollPosition = window.pageYOffset
+      document.documentElement.classList.add('is-scrolling-disabled')
+      document.body.classList.add('is-scrolling-disabled')
+      document.body.style.top = `-${this.scrollPosition}px`
     },
-    showBlend (): void {
-      this.disableScrolling();
-      this.isBlendShown = true;
+    showBlend(): void {
+      this.disableScrolling()
+      this.isBlendShown = true
       nextTick(() => {
-        this.isContentShown = true;
-      });
+        this.isContentShown = true
+      })
     },
-    hideBlend (): void {
-      this.isBlendShown = false;
-      this.enableScrolling();
+    hideBlend(): void {
+      this.isBlendShown = false
+      this.enableScrolling()
     },
-    openHandler (): void {
-      this.showBlend();
+    openHandler(): void {
+      this.showBlend()
     },
-    closeHandler (): void {
-      this.isContentShown = false;
+    closeHandler(): void {
+      this.isContentShown = false
     },
-    changeValueHandler (val: boolean): void {
+    changeValueHandler(val: boolean): void {
       if (val) {
-        this.openHandler();
+        this.openHandler()
       } else {
-        this.closeHandler();
+        this.closeHandler()
       }
     },
-    close (): void {
-      this.$emit('update:modelValue', false);
-      this.$emit('close');
+    close(): void {
+      this.$emit('update:modelValue', false)
+      this.$emit('close')
     },
-    onClickOutside (): void {
+    onClickOutside(): void {
       if (!this.persistent) {
-        this.close();
+        this.close()
       }
     },
-    onEsc (): void {
+    onEsc(): void {
       if (this.closeOnEsc) {
-        this.close();
+        this.close()
       }
     },
-    onContentLoad (): void {
-      (this.$refs.card as HTMLElement).focus();
+    onContentLoad(): void {
+      ;(this.$refs.card as HTMLElement).focus()
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,1 +1,1 @@
-export { default as VNotification } from './Component.vue';
+export { default as UiNotification } from './Component.vue'

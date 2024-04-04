@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      TabSwitch
-    </PageHeader>
+    <PageHeader> TabSwitch </PageHeader>
     <TabSwitchExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTabSwitch } from '@vuebits/ui';
-import TabSwitchExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiTabSwitch } from '@vuebits/ui'
+import TabSwitchExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsTabSwitch',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     TabSwitchExample,
   },
-  data () {
+  data() {
     return {
-      component: VTabSwitch,
-    };
+      component: UiTabSwitch,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

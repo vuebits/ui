@@ -1,17 +1,11 @@
 <template>
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    "
-  >
+  <div style="display: flex; flex-flow: row wrap">
     <div
       v-for="size in sizes"
       :key="size"
-      style="margin: 1rem; text-align: center;"
+      style="margin: 1rem; text-align: center"
     >
-      <VIcon
+      <UiIcon
         name="check"
         :size="size"
       />
@@ -21,16 +15,14 @@
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
+import { UiIcon } from '@vuebits/ui'
 
 export default {
   name: 'IconSize',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
       sizes: [
         '-',
@@ -48,7 +40,7 @@ export default {
         '9x',
         '10x',
       ],
-    };
+    }
   },
-};
+}
 </script>

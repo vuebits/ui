@@ -14,9 +14,7 @@
     "declaration": true,
     "declarationDir": "types",
     "allowJs": true,
-    "types": [
-      "jest"
-    ],
+    "types": [],
     "paths": {
       "@/*": [
         "src/*"

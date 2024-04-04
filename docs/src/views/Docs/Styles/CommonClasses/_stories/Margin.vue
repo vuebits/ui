@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="margin"
-  >
+  <div class="margin">
     <div
       v-for="(direction, i) in directions"
       :key="i"
@@ -23,32 +21,23 @@
 </template>
 
 <script>
-import { spacings } from '@/helpers/story-params';
+import { spacings } from '@/helpers/story-params'
 
 export default {
   name: 'CommonClassesMargin',
-  data () {
+  data() {
     return {
       spacings,
-      directions: [
-        '',
-        'x-',
-        'y-',
-        'top-',
-        'right-',
-        'bottom-',
-        'left-',
-      ],
-    };
+      directions: ['', 'x-', 'y-', 'top-', 'right-', 'bottom-', 'left-'],
+    }
   },
-};
+}
 </script>
 
 <style>
 .margin {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .margin__spacing-wrapper {
   display: inline-block;

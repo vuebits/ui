@@ -1,1 +1,1 @@
-export { default as VSelect } from './Component.vue';
+export { default as UiSelect } from './Component.vue'

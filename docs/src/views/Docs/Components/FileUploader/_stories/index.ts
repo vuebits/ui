@@ -1,1 +1,1 @@
-export { default as FileUploaderCustomButton } from './CustomButton.vue';
+export { default as FileUploaderCustomButton } from './CustomButton.vue'

@@ -1,40 +1,34 @@
 <template>
   <div>
-    <VButton
-      bordered
-    >
-      I am not rounded
-    </VButton>
-    <VButton
+    <UiButton bordered> I am not rounded </UiButton>
+    <UiButton
       bordered
       rounded
     >
       I am rounded
-    </VButton>
-    <VButton
+    </UiButton>
+    <UiButton
       bordered
       rounded-lg
     >
       I am rounded large
-    </VButton>
-    <VButton
+    </UiButton>
+    <UiButton
       bordered
       round
     >
       I am round
-    </VButton>
+    </UiButton>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
+import { UiButton } from '@vuebits/ui'
 
 export default {
   name: 'ButtonRoundings',
   components: {
-    VButton,
+    UiButton,
   },
-};
+}
 </script>

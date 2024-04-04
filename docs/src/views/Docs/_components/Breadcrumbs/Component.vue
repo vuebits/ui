@@ -2,9 +2,9 @@
   <div :class="$bem({})">
     <router-link
       :to="homeRoute"
-      :class="$bem({e: 'breadcrumb'})"
+      :class="$bem({ e: 'breadcrumb' })"
     >
-      <VIcon name="home" />
+      <UiIcon name="home" />
     </router-link>
     <span
       v-for="breadcrumb in $route.matched"
@@ -13,7 +13,12 @@
       /
       <router-link
         :to="breadcrumb.path"
-        :class="$bem({e: 'breadcrumb', m: {active: $route.path === breadcrumb.path}})"
+        :class="
+          $bem({
+            e: 'breadcrumb',
+            m: { active: $route.path === breadcrumb.path },
+          })
+        "
       >
         {{ breadcrumb.path.split('/').slice(-1)[0] }}
       </router-link>
@@ -22,23 +27,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VIcon } from '@vuebits/ui';
-import { RouteName } from '@/router/models';
+import { defineComponent } from 'vue'
+import { UiIcon } from '@vuebits/ui'
+import { RouteName } from '@/router/models'
 
 export default defineComponent({
   name: 'DocsBreadcrumbs',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
       homeRoute: {
         name: RouteName.HOME,
       },
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

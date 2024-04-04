@@ -3,5 +3,5 @@ export enum RouteName {
   DOCS = 'Docs',
   COMPONENTS = 'Components',
   GETTING_STARTED = 'GettingStarted',
-  STYLES = 'Styles'
+  STYLES = 'Styles',
 }

@@ -1,18 +1,13 @@
-
 <template>
   <div :class="$bem({})">
-    <h3 :class="$bem({e: 'header'})">
-      Table of contents
-    </h3>
-    <ul :class="$bem({e: 'list'})">
+    <h3 :class="$bem({ e: 'header' })">Table of contents</h3>
+    <ul :class="$bem({ e: 'list' })">
       <li
         v-for="route in routes"
         :key="route.name"
-        :class="$bem({e: 'list-item'})"
+        :class="$bem({ e: 'list-item' })"
       >
-        <router-link
-          :to="getRoute(route.name)"
-        >
+        <router-link :to="getRoute(route.name)">
           {{ route.label }}
         </router-link>
       </li>
@@ -34,13 +29,13 @@ export default {
     },
   },
   methods: {
-    getRoute (name) {
+    getRoute(name) {
       return {
         name: `${this.group}${name}`,
-      };
+      }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -54,11 +49,11 @@ export default {
   &__list-item {
     cursor: pointer;
     padding: $sp 2 * $sp;
-    color: $color-text-2;
+    color: $color-text-secondary;
 
     &:hover {
       font-weight: bold;
-    color: $color-text;
+      color: $color-text;
     }
   }
 }

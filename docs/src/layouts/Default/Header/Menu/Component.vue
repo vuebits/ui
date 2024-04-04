@@ -1,70 +1,64 @@
 <template>
-  <VToolbarMenu
+  <UiToolbarMenu
     :class="$bem({})"
     data-test="menu"
     @click-outside="close"
   >
-    <VToolbarMenuItem
+    <UiToolbarMenuItem
       :to="docsRoute"
-      :class="$bem({e: 'item', m: {active: $route.path.split('/')[1] === 'docs'}})"
+      :class="$bem({ e: 'item', m: { active: $route.path.split('/')[1] === 'docs' } })"
     >
       Docs
-    </VToolbarMenuItem>
-    <VToolbarMenuItem
+    </UiToolbarMenuItem>
+    <UiToolbarMenuItem
       href="https://github.com/vuebits/ui"
-      :class="$bem({e: 'item'})"
+      :class="$bem({ e: 'item' })"
       new-window
     >
-      <VIcon
+      <UiIcon
         name="github"
         type="fab"
       />
-    </VToolbarMenuItem>
-    <VToolbarMenuItem
+    </UiToolbarMenuItem>
+    <UiToolbarMenuItem
       href="https://www.npmjs.com/package/@vuebits/ui"
-      :class="$bem({e: 'item'})"
+      :class="$bem({ e: 'item' })"
       new-window
     >
-      <VIcon
+      <UiIcon
         name="npm"
         type="fab"
       />
-    </VToolbarMenuItem>
-  </VToolbarMenu>
+    </UiToolbarMenuItem>
+  </UiToolbarMenu>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  VToolbarMenu,
-  VToolbarMenuItem,
-  VIcon,
-} from '@vuebits/ui';
-import { RouteName } from '@/router/models';
+import { defineComponent } from 'vue'
+import { UiToolbarMenu, UiToolbarMenuItem, UiIcon } from '@vuebits/ui'
+import { RouteName } from '@/router/models'
 
 export default defineComponent({
   name: 'LayoutDefaultHeaderMenu',
   components: {
-    VToolbarMenu,
-    VToolbarMenuItem,
-    VIcon,
+    UiToolbarMenu,
+    UiToolbarMenuItem,
+    UiIcon,
   },
-  emits: {
-    close: null,
-  },
-  data () {
+  emits: ['close'],
+  data() {
     return {
       docsRoute: {
         name: RouteName.DOCS,
       },
-    };
+    }
   },
   methods: {
-    close (): void {
-      this.$emit('close');
+    close(): void {
+      this.$emit('close')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

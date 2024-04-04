@@ -1,40 +1,34 @@
 <template>
   <div>
-    <VTile
-      bordered
-    >
-      I am not rounded
-    </VTile>
-    <VTile
+    <UiTile bordered> I am not rounded </UiTile>
+    <UiTile
       bordered
       rounded
     >
       I am rounded
-    </VTile>
-    <VTile
+    </UiTile>
+    <UiTile
       bordered
       rounded-lg
     >
       I am rounded large
-    </VTile>
-    <VTile
+    </UiTile>
+    <UiTile
       bordered
       round
     >
       I am round
-    </VTile>
+    </UiTile>
   </div>
 </template>
 
 <script>
-import {
-  VTile,
-} from '@vuebits/ui';
+import { UiTile } from '@vuebits/ui'
 
 export default {
   name: 'TileRoundings',
   components: {
-    VTile,
+    UiTile,
   },
-};
+}
 </script>

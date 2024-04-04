@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VCard />
+      <UiCard />
     </Preview>
     <template #controls>
       <Knobs />
@@ -13,14 +13,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-} from '@/components';
-import {
-  VCard,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs } from '@/components'
+import { UiCard } from '@vuebits/ui'
 
 export default {
   name: 'CardExample',
@@ -28,11 +22,10 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VCard,
+    UiCard,
   },
-  data () {
-    return {
-    };
+  data() {
+    return {}
   },
-};
+}
 </script>

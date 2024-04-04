@@ -1,39 +1,29 @@
 <template>
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    "
-  >
+  <div style="display: flex; flex-flow: row wrap">
     <div
       v-for="icon in icons"
       :key="icon"
-      style="margin: 1rem; padding: 1rem; text-align: center;"
+      style="margin: 1rem; padding: 1rem; text-align: center"
     >
-      <VIcon
-        :name="icon"
-      />
+      <UiIcon :name="icon" />
       <div>{{ icon }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
-import { icons } from '@/helpers/story-params';
+import { UiIcon } from '@vuebits/ui'
+import { icons } from '@/helpers/story-params'
 
 export default {
   name: 'IconName',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
       icons,
-    };
+    }
   },
-};
+}
 </script>

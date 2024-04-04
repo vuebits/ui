@@ -1,1 +1,1 @@
-export { default as VRadioGroup } from './Component.vue';
+export { default as UiRadioGroup } from './Component.vue'

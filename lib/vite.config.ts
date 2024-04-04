@@ -1,9 +1,8 @@
-import { defineConfig } from 'vite';
-import path from 'path';
-import vue from '@vitejs/plugin-vue';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import { defineConfig } from 'vite'
+import path from 'node:path'
+import vue from '@vitejs/plugin-vue'
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: [
@@ -16,18 +15,9 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src'),
       },
     ],
-    extensions: [
-      '.mjs',
-      '.js',
-      '.ts',
-      '.json',
-      '.vue',
-    ],
+    extensions: ['.mjs', '.js', '.ts', '.json', '.vue'],
   },
-  plugins: [
-    vue(),
-    viteCommonjs(),
-  ],
+  plugins: [vue(), viteCommonjs()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -41,12 +31,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'Vuebits UI',
-      fileName: (format) => `vuebits-ui.${format}.js`,
-      formats: [
-        'es',
-        'cjs',
-        'umd',
-      ],
+      fileName: (format) => `lib.${format}.js`,
+      formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
       external: ['vue'],
@@ -57,4 +43,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

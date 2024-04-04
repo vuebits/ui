@@ -4,31 +4,29 @@
       v-for="color in colors"
       :key="color"
     >
-      <VTile
+      <UiTile
         :color="color"
         dark
       >
         I am {{ color }}
-      </VTile>
+      </UiTile>
     </span>
   </div>
 </template>
 
 <script>
-import {
-  VTile,
-} from '@vuebits/ui';
-import { colors } from '@/helpers/story-params';
+import { UiTile } from '@vuebits/ui'
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'TileColors',
   components: {
-    VTile,
+    UiTile,
   },
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>

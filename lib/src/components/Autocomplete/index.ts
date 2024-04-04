@@ -1,1 +1,1 @@
-export { default as VAutocomplete } from './Component.vue';
+export { default as UiAutocomplete } from './Autocomplete.vue'

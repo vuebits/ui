@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'VModalBody',
-});
+  name: 'UiModalBody',
+})
 </script>
 
 <style lang="scss">

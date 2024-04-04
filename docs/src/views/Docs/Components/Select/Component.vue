@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Select
-    </PageHeader>
+    <PageHeader> Select </PageHeader>
     <Example />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VSelect } from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiSelect } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsSelect',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     Example,
   },
-  data () {
+  data() {
     return {
-      component: VSelect,
-    };
+      component: UiSelect,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

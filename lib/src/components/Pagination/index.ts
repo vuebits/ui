@@ -1,1 +1,1 @@
-export { default as VPagination } from './Component.vue';
+export { default as UiPagination } from './Component.vue'

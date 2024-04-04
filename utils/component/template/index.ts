@@ -1,1 +1,1 @@
-export { default as VComponent } from './Component.vue';
+export { default as UiComponent } from './Component.vue'

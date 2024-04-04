@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VTextarea
+      <UiTextarea
         ref="textarea"
         v-model="text"
         :bordered="bordered"
@@ -98,18 +98,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VTextarea,
-} from '@vuebits/ui';
-import { icons, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiTextarea } from '@vuebits/ui'
+import { icons, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'TextareaExample',
@@ -120,9 +111,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VTextarea,
+    UiTextarea,
   },
-  data () {
+  data() {
     return {
       icons,
       text: 'some text...',
@@ -142,17 +133,16 @@ export default {
       readonly: false,
       sizes,
       size: 'md',
-    };
+    }
   },
-  mounted () {
-    this.$refs.textarea.focus();
+  mounted() {
+    this.$refs.textarea.focus()
   },
   methods: {
-    submit (e) {
-      e.preventDefault();
-      console.log('submit');
+    submit(e) {
+      e.preventDefault()
+      console.log('submit')
     },
-
   },
-};
+}
 </script>

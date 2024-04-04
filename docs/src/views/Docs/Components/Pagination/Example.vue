@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VPagination
+      <UiPagination
         v-model="page"
         :last-page="lastPage"
         :show-jumper="showJumper"
@@ -53,18 +53,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobNumber,
-  KnobListItem,
-} from '@/components';
-import {
-  VPagination,
-} from '@vuebits/ui';
-import { colors, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobNumber, KnobListItem } from '@/components'
+import { UiPagination } from '@vuebits/ui'
+import { colors, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'NotificatorExample',
@@ -75,13 +66,12 @@ export default {
     KnobBoolean,
     KnobNumber,
     KnobListItem,
-    VPagination,
+    UiPagination,
   },
-  data () {
+  data() {
     return {
       page: 1,
-      jumperValue: 5,
-      lastPage: 25,
+      lastPage: 10,
       showJumper: true,
       colors,
       sizes,
@@ -90,10 +80,9 @@ export default {
       roundedLg: false,
       color: null,
       size: 'md',
-    };
+    }
   },
-};
+}
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="hover-color"
-  >
+  <div class="hover-color">
     <div
       v-for="color in colors"
       :key="color"
@@ -14,11 +12,7 @@
       >
         has-hover-color-{{ color }}-lighten-{{ 3 - i }}
       </div>
-      <div
-        :class="`has-hover-color-${color}`"
-      >
-        has-hover-color-{{ color }}
-      </div>
+      <div :class="`has-hover-color-${color}`">has-hover-color-{{ color }}</div>
       <div
         v-for="i in 2"
         :key="i"
@@ -31,23 +25,22 @@
 </template>
 
 <script>
-import { colors } from '@/helpers/story-params';
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'CommonClassesHoverColor',
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>
 
 <style>
 .hover-color {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .hover-color__color {
   margin: 0 20px 20px 0;

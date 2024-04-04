@@ -1,12 +1,12 @@
 <template>
-  <VPagination
+  <UiPagination
     v-model="page"
     :last-page="lastPage"
     show-jumper
   >
     <template #jumper>
       This is page number:
-      <VInput
+      <UiInput
         v-model="page"
         type="number"
         :min="1"
@@ -17,26 +17,23 @@
       />
       out of all of the {{ lastPage }} pages!
     </template>
-  </VPagination>
+  </UiPagination>
 </template>
 
 <script>
-import {
-  VPagination,
-  VInput,
-} from '@vuebits/ui';
+import { UiPagination, UiInput } from '@vuebits/ui'
 
 export default {
   name: 'PaginationCustomJumper',
   components: {
-    VPagination,
-    VInput,
+    UiPagination,
+    UiInput,
   },
-  data () {
+  data() {
     return {
       page: 7,
       lastPage: 15,
-    };
+    }
   },
-};
+}
 </script>

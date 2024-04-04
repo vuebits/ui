@@ -1,1 +1,1 @@
-export { default as VSpinner } from './Component.vue';
+export { default as UiSpinner } from './Component.vue'

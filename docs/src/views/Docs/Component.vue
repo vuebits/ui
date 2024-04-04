@@ -1,36 +1,33 @@
 <template>
   <div :class="$bem({})">
     <DocsSidebar />
-    <div :class="$bem({e: 'main'})">
-      <VTile
-        color="white"
+    <div :class="$bem({ e: 'main' })">
+      <UiTile
+        light
         bordered
         rounded
-        :class="$bem({e: 'content'})"
+        :class="$bem({ e: 'content' })"
       >
         <DocsBreadcrumbs />
         <router-view />
-      </VTile>
+      </UiTile>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTile } from '@vuebits/ui';
-import {
-  DocsSidebar,
-  DocsBreadcrumbs,
-} from './_components';
+import { defineComponent } from 'vue'
+import { UiTile } from '@vuebits/ui'
+import { DocsSidebar, DocsBreadcrumbs } from './_components'
 
 export default defineComponent({
   name: 'Docs',
   components: {
-    VTile,
+    UiTile,
     DocsSidebar,
     DocsBreadcrumbs,
   },
-});
+})
 </script>
 
 <style lang="scss">

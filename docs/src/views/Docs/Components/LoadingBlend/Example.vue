@@ -6,12 +6,10 @@
     <Preview>
       <div
         class="is-bordered has-padding-md is-rounded"
-        style="position: relative;height: 40rem;"
+        style="position: relative; height: 40rem"
       >
         Some content
-        <VLoadingBlend
-          :loading="loading"
-        />
+        <UiLoadingBlend :loading="loading" />
       </div>
     </Preview>
     <template #controls>
@@ -26,15 +24,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-} from '@/components';
-import {
-  VLoadingBlend,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean } from '@/components'
+import { UiLoadingBlend } from '@vuebits/ui'
 
 export default {
   name: 'LoadingBlendExample',
@@ -43,20 +34,19 @@ export default {
     Sandbox,
     Knobs,
     KnobBoolean,
-    VLoadingBlend,
+    UiLoadingBlend,
   },
-  data () {
+  data() {
     return {
       loading: true,
-    };
+    }
   },
-  mounted () {
+  mounted() {
     setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+      this.loading = false
+    }, 2000)
   },
-};
+}
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

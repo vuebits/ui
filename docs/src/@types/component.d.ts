@@ -1,3 +1,3 @@
 declare module '*/COMPONENT' {
-    export const plainText: string;
+  export const plainText: string
 }

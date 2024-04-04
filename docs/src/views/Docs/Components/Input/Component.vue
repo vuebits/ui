@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Input
-    </PageHeader>
+    <PageHeader> Input </PageHeader>
     <Example />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VInput } from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiInput } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsInput',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     Example,
   },
-  data () {
+  data() {
     return {
-      component: VInput,
-    };
+      component: UiInput,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

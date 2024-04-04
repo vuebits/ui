@@ -1,4 +1,4 @@
-.v-file-uploader {
+.ui-file-uploader {
   text-align: center;
   width: var(--upload-width);
   display: flex;
@@ -38,5 +38,4 @@
   &__file-input {
     display: none;
   }
-
 }

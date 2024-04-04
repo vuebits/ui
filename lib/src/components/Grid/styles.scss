@@ -1,33 +1,30 @@
-.v-grid {
+.ui-grid {
   display: flex;
   flex-wrap: wrap;
 
   &--spacings-sm {
     margin: 0 - $sp;
 
-    > .v-grid-item {
+    > .ui-grid-item {
       padding: 0 $sp;
     }
-
   }
 
   &--spacings-md {
     margin: 0 -2 * $sp;
     padding: 0;
 
-    > .v-grid-item {
+    > .ui-grid-item {
       padding: 0 2 * $sp;
     }
-
   }
 
   &--spacings-lg {
     margin: 0 -4 * $sp;
     padding: 0;
 
-    > .v-grid-item {
+    > .ui-grid-item {
       padding: 0 4 * $sp;
     }
-
   }
 }

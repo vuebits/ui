@@ -1,11 +1,15 @@
-
 $checkbox-size: 2.4rem !default;
 
-.v-checkbox {
+.ui-checkbox {
   position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
   &__input {
     display: none;
@@ -40,10 +44,6 @@ $checkbox-size: 2.4rem !default;
 
     &--bordered {
       border: set-border();
-    }
-
-    &--disabled {
-      opacity: 0.5;
     }
 
     &--error {

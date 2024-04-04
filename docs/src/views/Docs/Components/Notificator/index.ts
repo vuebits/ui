@@ -1,1 +1,1 @@
-export { default as DocsComponentsInfiniteScrollExample } from './Component.vue';
+export { default as DocsComponentsInfiniteScrollExample } from './Component.vue'

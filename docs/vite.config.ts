@@ -1,12 +1,11 @@
-import { defineConfig } from 'vite';
-import path from 'path';
-import vue from '@vitejs/plugin-vue';
-import envCompatible from 'vite-plugin-env-compatible';
-import { injectHtml } from 'vite-plugin-html';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
-import plainText from 'vite-plugin-plain-text';
+import { defineConfig } from 'vite'
+import path from 'node:path'
+import vue from '@vitejs/plugin-vue'
+import envCompatible from 'vite-plugin-env-compatible'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import viteCommonjs from 'vite-plugin-commonjs'
+import plainText from 'vite-plugin-plain-text'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: process.env.VITE_APP_BASE_URL,
   server: {
@@ -29,20 +28,14 @@ export default defineConfig({
         replacement: path.resolve(__dirname, './src'),
       },
     ],
-    extensions: [
-      '.mjs',
-      '.js',
-      '.ts',
-      '.json',
-      '.vue',
-    ],
+    extensions: ['.mjs', '.js', '.ts', '.json', '.vue'],
     dedupe: ['vue'],
   },
   plugins: [
     vue(),
     viteCommonjs(),
     envCompatible(),
-    injectHtml(),
+    createHtmlPlugin(),
     plainText(/\/COMPONENT$/),
   ],
   css: {
@@ -59,4 +52,4 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-});
+})

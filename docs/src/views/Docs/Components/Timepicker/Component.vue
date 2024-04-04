@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Timepicker
-    </PageHeader>
+    <PageHeader> Timepicker </PageHeader>
     <TimepickerExample />
     <ComponentApi :component="component" />
     <Story
@@ -16,17 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTimepicker } from '@vuebits/ui';
-import TimepickerExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
-import {
-  TimepickerTimeRange,
-} from './_stories';
+import { defineComponent } from 'vue'
+import { UiTimepicker } from '@vuebits/ui'
+import TimepickerExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
+import { TimepickerTimeRange } from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsTimepicker',
@@ -37,13 +29,12 @@ export default defineComponent({
     Story,
     TimepickerTimeRange,
   },
-  data () {
+  data() {
     return {
-      component: VTimepicker,
-    };
+      component: UiTimepicker,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

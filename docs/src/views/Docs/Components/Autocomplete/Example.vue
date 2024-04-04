@@ -3,10 +3,8 @@
     id="example"
     title="Example"
   >
-    <Preview
-      height="200px"
-    >
-      <VAutocomplete
+    <Preview height="200px">
+      <UiAutocomplete
         v-model="value"
         :items="items"
         :bordered="bordered"
@@ -24,6 +22,7 @@
         :depressed="depressed"
         :placeholder="placeholder"
         :size="size"
+        :clearable="clearable"
       />
     </Preview>
     <template #controls>
@@ -87,6 +86,10 @@
           v-model="multiple"
           label="Multiple"
         />
+        <KnobBoolean
+          v-model="clearable"
+          label="Clearable"
+        />
         <KnobString
           v-model="placeholder"
           label="Placeholder"
@@ -97,18 +100,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VAutocomplete,
-} from '@vuebits/ui';
-import { icons, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiAutocomplete } from '@vuebits/ui'
+import { icons, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'AutocompleteExample',
@@ -119,9 +113,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VAutocomplete,
+    UiAutocomplete,
   },
-  data () {
+  data() {
     return {
       items: [
         {
@@ -162,7 +156,8 @@ export default {
       placeholder: 'Search',
       sizes,
       size: 'md',
-    };
+      clearable: true,
+    }
   },
-};
+}
 </script>

@@ -1,31 +1,27 @@
 <template>
   <div
-    :class="bem()"
+    :class="bem({})"
     @focus="handleMousemove(true)"
     @blur="handleMousemove(false)"
     @mouseenter="handleMousemove(true)"
     @mouseleave="handleMousemove(false)"
   >
-    <div
-      :class="bem({e: 'items', m: { expanded: isExpanded }})"
-    >
+    <div :class="bem({ e: 'items', m: { expanded: isExpanded } })">
       <img
         :src="$asset(`images/locales/${selectedLocaleOption.file}`)"
         :alt="selectedLocaleOption.file"
-        :class="bem({e: 'item'})"
-      >
-      <Transition
-        name="slide"
-      >
+        :class="bem({ e: 'item' })"
+      />
+      <Transition name="slide">
         <div v-if="isExpanded">
           <img
             v-for="(o, i) in otherLocaleOptions"
             :key="i"
             :src="$asset(`images/locales/${o.file}`)"
             :alt="o.file"
-            :class="bem({e: 'item', m: 'clickable'})"
+            :class="bem({ e: 'item', m: 'clickable' })"
             @click="selectLocale(o.locale)"
-          >
+          />
         </div>
       </Transition>
     </div>
@@ -33,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { createBem, useUi } from '@vuebits/ui';
+import { computed, ref } from 'vue'
+import { useUi, defineBem } from '@vuebits/ui'
 
 interface LocaleOption {
-  file: string;
-  locale: string;
+  file: string
+  locale: string
 }
 
 const localeOptions: LocaleOption[] = [
@@ -54,43 +50,44 @@ const localeOptions: LocaleOption[] = [
     file: 'ua.svg',
     locale: 'uk',
   },
-];
+]
 
-const bem = createBem('locale-switcher');
+const bem = defineBem('locale-switcher')
 
-const ui = useUi();
+const ui = useUi()
 
 const updateLocale = (locale: string) => {
-  if (!ui) return;
-  ui.locale = locale;
-};
+  if (!ui) return
+  ui.locale = locale
+}
 
-const isHovered = ref(false);
-const isExpanded = ref(false);
+const isHovered = ref(false)
+const isExpanded = ref(false)
 
 const handleMousemove = (hovered: boolean): void => {
-  isHovered.value = hovered;
+  isHovered.value = hovered
   setTimeout(() => {
-    isExpanded.value = hovered;
-  }, 200);
-};
+    isExpanded.value = hovered
+  }, 200)
+}
 
 const selectLocale = (locale: string): void => {
-  updateLocale(locale);
-  isExpanded.value = false;
-};
+  updateLocale(locale)
+  isExpanded.value = false
+}
 
 const selectedLocaleOption = computed(() => {
-  return localeOptions.find(o => o.locale === ui?.locale) || {
-    file: 'pl.svg',
-    locale: 'pl',
-  };
-});
+  return (
+    localeOptions.find((o) => o.locale === ui?.locale) || {
+      file: 'pl.svg',
+      locale: 'pl',
+    }
+  )
+})
 
 const otherLocaleOptions = computed(() => {
-  return localeOptions.filter(o => o.locale !== ui?.locale);
-});
-
+  return localeOptions.filter((o) => o.locale !== ui?.locale)
+})
 </script>
 
 <style lang="scss">
@@ -115,7 +112,7 @@ const otherLocaleOptions = computed(() => {
 
   &__item {
     height: 3rem;
-    width:3rem;
+    width: 3rem;
     padding: $sp;
     display: block;
     border-radius: 50%;
@@ -125,5 +122,4 @@ const otherLocaleOptions = computed(() => {
     }
   }
 }
-
 </style>

@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VField
+      <UiField
         id="field-example"
         :label="label"
         :error="error"
@@ -12,7 +12,7 @@
         :no-hint="noHint"
       >
         Put your field control here!
-      </VField>
+      </UiField>
     </Preview>
     <template #controls>
       <Knobs>
@@ -38,16 +38,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VField,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobString } from '@/components'
+import { UiField } from '@vuebits/ui'
 
 export default {
   name: 'FieldExample',
@@ -57,15 +49,15 @@ export default {
     Knobs,
     KnobBoolean,
     KnobString,
-    VField,
+    UiField,
   },
-  data () {
+  data() {
     return {
       label: 'Field name',
       error: 'Field value is incorrect',
       hint: '',
       noHint: false,
-    };
+    }
   },
-};
+}
 </script>

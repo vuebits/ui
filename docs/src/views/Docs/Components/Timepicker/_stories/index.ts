@@ -1,1 +1,1 @@
-export { default as TimepickerTimeRange } from './TimeRange.vue';
+export { default as TimepickerTimeRange } from './TimeRange.vue'

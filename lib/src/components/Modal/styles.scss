@@ -1,11 +1,8 @@
-.v-modal {
+.ui-modal {
   position: fixed;
   display: flex;
   z-index: $layer-modal;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   overflow: auto;
   background-color: $color-blend;
   flex-direction: column;

@@ -1,4 +1,4 @@
-.v-radio-group {
+.ui-radio-group {
   display: block;
 
   &--inline {
@@ -6,7 +6,6 @@
   }
 
   &__item {
-
     &--inline {
       margin-right: $sp-xl;
     }

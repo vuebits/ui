@@ -8,34 +8,29 @@
 </template>
 
 <script lang="ts">
-import { CssClass } from '../../helpers/css-classes';
-import { defineComponent, PropType } from 'vue';
+import { CssClass } from '../../helpers/css-classes'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-  name: 'VGrid',
+  name: 'UiGrid',
   props: {
     spacingsSize: {
       type: String as PropType<'sm' | 'md' | 'lg' | 'no'>,
       default: 'no',
       validator: (val: string) => {
-        return [
-          'sm',
-          'md',
-          'lg',
-          'no',
-        ].includes(val);
+        return ['sm', 'md', 'lg', 'no'].includes(val)
       },
     },
   },
   computed: {
-    classes (): CssClass[] {
-      const mods: string[] = [`spacings-${this.spacingsSize}`];
+    classes(): CssClass[] {
+      const mods: string[] = [`spacings-${this.spacingsSize}`]
       return this.$bem({
         m: mods,
-      });
+      })
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,1 +1,1 @@
-export { default as VToolbarMenu } from './Component.vue';
+export { default as UiToolbarMenu } from './Component.vue'

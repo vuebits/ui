@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VIcon
+      <UiIcon
         :name="name"
         :prefix="prefix"
         :type="type"
@@ -59,18 +59,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VIcon,
-} from '@vuebits/ui';
-import { icons } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiIcon } from '@vuebits/ui'
+import { icons } from '@/helpers/story-params'
 
 export default {
   name: 'TileExample',
@@ -81,9 +72,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
       icons: icons,
       sizes: [
@@ -102,18 +93,8 @@ export default {
         '9x',
         '10x',
       ],
-      rotations: [
-        '-',
-        '90',
-        '180',
-        '270',
-      ],
-      flips: [
-        '-',
-        'horizontal',
-        'vertical',
-        'both',
-      ],
+      rotations: ['-', '90', '180', '270'],
+      flips: ['-', 'horizontal', 'vertical', 'both'],
       name: 'check',
       prefix: 'fa-',
       type: 'fa',
@@ -122,7 +103,7 @@ export default {
       flip: '-',
       pulse: false,
       spin: false,
-    };
+    }
   },
-};
+}
 </script>

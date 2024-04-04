@@ -1,11 +1,10 @@
 export interface TableHeader {
-  label: string;
-  for: string;
+  label: string
+  for: string
+  width?: number
+  align?: 'left' | 'right' | 'center'
+  strong?: boolean
+  color?: (value: any, item: any) => string
 }
 
-export type TableItem = {[key in string]: any};
-
-export interface TableColumn {
-  width?: number;
-  style?: {[key: string]: any};
-};
+export type TableItem = { [key in string]: any }

@@ -1,5 +1,5 @@
 <template>
-  <VInput
+  <UiInput
     :model-value="modelValue"
     placeholder="Type some string..."
     :label="label"
@@ -14,24 +14,24 @@
 </template>
 
 <script setup lang="ts">
-import { VInput } from '@vuebits/ui';
+import { UiInput } from '@vuebits/ui'
 
 type Props = {
-  modelValue: string;
-  label: string;
+  modelValue: string
+  label: string
 }
 
-withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {})
 
 type Emits = {
-    (e: 'update:model-value', value: string): void;
+  (e: 'update:model-value', value: string): void
 }
 
-const emit = defineEmits<Emits>();
+const emit = defineEmits<Emits>()
 
 const updateValue = (value: string): void => {
-  emit('update:model-value', value);
-};
+  emit('update:model-value', value)
+}
 </script>
 
 <style lang="scss">

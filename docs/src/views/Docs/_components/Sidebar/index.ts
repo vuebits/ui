@@ -1,1 +1,1 @@
-export { default as DocsSidebar } from './Component.vue';
+export { default as DocsSidebar } from './Component.vue'

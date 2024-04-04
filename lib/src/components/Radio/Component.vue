@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="bem({m: {disabled: disabled}})"
+    :class="bem({ m: { disabled: disabled } })"
     v-bind="$ui.testElName('radio')"
   >
     <input
@@ -10,17 +10,15 @@
       :value="name"
       :name="String(groupName)"
       type="radio"
-      :class="bem({e: 'input'})"
+      :class="bem({ e: 'input' })"
       :disabled="disabled"
       v-bind="$ui.testElName('checkbox-input')"
-    >
+    />
     <label
-      :class="bem({e: 'label'})"
+      :class="bem({ e: 'label' })"
       :for="`radio_${groupName}-${name}`"
     >
-      <span
-        :class="boxClasses"
-      >
+      <span :class="boxClasses">
         <span
           v-if="isSelected"
           :class="boxDotClasses"
@@ -34,26 +32,26 @@
 </template>
 
 <script lang="ts" setup>
-import { CssClass } from '../../helpers/css-classes';
-import { computed, toRefs } from 'vue';
-import { createBem } from '../../helpers/bem';
-import { RadioValue } from './models';
+import { CssClass } from '../../helpers/css-classes'
+import { computed, toRefs } from 'vue'
+import { defineBem } from '../../helpers/bem'
+import { RadioValue } from './models'
 
 type Emits = {
-    (e: 'select'): void;
-    (e: 'update:model-value', name: RadioValue): void;
+  (e: 'select'): void
+  (e: 'update:model-value', name: RadioValue): void
 }
 type Props = {
-  modelValue?: string | number | null;
-  name: string | number;
-  groupName: string | number;
-  label?: string | null;
-  disabled?: boolean;
-  color?: string;
-  bordered?: boolean;
-  error?: boolean;
-  light?: boolean;
-  dark?: boolean;
+  modelValue: RadioValue
+  name: string | number
+  groupName: string | number
+  label?: string | null
+  disabled?: boolean
+  color?: string
+  bordered?: boolean
+  error?: boolean
+  light?: boolean
+  dark?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -65,33 +63,24 @@ const props = withDefaults(defineProps<Props>(), {
   error: false,
   light: false,
   dark: false,
-});
-const emit = defineEmits<Emits>();
-const bem = createBem('v-radio');
+})
+const emit = defineEmits<Emits>()
+const bem = defineBem('ui-radio')
 
-const {
-  modelValue,
-  name,
-  groupName,
-  color,
-  disabled,
-  bordered,
-  error,
-  light,
-  dark,
-} = toRefs(props);
+const { modelValue, name, groupName, color, disabled, bordered, error, light, dark } =
+  toRefs(props)
 
 const selectedValue = computed({
-  get (): RadioValue {
-    return modelValue.value;
+  get(): RadioValue {
+    return modelValue.value
   },
-  set (): void {
-    emit('select');
-    emit('update:model-value', name.value);
+  set(): void {
+    emit('select')
+    emit('update:model-value', name.value)
   },
-});
+})
 
-const isSelected = computed(() => selectedValue.value === name.value);
+const isSelected = computed(() => selectedValue.value === name.value)
 
 const boxClasses = computed<CssClass[]>(() => {
   return [
@@ -105,19 +94,18 @@ const boxClasses = computed<CssClass[]>(() => {
         error: error.value,
       },
     }),
-  ];
-});
+  ]
+})
 
 const boxDotClasses = computed<CssClass[]>(() => {
   return [
     ...bem({
       e: 'box-dot',
-      m: {
-      },
+      m: {},
     }),
     `has-bg-color-${color.value}`,
-  ];
-});
+  ]
+})
 </script>
 
 <style lang="scss">

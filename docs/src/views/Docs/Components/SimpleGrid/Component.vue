@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Simple grid
-    </PageHeader>
+    <PageHeader> Simple grid </PageHeader>
     <Example />
     <ComponentApi :component="componentSimpleGrid" />
     <ComponentApi :component="componentSimpleGridItem" />
@@ -10,16 +8,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  VSimpleGrid,
-  VSimpleGridItem,
-} from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiSimpleGrid, UiSimpleGridItem } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsSimpleGrid',
@@ -28,14 +20,13 @@ export default defineComponent({
     ComponentApi,
     Example,
   },
-  data () {
+  data() {
     return {
-      componentSimpleGrid: VSimpleGrid,
-      componentSimpleGridItem: VSimpleGridItem,
-    };
+      componentSimpleGrid: UiSimpleGrid,
+      componentSimpleGridItem: UiSimpleGridItem,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

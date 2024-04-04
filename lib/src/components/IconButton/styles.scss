@@ -1,6 +1,7 @@
-.v-icon-button {
+.ui-icon-button {
   min-width: auto;
   padding: 0;
+  position: relative;
 
   &--sm {
     width: $field-size-sm;

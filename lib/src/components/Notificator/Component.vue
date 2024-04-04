@@ -3,7 +3,7 @@
     :class="$bem({})"
     v-bind="$ui.testElName('notificator')"
   >
-    <VNotification
+    <UiNotification
       v-for="item in items"
       :key="item.id"
       :message="item.message"
@@ -11,27 +11,27 @@
       :size="size"
       :width="width"
       :rounded="rounded"
-      :class="$bem({e: 'item'})"
+      :class="$bem({ e: 'item' })"
       @remove="removeNotification(item)"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VNotification } from '../Notification';
-import { NotificationTypeName } from '../Notification/models';
+import { defineComponent, PropType } from 'vue'
+import { UiNotification } from '../Notification'
+import { NotificationTypeName } from '../Notification/models'
 
 export interface Notification {
-  id: number;
-  message: string;
-  type?: NotificationTypeName;
+  id: number
+  message: string
+  type?: NotificationTypeName
 }
 
 export default defineComponent({
-  name: 'VNotificator',
+  name: 'UiNotificator',
   components: {
-    VNotification,
+    UiNotification,
   },
   props: {
     items: {
@@ -42,11 +42,7 @@ export default defineComponent({
       type: String as PropType<'sm' | 'md' | 'lg'>,
       default: 'md',
       validator: (val: string) => {
-        return [
-          'sm',
-          'md',
-          'lg',
-        ].includes(val);
+        return ['sm', 'md', 'lg'].includes(val)
       },
     },
     width: {
@@ -60,11 +56,11 @@ export default defineComponent({
   },
   emits: ['remove-notification'],
   methods: {
-    removeNotification (item: Notification): void {
-      this.$emit('remove-notification', item);
+    removeNotification(item: Notification): void {
+      this.$emit('remove-notification', item)
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

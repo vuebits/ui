@@ -7,16 +7,16 @@
       :is="component"
       :href="href"
       :to="to"
-      :class="$bem({e: 'link'})"
+      :class="$bem({ e: 'link' })"
     >
       <img
         :src="src"
         :alt="alt"
-        :class="$bem({e: 'image'})"
-      >
+        :class="$bem({ e: 'image' })"
+      />
       <div
         v-if="title"
-        :class="$bem({e: 'title'})"
+        :class="$bem({ e: 'title' })"
       >
         <slot name="title">
           {{ title }}
@@ -27,10 +27,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
-  name: 'VToolbarLogo',
+  name: 'UiToolbarLogo',
   props: {
     src: {
       type: String as PropType<string>,
@@ -41,10 +41,7 @@ export default defineComponent({
       default: null,
     },
     to: {
-      type: [
-        Object,
-        String,
-      ],
+      type: [Object, String],
       default: null,
     },
     href: {
@@ -58,18 +55,18 @@ export default defineComponent({
   },
   emits: ['click'],
   computed: {
-    component (): string {
-      if (this.to) return 'RouterLink';
-      if (this.href) return 'a';
-      return 'span';
+    component(): string {
+      if (this.to) return 'RouterLink'
+      if (this.href) return 'a'
+      return 'span'
     },
   },
   methods: {
-    onClick (): void {
-      this.$emit('click');
+    onClick(): void {
+      this.$emit('click')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

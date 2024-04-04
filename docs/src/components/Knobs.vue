@@ -1,62 +1,56 @@
 <template>
-  <div :class="bem()">
-    <VButton
+  <div :class="bem({})">
+    <UiButton
       dark
       color="secondary"
       @click="isModalShown = true"
     >
       Show options
-    </VButton>
-    <VModal
+    </UiButton>
+    <UiModal
       v-model="isModalShown"
       position="right"
       transition="slide-right"
       size="sm"
       close-on-esc
     >
-      <VModalHeader
+      <UiModalHeader
         bordered
-        :class="bem({e: 'header'})"
+        :class="bem({ e: 'header' })"
       >
-        <h2>
-          Options
-        </h2>
-        <VIconButton
+        <h2>Options</h2>
+        <UiIconButton
           icon="times"
           hoverable
           rounded
           @click="isModalShown = false"
         />
-      </VModalHeader>
-      <VModalBody
-        :class="bem({e: 'body'})"
-      >
+      </UiModalHeader>
+      <UiModalBody :class="bem({ e: 'body' })">
         <slot />
-      </VModalBody>
-    </VModal>
+      </UiModalBody>
+    </UiModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 import {
-  VButton,
-  VModal,
-  VModalHeader,
-  VModalBody,
-  VIconButton,
-  createBem,
-} from '@vuebits/ui';
+  UiButton,
+  UiModal,
+  UiModalHeader,
+  UiModalBody,
+  UiIconButton,
+  defineBem,
+} from '@vuebits/ui'
 
-const bem = createBem('knobs');
+const bem = defineBem('knobs')
 
-const isModalShown = ref(false);
-
+const isModalShown = ref(false)
 </script>
 
 <style lang="scss">
 .knobs {
-
   &__header {
     display: flex;
     flex-direction: row;

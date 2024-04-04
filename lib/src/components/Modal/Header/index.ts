@@ -1,4 +1,4 @@
-import VModalHeader from './Component.vue';
+import UiModalHeader from './Component.vue'
 
-export { VModalHeader };
-export * from './Title';
+export { UiModalHeader }
+export * from './Title'

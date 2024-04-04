@@ -1,37 +1,31 @@
 <template>
-  <VTable
+  <UiTable
     :headers="headers"
     :items="[]"
     loading
     padding="sm"
   >
-    <template #loading>
-      Loading...
-    </template>
-  </VTable>
-  <VTable
+    <template #loading> Loading... </template>
+  </UiTable>
+  <UiTable
     :headers="headers"
     :items="[]"
     padding="sm"
   >
-    <template #no-items>
-      Table is empty
-    </template>
-  </VTable>
+    <template #no-items> Table is empty </template>
+  </UiTable>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import {
-  VTable,
-} from '@vuebits/ui';
+import { defineComponent } from 'vue'
+import { UiTable } from '@vuebits/ui'
 
 export default defineComponent({
   name: 'TableItemsPlaceholder',
   components: {
-    VTable,
+    UiTable,
   },
-  data () {
+  data() {
     return {
       headers: [
         {
@@ -47,7 +41,7 @@ export default defineComponent({
           label: 'Col 3',
         },
       ],
-    };
+    }
   },
-});
+})
 </script>

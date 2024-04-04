@@ -3,21 +3,21 @@
     :class="$bem({})"
     @click="toggleMenu"
   >
-    <VIcon
-      :name="$ui.icons.values.hamburger"
-      :class="$bem({e: 'icon'})"
+    <UiIcon
+      :name="$ui.icons.values.menu"
+      :class="$bem({ e: 'icon' })"
     />
   </span>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VIcon } from '../../Icon';
+import { defineComponent, PropType } from 'vue'
+import { UiIcon } from '../../Icon'
 
 export default defineComponent({
-  name: 'VToolbarHamburger',
+  name: 'UiToolbarHamburger',
   components: {
-    VIcon,
+    UiIcon,
   },
   props: {
     modelValue: {
@@ -27,11 +27,11 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   methods: {
-    toggleMenu (): void {
-      this.$emit('update:modelValue', !this.modelValue);
+    toggleMenu(): void {
+      this.$emit('update:modelValue', !this.modelValue)
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,66 +1,53 @@
 <template>
-  <VTable
+  <UiTable
     :headers="headers"
     :items="items"
-    :columns="columns"
   />
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import {
-  VTable,
-} from '@vuebits/ui';
+import { defineComponent } from 'vue'
+import { UiTable } from '@vuebits/ui'
 
 export default defineComponent({
   name: 'TableColumns',
   components: {
-    VTable,
+    UiTable,
   },
-  data () {
+  data() {
     return {
       headers: [
         {
           for: 'col1',
           label: 'Col 1',
+          width: 200,
+          strong: true,
         },
         {
           for: 'col2',
           label: 'Col 2',
+          width: 900,
+          align: 'center',
         },
         {
           for: 'col3',
           label: 'Col 3',
-        },
-      ],
-      columns: [
-        {
-          width: '50%',
-          style: {
-            border: '1px solid red',
-          },
-        },
-        {
-        },
-        {
           width: 300,
-          style: {
-            background: 'red',
-          },
+          align: 'right',
         },
       ],
-    };
+    }
   },
   computed: {
-    items () {
+    items() {
       return [
         {
-          col1: this.columns[0],
-          col2: this.columns[1],
-          col3: this.columns[2],
+          col1: this.headers[0],
+          col2: this.headers[1],
+          col3: this.headers[2],
         },
-      ];
+      ]
     },
   },
-});
+})
 </script>

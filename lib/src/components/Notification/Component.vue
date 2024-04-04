@@ -5,19 +5,19 @@
     v-bind="$ui.testElName('notification')"
   >
     <div
-      :class="$bem({e: 'content'})"
+      :class="$bem({ e: 'content' })"
       v-bind="$ui.testElName('notification-content')"
     >
       <slot>
         <span v-html="message" />
       </slot>
     </div>
-    <div :class="$bem({e: 'close-wrapper'})">
-      <VIconButton
-        icon="times"
+    <div :class="$bem({ e: 'close-wrapper' })">
+      <UiIconButton
+        :icon="$ui.icons.values.close"
         rounded
         hoverable
-        :class="$bem({e: 'close'})"
+        :class="$bem({ e: 'close' })"
         v-bind="$ui.testElName('notification-close')"
         @click="remove"
       />
@@ -26,19 +26,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { VIconButton } from '../../components';
-import { CssClass } from '../../helpers/css-classes';
-import {
-  roundedProps,
-  useRounded,
-} from '../../composables';
-import { NotificationTypeName, NotificationType } from './models';
+import { defineComponent, PropType, toRefs } from 'vue'
+import { UiIconButton } from '../../components'
+import { CssClass } from '../../helpers/css-classes'
+import { roundedProps, useRounded } from '../../composables'
+import { NotificationTypeName, NotificationType } from './models'
 
 export default defineComponent({
-  name: 'VNotification',
+  name: 'UiNotification',
   components: {
-    VIconButton,
+    UiIconButton,
   },
   props: {
     type: {
@@ -53,11 +50,7 @@ export default defineComponent({
       type: String as PropType<'sm' | 'md' | 'lg'>,
       default: 'md',
       validator: (val: string) => {
-        return [
-          'sm',
-          'md',
-          'lg',
-        ].includes(val);
+        return ['sm', 'md', 'lg'].includes(val)
       },
     },
     width: {
@@ -67,22 +60,18 @@ export default defineComponent({
     ...roundedProps,
   },
   emits: ['remove'],
-  setup (props) {
-    const {
-      rounded,
-      roundedLg,
-      round,
-    } = toRefs(props);
+  setup(props) {
+    const { rounded, roundedLg, round } = toRefs(props)
 
     return {
       roundedClass: useRounded(rounded, roundedLg, round),
-    };
+    }
   },
   computed: {
-    style (): any {
-      return this.width ? { width: `${this.width}px` } : {};
+    style(): any {
+      return this.width ? { width: `${this.width}px` } : {}
     },
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return [
         ...this.$bem({
           m: {
@@ -91,15 +80,15 @@ export default defineComponent({
           },
         }),
         this.roundedClass,
-      ];
+      ]
     },
   },
   methods: {
-    remove (): void {
-      this.$emit('remove');
+    remove(): void {
+      this.$emit('remove')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,1 +1,1 @@
-export { default as VStepper } from './Component.vue';
+export { default as UiStepper } from './Component.vue'

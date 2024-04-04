@@ -11,13 +11,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { cssValueValidator } from '../../helpers/validators/css-values-validator';
-import {
-  bgColorClass,
-  hoverBgColorClass,
-  borderColorClass,
-} from '../../helpers/css-classes';
+import { defineComponent, PropType, toRefs } from 'vue'
+import { cssValueValidator } from '../../helpers/validators/css-values-validator'
+import { bgColorClass, hoverBgColorClass, borderColorClass } from '../../helpers/css-classes'
 import {
   borderedProps,
   elevatedProps,
@@ -27,10 +23,10 @@ import {
   useElevated,
   useTheme,
   useRounded,
-} from '../../composables';
+} from '../../composables'
 
 export default defineComponent({
-  name: 'VTile',
+  name: 'UiTile',
   props: {
     height: {
       type: String as PropType<string>,
@@ -72,29 +68,21 @@ export default defineComponent({
     ...roundedProps,
   },
   emits: ['click'],
-  setup (props) {
-    const {
-      dark,
-      light,
-      bordered,
-      rounded,
-      roundedLg,
-      round,
-      elevated,
-    } = toRefs(props);
+  setup(props) {
+    const { dark, light, bordered, rounded, roundedLg, round, elevated } = toRefs(props)
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
       elevatedClass: useElevated(elevated),
       roundedClass: useRounded(rounded, roundedLg, round),
-    };
+    }
   },
   computed: {
-    component (): string {
-      return this.listItem ? 'li' : 'div';
+    component(): string {
+      return this.listItem ? 'li' : 'div'
     },
-    classes (): any {
+    classes(): any {
       return [
         bgColorClass(this.color),
         hoverBgColorClass(this.hoverBgColor),
@@ -109,22 +97,22 @@ export default defineComponent({
         this.borderedClass,
         this.elevatedClass,
         this.roundedClass,
-      ];
+      ]
     },
-    styles (): any {
+    styles(): any {
       return {
         '--tile-height': this.height,
         '--tile-width': this.width,
         '--tile-bg-image': this.image ? `url(${this.image})` : 'none',
-      };
+      }
     },
   },
   methods: {
-    click (): void {
-      this.$emit('click');
+    click(): void {
+      this.$emit('click')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

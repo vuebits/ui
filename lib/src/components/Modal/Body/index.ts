@@ -1,3 +1,3 @@
-import VModalBody from './Component.vue';
+import UiModalBody from './Component.vue'
 
-export { VModalBody };
+export { UiModalBody }

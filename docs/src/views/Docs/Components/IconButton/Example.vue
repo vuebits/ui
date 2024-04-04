@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VIconButton
+      <UiIconButton
         :icon="icon"
         :bordered="bordered"
         :elevated="elevated"
@@ -105,18 +105,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VIconButton,
-} from '@vuebits/ui';
-import { colors, sizes, icons, gradients } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiIconButton } from '@vuebits/ui'
+import { colors, sizes, icons, gradients } from '@/helpers/story-params'
 
 export default {
   name: 'IconButtonExample',
@@ -127,9 +118,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VIconButton,
+    UiIconButton,
   },
-  data () {
+  data() {
     return {
       colors,
       sizes,
@@ -151,12 +142,9 @@ export default {
       hoverable: false,
       gradient: 'primary',
       gradients,
-      themes: [
-        'primary',
-        'secondary',
-      ],
+      themes: ['primary', 'secondary'],
       theme: null,
-    };
+    }
   },
-};
+}
 </script>

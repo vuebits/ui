@@ -5,12 +5,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'LayoutDefaultContent',
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

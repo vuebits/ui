@@ -1,1 +1,1 @@
-export { default as VRadio } from './Component.vue';
+export { default as UiRadio } from './Component.vue'

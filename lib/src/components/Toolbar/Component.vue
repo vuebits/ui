@@ -3,49 +3,43 @@
     :class="classes"
     v-bind="$ui.testElName('toolbar')"
   >
-    <VWrapper :class="$bem({e: 'top-container'})">
-      <div :class="$bem({e: 'left-side'})">
+    <UiWrapper :class="$bem({ e: 'top-container' })">
+      <div :class="$bem({ e: 'left-side' })">
         <slot name="top-left" />
       </div>
-      <div :class="$bem({e: 'center-side'})">
+      <div :class="$bem({ e: 'center-side' })">
         <slot name="top-center" />
       </div>
-      <div :class="$bem({e: 'right-side'})">
+      <div :class="$bem({ e: 'right-side' })">
         <slot name="top-right" />
       </div>
-    </VWrapper>
-    <VWrapper :class="$bem({e: 'container'})">
+    </UiWrapper>
+    <UiWrapper :class="$bem({ e: 'container' })">
       <slot>
-        <div :class="$bem({e: 'left-side'})">
+        <div :class="$bem({ e: 'left-side' })">
           <slot name="left" />
         </div>
-        <div :class="$bem({e: 'center-side'})">
+        <div :class="$bem({ e: 'center-side' })">
           <slot name="center" />
         </div>
-        <div :class="$bem({e: 'right-side'})">
+        <div :class="$bem({ e: 'right-side' })">
           <slot name="right" />
         </div>
       </slot>
-    </VWrapper>
+    </UiWrapper>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { VWrapper } from '../Wrapper';
-import {
-  bgColorClass,
-  CssClass,
-} from '../../helpers/css-classes';
-import {
-  themeProps,
-  useTheme,
-} from '../../composables';
+import { defineComponent, PropType, toRefs } from 'vue'
+import { UiWrapper } from '../Wrapper'
+import { bgColorClass, CssClass } from '../../helpers/css-classes'
+import { themeProps, useTheme } from '../../composables'
 
 export default defineComponent({
-  name: 'VToolbar',
+  name: 'UiToolbar',
   components: {
-    VWrapper,
+    UiWrapper,
   },
   props: {
     fixed: {
@@ -62,19 +56,16 @@ export default defineComponent({
     },
     ...themeProps,
   },
-  setup (props) {
-    const {
-      dark,
-      light,
-    } = toRefs(props);
+  setup(props) {
+    const { dark, light } = toRefs(props)
 
     return {
       themeClass: useTheme(dark, light),
-    };
+    }
   },
   computed: {
-    classes (): CssClass[] {
-      const colorClasses = this.color ? [bgColorClass(this.color)] : [];
+    classes(): CssClass[] {
+      const colorClasses = this.color ? [bgColorClass(this.color)] : []
       return [
         ...this.$bem({
           m: {
@@ -84,10 +75,10 @@ export default defineComponent({
         }),
         ...colorClasses,
         this.themeClass,
-      ];
+      ]
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

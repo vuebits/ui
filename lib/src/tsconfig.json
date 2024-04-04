@@ -13,9 +13,6 @@
     "baseUrl": ".",
     "declaration": true,
     "declarationDir": "types",
-    "types": [
-      "jest"
-    ],
     "paths": {
       "@/*": [
         "src*"

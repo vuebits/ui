@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VBadge
+      <UiBadge
         :bordered="bordered"
         :elevated="elevated"
         :round="round"
@@ -17,7 +17,7 @@
         :disabled="disabled"
       >
         Configure me
-      </VBadge>
+      </UiBadge>
     </Preview>
     <template #controls>
       <Knobs>
@@ -69,17 +69,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-} from '@/components';
-import {
-  VBadge,
-} from '@vuebits/ui';
-import { colors, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean } from '@/components'
+import { UiBadge } from '@vuebits/ui'
+import { colors, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'BadgeExample',
@@ -89,9 +81,9 @@ export default {
     Knobs,
     KnobListItem,
     KnobBoolean,
-    VBadge,
+    UiBadge,
   },
-  data () {
+  data() {
     return {
       colors,
       sizes,
@@ -105,7 +97,7 @@ export default {
       color: 'primary',
       size: 'sm',
       disabled: false,
-    };
+    }
   },
-};
+}
 </script>

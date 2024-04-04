@@ -14,36 +14,36 @@
         <slot />
       </div>
       <div class="story__code-controls">
-        <VButton
+        <UiButton
           size="sm"
           color="primary"
           dark
           @click="toggleCodeVisibility"
         >
           {{ isCodeShown ? 'Hide code' : 'Show code' }}
-        </VButton>
+        </UiButton>
         <div v-if="isCodeShown">
-          <VButton
+          <UiButton
             size="sm"
-            :class="$bem({e: 'code-control', m: {active: activeCode === 'html'}})"
+            :class="$bem({ e: 'code-control', m: { active: activeCode === 'html' } })"
             @click="setActiveCode('html')"
           >
             HTML
-          </VButton>
-          <VButton
+          </UiButton>
+          <UiButton
             size="sm"
-            :class="$bem({e: 'code-control', m: {active: activeCode === 'js'}})"
+            :class="$bem({ e: 'code-control', m: { active: activeCode === 'js' } })"
             @click="setActiveCode('js')"
           >
             JS
-          </VButton>
-          <VButton
+          </UiButton>
+          <UiButton
             size="sm"
-            :class="$bem({e: 'code-control', m: {active: activeCode === 'css'}})"
+            :class="$bem({ e: 'code-control', m: { active: activeCode === 'css' } })"
             @click="setActiveCode('css')"
           >
             CSS
-          </VButton>
+          </UiButton>
         </div>
       </div>
       <div
@@ -60,44 +60,40 @@
           v-show="activeCode === 'js'"
           ref="js"
         >
-          <pre
-            class="language-javascript hljs"
-          ><code>{{ script }}</code></pre>
+          <pre class="language-javascript hljs"><code>{{ script }}</code></pre>
         </div>
         <div
           v-show="activeCode === 'css'"
           ref="css"
         >
-          <pre
-            class="language-css hljs"
-          ><code>{{ style }}</code></pre>
+          <pre class="language-css hljs"><code>{{ style }}</code></pre>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script >
-import hljs from 'highlight.js';
-import xml from 'highlight.js/lib/languages/xml';
-import javascript from 'highlight.js/lib/languages/javascript';
-import css from 'highlight.js/lib/languages/css';
-import { VButton } from '@vuebits/ui';
-import { defineComponent, nextTick } from 'vue';
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('css', css);
+<script>
+import hljs from 'highlight.js'
+import xml from 'highlight.js/lib/languages/xml'
+import javascript from 'highlight.js/lib/languages/javascript'
+import css from 'highlight.js/lib/languages/css'
+import { UiButton } from '@vuebits/ui'
+import { defineComponent, nextTick } from 'vue'
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('css', css)
 
 const getComponentSection = (string, tagName) => {
-  const start = string.search(`<${tagName}>`);
-  const end = string.search(`</${tagName}>`);
-  return string.substr(start + tagName.length + 3, end - start - tagName.length - 3);
-};
+  const start = string.search(`<${tagName}>`)
+  const end = string.search(`</${tagName}>`)
+  return string.substr(start + tagName.length + 3, end - start - tagName.length - 3)
+}
 
 export default defineComponent({
   name: 'Story',
   components: {
-    VButton,
+    UiButton,
   },
   props: {
     fileName: {
@@ -117,53 +113,58 @@ export default defineComponent({
       default: 'Components',
     },
   },
-  data () {
+  data() {
     return {
       component: '',
       isCodeShown: false,
       activeCode: 'html',
-    };
+    }
   },
   computed: {
-    template () {
-      return getComponentSection(this.component, 'template');
+    template() {
+      return getComponentSection(this.component, 'template')
     },
-    script () {
-      return getComponentSection(this.component, 'script');
+    script() {
+      return getComponentSection(this.component, 'script')
     },
-    style () {
-      return getComponentSection(this.component, 'style');
+    style() {
+      return getComponentSection(this.component, 'style')
     },
   },
-  mounted () {
-    this.load();
+  mounted() {
+    this.load()
   },
   methods: {
-    async load () {
+    async load() {
       setTimeout(async () => {
-        let component = '';
+        let component = ''
 
         try {
-          const fileName = `/src/views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`;
-          component = import.meta.glob('/src/views/Docs/**/_stories/*.vue', { as: 'raw' })[fileName];
-        } catch (err) {}
+          const fileName = `/src/views/Docs/${this.groupName}/${this.componentName}/_stories/${this.fileName}.vue`
+          const componentFn = import.meta.glob('/src/views/Docs/**/_stories/*.vue', {
+            as: 'raw',
+          })[fileName]
+          component = await componentFn()
+        } catch (err) {
+          //
+        }
 
-        this.component = component;
+        this.component = component
         nextTick(() => {
-          hljs.highlightBlock(this.$refs.html);
-          hljs.highlightBlock(this.$refs.js);
-          hljs.highlightBlock(this.$refs.css);
-        });
-      }, 100);
+          hljs.highlightBlock(this.$refs.html)
+          hljs.highlightBlock(this.$refs.js)
+          hljs.highlightBlock(this.$refs.css)
+        })
+      }, 100)
     },
-    toggleCodeVisibility () {
-      this.isCodeShown = !this.isCodeShown;
+    toggleCodeVisibility() {
+      this.isCodeShown = !this.isCodeShown
     },
-    setActiveCode (code) {
-      this.activeCode = code;
+    setActiveCode(code) {
+      this.activeCode = code
     },
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -182,7 +183,7 @@ export default defineComponent({
       margin-left: 0;
 
       &::before {
-        content: "#";
+        content: '#';
         cursor: pointer;
         display: inline-block;
         width: 4 * $sp;

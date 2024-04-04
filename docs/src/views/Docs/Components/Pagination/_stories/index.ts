@@ -1,1 +1,1 @@
-export { default as PaginationCustomJumper } from './CustomJumper.vue';
+export { default as PaginationCustomJumper } from './CustomJumper.vue'

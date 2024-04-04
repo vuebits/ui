@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VCheckbox
+      <UiCheckbox
         id="checkbox-demo"
         v-model="isChecked"
         :bordered="bordered"
@@ -52,16 +52,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VCheckbox,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobString } from '@/components'
+import { UiCheckbox } from '@vuebits/ui'
 
 export default {
   name: 'CheckboxExample',
@@ -71,9 +63,9 @@ export default {
     Knobs,
     KnobBoolean,
     KnobString,
-    VCheckbox,
+    UiCheckbox,
   },
-  data () {
+  data() {
     return {
       isChecked: true,
       bordered: true,
@@ -83,7 +75,7 @@ export default {
       disabled: false,
       error: false,
       label: 'some label...',
-    };
+    }
   },
-};
+}
 </script>

@@ -1,25 +1,23 @@
 <template>
-  <VIcon
+  <UiIcon
     name="github"
     type="fab"
   />
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
-import { icons } from '@/helpers/story-params';
+import { UiIcon } from '@vuebits/ui'
+import { icons } from '@/helpers/story-params'
 
 export default {
   name: 'IconType',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
       icons,
-    };
+    }
   },
-};
+}
 </script>

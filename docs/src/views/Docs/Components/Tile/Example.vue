@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VTile
+      <UiTile
         :bordered="bordered"
         :elevated="elevated"
         :round="round"
@@ -21,7 +21,7 @@
         :center-content="centerContent"
       >
         Configure me
-      </VTile>
+      </UiTile>
     </Preview>
     <template #controls>
       <Knobs>
@@ -90,18 +90,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VTile,
-} from '@vuebits/ui';
-import { colors } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiTile } from '@vuebits/ui'
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'TileExample',
@@ -112,9 +103,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VTile,
+    UiTile,
   },
-  data () {
+  data() {
     return {
       colors,
       bordered: false,
@@ -134,7 +125,7 @@ export default {
       hoverBgColor: 'secondary',
       underlineColor: null,
       centerContent: false,
-    };
+    }
   },
-};
+}
 </script>

@@ -1,1 +1,1 @@
-export { default as VTabSwitch } from './Component.vue';
+export { default as UiTabSwitch } from './Component.vue'

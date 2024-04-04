@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VStarRating
+      <UiStarRating
         v-model="rating"
         :max-rating="maxRating"
         :show-rating="showRating"
@@ -70,18 +70,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobNumber,
-  KnobBoolean,
-} from '@/components';
-import {
-  VStarRating,
-} from '@vuebits/ui';
-import { colors } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobNumber, KnobBoolean } from '@/components'
+import { UiStarRating } from '@vuebits/ui'
+import { colors } from '@/helpers/story-params'
 export default {
   name: 'StarRatingExample',
   components: {
@@ -91,9 +82,9 @@ export default {
     KnobListItem,
     KnobNumber,
     KnobBoolean,
-    VStarRating,
+    UiStarRating,
   },
-  data () {
+  data() {
     return {
       colors,
       rating: 4,
@@ -107,7 +98,7 @@ export default {
       borderWidth: 0,
       borderColor: 'light',
       glowColor: 'light',
-    };
+    }
   },
-};
+}
 </script>

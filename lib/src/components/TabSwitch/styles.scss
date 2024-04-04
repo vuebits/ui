@@ -1,4 +1,4 @@
-.v-tab-switch {
+.ui-tab-switch {
   display: flex;
   align-items: center;
   position: relative;
@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    padding: 0.5rem 2.75rem,;
+    padding: 0.5rem 2.75rem;
     transition-duration: $animation-time;
     opacity: 0.7;
     z-index: 1;
@@ -37,8 +37,7 @@
       opacity: 1;
 
       &:hover {
-
-        & ~ .v-tab-switch__slider {
+        & ~ .ui-tab-switch__slider {
           background: $color-primary-hover;
         }
       }

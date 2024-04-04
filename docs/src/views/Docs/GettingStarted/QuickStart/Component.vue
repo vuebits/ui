@@ -1,74 +1,49 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Quick start
-    </PageHeader>
-    <p class="docs--p">
-      Add library to your Vue 3 app in entry file (eg. main.js):
-    </p>
+    <PageHeader> Quick start </PageHeader>
+    <p class="docs--p">Add library to your Vue 2 app in entry file (eg. main.js):</p>
     <CodeBlock
       language="js"
       code="
-import { createApp } from 'vue';
+import Vue from 'vue';
 import App from './App.vue';
-import { createUI } from '@vuebits/ui';
+import Ui from '@vuebits/ui';
 
-const config = {
-  // your config here
-};
+Vue.use(Ui);
 
-createApp(App)
-  .use(createUI(config))
-  .mount('#app');
+new Vue({
+  render: h => h(App)
+}).$mount('#app');
       "
     />
-    <p class="docs--p">
-      Import stylesheet file:
-    </p>
+    <p class="docs--p">Import stylesheet file:</p>
     <CodeBlock
       language="scss"
-      code="@import '~@vuebits/ui/dist/vuebits-ui;"
+      code="@import '~@vuebits/ui/dist/lib;"
     />
-    <p class="docs--p">
-      Install fontawesome icons in your project:
-    </p>
-    <CodeBlock
-      language="bash"
-      code="npm i @fortawesome/fontawesome-free"
-    />
-    <p class="docs--p">
-      and import icons in your styles:
-    </p>
-    <CodeBlock
-      language="scss"
-      code="@import '~@fortawesome/fontawesome-free/css/all.css';"
-    />
-    <p class="docs--p">
-      Now you can use components from library in your .vue files:
-    </p>
     <CodeBlock
       language="html"
       code="
 <template>
-  <VButton
+  <UiButton
     bordered
     rounded
     elevated
     @click='alert'
   >
     Click me!
-  </VButton>
+  </UiButton>
 </template>
 
 <script>
 import {
-  VButton
+  UiButton
 } from '@vuebits/ui';
 
 export default {
   name: 'ExampleComponent',
   components: {
-    VButton
+    UiButton
   },
   methods: {
     alert () {
@@ -83,11 +58,8 @@ export default {
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  PageHeader,
-  CodeBlock,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { PageHeader, CodeBlock } from '@/components'
 
 export default defineComponent({
   name: 'DocsGettingStartedQuickStart',
@@ -95,8 +67,7 @@ export default defineComponent({
     PageHeader,
     CodeBlock,
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

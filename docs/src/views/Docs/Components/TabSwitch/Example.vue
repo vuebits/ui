@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VTabSwitch
+      <UiTabSwitch
         v-model="selectedTab"
         :tabs="tabs"
       />
@@ -19,14 +19,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-} from '@/components';
-import {
-  VTabSwitch,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs } from '@/components'
+import { UiTabSwitch } from '@vuebits/ui'
 
 export default {
   name: 'TabSwitchExample',
@@ -34,9 +28,9 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VTabSwitch,
+    UiTabSwitch,
   },
-  data () {
+  data() {
     return {
       selectedTab: '',
       tabs: [
@@ -53,13 +47,13 @@ export default {
           value: 'value3',
         },
       ],
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.value-preview{
+.value-preview {
   margin: 1rem 0.5rem 0;
 }
 </style>

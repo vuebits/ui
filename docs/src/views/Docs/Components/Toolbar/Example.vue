@@ -5,61 +5,58 @@
   >
     <Preview>
       <div>
-        <VToolbar
+        <UiToolbar
           :dark="dark"
           :light="light"
           :absolute="absolute"
           :fixed="fixed"
-          style="height: 10rem;"
+          style="height: 10rem"
         >
-          <template #top-left>
-            top-left
-          </template>
-          <template #top-center>
-            top-center
-          </template>
-          <template #top-right>
-            top-right
-          </template>
+          <template #top-left> top-left </template>
+          <template #top-center> top-center </template>
+          <template #top-right> top-right </template>
           <template #left>
-            <VToolbarHamburger
+            <UiToolbarHamburger
               v-model="isMenuExpandedOnMobile"
-              style="padding: 1rem; font-size: 3rem;"
+              style="padding: 1rem; font-size: 3rem"
             />
-            <VToolbarLogo
+            <UiToolbarLogo
               href="/"
               src="https://via.placeholder.com/350x60?text=logo"
               alt="Home page"
             />
             Left side
           </template>
-          <template #center>
-            Center side
-          </template>
+          <template #center> Center side </template>
           <template #right>
-            <VToolbarMenu
+            <UiToolbarMenu
               :dark="dark"
               :light="light"
               :expanded-on-mobile="isMenuExpandedOnMobile"
-              style="background-color: red;"
+              style="background-color: #f00"
               @click-outside="closeAll"
             >
-              <VToolbarMenuItem href="/">
-                Link
-              </VToolbarMenuItem>
-              <VToolbarMenuDropdown
+              <UiToolbarMenuItem href="/"> Link </UiToolbarMenuItem>
+              <UiToolbarMenuDropdown
                 v-model="isActiveDropdown1"
                 active-color="primary"
                 active-text-color="white"
               >
                 Dropdown 1
                 <template #dropdown>
-                  <div style="width: 30rem; border: 1px solid black; background-color: white;padding: 1rem;">
+                  <div
+                    style="
+                      width: 30rem;
+                      border: 1px solid #000;
+                      background-color: #fff;
+                      padding: 1rem;
+                    "
+                  >
                     To left
                   </div>
                 </template>
-              </VToolbarMenuDropdown>
-              <VToolbarMenuDropdown
+              </UiToolbarMenuDropdown>
+              <UiToolbarMenuDropdown
                 v-model="isActiveDropdown2"
                 position="right"
                 active-color="secondary"
@@ -67,35 +64,48 @@
               >
                 Dropdown 2
                 <template #dropdown>
-                  <div style="width: 40rem; border: 1px solid black; background-color: white;padding: 1rem;">
+                  <div
+                    style="
+                      width: 40rem;
+                      border: 1px solid #000;
+                      background-color: #fff;
+                      padding: 1rem;
+                    "
+                  >
                     To right
                   </div>
                 </template>
-              </VToolbarMenuDropdown>
-              <VToolbarMenuDropdown
+              </UiToolbarMenuDropdown>
+              <UiToolbarMenuDropdown
                 :model-value="isActiveDropdown3"
                 active-color="white"
                 active-text-color="primary"
                 position="fullsize"
-                @open="isActiveDropdown3 = true; isActiveDropdown1 = false; isActiveDropdown2 = false"
+                @open="
+                  () => {
+                    isActiveDropdown3 = true
+                    isActiveDropdown1 = false
+                    isActiveDropdown2 = false
+                  }
+                "
                 @close="isActiveDropdown3 = false"
               >
                 Dropdown 3
                 <template #dropdown>
-                  <div style="border: 1px solid black; background-color: white;padding: 1rem;">
+                  <div style="border: 1px solid #000; background-color: #fff; padding: 1rem">
                     Full size
                   </div>
                 </template>
-              </VToolbarMenuDropdown>
-            </VToolbarMenu>
+              </UiToolbarMenuDropdown>
+            </UiToolbarMenu>
             Right side
           </template>
-        </VToolbar>
+        </UiToolbar>
         <div
           style="
-            height:20rem;
+            height: 20rem;
             width: 100%;
-            background-color: grey;
+            background-color: #888;
             z-index: 2;
             display: flex;
             justify-content: center;
@@ -111,31 +121,28 @@
 
 <script>
 import {
-  VToolbar,
-  VToolbarLogo,
-  VToolbarMenu,
-  VToolbarMenuItem,
-  VToolbarMenuDropdown,
-  VToolbarHamburger,
-} from '@vuebits/ui';
-import {
-  Preview,
-  Sandbox,
-} from '@/components';
+  UiToolbar,
+  UiToolbarLogo,
+  UiToolbarMenu,
+  UiToolbarMenuItem,
+  UiToolbarMenuDropdown,
+  UiToolbarHamburger,
+} from '@vuebits/ui'
+import { Preview, Sandbox } from '@/components'
 
 export default {
   name: 'ToolbarExample',
   components: {
     Preview,
     Sandbox,
-    VToolbar,
-    VToolbarLogo,
-    VToolbarMenu,
-    VToolbarMenuItem,
-    VToolbarMenuDropdown,
-    VToolbarHamburger,
+    UiToolbar,
+    UiToolbarLogo,
+    UiToolbarMenu,
+    UiToolbarMenuItem,
+    UiToolbarMenuDropdown,
+    UiToolbarHamburger,
   },
-  data () {
+  data() {
     return {
       dark: true,
       light: false,
@@ -145,15 +152,15 @@ export default {
       isActiveDropdown2: true,
       isActiveDropdown3: false,
       isMenuExpandedOnMobile: false,
-    };
+    }
   },
   methods: {
-    closeAll () {
-      this.isActiveDropdown1 = false;
-      this.isActiveDropdown2 = false;
-      this.isActiveDropdown3 = false;
-      this.isMenuExpandedOnMobile = false;
+    closeAll() {
+      this.isActiveDropdown1 = false
+      this.isActiveDropdown2 = false
+      this.isActiveDropdown3 = false
+      this.isMenuExpandedOnMobile = false
     },
   },
-};
+}
 </script>

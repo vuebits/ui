@@ -1,5 +1,5 @@
 <template>
-  <VButton
+  <UiButton
     :class="classes"
     :bordered="bordered"
     :light="light"
@@ -19,35 +19,29 @@
     v-bind="$ui.testElName('icon-button')"
   >
     <template #container>
-      <VIcon
+      <UiIcon
         v-if="!loading"
         :name="icon"
         :type="iconType"
         :prefix="iconPrefix"
       />
+      <slot />
     </template>
-  </VButton>
+  </UiButton>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VButton } from '../Button';
-import { VIcon } from '../Icon';
-import {
-  CssClass,
-} from '../../helpers/css-classes';
-import {
-  borderedProps,
-  themeProps,
-  roundedProps,
-  sizeProps,
-} from '../../composables';
+import { defineComponent, PropType } from 'vue'
+import { UiButton } from '../Button'
+import { UiIcon } from '../Icon'
+import { CssClass } from '../../helpers/css-classes'
+import { borderedProps, themeProps, roundedProps, sizeProps } from '../../composables'
 
 export default defineComponent({
-  name: 'VIconButton',
+  name: 'UiIconButton',
   components: {
-    VButton,
-    VIcon,
+    UiButton,
+    UiIcon,
   },
   props: {
     icon: {
@@ -100,14 +94,14 @@ export default defineComponent({
     ...sizeProps,
   },
   computed: {
-    classes (): CssClass[] {
-      const mods = [this.size];
+    classes(): CssClass[] {
+      const mods = [this.size]
       return this.$bem({
         m: mods,
-      });
+      })
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

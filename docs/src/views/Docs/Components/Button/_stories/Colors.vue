@@ -4,31 +4,29 @@
       v-for="color in colors"
       :key="color"
     >
-      <VButton
+      <UiButton
         :color="color"
         dark
       >
         I am {{ color }}
-      </VButton>
+      </UiButton>
     </span>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
-import { colors } from '@/helpers/story-params';
+import { UiButton } from '@vuebits/ui'
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'ButtonColors',
   components: {
-    VButton,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       colors,
-    };
+    }
   },
-};
+}
 </script>

@@ -1,17 +1,11 @@
 <template>
-  <div
-    style="
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    "
-  >
+  <div style="display: flex; flex-flow: row wrap">
     <div
       v-for="flip in flips"
       :key="flip"
-      style="margin: 1rem; text-align: center;"
+      style="margin: 1rem; text-align: center"
     >
-      <VIcon
+      <UiIcon
         name="check"
         :flip="flip"
       />
@@ -21,24 +15,17 @@
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
+import { UiIcon } from '@vuebits/ui'
 
 export default {
   name: 'IconFlip',
   components: {
-    VIcon,
+    UiIcon,
   },
-  data () {
+  data() {
     return {
-      flips: [
-        '-',
-        'horizontal',
-        'vertical',
-        'both',
-      ],
-    };
+      flips: ['-', 'horizontal', 'vertical', 'both'],
+    }
   },
-};
+}
 </script>

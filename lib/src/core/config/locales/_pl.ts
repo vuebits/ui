@@ -1,4 +1,4 @@
-import { Dictionary } from '../../../models';
+import { Dictionary } from '../../../models'
 
 export const pl: Dictionary = {
   asyncContent: {
@@ -37,16 +37,9 @@ export const pl: Dictionary = {
     dropAreaTextWhenDisabled: 'Obszar nieaktywny',
     title: 'Dodawanie pliku',
     validationError: 'Plik jest nieprawidłowy',
+    sizeError: 'Nieprawidłowy rozmiar pliku',
   },
-  weekdays: [
-    'Poniedziałek',
-    'Wtorek',
-    'Środa',
-    'Czwartek',
-    'Piątek',
-    'Sobota',
-    'Niedziela',
-  ],
+  weekdays: ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'],
   months: [
     'Styczeń',
     'Luty',
@@ -68,4 +61,4 @@ export const pl: Dictionary = {
     loading: 'Ładowanie danych',
     noItems: 'Brak elementów do wyświetlenia',
   },
-};
+}

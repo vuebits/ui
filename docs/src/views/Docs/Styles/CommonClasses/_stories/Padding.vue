@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="padding"
-  >
+  <div class="padding">
     <div
       v-for="(direction, i) in directions"
       :key="i"
@@ -19,32 +17,23 @@
 </template>
 
 <script>
-import { spacings } from '@/helpers/story-params';
+import { spacings } from '@/helpers/story-params'
 
 export default {
   name: 'CommonClassesPadding',
-  data () {
+  data() {
     return {
       spacings,
-      directions: [
-        '',
-        'x-',
-        'y-',
-        'top-',
-        'right-',
-        'bottom-',
-        'left-',
-      ],
-    };
+      directions: ['', 'x-', 'y-', 'top-', 'right-', 'bottom-', 'left-'],
+    }
   },
-};
+}
 </script>
 
 <style>
 .padding {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 .padding__spacing {
   display: inline-block;

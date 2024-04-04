@@ -1,7 +1,10 @@
 @use 'sass:math';
 
-.v-icon {
-  display: inline-block;
+.ui-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -9,7 +12,6 @@
   &--size-lg {
     font-size: math.div(4em, 3);
     line-height: math.div(3em, 4);
-    vertical-align: -0.0667em;
   }
 
   &--size-xs {
@@ -58,17 +60,20 @@
   }
 
   @keyframes spin {
-
     from {
-      transform:rotate(0deg);
+      transform: rotate(0deg);
     }
 
     to {
-      transform:rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 
   &--pulse {
     animation: spin 1s steps(8) infinite;
+  }
+
+  &__path {
+    fill: currentColor;
   }
 }

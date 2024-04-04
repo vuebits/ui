@@ -40,7 +40,6 @@
   }
 
   &__close-button {
-
     @include breakpoint(lg) {
       display: none;
     }
@@ -60,7 +59,7 @@
 
   &__item {
     display: flex;
-    color: $color-text-2;
+    color: $color-text-secondary;
   }
 
   &__item-link {
@@ -79,6 +78,10 @@
       font-weight: bold;
       color: $color-text;
       background-color: $color-bg;
+
+      &:hover {
+        color: $color-text;
+      }
     }
   }
 }

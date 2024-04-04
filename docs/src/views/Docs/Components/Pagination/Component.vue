@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Pagination
-    </PageHeader>
+    <PageHeader> Pagination </PageHeader>
     <PaginationExample />
     <ComponentApi :component="component" />
     <Story
@@ -16,17 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VPagination } from '@vuebits/ui';
-import PaginationExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
-import {
-  PaginationCustomJumper,
-} from './_stories';
+import { defineComponent } from 'vue'
+import { UiPagination } from '@vuebits/ui'
+import PaginationExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
+import { PaginationCustomJumper } from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentPagination',
@@ -37,13 +29,12 @@ export default defineComponent({
     PaginationExample,
     PaginationCustomJumper,
   },
-  data () {
+  data() {
     return {
-      component: VPagination,
-    };
+      component: UiPagination,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

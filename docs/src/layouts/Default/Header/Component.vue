@@ -1,16 +1,16 @@
 <template>
-  <VToolbar
+  <UiToolbar
     fixed
     light
     color="white"
-    :class="$bem({m: {expanded: isMenuExpandedOnMobile}})"
+    :class="$bem({ m: { expanded: isMenuExpandedOnMobile } })"
   >
     <template #left>
-      <VToolbarLogo
+      <UiToolbarLogo
         :src="$asset('images/logo.png')"
         title="Vuebits UI"
         :to="homeRoute"
-        :class="$bem({e: 'logo'})"
+        :class="$bem({ e: 'logo' })"
         @click="closeMenuOnMobile"
       />
     </template>
@@ -19,46 +19,42 @@
         :expanded-on-mobile="isMenuExpandedOnMobile"
         @close="closeMenuOnMobile"
       />
-      <VToolbarHamburger
+      <UiToolbarHamburger
         v-model="isMenuExpandedOnMobile"
-        :class="$bem({e: 'hamburger'})"
+        :class="$bem({ e: 'hamburger' })"
       />
     </template>
-  </VToolbar>
+  </UiToolbar>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  VToolbar,
-  VToolbarLogo,
-  VToolbarHamburger,
-} from '@vuebits/ui';
-import LayoutAppHeaderMenu from './Menu';
-import { RouteName } from '@/router/models';
+import { defineComponent } from 'vue'
+import { UiToolbar, UiToolbarLogo, UiToolbarHamburger } from '@vuebits/ui'
+import LayoutAppHeaderMenu from './Menu'
+import { RouteName } from '@/router/models'
 
 export default defineComponent({
   name: 'LayoutDefaultHeader',
   components: {
-    VToolbar,
-    VToolbarLogo,
+    UiToolbar,
+    UiToolbarLogo,
     LayoutAppHeaderMenu,
-    VToolbarHamburger,
+    UiToolbarHamburger,
   },
-  data () {
+  data() {
     return {
       homeRoute: {
         name: RouteName.HOME,
       },
       isMenuExpandedOnMobile: false as boolean,
-    };
+    }
   },
   methods: {
-    closeMenuOnMobile (): void {
-      this.isMenuExpandedOnMobile = false;
+    closeMenuOnMobile(): void {
+      this.isMenuExpandedOnMobile = false
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

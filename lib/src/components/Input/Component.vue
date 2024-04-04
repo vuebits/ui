@@ -7,19 +7,36 @@
     <slot name="before" />
     <div
       v-if="leftIcon"
-      :class="[...$bem({e: 'icon', m: {clickable: leftIconClickable, round: round}}), roundedClass]"
+      :class="[
+        ...$bem({
+          e: 'icon',
+          m: { clickable: leftIconClickable, round: round },
+        }),
+        roundedClass,
+      ]"
       v-bind="$ui.testElName('input-icon-left')"
       @click="onLeftIconClick"
     >
-      <VIcon
+      <UiIcon
         :name="leftIcon"
         :color="leftIconColor"
       />
     </div>
-    <span :class="$bem({e: 'content', m: {disabled: disabled}})">
+    <span
+      :class="
+        $bem({
+          e: 'content',
+          m: {
+            disabled: disabled,
+            [`left-padding`]: !leftIcon,
+            [`right-padding`]: !rightIcon,
+          },
+        })
+      "
+    >
       <span
         v-if="label && (modelValue || placeholder)"
-        :class="$bem({e: 'label'})"
+        :class="$bem({ e: 'label' })"
       >
         {{ label }}
       </span>
@@ -36,7 +53,12 @@
         :value="modelValue || undefined"
         :readonly="readonly"
         :placeholder="placeholder || label || undefined"
-        :class="$bem({e: 'input', m: { 'with-label': !!label && (!!modelValue || !!placeholder) }})"
+        :class="
+          $bem({
+            e: 'input',
+            m: { 'with-label': !!label && (!!modelValue || !!placeholder) },
+          })
+        "
         :disabled="disabled"
         data-test="field"
         v-bind="$ui.testElName('input-field')"
@@ -47,16 +69,22 @@
         @click="$emit('click')"
         @mouseenter="$emit('mouseenter')"
         @mouseleave="$emit('mouseleave')"
-      >
+      />
       <slot name="after-text" />
     </span>
     <div
       v-if="rightIcon"
-      :class="[...$bem({e: 'icon', m: {clickable: rightIconClickable, round: round}}), roundedClass]"
+      :class="[
+        ...$bem({
+          e: 'icon',
+          m: { clickable: rightIconClickable, round: round },
+        }),
+        roundedClass,
+      ]"
       v-bind="$ui.testElName('input-icon-right')"
       @click="onRightIconClick"
     >
-      <VIcon
+      <UiIcon
         :name="rightIcon"
         :color="rightIconColor"
       />
@@ -66,11 +94,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import {
-  CssClass,
-  elevationClass,
-} from '../../helpers/css-classes';
+import { defineComponent, PropType, toRefs } from 'vue'
+import { CssClass, elevationClass } from '../../helpers/css-classes'
 import {
   borderedProps,
   themeProps,
@@ -83,20 +108,17 @@ import {
   useValidation,
   useDepressed,
   sizeProps,
-} from '../../composables';
-import { VIcon } from '../Icon';
+} from '../../composables'
+import { UiIcon } from '../Icon'
 
 export default defineComponent({
-  name: 'VInput',
+  name: 'UiInput',
   components: {
-    VIcon,
+    UiIcon,
   },
   props: {
     modelValue: {
-      type: [
-        String,
-        Number,
-      ] as PropType<string | number | null>,
+      type: [String, Number] as PropType<string | number | null>,
       default: null,
     },
     placeholder: {
@@ -194,44 +216,34 @@ export default defineComponent({
     'mouseleave',
     'input',
   ],
-  setup (props) {
-    const {
-      dark,
-      light,
-      bordered,
-      rounded,
-      roundedLg,
-      error,
-      depressed,
-    } = toRefs(props);
+  setup(props) {
+    const { dark, light, bordered, rounded, roundedLg, round, error, depressed } = toRefs(props)
 
-    const {
-      validationBorderClass,
-    } = useValidation(error);
+    const { validationBorderClass } = useValidation(error)
 
     return {
       themeClass: useTheme(dark, light),
       borderedClass: useBordered(bordered),
-      roundedClass: useRounded(rounded, roundedLg),
+      roundedClass: useRounded(rounded, roundedLg, round),
       depressedClass: useDepressed(depressed),
       validationBorderClass,
-    };
+    }
   },
-  data () {
+  data() {
     return {
       isFocused: false as boolean,
-    };
+    }
   },
   computed: {
-    widthStyle (): {[key in string]: any} {
-      return this.width ? { width: `${this.width}px` } : {};
+    widthStyle(): { [key in string]: any } {
+      return this.width ? { width: `${this.width}px` } : {}
     },
-    styles (): {[key in string]: any} {
+    styles(): { [key in string]: any } {
       return {
         ...this.widthStyle,
-      };
+      }
     },
-    classes (): CssClass[] {
+    classes(): CssClass[] {
       return [
         ...this.$bem({
           m: {
@@ -240,6 +252,8 @@ export default defineComponent({
             dark: this.dark,
             disabled: this.disabled,
             round: this.round,
+            rounded: this.rounded,
+            'rounded-lg': this.roundedLg,
           },
         }),
         {
@@ -249,41 +263,41 @@ export default defineComponent({
         this.validationBorderClass,
         this.roundedClass,
         this.depressedClass,
-      ];
+      ]
     },
   },
   methods: {
-    setFocusStatus (isFocused: boolean): void {
-      this.isFocused = isFocused;
+    setFocusStatus(isFocused: boolean): void {
+      this.isFocused = isFocused
     },
-    onFocus (): void {
-      this.setFocusStatus(true);
-      this.$emit('focus');
+    onFocus(): void {
+      this.setFocusStatus(true)
+      this.$emit('focus')
     },
-    onBlur (e: any): void {
-      this.setFocusStatus(false);
-      this.$emit('blur', e);
+    onBlur(e: any): void {
+      this.setFocusStatus(false)
+      this.$emit('blur', e)
     },
-    onInput (e: any): void {
-      const value = e.target.value;
-      this.$emit('update:modelValue', value);
-      this.$emit('input', value);
+    onInput(e: any): void {
+      const value = e.target.value
+      this.$emit('update:modelValue', value)
+      this.$emit('input', value)
     },
-    enter (e: any): void {
-      const value = e.target.value;
-      this.$emit('enter', value);
+    enter(e: any): void {
+      const value = e.target.value
+      this.$emit('enter', value)
     },
-    onLeftIconClick (): void {
-      if (this.leftIconClickable) this.$emit('click-left-icon');
+    onLeftIconClick(): void {
+      if (this.leftIconClickable) this.$emit('click-left-icon')
     },
-    onRightIconClick (): void {
-      if (this.rightIconClickable) this.$emit('click-right-icon');
+    onRightIconClick(): void {
+      if (this.rightIconClickable) this.$emit('click-right-icon')
     },
-    focus (): void {
-      (this.$refs.input as HTMLInputElement).focus();
+    focus(): void {
+      ;(this.$refs.input as HTMLInputElement).focus()
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

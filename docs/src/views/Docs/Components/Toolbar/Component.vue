@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Toolbar
-    </PageHeader>
+    <PageHeader> Toolbar </PageHeader>
     <ToolbarExample />
     <ComponentApi :component="component" />
     <ComponentApi :component="componentLogo" />
@@ -14,20 +12,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 import {
-  VToolbar,
-  VToolbarLogo,
-  VToolbarHamburger,
-  VToolbarMenu,
-  VToolbarMenuItem,
-  VToolbarMenuDropdown,
-} from '@vuebits/ui';
-import ToolbarExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+  UiToolbar,
+  UiToolbarLogo,
+  UiToolbarHamburger,
+  UiToolbarMenu,
+  UiToolbarMenuItem,
+  UiToolbarMenuDropdown,
+} from '@vuebits/ui'
+import ToolbarExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsAsyncContent',
@@ -36,18 +31,17 @@ export default defineComponent({
     ComponentApi,
     ToolbarExample,
   },
-  data () {
+  data() {
     return {
-      component: VToolbar,
-      componentLogo: VToolbarLogo,
-      componentHamburger: VToolbarHamburger,
-      componentMenu: VToolbarMenu,
-      componentMenuItem: VToolbarMenuItem,
-      componentMenuDropdown: VToolbarMenuDropdown,
-    };
+      component: UiToolbar,
+      componentLogo: UiToolbarLogo,
+      componentHamburger: UiToolbarHamburger,
+      componentMenu: UiToolbarMenu,
+      componentMenuItem: UiToolbarMenuItem,
+      componentMenuDropdown: UiToolbarMenuDropdown,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

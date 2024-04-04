@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VAutocomplete
+    <UiAutocomplete
       v-model="selected"
       :items="items"
       bordered
@@ -12,16 +12,14 @@
 </template>
 
 <script>
-import {
-  VAutocomplete,
-} from '@vuebits/ui';
+import { UiAutocomplete } from '@vuebits/ui'
 
 export default {
   name: 'AutocompleteMultiple',
   components: {
-    VAutocomplete,
+    UiAutocomplete,
   },
-  data () {
+  data() {
     return {
       selected: [],
       items: [
@@ -31,7 +29,7 @@ export default {
         },
         {
           key: 2,
-          text: 'Item 2',
+          text: 'Item 2 with veeeeeeeeeeeeeeeeeeeeeery loooooooooooooooooooooong teeeeeeeeeeeeeext',
         },
         {
           key: 3,
@@ -74,7 +72,7 @@ export default {
           text: 'Item 12',
         },
       ],
-    };
+    }
   },
-};
+}
 </script>

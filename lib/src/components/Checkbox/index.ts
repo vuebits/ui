@@ -1,1 +1,1 @@
-export { default as VCheckbox } from './Component.vue';
+export { default as UiCheckbox } from './Checkbox.vue'

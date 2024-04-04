@@ -1,1 +1,1 @@
-export { default as VTable } from './Component.vue';
+export { default as UiTable } from './Component.vue'

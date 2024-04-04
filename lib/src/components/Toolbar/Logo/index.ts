@@ -1,1 +1,1 @@
-export { default as VToolbarLogo } from './Component.vue';
+export { default as UiToolbarLogo } from './Component.vue'

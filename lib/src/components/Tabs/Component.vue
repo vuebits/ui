@@ -3,7 +3,7 @@
     :class="$bem({})"
     v-bind="$ui.testElName('tabs')"
   >
-    <ul :class="$bem({e: 'header'})">
+    <ul :class="$bem({ e: 'header' })">
       <li
         v-for="(item, index) in items"
         :key="index"
@@ -28,20 +28,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { TabItem } from './models';
-import {
-  CssClass,
-  borderColorClass,
-} from '../../helpers/css-classes';
-import {
-  roundedProps,
-  themeProps,
-  useTheme,
-} from '../../composables';
+import { defineComponent, PropType, toRefs } from 'vue'
+import { TabItem } from './models'
+import { CssClass, borderColorClass } from '../../helpers/css-classes'
+import { roundedProps, themeProps, useTheme } from '../../composables'
 
 export default defineComponent({
-  name: 'VTabs',
+  name: 'UiTabs',
   props: {
     modelValue: {
       type: Number as PropType<number>,
@@ -58,33 +51,27 @@ export default defineComponent({
     ...themeProps,
     ...roundedProps,
   },
-  emits: [
-    'update:modelValue',
-    'change',
-  ],
-  setup (props) {
-    const {
-      dark,
-      light,
-    } = toRefs(props);
+  emits: ['update:modelValue', 'change'],
+  setup(props) {
+    const { dark, light } = toRefs(props)
 
     return {
       themeClass: useTheme(dark, light),
-    };
+    }
   },
   computed: {
     selectedIndex: {
-      get (): number {
-        return this.modelValue;
+      get(): number {
+        return this.modelValue
       },
-      set (value: number) {
-        this.$emit('change', value);
-        this.$emit('update:modelValue', value);
+      set(value: number) {
+        this.$emit('change', value)
+        this.$emit('update:modelValue', value)
       },
     },
   },
   methods: {
-    tabClasses (i: number): CssClass[] {
+    tabClasses(i: number): CssClass[] {
       return [
         ...this.$bem({
           e: 'tab',
@@ -95,13 +82,13 @@ export default defineComponent({
         }),
         this.themeClass,
         borderColorClass(this.activeTabColor),
-      ];
+      ]
     },
-    selectTab (i: number) {
-      this.selectedIndex = i;
+    selectTab(i: number) {
+      this.selectedIndex = i
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

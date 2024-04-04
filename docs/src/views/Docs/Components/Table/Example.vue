@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VTable
+      <UiTable
         :headers="headers"
         :items="items"
         :bordered="bordered"
@@ -19,18 +19,18 @@
         :padding="padding"
         :hide-parent-row-on-expand="hideParentRowOnExpand"
         :expand-on-row-click="expandOnRowClick"
-        style="height: 30rem;"
+        style="height: 30rem"
         :loading="loading"
       >
-        <template #expanded-item="{item}">
+        <template #expanded-item="{ item }">
           <div
-            style="width: 100%;"
+            style="width: 100%"
             class="has-padding-lg"
           >
             {{ item.name }}
           </div>
         </template>
-      </VTable>
+      </UiTable>
     </Preview>
     <template #controls>
       <Knobs>
@@ -93,18 +93,10 @@
 </template>
 
 <script lang="ts">
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobListItem,
-} from '@/components';
-import {
-  VTable,
-} from '@vuebits/ui';
-import { spacings } from '@/helpers/story-params';
-import { defineComponent } from 'vue';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobListItem } from '@/components'
+import { UiTable } from '@vuebits/ui'
+import { spacings } from '@/helpers/story-params'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'TableExample',
@@ -114,9 +106,9 @@ export default defineComponent({
     Knobs,
     KnobBoolean,
     KnobListItem,
-    VTable,
+    UiTable,
   },
-  data () {
+  data() {
     return {
       headers: [
         {
@@ -208,10 +200,9 @@ export default defineComponent({
       expandOnRowClick: false,
       padding: 'xs' as any,
       loading: false,
-    };
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

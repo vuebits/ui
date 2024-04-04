@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VRadio
+      <UiRadio
         model-value="radio-1"
         name="radio-1"
         group-name="radio-group"
@@ -49,16 +49,8 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VRadio,
-} from '@vuebits/ui';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobString } from '@/components'
+import { UiRadio } from '@vuebits/ui'
 
 export default {
   name: 'RadioExample',
@@ -66,11 +58,11 @@ export default {
     Preview,
     Sandbox,
     Knobs,
-    VRadio,
+    UiRadio,
     KnobBoolean,
     KnobString,
   },
-  data () {
+  data() {
     return {
       bordered: true,
       dark: false,
@@ -78,7 +70,7 @@ export default {
       disabled: false,
       error: false,
       label: 'some label...',
-    };
+    }
   },
-};
+}
 </script>

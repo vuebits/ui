@@ -1,24 +1,22 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import {
-  Docs,
-  Home,
-} from '@/views';
-import {
-  RouteName,
-} from './models';
-import { componentsRoutes } from './components';
-import { gettingStartedRoutes } from './getting-started';
-import { stylesRoutes } from './styles';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { Docs, Home } from '@/views'
+import { RouteName } from './models'
+import { componentsRoutes } from './components'
+import { gettingStartedRoutes } from './getting-started'
+import { stylesRoutes } from './styles'
 
-const docsRoutes = (parent: string, routes: {name: string; label: string}[]): RouteRecordRaw[] => {
-  return routes.map(r => {
+const docsRoutes = (
+  parent: string,
+  routes: { name: string; label: string }[],
+): RouteRecordRaw[] => {
+  return routes.map((r) => {
     return {
       path: r.name,
       name: `${parent}${r.name}`,
       component: () => import(`../views/Docs/${parent}/${r.name}/Component.vue`),
-    };
-  });
-};
+    }
+  })
+}
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -51,11 +49,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-];
+]
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.VITE_APP_BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_APP_BASE_URL),
   routes,
-});
+})
 
-export default router;
+export default router

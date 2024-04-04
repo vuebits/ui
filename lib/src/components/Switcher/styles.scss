@@ -1,4 +1,4 @@
-.v-switcher {
+.ui-switcher {
   display: flex;
   align-items: center;
   position: relative;
@@ -23,29 +23,80 @@
     align-items: center;
     height: 3rem;
     width: 6rem;
-    transition-duration: 0.5s;
     cursor: pointer;
-    border-radius: 2rem;
 
     &--disabled {
-      opacity: 0.2;
+      opacity: 0.8;
+      pointer-events: none;
       cursor: not-allowed;
+      border-color: $color-disabled;
+      overflow: hidden;
+    }
+
+    &--sm {
+      height: $field-size-sm;
+      width: 2 * $field-size-sm;
+    }
+
+    &--md {
+      height: $field-size-md;
+      width: 2 * $field-size-md;
+    }
+
+    &--lg {
+      height: $field-size-lg;
+      width: 2 * $field-size-lg;
+    }
+
+    &--light {
+      background-color: $color-input-bg;
+      color: $color-theme-light-font;
+    }
+
+    &--dark {
+      background-color: $color-theme-dark;
+      color: $color-theme-dark-font;
     }
   }
 
   &__slider {
+    $slider: &;
+    $offset: 0.3rem;
+    $slider-size-sm: $field-size-sm - 2 * $offset;
+    $slider-size-md: $field-size-md - 2 * $offset;
+    $slider-size-lg: $field-size-lg - 2 * $offset;
+
     display: block;
     content: '';
     position: absolute;
-    width: 2.6rem;
-    height: 2.6rem;
-    margin-left: 0.1rem;
-    border-radius: 50%;
+    margin-left: $offset;
     transition: 0.2s;
-    box-shadow: $shadow-main;
 
-    &--checked {
-      transform: translateX(3rem);
+    &--sm {
+      height: $slider-size-sm;
+      width: $slider-size-sm;
+
+      &#{$slider}--checked {
+        transform: translateX($slider-size-sm + $offset);
+      }
+    }
+
+    &--md {
+      height: $slider-size-md;
+      width: $slider-size-md;
+
+      &#{$slider}--checked {
+        transform: translateX($slider-size-md + $offset);
+      }
+    }
+
+    &--lg {
+      height: $slider-size-lg;
+      width: $slider-size-lg;
+
+      &#{$slider}--checked {
+        transform: translateX($slider-size-lg + $offset);
+      }
     }
   }
 }

@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Tooltip
-    </PageHeader>
+    <PageHeader> Tooltip </PageHeader>
     <TooltipExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTooltip } from '@vuebits/ui';
-import TooltipExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiTooltip } from '@vuebits/ui'
+import TooltipExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsAsyncContent',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     TooltipExample,
   },
-  data () {
+  data() {
     return {
-      component: VTooltip,
-    };
+      component: UiTooltip,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

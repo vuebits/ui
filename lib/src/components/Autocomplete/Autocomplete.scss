@@ -1,4 +1,4 @@
-.v-autocomplete {
+.ui-autocomplete {
   position: relative;
 
   &__selected-items {
@@ -6,18 +6,34 @@
   }
 
   &__selected-item-badge {
-    font-size: 1.3rem;
+    max-width: 100%;
+    font-size: 1.2rem;
     flex-shrink: 0;
-    margin: $sp;
-    padding-right: 0;
+    margin: 1px;
+    padding-right: 0 !important;
+    line-height: 1;
+    min-height: 2.4rem !important;
+    white-space: nowrap;
+
+    .ui-icon-button {
+      min-height: 2.4rem;
+      width: 2.4rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__selected-item-badge-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__selected-item-remove {
     margin-left: 2 * $sp;
+    flex-shrink: 0;
   }
 
   &__input {
-
     &--expanded {
       border-bottom-left-radius: 0 !important;
       border-bottom-right-radius: 0 !important;
@@ -70,7 +86,7 @@
 
   &__no-items-text {
     padding: 2 * $sp 3 * $sp;
-    text-align:center;
+    text-align: center;
   }
 
   &__item-header {

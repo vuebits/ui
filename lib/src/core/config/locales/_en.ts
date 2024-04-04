@@ -1,4 +1,4 @@
-import { Dictionary } from '../../../models';
+import { Dictionary } from '../../../models'
 
 export const en: Dictionary = {
   asyncContent: {
@@ -37,16 +37,9 @@ export const en: Dictionary = {
     dropAreaTextWhenDisabled: 'Area disabled',
     title: 'File add',
     validationError: 'Invalid file',
+    sizeError: 'Invalid file size',
   },
-  weekdays: [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ],
+  weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   months: [
     'January',
     'February',
@@ -68,4 +61,4 @@ export const en: Dictionary = {
     loading: 'Loading',
     noItems: 'No items to show',
   },
-};
+}

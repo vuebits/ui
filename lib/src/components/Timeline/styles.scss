@@ -8,8 +8,7 @@ $timeline-badge-offset-mobile: 1rem !default;
 $timeline-badge-offset: 3rem !default;
 $timeline-color: #bdbdbd !default;
 
-.v-timeline {
-
+.ui-timeline {
   &__item {
     display: flex;
     position: relative;
@@ -49,14 +48,12 @@ $timeline-color: #bdbdbd !default;
     }
 
     &--highlighted-before {
-
       &::before {
         background-color: $color-primary;
       }
     }
 
     &--highlighted-after {
-
       &::after {
         background-color: $color-primary;
       }
@@ -114,7 +111,7 @@ $timeline-color: #bdbdbd !default;
 
   &__item-time {
     font-size: 1.4rem;
-    color: $color-text-2;
+    color: $color-text-secondary;
   }
 
   &__item-content {
@@ -128,7 +125,8 @@ $timeline-color: #bdbdbd !default;
   }
 
   &__more-badge {
-    margin: $timeline-badge-outline 6 * $sp $timeline-badge-outline calc(#{- math.div($timeline-badge-size, 2)} + 1px);
+    margin: $timeline-badge-outline 6 * $sp $timeline-badge-outline
+      calc(#{- math.div($timeline-badge-size, 2)} + 1px);
     height: $timeline-badge-size;
     width: $timeline-badge-size;
     border-radius: 100%;

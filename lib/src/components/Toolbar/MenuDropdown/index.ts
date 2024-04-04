@@ -1,1 +1,1 @@
-export { default as VToolbarMenuDropdown } from './Component.vue';
+export { default as UiToolbarMenuDropdown } from './Component.vue'

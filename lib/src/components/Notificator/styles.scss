@@ -1,7 +1,5 @@
-.v-notificator {
-
+.ui-notificator {
   &__item {
-
     &:not(:first-of-type) {
       margin-top: 2 * $sp;
     }

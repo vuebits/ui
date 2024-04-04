@@ -6,16 +6,16 @@ $btn-themes: (
   primary: (
     bg: $color-primary,
     text: $color-theme-dark-font,
-    bg-hover: $color-primary-hover
+    bg-hover: $color-primary-hover,
   ),
   secondary: (
     bg: $color-secondary,
     text: $color-theme-dark-font,
-    bg-hover: $color-secondary-hover
-  )
+    bg-hover: $color-secondary-hover,
+  ),
 ) !default;
 
-.v-button {
+.ui-button {
   $root: &;
   display: inline-flex;
   flex-direction: column;
@@ -83,8 +83,7 @@ $btn-themes: (
   }
 
   @each $name, $data in $btn-themes {
-    &--theme-#{"" + $name} {
-
+    &--theme-#{'' + $name} {
       @if map-has-key($data, 'text') {
         color: map.get($data, 'text');
       }
@@ -98,14 +97,12 @@ $btn-themes: (
       }
 
       @if map-has-key($data, 'bg-hover') {
-
         &:hover {
           background-color: map.get($data, 'bg-hover');
         }
       }
 
       @if map-has-key($data, 'text-hover') {
-
         &:hover {
           color: map.get($data, 'text-hover');
         }
@@ -116,7 +113,6 @@ $btn-themes: (
       }
 
       @if map-has-key($data, 'border-hover') {
-
         &:hover {
           border: set-border(map.get($data, 'border-hover'));
         }
@@ -124,31 +120,8 @@ $btn-themes: (
     }
   }
 
-  @each $name, $data in $btn-themes {
-    &--inverted-theme-#{"" + $name},
-    .invert-buttons &#{$root}--theme-#{"" + $name} {
-
-      @if map-has-key($data, 'bg') {
-        color: map.get($data, 'bg');
-        border: set-border(map.get($data, 'bg'));
-      }
-
-      @if map-has-key($data, 'bg-hover') {
-
-        &:hover {
-          color: map.get($data, 'bg-hover');
-        }
-      }
-
-      @if map-has-key($data, 'border') {
-        background-color: map.get($data, 'border');
-        color: $color-white;
-      }
-    }
-  }
-
   @each $name, $gradient in $gradients {
-    &--gradient-#{"" + $name} {
+    &--gradient-#{'' + $name} {
       background: linear-gradient(
         to top,
         list.nth($gradient, 2),

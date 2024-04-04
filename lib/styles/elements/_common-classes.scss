@@ -34,7 +34,6 @@
 }
 
 .is-hoverable {
-
   &:hover {
     background-color: $color-hover;
   }
@@ -51,7 +50,6 @@
 
   &.is-hoverable,
   .is-hoverable {
-
     &:hover {
       background-color: $color-hover-dark;
     }
@@ -59,57 +57,57 @@
 }
 
 @each $name, $spacing in $spacings {
-  .has-padding-#{"" + $name} {
+  .has-padding-#{'' + $name} {
     padding: $spacing;
   }
-  .has-padding-x-#{"" + $name} {
+  .has-padding-x-#{'' + $name} {
     padding-left: $spacing;
     padding-right: $spacing;
   }
-  .has-padding-y-#{"" + $name} {
+  .has-padding-y-#{'' + $name} {
     padding-top: $spacing;
     padding-bottom: $spacing;
   }
-  .has-padding-top-#{"" + $name} {
+  .has-padding-top-#{'' + $name} {
     padding-top: $spacing;
   }
-  .has-padding-right-#{"" + $name} {
+  .has-padding-right-#{'' + $name} {
     padding-right: $spacing;
   }
-  .has-padding-bottom-#{"" + $name} {
+  .has-padding-bottom-#{'' + $name} {
     padding-bottom: $spacing;
   }
-  .has-padding-left-#{"" + $name} {
+  .has-padding-left-#{'' + $name} {
     padding-left: $spacing;
   }
 
-  .has-margin-#{"" + $name} {
+  .has-margin-#{'' + $name} {
     margin: $spacing;
   }
-  .has-margin-x-#{"" + $name} {
+  .has-margin-x-#{'' + $name} {
     margin-left: $spacing;
     margin-right: $spacing;
   }
-  .has-margin-y-#{"" + $name} {
+  .has-margin-y-#{'' + $name} {
     margin-top: $spacing;
     margin-bottom: $spacing;
   }
-  .has-margin-top-#{"" + $name} {
+  .has-margin-top-#{'' + $name} {
     margin-top: $spacing;
   }
-  .has-margin-right-#{"" + $name} {
+  .has-margin-right-#{'' + $name} {
     margin-right: $spacing;
   }
-  .has-margin-bottom-#{"" + $name} {
+  .has-margin-bottom-#{'' + $name} {
     margin-bottom: $spacing;
   }
-  .has-margin-left-#{"" + $name} {
+  .has-margin-left-#{'' + $name} {
     margin-left: $spacing;
   }
 }
 
 @each $name, $color in $colors {
-  .has-bg-color-#{"" + $name} {
+  .has-bg-color-#{'' + $name} {
     background-color: $color;
 
     @for $i from 1 through 3 {
@@ -121,7 +119,7 @@
       }
     }
   }
-  .has-color-#{"" + $name} {
+  .has-color-#{'' + $name} {
     color: $color;
 
     @for $i from 1 through 3 {
@@ -133,7 +131,7 @@
       }
     }
   }
-  .has-border-color-#{"" + $name} {
+  .has-border-color-#{'' + $name} {
     border-color: $color;
 
     @for $i from 1 through 3 {
@@ -145,42 +143,36 @@
       }
     }
   }
-  .has-hover-bg-color-#{"" + $name} {
-
+  .has-hover-bg-color-#{'' + $name} {
     &:hover {
       background-color: $color;
     }
 
     @for $i from 1 through 7 {
       &-darken-#{$i} {
-
         &:hover {
           background-color: color.adjust($color, $lightness: - ($i * 10%));
         }
       }
       &-lighten-#{$i} {
-
         &:hover {
           background-color: color.adjust($color, $lightness: $i * 10%);
         }
       }
     }
   }
-  .has-hover-color-#{"" + $name} {
-
+  .has-hover-color-#{'' + $name} {
     &:hover {
       color: $color;
     }
 
     @for $i from 1 through 4 {
       &-darken-#{$i} {
-
         &:hover {
           color: color.adjust($color, $lightness: - ($i * 10%));
         }
       }
       &-lighten-#{$i} {
-
         &:hover {
           color: color.adjust($color, $lightness: $i * 10%);
         }
@@ -190,7 +182,7 @@
 }
 
 @each $name, $gradient in $gradients {
-  .has-gradient-#{"" + $name} {
+  .has-gradient-#{'' + $name} {
     background: linear-gradient(to top, list.nth($gradient, 2), list.nth($gradient, 1));
   }
 }

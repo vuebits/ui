@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Button
-    </PageHeader>
+    <PageHeader> Button </PageHeader>
     <ButtonExample />
     <ComponentApi :component="component" />
     <Story
@@ -72,14 +70,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VButton } from '@vuebits/ui';
-import ButtonExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiButton } from '@vuebits/ui'
+import ButtonExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
 import {
   ButtonColors,
   ButtonGradients,
@@ -90,7 +84,7 @@ import {
   ButtonIcons,
   ButtonElevation,
   ButtonThemes,
-} from './_stories';
+} from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsButton',
@@ -109,12 +103,12 @@ export default defineComponent({
     ButtonElevation,
     ButtonThemes,
   },
-  data () {
+  data() {
     return {
-      component: VButton,
-    };
+      component: UiButton,
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Stepper
-    </PageHeader>
+    <PageHeader> Stepper </PageHeader>
     <StepperExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VStepper } from '@vuebits/ui';
-import StepperExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiStepper } from '@vuebits/ui'
+import StepperExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsStepper',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     StepperExample,
   },
-  data () {
+  data() {
     return {
-      component: VStepper,
-    };
+      component: UiStepper,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

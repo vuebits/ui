@@ -3,11 +3,10 @@
     id="example"
     title="Example"
   >
-    <Preview
-      height="200px"
-    >
-      <VSelect
+    <Preview height="200px">
+      <UiSelect
         v-model="value"
+        :multiple="multiple"
         :items="items"
         :bordered="bordered"
         :round="round"
@@ -21,10 +20,16 @@
         :left-icon="leftIcon"
         :clearable="clearable"
         :label="label"
+        :search="search"
+        :list-position="listPosition"
       />
     </Preview>
     <template #controls>
       <Knobs>
+        <KnobBoolean
+          v-model="multiple"
+          label="Multiple"
+        />
         <KnobBoolean
           v-model="dark"
           label="Dark"
@@ -75,24 +80,24 @@
           v-model="label"
           label="Label"
         />
+        <KnobBoolean
+          v-model="search"
+          label="Search"
+        />
+        <KnobListItem
+          v-model="listPosition"
+          :items="listPositions"
+          label="List position"
+        />
       </Knobs>
     </template>
   </Sandbox>
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobBoolean,
-  KnobListItem,
-  KnobString,
-} from '@/components';
-import {
-  VSelect,
-} from '@vuebits/ui';
-import { icons, sizes } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobBoolean, KnobListItem, KnobString } from '@/components'
+import { UiSelect } from '@vuebits/ui'
+import { icons, sizes } from '@/helpers/story-params'
 
 export default {
   name: 'SelectExample',
@@ -103,9 +108,9 @@ export default {
     KnobBoolean,
     KnobListItem,
     KnobString,
-    VSelect,
+    UiSelect,
   },
-  data () {
+  data() {
     return {
       items: [
         {
@@ -119,6 +124,10 @@ export default {
         {
           key: 3,
           text: 'Item 3',
+        },
+        {
+          key: 4,
+          text: 'Very very very very very long item 4',
         },
       ],
       value: 1,
@@ -136,7 +145,11 @@ export default {
       leftIcon: null,
       clearable: false,
       label: '',
-    };
+      search: false,
+      multiple: false,
+      listPosition: null,
+      listPositions: ['bottom', 'right', 'top', 'left'],
+    }
   },
-};
+}
 </script>

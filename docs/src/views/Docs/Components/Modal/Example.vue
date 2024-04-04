@@ -4,14 +4,14 @@
     title="Example"
   >
     <Preview>
-      <VButton
+      <UiButton
         color="primary"
         dark
         @click="isModalShown = true"
       >
         Open modal
-      </VButton>
-      <VModal
+      </UiButton>
+      <UiModal
         v-model="isModalShown"
         :bordered="bordered"
         :elevated="elevated"
@@ -48,12 +48,10 @@
         >
           left
         </template>
-        <VModalHeader>Header</VModalHeader>
-        <VModalBody>
-          Body
-        </VModalBody>
-        <VModalBody>
-          <Knobs style="width: 100%;">
+        <UiModalHeader>Header</UiModalHeader>
+        <UiModalBody> Body </UiModalBody>
+        <UiModalBody>
+          <Knobs style="width: 100%">
             <KnobBoolean
               v-model="areSlotsShown"
               label="Show slots"
@@ -103,39 +101,26 @@
               label="Width (min width is 300)"
             />
           </Knobs>
-        </VModalBody>
-        <VModalFooter>Footer</VModalFooter>
-        <VModalFooter>
-          <VButton
+        </UiModalBody>
+        <UiModalFooter>Footer</UiModalFooter>
+        <UiModalFooter>
+          <UiButton
             dark
             color="primary"
             @click="isModalShown = false"
           >
             Close modal
-          </VButton>
-        </VModalFooter>
-      </VModal>
+          </UiButton>
+        </UiModalFooter>
+      </UiModal>
     </Preview>
   </Sandbox>
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobNumber,
-} from '@/components';
-import {
-  VButton,
-  VModal,
-  VModalHeader,
-  VModalBody,
-  VModalFooter,
-} from '@vuebits/ui';
-import { sizes, transitions } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobNumber } from '@/components'
+import { UiButton, UiModal, UiModalHeader, UiModalBody, UiModalFooter } from '@vuebits/ui'
+import { sizes, transitions } from '@/helpers/story-params'
 
 export default {
   name: 'ModalExample',
@@ -146,25 +131,18 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobNumber,
-    VButton,
-    VModal,
-    VModalHeader,
-    VModalBody,
-    VModalFooter,
+    UiButton,
+    UiModal,
+    UiModalHeader,
+    UiModalBody,
+    UiModalFooter,
   },
-  data () {
+  data() {
     return {
       isModalShown: false,
       areSlotsShown: false,
       sizes,
-      positions: [
-        'middle',
-        'top',
-        'left',
-        'bottom',
-        'right',
-        'fullscreen',
-      ],
+      positions: ['middle', 'top', 'left', 'bottom', 'right', 'fullscreen'],
       transitions,
       persistent: false,
       bordered: false,
@@ -176,12 +154,12 @@ export default {
       position: 'middle',
       transition: 'slide-top',
       closeOnEsc: false,
-    };
+    }
   },
   computed: {
-    computedWidth () {
-      return this.width ? Math.max(this.width, 300) : this.width;
+    computedWidth() {
+      return this.width ? Math.max(this.width, 300) : this.width
     },
   },
-};
+}
 </script>

@@ -1,25 +1,17 @@
 <template>
   <div>
-    <VTile>
-      I am normal
-    </VTile>
-    <VTile
-      elevated
-    >
-      I am elavated
-    </VTile>
+    <UiTile> I am normal </UiTile>
+    <UiTile elevated> I am elavated </UiTile>
   </div>
 </template>
 
 <script>
-import {
-  VTile,
-} from '@vuebits/ui';
+import { UiTile } from '@vuebits/ui'
 
 export default {
   name: 'TileElevation',
   components: {
-    VTile,
+    UiTile,
   },
-};
+}
 </script>

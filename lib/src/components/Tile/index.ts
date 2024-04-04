@@ -1,1 +1,1 @@
-export { default as VTile } from './Component.vue';
+export { default as UiTile } from './Component.vue'

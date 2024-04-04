@@ -2,27 +2,21 @@
   <div :class="$bem({})">
     <span
       :id="id"
-      :class="$bem({e: 'anchor'})"
+      :class="$bem({ e: 'anchor' })"
     />
-    <h3
-      :class="$bem({e: 'title'})"
-    >
-      <a
-        :href="`#${id}`"
-      >
+    <h3 :class="$bem({ e: 'title' })">
+      <a :href="`#${id}`">
         {{ title }}
       </a>
     </h3>
-    <div :class="$bem({e: 'wrapper'})">
+    <div :class="$bem({ e: 'wrapper' })">
       <div
-        :class="$bem({e: 'content'})"
-        :style="{ height: height}"
+        :class="$bem({ e: 'content' })"
+        :style="{ height: height }"
       >
         <slot />
       </div>
-      <div
-        :class="$bem({e: 'controls'})"
-      >
+      <div :class="$bem({ e: 'controls' })">
         <slot name="controls" />
       </div>
     </div>
@@ -42,19 +36,15 @@ export default {
       required: true,
     },
     height: {
-      type: [
-        Number,
-        String,
-      ],
+      type: [Number, String],
       default: 'auto',
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
 .sandbox {
-
   &__anchor {
     display: block;
     position: relative;

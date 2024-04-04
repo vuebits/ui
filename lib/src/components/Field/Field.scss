@@ -1,15 +1,15 @@
-.v-field {
+.ui-field {
   display: flex;
   flex-direction: column;
 
   &__label {
     font-size: 1.4rem;
-    color: $color-text-2;
+    color: $color-text-secondary;
     margin-bottom: $sp;
   }
 
   &__hint {
-    color: $color-text-2;
+    color: $color-text-secondary;
     font-size: 1.3rem;
     white-space: nowrap;
     overflow: hidden;

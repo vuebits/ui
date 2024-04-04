@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VButton
+      <UiButton
         :href="href"
         :new-window="newWindow"
         :bordered="bordered"
@@ -27,10 +27,9 @@
         :gradient="gradient"
         :theme="theme"
         :uppercase="uppercase"
-        :invert-theme="invertTheme"
       >
         Configure me
-      </VButton>
+      </UiButton>
     </Preview>
     <template #controls>
       <Knobs>
@@ -128,28 +127,15 @@
           v-model="uppercase"
           label="Uppercase"
         />
-        <KnobBoolean
-          v-model="invertTheme"
-          label="Invert theme"
-        />
       </Knobs>
     </template>
   </Sandbox>
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobString,
-} from '@/components';
-import {
-  VButton,
-} from '@vuebits/ui';
-import { colors, sizes, icons, gradients } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobString } from '@/components'
+import { UiButton } from '@vuebits/ui'
+import { colors, sizes, icons, gradients } from '@/helpers/story-params'
 
 export default {
   name: 'ButtonExample',
@@ -160,9 +146,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobString,
-    VButton,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       colors,
       sizes,
@@ -191,13 +177,9 @@ export default {
       gradient: 'primary',
       gradients,
       theme: null,
-      themes: [
-        'primary',
-        'secondary',
-      ],
+      themes: ['primary', 'secondary'],
       uppercase: false,
-      invertTheme: false,
-    };
+    }
   },
-};
+}
 </script>

@@ -1,1 +1,1 @@
-export { default as VFileUploader } from './Component.vue';
+export { default as UiFileUploader } from './FileUploader.vue'

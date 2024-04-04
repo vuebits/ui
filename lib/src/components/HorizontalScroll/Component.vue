@@ -1,186 +1,222 @@
+<template>
+  <div
+    ref="rootElement"
+    :class="bem({})"
+  >
+    <div
+      v-if="!hideArrows"
+      :class="
+        bem({
+          e: 'arrow-wrapper',
+          m: {
+            left: true,
+            floating: floatingArrows,
+            disabled: isLeftArrowDisabled,
+          },
+        })
+      "
+    >
+      <slot
+        name="left-arrow"
+        :scroll-left="scrollLeft"
+      >
+        <UiIcon
+          :name="$ui.icons.values.previous"
+          :size="arrowIconSize"
+          :class="
+            bem({
+              e: 'arrow',
+              m: {
+                floating: floatingArrows,
+                [arrowSize]: true,
+              },
+            })
+          "
+          @click="scrollLeft"
+        />
+      </slot>
+    </div>
+    <div
+      ref="containerElement"
+      :class="bem({ e: 'container', m: { swiping: isSwiping } })"
+      @scroll="updateClasses"
+    >
+      <slot />
+    </div>
+    <div
+      v-if="!hideArrows"
+      :class="
+        bem({
+          e: 'arrow-wrapper',
+          m: {
+            right: true,
+            floating: floatingArrows,
+            disabled: isRightArrowDisabled,
+          },
+        })
+      "
+    >
+      <slot
+        name="right-arrow"
+        :scroll-right="scrollRight"
+      >
+        <UiIcon
+          :name="$ui.icons.values.next"
+          :size="arrowIconSize"
+          :class="
+            bem({
+              e: 'arrow',
+              m: {
+                floating: floatingArrows,
+                [arrowSize]: true,
+              },
+            })
+          "
+          @click="scrollRight"
+        />
+      </slot>
+    </div>
+  </div>
+</template>
+
 <script lang="ts">
-import { defineComponent, PropType, VNode, h } from 'vue';
-import animatedScroll from '../../helpers/animated-scroll';
-import { debounce } from '../../helpers/debounce';
-import { VIconButton } from '../IconButton';
+export default {
+  name: 'UiHorizontalScroll',
+}
+</script>
 
-const widthToBeAbleToClick = 0.6;
-const childDisabledClass = 'ls-horizontal-scroll__child--disabled';
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+import animatedScroll from '../../helpers/animated-scroll'
+import { debounce } from '../../helpers/debounce'
+import { UiIcon } from '../Icon'
+import { defineBem } from '../../helpers/bem'
+import { usePointerSwipe } from '@vueuse/core'
+import { IconSize } from '../../types'
 
-export default defineComponent({
-  name: 'VHorizontalScroll',
-  props: {
-    factor: {
-      type: Number as PropType<number>,
-      default: 1,
-    },
-    scrollAnimationTime: {
-      type: Number as PropType<number>,
-      default: 100,
-    },
-    scrollForTouch: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    disableNotVisible: {
-      type: Boolean as PropType<boolean>,
-      default: false,
-    },
-    scrollId: {
-      type: Number as PropType<number>,
-      default: 0,
-    },
+type ArrowSize = 'sm' | 'md' | 'lg'
+
+const props = withDefaults(
+  defineProps<{
+    factor?: number
+    scrollAnimationTime?: number
+    arrowSize?: ArrowSize
+    hideArrows?: boolean
+    floatingArrows?: boolean
+  }>(),
+  {
+    factor: 0.1,
+    scrollAnimationTime: 100,
+    arrowSize: 'md',
+    hideArrows: false,
+    floatingArrows: false,
   },
-  data () {
-    return {
-      isLeftArrowDisabled: true,
-      isRightArrowDisabled: false,
-    };
+)
+
+const bem = defineBem('ui-horizontal-scroll')
+
+const isLeftArrowDisabled = ref(true)
+const isRightArrowDisabled = ref(true)
+const rootElement = ref<HTMLElement | null>(null)
+const containerElement = ref<HTMLElement | null>(null)
+const containerWidth = computed(() => containerElement.value?.offsetWidth ?? 0)
+const scrollOffset = ref(0)
+const isSwiping = ref(false)
+const arrowIconSize = computed(() => {
+  const iconSizes: Record<ArrowSize, IconSize> = {
+    sm: '1x',
+    md: '2x',
+    lg: '3x',
+  }
+  return iconSizes[props.arrowSize]
+})
+const disableClick = (event: MouseEvent) => {
+  event.preventDefault()
+  event.stopPropagation()
+}
+
+const { distanceX } = usePointerSwipe(containerElement, {
+  threshold: 50,
+  disableTextSelect: true,
+  pointerTypes: ['mouse'],
+  onSwipeStart(e: PointerEvent) {
+    e.preventDefault()
   },
-  watch: {
-    scrollId () {
-      this.setRootDynamicClasses();
-      this.resetScroll();
-    },
-  },
-  mounted () {
-    this.setRootDynamicClasses();
-    if (this.disableNotVisible) {
-      this.setChildrenClass();
+  onSwipe(e: PointerEvent) {
+    if (!containerElement.value) return
+    if (!isSwiping.value && Math.abs(distanceX.value) > 50) {
+      isSwiping.value = true
+      containerElement.value.addEventListener('click', disableClick, {
+        capture: true,
+      })
     }
-    window.addEventListener('resize', debounce(this.setRootDynamicClasses, 250));
+    containerElement.value.scrollLeft = scrollOffset.value + distanceX.value
   },
-  unmounted () {
-    window.removeEventListener('resize', debounce(this.setRootDynamicClasses, 250));
+  onSwipeEnd(e: PointerEvent) {
+    setTimeout(() => {
+      containerElement.value?.removeEventListener('click', disableClick, {
+        capture: true,
+      })
+      isSwiping.value = false
+    }, 200)
+    scrollOffset.value = scrollOffset.value + distanceX.value
   },
-  methods: {
-    // set root dynamic classes
-    setRootDynamicClasses (): void {
-      const container = this.$refs.container as HTMLElement;
-      const root = this.$refs.root as HTMLElement;
-      if (root) {
-        if (container && container.offsetWidth >= container.scrollWidth) {
-          root.classList.add('ls-horizontal-scroll--no-arrows');
-          root.classList.add('ls-horizontal-scroll--no-scroll');
-        } else {
-          root.classList.remove('ls-horizontal-scroll--no-arrows');
-          root.classList.remove('ls-horizontal-scroll--no-scroll');
-        }
-      }
-    },
-    // scroll handling
-    scroll (factor: number): void {
-      const container = this.$refs.container as HTMLDivElement;
-      if (this.$slots.default) {
-        const childNumber = this.$slots.default().length;
-        const currentPosition: number = container.scrollLeft;
-        const jump: number = container.scrollWidth / childNumber * factor;
-        animatedScroll.scrollToPositionX(container, currentPosition + jump, this.scrollAnimationTime);
-      }
-    },
-    scrollLeft (): void {
-      this.scroll(-this.factor);
-    },
-    scrollRight (): void {
-      this.scroll(this.factor);
-    },
-    resetScroll (): void {
-      const container = this.$refs.container as HTMLDivElement;
-      container.scrollLeft = 0;
-    },
-    // setting class for disable arrows
-    setLeftArrowClass (): void {
-      const container = this.$refs.container as HTMLDivElement;
-      const currentPosition: number = container.scrollLeft;
-      (currentPosition > 0) ? this.isLeftArrowDisabled = false : this.isLeftArrowDisabled = true;
-    },
-    setRightArrowClass (): void {
-      const container = this.$refs.container as HTMLDivElement;
-      const currentPosition: number = container.scrollLeft;
-      const endPosition: number = container.scrollWidth - container.offsetWidth;
-      (currentPosition < endPosition) ? this.isRightArrowDisabled = false : this.isRightArrowDisabled = true;
-    },
-    // setting class for disable children
-    setChildrenClass (): void {
-      const container = this.$refs.container as HTMLElement;
-      const children = this.$refs.child as HTMLElement[];
-      if (children) {
-        children.forEach((child) => {
-          const toFarRight: number = container.scrollLeft + container.offsetWidth - (widthToBeAbleToClick) * child.offsetWidth;
-          const toFarLeft: number = container.scrollLeft - (1 - widthToBeAbleToClick) * child.offsetWidth;
+})
 
-          if (child.offsetLeft < toFarLeft || child.offsetLeft > toFarRight) {
-            child.classList.add(childDisabledClass);
-          } else {
-            child.classList.remove(childDisabledClass);
-          }
-        });
-      }
-    },
-    // update classes after scroll
-    updateClasses: debounce(function (this: any) {
-      this.setLeftArrowClass();
-      this.setRightArrowClass();
-      if (this.disableNotVisible) {
-        this.setChildrenClass();
-      }
-    }, 250),
-  },
-  render (): VNode {
-    const items = this.$slots.default ? this.$slots.default() : [];
-    const container: VNode = h('div', {
-      class: 'ls-horizontal-scroll__container',
-      ref: 'container',
-      onScroll: this.updateClasses,
-    }, items.map((element) => {
-      return h('div', {
-        class: ['ls-horizontal-scroll__child'],
-        ref: 'child',
-        refInFor: true,
-      }, [element]);
-    }));
-    const arrowLeft: VNode = h(VIconButton, {
-      class: this.$bem({
-        e: 'arrow',
-        m: {
-          left: true,
-          disabled: this.isLeftArrowDisabled,
-        },
-      }),
-      ref: 'leftArrow',
-      icon: 'chevron-left',
-      elevated: true,
-      onClick: this.scrollLeft,
-    });
-    const arrowRight: VNode = h(VIconButton, {
-      class: this.$bem({
-        e: 'arrow',
-        m: {
-          right: true,
-          disabled: this.isRightArrowDisabled,
-        },
-      }),
-      ref: 'rightArrow',
-      icon: 'chevron-right',
-      elevated: true,
-      onClick: this.scrollRight,
-    });
+const scroll = (factor: number): void => {
+  const container = containerElement.value
+  if (!container) return
+  const currentPosition: number = container.scrollLeft
+  const jump: number = container.scrollWidth * factor
+  animatedScroll.scrollToPositionX(container, currentPosition + jump, props.scrollAnimationTime)
+}
 
-    return h('div', {
-      class: this.$bem({
-        m: {
-          touch: this.scrollForTouch,
-        },
-      }),
-      ref: 'root',
-    }, [
-      container,
-      arrowLeft,
-      arrowRight,
-    ],
-    );
+const scrollLeft = (): void => {
+  scroll(-props.factor)
+}
+
+const scrollRight = (): void => {
+  scroll(props.factor)
+}
+
+const resetScroll = (): void => {
+  const container = containerElement.value
+  if (!container) return
+  container.scrollLeft = 0
+}
+
+const setLeftArrowClass = (): void => {
+  const container = containerElement.value
+  if (!container) return
+  const currentPosition: number = container?.scrollLeft
+  currentPosition > 0 ? (isLeftArrowDisabled.value = false) : (isLeftArrowDisabled.value = true)
+}
+
+const setRightArrowClass = (): void => {
+  const container = containerElement.value
+  if (!container) return
+  const currentPosition: number = container?.scrollLeft
+  const endPosition: number = container.scrollWidth - container.offsetWidth
+  currentPosition < endPosition
+    ? (isRightArrowDisabled.value = false)
+    : (isRightArrowDisabled.value = true)
+}
+
+const updateClasses = debounce(function (this: any) {
+  setLeftArrowClass()
+  setRightArrowClass()
+}, 250)
+
+watch(
+  () => containerWidth.value,
+  () => {
+    resetScroll()
   },
-});
+)
+
+onMounted(() => {
+  updateClasses()
+})
 </script>
 
 <style lang="scss">

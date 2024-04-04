@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Spinner
-    </PageHeader>
+    <PageHeader> Spinner </PageHeader>
     <Example />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VSpinner } from '@vuebits/ui';
-import Example from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiSpinner } from '@vuebits/ui'
+import Example from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsSpinner',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     Example,
   },
-  data () {
+  data() {
     return {
-      component: VSpinner,
-    };
+      component: UiSpinner,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

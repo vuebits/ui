@@ -1,4 +1,4 @@
-.v-stepper {
+.ui-stepper {
   $root: &;
 
   &__steps-axis {
@@ -9,7 +9,6 @@
   }
 
   &__steps-axis-step {
-
     &:not(:last-of-type) {
       flex-grow: 1;
       display: flex;
@@ -21,7 +20,6 @@
         flex-grow: 1;
       }
     }
-
   }
 
   &__step {
@@ -93,7 +91,7 @@
 
   &__step-subtitle {
     font-size: 1.5rem;
-    color: $color-text-2;
+    color: $color-text-secondary;
   }
 
   &__step-content {

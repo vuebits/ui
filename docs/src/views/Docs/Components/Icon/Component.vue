@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Icon
-    </PageHeader>
+    <PageHeader> Icon </PageHeader>
     <TileExample />
     <ComponentApi :component="component" />
     <Story
@@ -58,14 +56,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VIcon } from '@vuebits/ui';
-import TileExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiIcon } from '@vuebits/ui'
+import TileExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
 import {
   IconName,
   IconType,
@@ -74,7 +68,7 @@ import {
   IconFlip,
   IconPulse,
   IconSpin,
-} from './_stories';
+} from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsIcon',
@@ -91,13 +85,12 @@ export default defineComponent({
     IconPulse,
     IconSpin,
   },
-  data () {
+  data() {
     return {
-      component: VIcon,
-    };
+      component: UiIcon,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

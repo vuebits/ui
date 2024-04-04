@@ -1,14 +1,14 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import { createUI } from '@vuebits/ui';
-import router from './router';
-import {
-  asset,
-} from './plugins';
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createUI } from '@vuebits/ui'
+import router from './router'
+import { asset } from './plugins'
+import { CustomOptions } from '../../lib/src/models'
 
-const config = {
+const config: CustomOptions = {
   locale: 'en',
   icons: {
+    format: 'font',
     prefix: 'fa-',
     type: 'fa',
     values: {
@@ -19,15 +19,11 @@ const config = {
       next: 'chevron-right',
       expand: 'chevron-down',
       collapse: 'chevron-up',
-      file: 'file-import',
+      upload: 'file-import',
       close: 'times',
-      hamburger: 'bars',
+      menu: 'bars',
     },
   },
-};
+}
 
-createApp(App)
-  .use(createUI(config))
-  .use(router)
-  .use(asset)
-  .mount('#app');
+createApp(App).use(createUI(config)).use(router).use(asset).mount('#app')

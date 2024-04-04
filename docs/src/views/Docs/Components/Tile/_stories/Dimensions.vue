@@ -4,28 +4,26 @@
       v-for="(dimension, index) in dimensions"
       :key="index"
     >
-      <VTile
+      <UiTile
         :width="dimension.width"
         :height="dimension.height"
         dark
       >
         I am {{ dimension.width }} wide and {{ dimension.height }} high
-      </VTile>
+      </UiTile>
     </span>
   </div>
 </template>
 
 <script>
-import {
-  VTile,
-} from '@vuebits/ui';
+import { UiTile } from '@vuebits/ui'
 
 export default {
   name: 'TileTileDimensions',
   components: {
-    VTile,
+    UiTile,
   },
-  data () {
+  data() {
     return {
       dimensions: [
         {
@@ -41,7 +39,7 @@ export default {
           height: '10vh',
         },
       ],
-    };
+    }
   },
-};
+}
 </script>

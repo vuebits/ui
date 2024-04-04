@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { ClickOutside } from '../../../directives';
-import { CssClass } from '../../../helpers/css-classes';
+import { defineComponent, PropType } from 'vue'
+import { ClickOutside } from '../../../directives'
+import { CssClass } from '../../../helpers/css-classes'
 
 export default defineComponent({
-  name: 'VToolbarMenu',
+  name: 'UiToolbarMenu',
   directives: { ClickOutside },
   props: {
     expandedOnMobile: {
@@ -36,7 +36,7 @@ export default defineComponent({
   },
   emits: ['click-outside'],
   computed: {
-    listClasses (): CssClass[] {
+    listClasses(): CssClass[] {
       return [
         ...this.$bem({
           e: 'list',
@@ -45,15 +45,15 @@ export default defineComponent({
             persistent: this.persistent,
           },
         }),
-      ];
+      ]
     },
   },
   methods: {
-    clickOutside (): void {
-      this.$emit('click-outside');
+    clickOutside(): void {
+      this.$emit('click-outside')
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

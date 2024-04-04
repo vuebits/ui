@@ -14,7 +14,8 @@
     "declaration": true,
     "declarationDir": "types",
     "types": [
-      "jest"
+        "vite/client",
+        "vitest/globals"
     ],
     "paths": {
       "@/*": [
@@ -30,7 +31,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.vue",
+    "src/**/*.vue"
   ],
   "exclude": [
     "node_modules"

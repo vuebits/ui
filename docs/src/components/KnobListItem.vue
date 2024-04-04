@@ -1,5 +1,5 @@
 <template>
-  <VSelect
+  <UiSelect
     :model-value="modelValue"
     :items="listItems"
     :label="label"
@@ -13,44 +13,44 @@
 </template>
 
 <script setup lang="ts">
-import { VSelect } from '@vuebits/ui';
-import { computed } from 'vue';
-import { SelectItem } from '../../../lib/src/components/Select/models';
+import { UiSelect } from '@vuebits/ui'
+import { computed } from 'vue'
+import { SelectItem } from '../../../lib/src/components/Select/models'
 
 type Props = {
-  modelValue: string | number | null;
-  label: string;
-  items: string[];
+  modelValue: string | number | null
+  label: string
+  items: string[]
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(defineProps<Props>(), {})
 
 type Emits = {
-    (e: 'select', item: SelectItem): void;
-    (e: 'change', item: SelectItem): void;
-    (e: 'update:model-value', key: string | number): void;
+  (e: 'select', item: SelectItem): void
+  (e: 'change', item: SelectItem): void
+  (e: 'update:model-value', key: string | number | null): void
 }
 
-const emit = defineEmits<Emits>();
+const emit = defineEmits<Emits>()
 
 const listItems = computed<SelectItem[]>(() => {
-  return props.items.map(item => {
+  return props.items.map((item) => {
     return typeof item === 'object'
       ? item
       : {
-        key: item,
-        text: item.toString(),
-      };
-  });
-});
+          key: item,
+          text: item.toString(),
+        }
+  })
+})
 
 const updateValue = (item: SelectItem): void => {
-  emit('update:model-value', item.key);
-  emit('select', item);
+  emit('update:model-value', item.key)
+  emit('select', item)
   if (item.key !== props.modelValue) {
-    emit('change', item);
+    emit('change', item)
   }
-};
+}
 </script>
 
 <style lang="scss">

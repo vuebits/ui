@@ -2,7 +2,7 @@
 
 $responsive-grid-max-elements: 12 !default;
 
-.v-grid-item {
+.ui-grid-item {
   width: 100%;
   @for $i from 1 through $responsive-grid-max-elements {
     &--cols-xs-#{$i} {

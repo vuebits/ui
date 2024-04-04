@@ -9,7 +9,7 @@
     <template v-if="isLoading">
       <slot name="loading">
         <div :class="$bem({ e: 'status' })">
-          <VSpinner
+          <UiSpinner
             :size="iconsSize"
             :class="$bem({ e: 'status-icon' })"
           />
@@ -20,7 +20,7 @@
     <template v-if="isComplete">
       <slot name="complete">
         <div :class="$bem({ e: 'status' })">
-          <VIcon
+          <UiIcon
             :name="completeIcon || $ui.icons.values.check"
             color="success"
             :class="$bem({ e: 'status-icon' })"
@@ -32,7 +32,7 @@
     <template v-if="isError">
       <div :class="$bem({ e: 'status' })">
         <slot name="error">
-          <VIcon
+          <UiIcon
             :name="errorIcon || $ui.icons.values.error"
             color="error"
             :class="$bem({ e: 'status-icon' })"
@@ -46,16 +46,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VSpinner } from '../Spinner';
-import { VIcon } from '../Icon';
-import { InifiniteScrollState } from './models';
+import { defineComponent, PropType } from 'vue'
+import { UiSpinner } from '../Spinner'
+import { UiIcon } from '../Icon'
+import { InifiniteScrollState } from './models'
 
 export default defineComponent({
-  name: 'VInfiniteScroll',
+  name: 'UiInfiniteScroll',
   components: {
-    VSpinner,
-    VIcon,
+    UiSpinner,
+    UiIcon,
   },
   props: {
     identifier: {
@@ -63,7 +63,7 @@ export default defineComponent({
       default: 1,
     },
     state: {
-      type: String as PropType<InifiniteScrollState>,
+      type: String as PropType<`${InifiniteScrollState}`>,
       required: true,
     },
     loadingText: {
@@ -112,60 +112,60 @@ export default defineComponent({
   },
   emits: ['scroll-to-end'],
   computed: {
-    isLoading (): boolean {
-      return this.state === InifiniteScrollState.LOADING;
+    isLoading(): boolean {
+      return this.state === InifiniteScrollState.LOADING
     },
-    isComplete (): boolean {
-      return this.state === InifiniteScrollState.COMPLETE;
+    isComplete(): boolean {
+      return this.state === InifiniteScrollState.COMPLETE
     },
-    isError (): boolean {
-      return this.state === InifiniteScrollState.ERROR;
+    isError(): boolean {
+      return this.state === InifiniteScrollState.ERROR
     },
-    textOnLoading (): string {
-      return this.loadingText || 'loading...';
+    textOnLoading(): string {
+      return this.loadingText || 'loading...'
     },
-    textOnComplete (): string {
-      return this.completeText || 'end of data';
+    textOnComplete(): string {
+      return this.completeText || 'end of data'
     },
-    textOnError (): string {
-      return this.errorText || 'error';
+    textOnError(): string {
+      return this.errorText || 'error'
     },
   },
-  mounted () {
-    this.setIdentifierReset();
-    this.setObserver();
+  mounted() {
+    this.setIdentifierReset()
+    this.setObserver()
   },
   methods: {
-    handleScroll (): void {
+    handleScroll(): void {
       if (this.state === InifiniteScrollState.LOADED) {
-        this.$emit('scroll-to-end');
+        this.$emit('scroll-to-end')
       }
     },
-    reset (): void {
-      (this.$refs.container as HTMLElement).scrollTop = 0;
+    reset(): void {
+      ;(this.$refs.container as HTMLElement).scrollTop = 0
     },
-    setIdentifierReset (): void {
+    setIdentifierReset(): void {
       if (this.identifier !== null) {
-        this.$watch('identifier', this.reset);
+        this.$watch('identifier', this.reset)
       }
     },
-    setObserver (): void {
-      const root = this.$el as HTMLElement;
-      const end = this.$refs.end as HTMLElement;
+    setObserver(): void {
+      const root = this.$el as HTMLElement
+      const end = this.$refs.end as HTMLElement
       const options = {
         root,
         rootMargin: `${this.tolerance}px`,
         threshold: 1.0,
-      };
+      }
       const observer = new IntersectionObserver(([entry]) => {
         if (entry && entry.isIntersecting) {
-          this.handleScroll();
+          this.handleScroll()
         }
-      }, options);
-      observer.observe(end);
+      }, options)
+      observer.observe(end)
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

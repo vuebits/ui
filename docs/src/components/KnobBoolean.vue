@@ -1,5 +1,5 @@
 <template>
-  <VCheckbox
+  <UiCheckbox
     :id="label"
     :model-value="modelValue"
     :label="label"
@@ -12,25 +12,24 @@
 </template>
 
 <script setup lang="ts">
-import { VCheckbox } from '@vuebits/ui';
+import { UiCheckbox } from '@vuebits/ui'
 
 type Props = {
-  modelValue: boolean;
-  label: string;
+  modelValue: boolean
+  label: string
 }
 
-withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {})
 
 type Emits = {
-    (e: 'update:model-value', isChecked: boolean): void;
+  (e: 'update:model-value', isChecked: boolean): void
 }
 
-const emit = defineEmits<Emits>();
+const emit = defineEmits<Emits>()
 
 const updateValue = (isChecked: boolean): void => {
-  emit('update:model-value', isChecked);
-};
-
+  emit('update:model-value', isChecked)
+}
 </script>
 
 <style lang="scss">

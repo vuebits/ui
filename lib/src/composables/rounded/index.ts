@@ -1,4 +1,16 @@
-import { computed, PropType, Ref } from 'vue';
+import { computed, PropType, Ref } from 'vue'
+
+export type RoundedProps = {
+  rounded?: boolean
+  roundedLg?: boolean
+  round?: boolean
+}
+
+export const defaultRoundedProps: Partial<RoundedProps> = {
+  rounded: false,
+  roundedLg: false,
+  round: false,
+}
 
 export const roundedProps = {
   rounded: {
@@ -13,12 +25,12 @@ export const roundedProps = {
     type: Boolean as PropType<boolean>,
     default: false,
   },
-};
+}
 
-export function useRounded (rounded: Ref, roundedLg: Ref, round?: Ref) {
+export function useRounded(rounded: Ref, roundedLg: Ref, round?: Ref) {
   return computed(() => ({
     'is-rounded': rounded.value,
     'is-rounded-lg': roundedLg.value,
     'is-round': round?.value || false,
-  }));
-};
+  }))
+}

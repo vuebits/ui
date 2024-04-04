@@ -1,79 +1,80 @@
-
-.v-horizontal-scroll {
+.ui-horizontal-scroll {
   $root: &;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: $sp-sm;
 
   &__container {
-    display: flex;
     overflow-x: scroll;
     flex-wrap: nowrap;
     height: inherit;
-    align-items: center;
-    margin-bottom: -2.5rem;
-    padding-bottom: 2.5rem;
+    scrollbar-width: none;
+    touch-action: auto !important;
+    user-select: auto !important;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--swiping {
+      & a {
+        pointer-events: none !important;
+      }
+    }
+  }
+
+  &__arrow-wrapper {
+    flex-shrink: 0;
+
+    &--disabled {
+      visibility: hidden;
+    }
+
+    &--floating {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translate(0, -50%);
+
+      &#{$root}__arrow-wrapper--left {
+        left: $sp-xs;
+      }
+
+      &#{$root}__arrow-wrapper--right {
+        right: $sp-xs;
+      }
+    }
   }
 
   &__arrow {
-    position: absolute;
+    flex-shrink: 0;
     cursor: pointer;
-    top: $sp;
-    height: 4rem;
-    width: 4rem;
+    display: flex !important;
     border-radius: 50%;
-    background-color: rgba($color-primary, 0.3);
-    display: flex;
     justify-content: center;
     align-items: center;
+    background: $color-primary;
+    color: $color-white;
 
-    &--disabled {
-      display: none;
+    &--sm {
+      width: 3rem;
+      height: 3rem;
     }
 
-    &--left {
-      left: $sp;
+    &--md {
+      width: 5rem;
+      height: 5rem;
     }
 
-    &--right {
-      right: $sp;
+    &--lg {
+      width: 7rem;
+      height: 7rem;
     }
-  }
 
-  &__child {
-
-    &--disabled {
-      pointer-events: none;
-      filter: grayscale(100%);
-    }
-  }
-
-  &--touch {
-    #{$root}__container {
-      flex-wrap: wrap;
-      display: flex;
-      @media (pointer: coarse) {
-        overflow-y: scroll;
-        flex-wrap: nowrap;
-        padding: 0 2rem;
-      }
-    }
-    #{$root}__arrow {
-      display: none;
-      @media (pointer: coarse) {
-        display: block;
-      }
-    }
-  }
-
-  &--no-scroll {
-    #{$root}__container {
-      overflow-x: auto;
-    }
-  }
-
-  &--no-arrows {
-    #{$root}__arrow {
-      display: none;
+    &--floating {
+      box-shadow: $shadow-main;
     }
   }
 }

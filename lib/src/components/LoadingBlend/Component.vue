@@ -4,18 +4,18 @@
     :class="$bem({})"
     v-bind="$ui.testElName('loading-blend')"
   >
-    <VSpinner />
+    <UiSpinner />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { VSpinner } from '../Spinner';
+import { defineComponent, PropType } from 'vue'
+import { UiSpinner } from '../Spinner'
 
 export default defineComponent({
-  name: 'VLoadingBlend',
+  name: 'UiLoadingBlend',
   components: {
-    VSpinner,
+    UiSpinner,
   },
   props: {
     loading: {
@@ -23,7 +23,7 @@ export default defineComponent({
       required: true,
     },
   },
-});
+})
 </script>
 
 <style lang="scss">

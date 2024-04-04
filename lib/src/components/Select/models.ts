@@ -1,6 +1,10 @@
+export type SelectItemKey = string | number | null
+
 export interface SelectItem {
-  key: string | number;
-  text: string;
-  disabled?: boolean;
-  metadata?: any;
+  key: SelectItemKey
+  text: string
+  disabled?: boolean
+  metadata?: any
 }
+
+export type SelectValue = SelectItemKey | SelectItemKey[]

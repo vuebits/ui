@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Infinite scroll
-    </PageHeader>
+    <PageHeader> Infinite scroll </PageHeader>
     <InifiniteScrollExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VInfiniteScroll } from '@vuebits/ui';
-import InifiniteScrollExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiInfiniteScroll } from '@vuebits/ui'
+import InifiniteScrollExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsInfiniteScroll',
@@ -24,14 +19,12 @@ export default defineComponent({
     ComponentApi,
     InifiniteScrollExample,
   },
-  data () {
+  data() {
     return {
-      component: VInfiniteScroll,
-    };
+      component: UiInfiniteScroll,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -4,31 +4,29 @@
       v-for="gradient in gradients"
       :key="gradient"
     >
-      <VButton
+      <UiButton
         :gradient="gradient"
         dark
       >
         I am {{ gradient }}
-      </VButton>
+      </UiButton>
     </span>
   </div>
 </template>
 
 <script>
-import {
-  VButton,
-} from '@vuebits/ui';
-import { gradients } from '@/helpers/story-params';
+import { UiButton } from '@vuebits/ui'
+import { gradients } from '@/helpers/story-params'
 
 export default {
   name: 'ButtonGradients',
   components: {
-    VButton,
+    UiButton,
   },
-  data () {
+  data() {
     return {
       gradients,
-    };
+    }
   },
-};
+}
 </script>

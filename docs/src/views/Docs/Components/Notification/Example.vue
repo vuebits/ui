@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview height="200px">
-      <VNotification
+      <UiNotification
         :type="type"
         :round="round"
         :rounded="rounded"
@@ -60,11 +60,9 @@ import {
   KnobBoolean,
   KnobString,
   KnobNumber,
-} from '@/components';
-import {
-  VNotification,
-} from '@vuebits/ui';
-import { sizes } from '@/helpers/story-params';
+} from '@/components'
+import { UiNotification } from '@vuebits/ui'
+import { sizes } from '@/helpers/story-params'
 
 export default {
   name: 'NotificationExample',
@@ -76,17 +74,11 @@ export default {
     KnobBoolean,
     KnobString,
     KnobNumber,
-    VNotification,
+    UiNotification,
   },
-  data () {
+  data() {
     return {
-      types: [
-        'default',
-        'success',
-        'info',
-        'warning',
-        'error',
-      ],
+      types: ['default', 'success', 'info', 'warning', 'error'],
       type: 'success',
       message: 'Some content here...',
       round: false,
@@ -95,12 +87,12 @@ export default {
       size: 'sm',
       sizes,
       width: null,
-    };
+    }
   },
-  mounted () {
+  mounted() {
     setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+      this.loading = false
+    }, 2000)
   },
-};
+}
 </script>

@@ -1,0 +1,143 @@
+$datepicker-color-selection: $color-primary !default;
+$datepicker-color-today: rgba($color-primary, 0.3) !default;
+$datepicker-day-size: 4rem !default;
+$datepicker-color-saturday: $color-text-secondary !default;
+$datepicker-color-sunday: $color-error !default;
+$datepicker-color-holiday: $color-error !default;
+$datepicker-color-highlighted: $color-error !default;
+
+.ui-datepicker {
+  $root: &;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4 * $sp;
+    gap: 3 * $sp;
+  }
+
+  &__display {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    font-weight: bold;
+  }
+
+  &__display-button {
+    text-transform: uppercase;
+  }
+
+  &__display-year {
+    width: 12rem;
+    text-align: center;
+  }
+
+  &__days-view {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__days-view-header {
+    text-transform: capitalize;
+    margin-bottom: $sp;
+  }
+
+  &__days-view-body {
+    width: 100%;
+  }
+
+  &__days-view-header,
+  &__days-view-row {
+    display: flex;
+    width: 100%;
+  }
+
+  &__days-view-header-item,
+  &__days-view-row-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    width: calc(100% / 7);
+    padding: $sp;
+  }
+
+  &__days-view-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: set-border(transparent);
+    box-sizing: border-box;
+    transition-duration: 0.2s;
+    width: $datepicker-day-size;
+    height: $datepicker-day-size;
+
+    &:hover {
+      border: set-border($datepicker-color-selection);
+      cursor: pointer;
+    }
+
+    &--saturday {
+      color: $datepicker-color-saturday;
+    }
+
+    &--sunday {
+      color: $datepicker-color-sunday;
+    }
+
+    &--holiday {
+      color: $datepicker-color-holiday;
+    }
+
+    &--highlighted {
+      background-color: $datepicker-color-highlighted;
+      color: $color-white;
+    }
+
+    &--today {
+      background: $datepicker-color-today;
+    }
+
+    &--selected {
+      background: $datepicker-color-selection;
+      color: $color-white;
+    }
+
+    &--other-month {
+      opacity: 0.5;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+
+      &:hover {
+        border: 0.01em transparent solid !important;
+      }
+    }
+  }
+
+  &__months-view {
+    display: inline-block;
+  }
+
+  &__months-view-month {
+    width: 33%;
+    text-transform: uppercase;
+  }
+}

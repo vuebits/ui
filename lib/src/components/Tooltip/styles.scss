@@ -1,18 +1,15 @@
-.v-tooltip {
+.ui-tooltip {
   position: relative;
   display: inline-block;
 
   &--active {
-    z-index: 100000;
+    z-index: $layer-tooltip;
   }
 
   &__blend {
     z-index: -1;
     position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-color: $color-blend;
   }
 

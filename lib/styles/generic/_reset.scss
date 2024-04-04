@@ -25,7 +25,6 @@ html {
 }
 
 audio {
-
   &:not([controls]) {
     display: none;
     height: 0;
@@ -264,7 +263,6 @@ video {
 }
 
 @media screen {
-
   [hidden~='screen'] {
     display: inherit;
   }

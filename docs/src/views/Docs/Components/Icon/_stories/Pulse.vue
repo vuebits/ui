@@ -1,34 +1,28 @@
 <template>
   <div>
-    <VIcon
+    <UiIcon
       name="check"
       pulse
     />
-    <VIcon
+    <UiIcon
       name="spinner"
       pulse
     />
-    <VIcon
+    <UiIcon
       name="cog"
       pulse
     />
-    <VIcon
-      pulse
-    >
-      Hello!
-    </VIcon>
+    <UiIcon pulse> Hello! </UiIcon>
   </div>
 </template>
 
 <script>
-import {
-  VIcon,
-} from '@vuebits/ui';
+import { UiIcon } from '@vuebits/ui'
 
 export default {
   name: 'IconPulse',
   components: {
-    VIcon,
+    UiIcon,
   },
-};
+}
 </script>

@@ -1,1 +1,1 @@
-export { default as VField } from './Component.vue';
+export { default as UiField } from './Field.vue'

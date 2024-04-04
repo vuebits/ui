@@ -1,11 +1,7 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Installation
-    </PageHeader>
-    <p class="docs--p">
-      Install library via npm:
-    </p>
+    <PageHeader> Installation </PageHeader>
+    <p class="docs--p">Install library via npm:</p>
     <CodeBlock
       language="bash"
       code="npm i @vuebits/ui"
@@ -14,11 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {
-  PageHeader,
-  CodeBlock,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { PageHeader, CodeBlock } from '@/components'
 
 export default defineComponent({
   name: 'DocsGettingStartedInstallation',
@@ -26,8 +19,7 @@ export default defineComponent({
     PageHeader,
     CodeBlock,
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

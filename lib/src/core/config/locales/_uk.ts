@@ -1,4 +1,4 @@
-import { Dictionary } from '../../../models';
+import { Dictionary } from '../../../models'
 
 export const uk: Dictionary = {
   asyncContent: {
@@ -37,16 +37,9 @@ export const uk: Dictionary = {
     dropAreaTextWhenDisabled: 'Неактивна зона',
     title: 'Додавання файлу',
     validationError: 'Файл недійсний',
+    sizeError: 'недійсний розмір файлу',
   },
-  weekdays: [
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'П\'ятниця',
-    'Субота',
-    'Неділя',
-  ],
+  weekdays: ['Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота', 'Неділя'],
   months: [
     'Січень',
     'Лютий',
@@ -68,4 +61,4 @@ export const uk: Dictionary = {
     loading: 'Завантаження даних',
     noItems: 'Немає елементів для відображення',
   },
-};
+}

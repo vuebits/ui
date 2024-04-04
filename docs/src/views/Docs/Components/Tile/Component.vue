@@ -1,8 +1,6 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Tile
-    </PageHeader>
+    <PageHeader> Tile </PageHeader>
     <TileExample />
     <ComponentApi :component="component" />
     <Story
@@ -51,14 +49,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VTile } from '@vuebits/ui';
-import TileExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-  Story,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiTile } from '@vuebits/ui'
+import TileExample from './Example.vue'
+import { PageHeader, ComponentApi, Story } from '@/components'
 import {
   TileColors,
   TileHoverBgColors,
@@ -66,7 +60,7 @@ import {
   TileRoundings,
   TileElevation,
   TileDimensions,
-} from './_stories';
+} from './_stories'
 
 export default defineComponent({
   name: 'DocsComponentsTile',
@@ -82,12 +76,12 @@ export default defineComponent({
     TileElevation,
     TileDimensions,
   },
-  data () {
+  data() {
     return {
-      component: VTile,
-    };
+      component: UiTile,
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

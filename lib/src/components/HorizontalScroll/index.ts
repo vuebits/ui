@@ -1,1 +1,1 @@
-export { default as VHorizontalScroll } from './Component.vue';
+export { default as UiHorizontalScroll } from './Component.vue'

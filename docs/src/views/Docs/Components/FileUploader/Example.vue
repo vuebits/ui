@@ -4,7 +4,7 @@
     title="Example"
   >
     <Preview>
-      <VFileUploader
+      <UiFileUploader
         :elevated="elevated"
         :round="round"
         :rounded="rounded"
@@ -27,9 +27,7 @@
       />
       <div v-if="file">
         {{ file }}
-        <button @click="file = null">
-          x
-        </button>
+        <button @click="file = null">x</button>
       </div>
     </Preview>
     <template #controls>
@@ -81,18 +79,9 @@
 </template>
 
 <script>
-import {
-  Preview,
-  Sandbox,
-  Knobs,
-  KnobListItem,
-  KnobBoolean,
-  KnobNumber,
-} from '@/components';
-import {
-  VFileUploader,
-} from '@vuebits/ui';
-import { colors } from '@/helpers/story-params';
+import { Preview, Sandbox, Knobs, KnobListItem, KnobBoolean, KnobNumber } from '@/components'
+import { UiFileUploader } from '@vuebits/ui'
+import { colors } from '@/helpers/story-params'
 
 export default {
   name: 'FileUploaderExample',
@@ -103,9 +92,9 @@ export default {
     KnobListItem,
     KnobBoolean,
     KnobNumber,
-    VFileUploader,
+    UiFileUploader,
   },
-  data () {
+  data() {
     return {
       file: null,
       colors,
@@ -128,12 +117,12 @@ export default {
       isDropAreaHidden: false,
       multipleFiles: false,
       acceptedExtensions: ['.png'],
-    };
+    }
   },
   methods: {
-    upload (file) {
-      this.file = file.name;
+    upload(file) {
+      this.file = file.name
     },
   },
-};
+}
 </script>

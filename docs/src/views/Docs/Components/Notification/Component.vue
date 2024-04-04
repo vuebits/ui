@@ -1,21 +1,16 @@
 <template>
   <div :class="$bem({})">
-    <PageHeader>
-      Notification
-    </PageHeader>
+    <PageHeader> Notification </PageHeader>
     <NotificationExample />
     <ComponentApi :component="component" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VNotification } from '@vuebits/ui';
-import NotificationExample from './Example.vue';
-import {
-  PageHeader,
-  ComponentApi,
-} from '@/components';
+import { defineComponent } from 'vue'
+import { UiNotification } from '@vuebits/ui'
+import NotificationExample from './Example.vue'
+import { PageHeader, ComponentApi } from '@/components'
 
 export default defineComponent({
   name: 'DocsComponentsNotification',
@@ -24,13 +19,12 @@ export default defineComponent({
     ComponentApi,
     NotificationExample,
   },
-  data () {
+  data() {
     return {
-      component: VNotification,
-    };
+      component: UiNotification,
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
